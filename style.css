@@ -1,0 +1,10 @@
+body{
+    background-color: black;
+    color: white;
+    font-family: Helvetica, sans-serif;
+}
+
+.intro{
+    text-align: center;
+    font-weight: bolder;
+}
