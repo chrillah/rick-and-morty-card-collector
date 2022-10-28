@@ -1,6 +1,6 @@
+/*INTRO SECTION_ TEST ONLY*/
+
 body{
-    background-color: black;
-    color: white;
     font-family: Helvetica, sans-serif;
 }
 
@@ -8,3 +8,40 @@ body{
     text-align: center;
     font-weight: bolder;
 }
+
+/*Table of content*/
+/*1. Root settings*/
+:root{
+    --font-color-black : #000000;
+    --font-color-white : #FFFFFF;
+}
+
+/*2. HTML settings*/
+html{
+    scroll-behavior: smooth;
+}
+/*3. Font settings*/
+ul li{
+    list-style: none;
+    box-sizing: border-box;
+}
+
+a{
+    text-decoration: none;
+    color: var(--font-color);
+}
+/*4. Buttons style*/
+/*5. Nav settings*/
+
+.links{
+    padding: .1rem;
+    font-weight: bold;
+}
+
+.links:hover{
+    background: var(--font-color-black);
+    color: var(--font-color-white);
+}
+
+/*5-7. Main settings*/
+/*7-9. Footer settings*/
