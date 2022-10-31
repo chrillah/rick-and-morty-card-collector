@@ -1,13 +1,22 @@
 // Form section
-
 const form = document.querySelector('#form')
 const nameInput = document.querySelector('#name-input')
 const populationInput = document.querySelector('#population-input')
 const send = document.querySelector('#send')
 
+// Search after a city
+
 /* TEST AREA */
 const result = document.querySelector('#result')
-const fetcha = document.querySelector('#fetcha')
+const getCities = document.querySelector('#get-cities')
+const errorMessage = document.querySelector('#error-message')
+const nameError = document.querySelector('#name-error')
+const populationError = document.querySelector('#population-error')
+
+// errorMessage.style.display = 'none'
+// nameError.style.display = 'none'
+send.disabled = true
+
 /* TEST AREA */
 
 /* variabler till databasen*/
@@ -16,45 +25,66 @@ let inputPopulation = ''
 
 // todo Göra ett naken form för att ta emot ett värde från användaren
 /* 
-Form 
-
-fånga input från användaren i variabler
-
-
-konvertera input till population med int.parse
-
-addEventlistiner till input som fångar upp info från användaren
-
 
 Fetch
 
-när form är klar och den fångar upp värden från användaren, testat så att informationen loggas ut, kolla upp:
-
-POST-anrop från avancera/ anteckningarna
 PATCH-anrop */
 
+
+/* USER-INPUT */
 nameInput.addEventListener('input', ()=>{
+    displayErrorMessage()
     inputNameValue()
+    isNameInputPass()
 })
 
 populationInput.addEventListener('input',()=>{
+    displayErrorMessage()
     inputPopulationValue()
+    isPopulationPass()
 })
 
+function inputPopulationValue(){
+    inputPopulation = parseInt(populationInput.value)
+}
+
+function inputNameValue(){
+    inputName = nameInput.value
+}
+
+/* GUARDFUNCTION */
+function isNameInputPass(){
+    if(nameInput.value === ''){
+        nameError.style.display = 'block'
+    }
+    if(nameInput.value){
+        nameError.style.display = 'none'
+    }
+}
+
+function isPopulationPass(){
+    if(!inputPopulation){
+        populationError.style = 'block'
+    }
+    if(inputPopulation){
+        populationError.style.display = 'none'
+    }
+}
+
+function displayErrorMessage(){
+    if(populationError.style.display === 'none' && nameError.style.display === 'none'){
+        errorMessage.style.display = 'none'
+        send.disabled = false
+    }
+    else{
+        errorMessage.style.display = 'block'
+        send.disabled = true
+    }
+}
+
+/* POST */
 form.addEventListener('submit',(event)=>{
     event.preventDefault()
-
-    // let arrayTest = []
-    // arrayTest.push
-    // (
-    //     {
-    //         name: inputName,population : inputPopulation
-    //     }
-    // )
-    // localStorage.setItem('array', JSON.stringify(arrayTest))
-
-
-    // console.log(JSON.parse(localStorage.getItem('array')))
 
     fetch('https://avancera.app/cities/',{
         body: JSON.stringify({
@@ -67,20 +97,16 @@ form.addEventListener('submit',(event)=>{
     console.log('POST')
 
     /* TESTNING */
-
+    let cityElement = document.createElement('div')
+    cityElement.classList.add('result-container')
+    result.appendChild(cityElement)
+    cityElement.innerHTML = `<p class="testP">${inputName}</p> <p class="testP">${inputPopulation}</p>`
     /* TESTNING */
 })
 
 
-function inputPopulationValue(){
-    inputPopulation = parseInt(populationInput.value)
-}
-
-function inputNameValue(){
-    inputName = nameInput.value
-}
-
-fetcha.addEventListener('click', ()=>{
+/* GET-ANROP */
+getCities.addEventListener('click', ()=>{
     fetch('https://avancera.app/cities/')
     .then(resp=>resp.json())
     .then(res=>{
@@ -102,6 +128,16 @@ fetcha.addEventListener('click', ()=>{
         idContainer.style.display = 'none'
     })
 })
+
+
+/* SEARCH CITY */
+
+
+/* EDIT CITY */
+
+/* DELETE CITY */
+
+
 
 
 // testobject

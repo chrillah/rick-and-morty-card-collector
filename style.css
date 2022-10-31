@@ -19,6 +19,16 @@ body{
     padding: 1rem;
 }
 
+
+/* ERROR-MESSAGE */
+
+#error-message{
+    color: red;
+    font-weight: bold;
+    margin: 0;
+    padding: 0;
+}
+
 /* REMOVE ALL ABOVE AFTER TEST PERIOD IS OVER */
 
 /* Table of content */
