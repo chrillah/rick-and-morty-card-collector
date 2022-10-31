@@ -1,4 +1,4 @@
-/*INTRO SECTION_ TEST ONLY*/
+/*INTRO SECTION_ TEST ONLY */
 
 body{
     font-family: Helvetica, sans-serif;
@@ -9,18 +9,45 @@ body{
     font-weight: bolder;
 }
 
-/*Table of content*/
-/*1. Root settings*/
-:root{
-    --font-color-black : #000000;
-    --font-color-white : #FFFFFF;
+.result-container{
+    border: 1px solid black;
+    margin: 2rem 0;
+    display: flex;
 }
 
-/*2. HTML settings*/
+.testP{
+    padding: 1rem;
+}
+
+/* REMOVE ALL ABOVE AFTER TEST PERIOD IS OVER */
+
+/* Table of content */
+/* 1. Root settings */
+/* 2. HTML settings */
+/* 3. Font settings */
+/* 4. Buttons style */
+/* 5. Nav settings */
+/* 5-7. Main settings */
+/* 5-7. Form settings */
+/* 7-9. Footer settings */
+
+
+
+
+
+/* 1. Root settings */
+:root{
+    --font-color-black : #000000;
+    --bg-color-white : #FFFFFF;
+}
+
+/* 2. HTML settings */
+
 html{
     scroll-behavior: smooth;
 }
-/*3. Font settings*/
+
+/* 3. Font settings */
 ul li{
     list-style: none;
     box-sizing: border-box;
@@ -30,9 +57,11 @@ a{
     text-decoration: none;
     color: var(--font-color);
 }
-/*4. Buttons style*/
-/*5. Nav settings*/
 
+/* 4. Buttons style */
+/* 5. Nav settings */
+
+/* links */
 .links{
     padding: .1rem;
     font-weight: bold;
@@ -40,8 +69,10 @@ a{
 
 .links:hover{
     background: var(--font-color-black);
-    color: var(--font-color-white);
+    color: var(--bg-color-white);
+    font-weight: 400;
 }
 
-/*5-7. Main settings*/
-/*7-9. Footer settings*/
+/* 5-7. Main settings */
+/* 5-7. Form settings */
+/* 7-9. Footer settings */
