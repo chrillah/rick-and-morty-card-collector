@@ -1,10 +1,13 @@
 // Form section
-const form = document.querySelector('#form')
+const formPost = document.querySelector('#form-post')
 const nameInput = document.querySelector('#name-input')
 const populationInput = document.querySelector('#population-input')
 const send = document.querySelector('#send')
 
 // Search after a city
+const formSearch = document.querySelector('#form-search')
+const searchButton = document.querySelector('#search-button')
+const searchInput = document.querySelector('#search-input')
 
 /* TEST AREA */
 const result = document.querySelector('#result')
@@ -41,7 +44,7 @@ nameInput.addEventListener('input', ()=>{
 populationInput.addEventListener('input',()=>{
     displayErrorMessage()
     inputPopulationValue()
-    isPopulationPass()
+    isPopulationInputPass()
 })
 
 function inputPopulationValue(){
@@ -62,7 +65,7 @@ function isNameInputPass(){
     }
 }
 
-function isPopulationPass(){
+function isPopulationInputPass(){
     if(!inputPopulation){
         populationError.style = 'block'
     }
@@ -82,8 +85,17 @@ function displayErrorMessage(){
     }
 }
 
+// city element create funtion
+
+function cityElementObjectCreator(){
+    let cityElement = document.createElement('div')
+    cityElement.classList.add('result-container')
+    result.appendChild(cityElement)
+    cityElement.innerHTML = `<p class="testP">${inputName}</p> <p class="testP">${inputPopulation}</p>`
+}
+
 /* POST */
-form.addEventListener('submit',(event)=>{
+formPost.addEventListener('submit',(event)=>{
     event.preventDefault()
 
     fetch('https://avancera.app/cities/',{
@@ -97,10 +109,7 @@ form.addEventListener('submit',(event)=>{
     console.log('POST')
 
     /* TESTNING */
-    let cityElement = document.createElement('div')
-    cityElement.classList.add('result-container')
-    result.appendChild(cityElement)
-    cityElement.innerHTML = `<p class="testP">${inputName}</p> <p class="testP">${inputPopulation}</p>`
+    cityElementObjectCreator()
     /* TESTNING */
 })
 
@@ -109,9 +118,8 @@ form.addEventListener('submit',(event)=>{
 getCities.addEventListener('click', ()=>{
     fetch('https://avancera.app/cities/')
     .then(resp=>resp.json())
-    .then(res=>{
-        console.log(res)
-        localStorage.setItem('cities', JSON.stringify(res))
+    .then(result=>{
+        localStorage.setItem('cities', JSON.stringify(result))
     })
 
     let arrayOfCities = []
@@ -131,8 +139,57 @@ getCities.addEventListener('click', ()=>{
 
 
 /* SEARCH CITY */
+searchButton.disabled = true
+
+function searchInputPass(){
+    if(searchInput){
+        searchButton.disabled = false
+    }
+    if(!searchInput){
+        searchButton.disabled = true
+    }
+}
+
+searchInput.addEventListener('input', ()=>{
+    inputPopulationValue()
+    searchInputPass()
+    console.log(searchInput.value)
+})
 
 
+// FRÅGA RICHARD / MAGNUS VARFÖR FUNKAR INTE DET HÄR?!?!
+// formSearch.addEventListener('submit', (event)=>{
+//     event.preventDefault()
+//     fetch(`https://avancera.app/cities/?name=${searchInput.value}`)
+//     .then(response => response.json())
+//     .then(result =>{
+//         console.log(result)
+//     })
+
+//     console.log('GET')
+// })
+
+searchButton.addEventListener('click', ()=>{
+    fetch(`https://avancera.app/cities/?name=${searchInput.value}`)
+    .then(response => response.json())
+    .then(result =>{
+        localStorage.setItem('citiesSearched', JSON.stringify(result))
+    })
+
+    let arrayOfCities = []
+    arrayOfCities = JSON.parse(localStorage.getItem('citiesSearched'))
+
+    arrayOfCities.forEach(element => {
+        let cityElement = document.createElement('div')
+        let idContainer = document.createElement('p')
+        cityElement.classList.add('result-container')
+        result.appendChild(cityElement)
+        cityElement.appendChild(idContainer)
+        cityElement.innerHTML = `<p class="testP">${element.name}</p> <p class="testP">${element.population}</p>`
+        idContainer.textContent = element.id
+        idContainer.style.display = 'none'
+    })
+})
 /* EDIT CITY */
 
 /* DELETE CITY */
