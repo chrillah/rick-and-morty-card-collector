@@ -10,14 +10,12 @@ const searchButton = document.querySelector('#search-button')
 const searchInput = document.querySelector('#search-input')
 
 /* TEST AREA */
-const result = document.querySelector('#result')
+const displayResult = document.querySelector('#display-result')
 const getCities = document.querySelector('#get-cities')
 const errorMessage = document.querySelector('#error-message')
 const nameError = document.querySelector('#name-error')
 const populationError = document.querySelector('#population-error')
 
-// errorMessage.style.display = 'none'
-// nameError.style.display = 'none'
 send.disabled = true
 
 /* TEST AREA */
@@ -25,14 +23,6 @@ send.disabled = true
 /* variabler till databasen*/
 let inputName = ''
 let inputPopulation = ''
-
-// todo Göra ett naken form för att ta emot ett värde från användaren
-/* 
-
-Fetch
-
-PATCH-anrop */
-
 
 /* USER-INPUT */
 nameInput.addEventListener('input', ()=>{
@@ -85,13 +75,125 @@ function displayErrorMessage(){
     }
 }
 
-// city element create funtion
+// city element create function
 
-function cityElementObjectCreator(){
+function cityElementObjectCreator(inputName, inputPopulation){
     let cityElement = document.createElement('div')
     cityElement.classList.add('result-container')
-    result.appendChild(cityElement)
+    displayResult.appendChild(cityElement)
     cityElement.innerHTML = `<p class="testP">${inputName}</p> <p class="testP">${inputPopulation}</p>`
+}
+
+function editSection(){
+    const editContainer = document.createElement('div')
+    displayResult.appendChild(editContainer)
+
+    const editName = document.createElement('input')
+    const editPopulation = document.createElement('input')
+
+    editName.type = 'text'
+    editPopulation.type = 'text'
+
+    editName.setAttribute('id','edit-name')
+    editPopulation.setAttribute('id','edit-population')
+
+    editContainer.appendChild(editName)
+    editContainer.appendChild(editPopulation)
+
+    editContainer.style.display = 'none'
+}
+
+function cityObjectCreator(data){
+    const cityElement = document.createElement('div')
+    const idContainer = document.createElement('p')
+    const editButton = document.createElement('input')
+
+    displayResult.appendChild(cityElement)
+    displayResult.appendChild(editButton)
+    cityElement.appendChild(idContainer)
+
+    editButton.type = 'button'
+    editButton.value = 'EDIT'
+
+    cityElement.classList.add('result-container')
+
+    cityElement.innerHTML = `
+    <p class="testP">${data.name}</p> 
+    <p class="testP">${data.population}</p>`
+
+    idContainer.textContent = data.id
+    idContainer.style.display = 'none'
+
+    const editContainer = document.createElement('div')
+    cityElement.appendChild(editContainer)
+
+    const editName = document.createElement('input')
+    const editPopulation = document.createElement('input')
+    const editNewInput = document.createElement('input')
+    const deleteButton = document.createElement('input')
+    const exitButton = document.createElement('input')
+
+    editName.type = 'text'
+    editPopulation.type = 'text'
+    deleteButton.type = 'button'
+    exitButton.type = 'button'
+    editNewInput.type = 'button'
+
+    // editName.setAttribute('id','edit-name')
+    // editPopulation.setAttribute('id','edit-population')
+
+    editContainer.appendChild(editName)
+    editContainer.appendChild(editPopulation)
+    editContainer.appendChild(exitButton)
+    editContainer.appendChild(deleteButton)
+    editContainer.appendChild(editNewInput)
+
+    editName.placeholder = data.name
+    editPopulation.placeholder = data.population
+    deleteButton.value = 'TA BORT'
+    exitButton.value = 'GÅ TILLBAKS'
+    editNewInput.value = 'ÄNDRA'
+
+    editContainer.style.display = 'none'
+
+    editButton.addEventListener('click', ()=>{
+        editContainer.style.display = 'block'
+        editButton.style.display = 'none'
+    })
+
+    exitButton.addEventListener('click', ()=>{
+        editContainer.style.display = 'none'
+        editButton.style.display = 'block'
+    })
+
+    deleteButton.addEventListener('click', ()=>{
+        console.log(data.id)
+        fetch(`https://avancera.app/cities/${data.id}`,{
+        method:'DELETE'
+        }).then(response=>{
+            console.log(response)
+        })
+    })
+
+    editNewInput.addEventListener('click', ()=>{
+        let newName = editName.value
+        let newPopulation = parseInt(editPopulation.value)
+        console.log(newName)
+        console.log(newPopulation)
+        
+        fetch(`https://avancera.app/cities/${data.id}`,{
+        body : JSON.stringify({
+            name : newName ,
+            population : newPopulation
+        }),
+            headers : {'Content-Type' : 'application/json'},
+            method : 'PATCH'
+        }).then(response=>{
+            console.log(response)
+        })
+
+        cityElementObjectCreator(newName, newPopulation)
+    })
 }
 
 /* POST */
@@ -109,7 +211,7 @@ formPost.addEventListener('submit',(event)=>{
     console.log('POST')
 
     /* TESTNING */
-    cityElementObjectCreator()
+    cityElementObjectCreator(inputName, inputPopulation)
     /* TESTNING */
 })
 
@@ -119,22 +221,41 @@ getCities.addEventListener('click', ()=>{
     fetch('https://avancera.app/cities/')
     .then(resp=>resp.json())
     .then(result=>{
-        localStorage.setItem('cities', JSON.stringify(result))
+        result.forEach(element => {
+            cityObjectCreator(element)
+            // let cityElement = document.createElement('div')
+            // let idContainer = document.createElement('p')
+            // let editButton = document.createElement('input[type="button"]')
+
+            // displayResult.appendChild(cityElement)
+            // cityElement.appendChild(idContainer)
+            // cityElement.appendChild(editButton)
+
+            // cityElement.classList.add('result-container')
+            // editButton.setAttribute('id', 'edit-button')
+
+            // editButton.value = 'Edit'
+
+            // cityElement.innerHTML = `<p class="testP">${element.name}</p> <p class="testP">${element.population}</p>`
+            // idContainer.textContent = element.id
+            // idContainer.style.display = 'none'
+        })
+        // localStorage.setItem('cities', JSON.stringify(result))
     })
 
-    let arrayOfCities = []
-    arrayOfCities = JSON.parse(localStorage.getItem('cities'))
+    // let arrayOfCities = []
+    // arrayOfCities = JSON.parse(localStorage.getItem('cities'))
 
-    arrayOfCities.forEach(element => {
-        let cityElement = document.createElement('div')
-        let idContainer = document.createElement('p')
-        cityElement.classList.add('result-container')
-        result.appendChild(cityElement)
-        cityElement.appendChild(idContainer)
-        cityElement.innerHTML = `<p class="testP">${element.name}</p> <p class="testP">${element.population}</p>`
-        idContainer.textContent = element.id
-        idContainer.style.display = 'none'
-    })
+    // arrayOfCities.forEach(element => {
+    //     let cityElement = document.createElement('div')
+    //     let idContainer = document.createElement('p')
+    //     cityElement.classList.add('result-container')
+    //     displayResult.appendChild(cityElement)
+    //     cityElement.appendChild(idContainer)
+    //     cityElement.innerHTML = `<p class="testP">${element.name}</p> <p class="testP">${element.population}</p>`
+    //     idContainer.textContent = element.id
+    //     idContainer.style.display = 'none'
+    // })
 })
 
 
@@ -153,7 +274,6 @@ function searchInputPass(){
 searchInput.addEventListener('input', ()=>{
     inputPopulationValue()
     searchInputPass()
-    console.log(searchInput.value)
 })
 
 
@@ -173,65 +293,49 @@ searchButton.addEventListener('click', ()=>{
     fetch(`https://avancera.app/cities/?name=${searchInput.value}`)
     .then(response => response.json())
     .then(result =>{
-        localStorage.setItem('citiesSearched', JSON.stringify(result))
-    })
+    
+        result.forEach(element => {
+            cityObjectCreator(element)
+        })
 
-    let arrayOfCities = []
-    arrayOfCities = JSON.parse(localStorage.getItem('citiesSearched'))
-
-    arrayOfCities.forEach(element => {
-        let cityElement = document.createElement('div')
-        let idContainer = document.createElement('p')
-        cityElement.classList.add('result-container')
-        result.appendChild(cityElement)
-        cityElement.appendChild(idContainer)
-        cityElement.innerHTML = `<p class="testP">${element.name}</p> <p class="testP">${element.population}</p>`
-        idContainer.textContent = element.id
-        idContainer.style.display = 'none'
     })
 })
+
+
 /* EDIT CITY */
 
-/* DELETE CITY */
+// CHILLA MED DET HÄR
+let documentations = function(){
+    // let populationInput
+    // let nameInput
+    // while(!nameInput || !populationInput){
+    //     nameInput = 
+    //     populationInput = 
 
+    //     let populationInt = parseInt(populationInput)
+        
+    //     if(populationInt && !nameInput){
+            
+    //         return JSON.stringify({
+    //             population : populationInt
+    //         })
+    //     }
+    //     if(nameInput && !populationInt){
+    //         return JSON.stringify({
+    //             name : nameInput ,
+    //         })
+    //     }
+    //     if(nameInput && populationInt){
+    //         return JSON.stringify({
+    //             name : nameInput ,
+    //             population : populationInt
+    //         })
+    //     }
+    // }
 
-
-
-// testobject
-// let testObjekt = [
-//     {
-//         name: 'Christopher',
-//         age : 37
-//     }
-//     ,
-//     {
-//         name: 'Linda',
-//         age : 36
-//     }
-//     ,
-//     {
-//         name: 'Jimmy',
-//         age : 33
-//     }
-//     ,
-//     {
-//         name: 'Maritha',
-//         age : 59
-//     }
-// ]
-
-// for(let i = 0; i <testObjekt.length;i++){
-//     //console.log(testObjekt[i])
-//     let testElement3 = document.createElement('div')
-//     document.body.appendChild(testElement3)
-//     testElement3.style = 'height: 80px; width: 200px; background-color: green; margin: 1rem 0; padding: 1rem'
-//     testElement3.innerHTML = `<h3>${testObjekt[i].name}</h3>`
-//     const secretContainer1 = document.createElement('div')
-//     testElement3.appendChild(secretContainer1)
-//     secretContainer1.textContent = `${testObjekt[i].age}`
-//     secretContainer1.style.display = "none"
-
-//     testElement3.addEventListener('click', ()=>{
-//         console.log(secretContainer1.textContent)
-//     })
-// }
+    return JSON.stringify({
+        // BYT NAMN
+        name : nameInput ,
+        population : populationInt
+    })
+}

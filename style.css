@@ -19,6 +19,10 @@ body{
     padding: 1rem;
 }
 
+#edit-button{
+    color: blue;
+}
+
 
 /* ERROR-MESSAGE */
 
