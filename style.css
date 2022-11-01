@@ -9,12 +9,6 @@ body{
     font-weight: bolder;
 }
 
-.result-container{
-    border: 1px solid black;
-    margin: 2rem 0;
-    display: flex;
-}
-
 .testP{
     padding: 1rem;
 }
@@ -23,6 +17,11 @@ body{
     color: blue;
 }
 
+/*
+#display-result{
+
+}
+*/
 
 /* ERROR-MESSAGE */
 
@@ -88,5 +87,14 @@ a{
 }
 
 /* 5-7. Main settings */
+
+
 /* 5-7. Form settings */
+.result-container{
+    border: 1px solid black;
+    margin: 1rem 0;
+    padding: 1rem;
+    display: grid;
+    min-height: 150px;
+}
 /* 7-9. Footer settings */

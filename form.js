@@ -23,11 +23,10 @@ const errorMessage = document.querySelector('#error-message')
 const nameError = document.querySelector('#name-error')
 const populationError = document.querySelector('#population-error')
 
+
+// Start conditions
 send.disabled = true
-
-/* TEST AREA */
-
-/* variabler till databasen*/
+searchButton.disabled = true
 let inputName = ''
 let inputPopulation = ''
 
@@ -37,21 +36,17 @@ nameInput.addEventListener('input', ()=>{
     inputNameValue()
     isNameInputPass()
 })
-
 populationInput.addEventListener('input',()=>{
     displayErrorMessage()
     inputPopulationValue()
     isPopulationInputPass()
 })
-
 function inputPopulationValue(){
     inputPopulation = parseInt(populationInput.value)
 }
-
 function inputNameValue(){
     inputName = nameInput.value
 }
-
 /* GUARDFUNCTION */
 function isNameInputPass(){
     if(nameInput.value === ''){
@@ -61,7 +56,6 @@ function isNameInputPass(){
         nameError.style.display = 'none'
     }
 }
-
 function isPopulationInputPass(){
     if(!inputPopulation){
         populationError.style = 'block'
@@ -70,7 +64,6 @@ function isPopulationInputPass(){
         populationError.style.display = 'none'
     }
 }
-
 function displayErrorMessage(){
     if(populationError.style.display === 'none' && nameError.style.display === 'none'){
         errorMessage.style.display = 'none'
@@ -83,112 +76,116 @@ function displayErrorMessage(){
 }
 
 // city element create function
-function cityElementObjectCreator(inputName, inputPopulation){
-    let cityElement = document.createElement('div')
-    cityElement.classList.add('result-container')
-    displayResult.appendChild(cityElement)
-    cityElement.innerHTML = `<p class="testP">${inputName}</p> <p class="testP">${inputPopulation}</p>`
-}
+function cityElementObjectCreator(data){
 
-function editSection(){
-    const editContainer = document.createElement('div')
-    displayResult.appendChild(editContainer)
-
-    const editName = document.createElement('input')
-    const editPopulation = document.createElement('input')
-
-    editName.type = 'text'
-    editPopulation.type = 'text'
-
-    editName.setAttribute('id','edit-name')
-    editPopulation.setAttribute('id','edit-population')
-
-    editContainer.appendChild(editName)
-    editContainer.appendChild(editPopulation)
-
-    editContainer.style.display = 'none'
-}
-
-function cityObjectCreator(data){
     const cityElement = document.createElement('div')
-    const idContainer = document.createElement('p')
+
+    const cityName = document.createElement('h3')
+    const cityPopulation = document.createElement('p')
     const editButton = document.createElement('input')
 
-    displayResult.appendChild(cityElement)
-    displayResult.appendChild(editButton)
-    cityElement.appendChild(idContainer)
+    const editCitySection = document.createElement('div')
+    const exitButton = document.createElement('input')
+    const deleteButton = document.createElement('input')
+    const enterChangeSection = document.createElement('input')
 
-    editButton.type = 'button'
-    editButton.value = 'EDIT'
+    const changeSection = document.createElement('div')
+    const newNameInput = document.createElement('input')
+    const newPopulationInput = document.createElement('input')
+    const patchCity = document.createElement('input')
+
+    editCitySection.style.display = 'none'
 
     cityElement.classList.add('result-container')
+    cityElement.appendChild(cityName)
+    cityElement.appendChild(cityPopulation)
+    displayResult.appendChild(cityElement)
+    cityElement.appendChild(editCitySection)
+    cityElement.appendChild(editButton)
+    editCitySection.appendChild(exitButton)
+    editCitySection.appendChild(enterChangeSection)
+    editCitySection.appendChild(changeSection)
+    changeSection.appendChild(newNameInput)
+    changeSection.appendChild(newPopulationInput)
+    changeSection.appendChild(patchCity)
+    changeSection.appendChild(deleteButton)
 
-    cityElement.innerHTML = `
-    <p class="testP">${data.name}</p> 
-    <p class="testP">${data.population}</p>`
-
-    const editContainer = document.createElement('div')
-    cityElement.appendChild(editContainer)
-
-    const editName = document.createElement('input')
-    const editPopulation = document.createElement('input')
-    const editNewInput = document.createElement('input')
-
-    const deleteButton = document.createElement('input')
-    const exitButton = document.createElement('input')
-
-    // FROM USERINPUT
-    editName.type = 'text'
-    editPopulation.type = 'text'
-
-    // BUTTONS
-    deleteButton.type = 'button'
-    exitButton.type = 'button'
-    editNewInput.type = 'button'
-
-    editContainer.appendChild(editName)
-    editContainer.appendChild(editPopulation)
-    editContainer.appendChild(exitButton)
-    editContainer.appendChild(deleteButton)
-    editContainer.appendChild(editNewInput)
-
-    editName.placeholder = data.name
-    editPopulation.placeholder = data.population
+    changeSection.style.display = 'none'
     
-    deleteButton.value = 'TA BORT'
-    exitButton.value = 'GÅ TILLBAKS'
-    editNewInput.value = 'ÄNDRA'
+    editButton.type = 'button'
+    editButton.value = 'Edit'
+    exitButton.type = 'button'
+    exitButton.value = 'Avbryt'
+    deleteButton.type = 'button'
+    deleteButton.value = 'Ta bort'
+    enterChangeSection.type = 'button'
+    enterChangeSection.value = 'Ändra'
+    patchCity.type = 'button'
+    patchCity.value = 'Skicka in ändring'
 
-    editContainer.style.display = 'none'
+    cityName.textContent = data.name
+    cityPopulation.textContent = data.population
+    newNameInput.placeholder = data.name
+    newPopulationInput.placeholder = data.population
 
-    editButton.addEventListener('click', ()=>{
-        editContainer.style.display = 'block'
+    // går in i edit-mode
+    editButton.addEventListener('click',()=>{
         editButton.style.display = 'none'
+        editCitySection.style.display = 'block'
     })
 
+    // lämnar edit-mode
     exitButton.addEventListener('click', ()=>{
-        editContainer.style.display = 'none'
         editButton.style.display = 'block'
+        editCitySection.style.display = 'none'
+        changeSection.style.display = 'none'
+        enterChangeSection.style.display = 'inline-block'
+        cityName.style.display = 'inline-block'
+        cityPopulation.style.display = 'inline-block'
     })
 
+    // Går in i för att ändra värden i namn och invånare
+    enterChangeSection.addEventListener('click', ()=>{
+        cityName.style.display = 'none'
+        cityPopulation.style.display = 'none'
+        changeSection.style.display = 'block'
+        enterChangeSection.style.display = 'none'
+    })
+
+    // FUNKAR
     deleteButton.addEventListener('click', ()=>{
         console.log(data.id)
         fetch(`https://avancera.app/cities/${data.id}`,{
         method:'DELETE'
         }).then(response=>{
             console.log(response)
+            refresh()
         })
     })
 
+    patchCity.addEventListener('click', ()=>{
+        // LÄgg in input från användaren
 
-    // FIXA SÅ ATT DET SOM MAN ÄNDRAR GÅR TILL PATCH
-    editNewInput.addEventListener('click', ()=>{
-        let newName = editName.value
-        let newPopulation = parseInt(editPopulation.value)
-        // console.log(newName)
-        // console.log(newPopulation)
-        
-        fetch(`https://avancera.app/cities/${data.id}`,{
+
+        // SE ÖVER
+        // let newName = ''
+        // let newPopulation = null
+
+        // if(newNameInput.value){
+        //     newName = newNameInput.value
+        // } else {
+        //     newName = cityName.textContent
+        // }if(newPopulationInput.value){
+        //     newPopulation = parseInt(newPopulationInput.value)
+        // } else {
+        //     newPopulation = cityPopulation.textContent
+        // }
+
+        let newName = newNameInput.value
+        let newPopulation = parseInt(newPopulationInput.value)
+
+        // PATCH
+        fetch(url+`${data.id}`,{
         body : JSON.stringify({
             name : newName ,
             population : newPopulation
@@ -198,21 +195,24 @@ function cityObjectCreator(data){
         }).then(response=>{
             console.log(response)
         })
+        console.log('PATCH')
 
-        // TESTNING
-        cityElement.innerHTML = `
-        <p class="testP">${newName}</p> 
-        <p class="testP">${newPopulation}</p>`
         editButton.style.display = 'block'
-        //cityElementObjectCreator(newName, newPopulation)
+        editCitySection.style.display = 'none'
+        changeSection.style.display = 'none'
+        enterChangeSection.style.display = 'inline-block'
+        cityName.style.display = 'inline-block'
+        cityPopulation.style.display = 'inline-block'
+
+        // NYA UPPGIFTER
+        cityName.textContent = newName
+        cityPopulation.textContent = newPopulation
     })
 }
 
 /* POST */
-// lägg till så att man när man postar så fetchar den nylagda cityobjektet och lägger upp cityobjektet
 formPost.addEventListener('submit',(event)=>{
     event.preventDefault()
-
     fetch(url,{
         body: JSON.stringify({
             name : inputName,
@@ -222,38 +222,21 @@ formPost.addEventListener('submit',(event)=>{
         method : 'POST'
     })
     console.log('POST')
-
-    fetch(url+`?name=${inputName}`)
-    .then(response => response.json())
-    .then(result =>{
-        result.forEach(element => {
-            cityObjectCreator(element)
-        })
-    })
-
-    console.log(inputName)
-    /* TESTNING */
-    // cityElementObjectCreator(inputName, inputPopulation)
-
-    /* TESTNING */
 })
-
 
 /* GET-ANROP Hämtar alla cities*/
 getCities.addEventListener('click', ()=>{
     fetch(url)
     .then(resp=>resp.json())
     .then(result=>{
+        console.log('GET')
         result.forEach(element => {
-            cityObjectCreator(element)
+            cityElementObjectCreator(element)
         })
     })
 })
 
-
 /* SEARCH CITY */
-searchButton.disabled = true
-
 function searchInputPass(){
     if(searchInput){
         searchButton.disabled = false
@@ -263,72 +246,22 @@ function searchInputPass(){
     }
 }
 
+function getCity(value){
+    fetch(url+`?name=${value}`)
+    .then(response => response.json())
+    .then(result =>{
+        console.log('GET')
+        result.forEach(element => {
+            cityElementObjectCreator(element)
+        })
+    })
+}
+
 searchInput.addEventListener('input', ()=>{
     inputPopulationValue()
     searchInputPass()
 })
 
-
-// FRÅGA RICHARD / MAGNUS VARFÖR FUNKAR INTE DET HÄR?!?!
-// formSearch.addEventListener('submit', (event)=>{
-//     event.preventDefault()
-//     fetch(`https://avancera.app/cities/?name=${searchInput.value}`)
-//     .then(response => response.json())
-//     .then(result =>{
-//         console.log(result)
-//     })
-
-//     console.log('GET')
-// })
-
 searchButton.addEventListener('click', ()=>{
-    fetch(url+`?name=${searchInput.value}`)
-    .then(response => response.json())
-    .then(result =>{
-    
-        result.forEach(element => {
-            cityObjectCreator(element)
-        })
-
-    })
+    getCity(searchInput.value)
 })
-
-
-
-/* EDIT CITY */
-
-// CHILLA MED DET HÄR
-let documentations = function(){
-    // let populationInput
-    // let nameInput
-    // while(!nameInput || !populationInput){
-    //     nameInput = 
-    //     populationInput = 
-
-    //     let populationInt = parseInt(populationInput)
-        
-    //     if(populationInt && !nameInput){
-            
-    //         return JSON.stringify({
-    //             population : populationInt
-    //         })
-    //     }
-    //     if(nameInput && !populationInt){
-    //         return JSON.stringify({
-    //             name : nameInput ,
-    //         })
-    //     }
-    //     if(nameInput && populationInt){
-    //         return JSON.stringify({
-    //             name : nameInput ,
-    //             population : populationInt
-    //         })
-    //     }
-    // }
-
-    return JSON.stringify({
-        // BYT NAMN
-        name : nameInput ,
-        population : populationInt
-    })
-}
