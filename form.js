@@ -175,11 +175,13 @@ function cityObjectCreator(data){
         })
     })
 
+
+    // FIXA SÅ ATT DET SOM MAN ÄNDRAR GÅR TILL PATCH
     editNewInput.addEventListener('click', ()=>{
         let newName = editName.value
         let newPopulation = parseInt(editPopulation.value)
-        console.log(newName)
-        console.log(newPopulation)
+        // console.log(newName)
+        // console.log(newPopulation)
         
         fetch(`https://avancera.app/cities/${data.id}`,{
         body : JSON.stringify({
@@ -192,7 +194,11 @@ function cityObjectCreator(data){
             console.log(response)
         })
 
-        cityElementObjectCreator(newName, newPopulation)
+        // TESTNING
+        cityElement.innerHTML = `
+        <p class="testP">${newName}</p> 
+        <p class="testP">${newPopulation}</p>`
+        //cityElementObjectCreator(newName, newPopulation)
     })
 }
 
@@ -211,7 +217,8 @@ formPost.addEventListener('submit',(event)=>{
     console.log('POST')
 
     /* TESTNING */
-    cityElementObjectCreator(inputName, inputPopulation)
+    // cityElementObjectCreator(inputName, inputPopulation)
+    
     /* TESTNING */
 })
 
