@@ -1,3 +1,10 @@
+const url = `https://avancera.app/cities/`
+
+// Functions
+function refresh(){
+    location.reload()
+}
+
 // Form section
 const formPost = document.querySelector('#form-post')
 const nameInput = document.querySelector('#name-input')
@@ -76,7 +83,6 @@ function displayErrorMessage(){
 }
 
 // city element create function
-
 function cityElementObjectCreator(inputName, inputPopulation){
     let cityElement = document.createElement('div')
     cityElement.classList.add('result-container')
@@ -121,26 +127,24 @@ function cityObjectCreator(data){
     <p class="testP">${data.name}</p> 
     <p class="testP">${data.population}</p>`
 
-    idContainer.textContent = data.id
-    idContainer.style.display = 'none'
-
     const editContainer = document.createElement('div')
     cityElement.appendChild(editContainer)
 
     const editName = document.createElement('input')
     const editPopulation = document.createElement('input')
     const editNewInput = document.createElement('input')
+
     const deleteButton = document.createElement('input')
     const exitButton = document.createElement('input')
 
+    // FROM USERINPUT
     editName.type = 'text'
     editPopulation.type = 'text'
+
+    // BUTTONS
     deleteButton.type = 'button'
     exitButton.type = 'button'
     editNewInput.type = 'button'
-
-    // editName.setAttribute('id','edit-name')
-    // editPopulation.setAttribute('id','edit-population')
 
     editContainer.appendChild(editName)
     editContainer.appendChild(editPopulation)
@@ -150,6 +154,7 @@ function cityObjectCreator(data){
 
     editName.placeholder = data.name
     editPopulation.placeholder = data.population
+    
     deleteButton.value = 'TA BORT'
     exitButton.value = 'GÅ TILLBAKS'
     editNewInput.value = 'ÄNDRA'
@@ -198,16 +203,17 @@ function cityObjectCreator(data){
         cityElement.innerHTML = `
         <p class="testP">${newName}</p> 
         <p class="testP">${newPopulation}</p>`
+        editButton.style.display = 'block'
         //cityElementObjectCreator(newName, newPopulation)
     })
 }
 
 /* POST */
-// lägg till så att man när man postar så fetchar den nylagda cityobjektet och 
+// lägg till så att man när man postar så fetchar den nylagda cityobjektet och lägger upp cityobjektet
 formPost.addEventListener('submit',(event)=>{
     event.preventDefault()
 
-    fetch('https://avancera.app/cities/',{
+    fetch(url,{
         body: JSON.stringify({
             name : inputName,
             population : inputPopulation
@@ -217,6 +223,15 @@ formPost.addEventListener('submit',(event)=>{
     })
     console.log('POST')
 
+    fetch(url+`?name=${inputName}`)
+    .then(response => response.json())
+    .then(result =>{
+        result.forEach(element => {
+            cityObjectCreator(element)
+        })
+    })
+
+    console.log(inputName)
     /* TESTNING */
     // cityElementObjectCreator(inputName, inputPopulation)
 
@@ -224,46 +239,15 @@ formPost.addEventListener('submit',(event)=>{
 })
 
 
-/* GET-ANROP */
+/* GET-ANROP Hämtar alla cities*/
 getCities.addEventListener('click', ()=>{
-    fetch('https://avancera.app/cities/')
+    fetch(url)
     .then(resp=>resp.json())
     .then(result=>{
         result.forEach(element => {
             cityObjectCreator(element)
-            // let cityElement = document.createElement('div')
-            // let idContainer = document.createElement('p')
-            // let editButton = document.createElement('input[type="button"]')
-
-            // displayResult.appendChild(cityElement)
-            // cityElement.appendChild(idContainer)
-            // cityElement.appendChild(editButton)
-
-            // cityElement.classList.add('result-container')
-            // editButton.setAttribute('id', 'edit-button')
-
-            // editButton.value = 'Edit'
-
-            // cityElement.innerHTML = `<p class="testP">${element.name}</p> <p class="testP">${element.population}</p>`
-            // idContainer.textContent = element.id
-            // idContainer.style.display = 'none'
         })
-        // localStorage.setItem('cities', JSON.stringify(result))
     })
-
-    // let arrayOfCities = []
-    // arrayOfCities = JSON.parse(localStorage.getItem('cities'))
-
-    // arrayOfCities.forEach(element => {
-    //     let cityElement = document.createElement('div')
-    //     let idContainer = document.createElement('p')
-    //     cityElement.classList.add('result-container')
-    //     displayResult.appendChild(cityElement)
-    //     cityElement.appendChild(idContainer)
-    //     cityElement.innerHTML = `<p class="testP">${element.name}</p> <p class="testP">${element.population}</p>`
-    //     idContainer.textContent = element.id
-    //     idContainer.style.display = 'none'
-    // })
 })
 
 
@@ -298,7 +282,7 @@ searchInput.addEventListener('input', ()=>{
 // })
 
 searchButton.addEventListener('click', ()=>{
-    fetch(`https://avancera.app/cities/?name=${searchInput.value}`)
+    fetch(url+`?name=${searchInput.value}`)
     .then(response => response.json())
     .then(result =>{
     
@@ -308,6 +292,7 @@ searchButton.addEventListener('click', ()=>{
 
     })
 })
+
 
 
 /* EDIT CITY */
