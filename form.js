@@ -203,6 +203,7 @@ function cityObjectCreator(data){
 }
 
 /* POST */
+// lägg till så att man när man postar så fetchar den nylagda cityobjektet och 
 formPost.addEventListener('submit',(event)=>{
     event.preventDefault()
 
@@ -218,7 +219,7 @@ formPost.addEventListener('submit',(event)=>{
 
     /* TESTNING */
     // cityElementObjectCreator(inputName, inputPopulation)
-    
+
     /* TESTNING */
 })
 
