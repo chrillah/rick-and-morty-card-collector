@@ -68,20 +68,25 @@ function inputPopulationValue(){
 function inputNameValue(){
     inputName = nameInput.value
 }
+
 /* GUARDFUNCTION */
 function isNameInputPass(){
     if(nameInput.value === ''){
-        nameError.style.display = 'grid'
+        console.log('noll input namn')
+        nameError.style.display = 'inline-block'
     }
     if(nameInput.value){
+        console.log('input namn')
         nameError.style.display = 'none'
     }
 }
 function isPopulationInputPass(){
     if(!inputPopulation){
+        console.log('noll input population')
         populationError.style = 'inline-block'
     }
     if(inputPopulation){
+        console.log('input population')
         populationError.style.display = 'none'
     }
 }
@@ -90,7 +95,7 @@ function displayErrorMessage(){
         addErrorMessage.style.display = 'none'
         send.disabled = false
     }
-    else{
+    if(populationError.style.display === 'inline-block' || nameError.style.display === 'inline-block'){
         addErrorMessage.style.display = 'block'
         send.disabled = true
     }
@@ -253,7 +258,7 @@ function cityElementObjectCreator(data){
                 })
             }
         }
-        fetch(`https://avancera.app/cities/${data.id}`,{
+        fetch(url+data.id,{
             body : documentations(),
             headers : {'Content-Type' : 'application/json'},
             method : 'PATCH'
@@ -279,8 +284,9 @@ function cityElementObjectCreator(data){
     })
     
     yesRemove.addEventListener('click',()=>{
-        console.log(data.id)
-        fetch(`https://avancera.app/cities/${data.id}`,{
+        //console.log(data.id)
+        //displayContainer.removeChild(this)
+        fetch(url+data.id,{
         method:'DELETE'
         }).then(response=>{
             console.log(response)
@@ -350,8 +356,22 @@ formPost.addEventListener('submit',(event)=>{
         }),
         headers : {'Content-Type' : 'application/json'},
         method : 'POST'
+    }).then(resp => resp.json()).then(data =>{
+        for(let i = 0; i < data.length; i++){
+            if(data[i].name === inputName){
+                cityElementObjectCreator(data[i])
+            }
+        }
     })
     console.log('POST')
+
+    // getCities.style.display = 'inline-block'
+    // addNewElement.style.display = 'inline-block'
+    // searchAfterCities.style.display = 'inline-block'
+    // refreshButton.style.display = 'inline-block'
+
+    // formSearch.style.display = 'none'
+    // backFromSearch.style.display = 'none'
 })
 
 /* GET-ANROP Hämtar alla cities*/
