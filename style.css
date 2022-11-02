@@ -50,6 +50,12 @@ body{
 
 /* 2. HTML settings */
 
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
 html{
     scroll-behavior: smooth;
 }
@@ -130,6 +136,18 @@ a{
 }
 
 /* 5-7. Main settings */
+.main-wrapper{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.main-container{
+    max-width: 1200px;
+    width: 100%;
+    display: grid;
+}
 .option-container{
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -141,7 +159,7 @@ a{
     border: var(--border-style);
     display: grid;
     min-height: 150px;
-    margin: 1rem 0;
+    /* margin: 1rem 0; */
 }
 
 .item-select-container{
@@ -159,8 +177,8 @@ a{
 }
 
 .city-item{
-    background-color: white;
-    padding: 0 1rem;
+    /* background-color: white;
+    padding: 0 1rem; */
 }
 
 .option-container,
@@ -176,7 +194,12 @@ a{
 } */
 
 .user-input{
-    margin: 2rem;
+    max-width: 800px;
+    /* margin: 2rem; */
+    width: 100%;
+    box-sizing: border-box;
+    border: none;
+    border-bottom : var(--border-style)
 }
 
 /* ERROR-MESSAGE */

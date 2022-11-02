@@ -20,6 +20,7 @@ const populationInput = document.querySelector('#population-input')
 nameInput.classList.add('user-input')
 populationInput.classList.add('user-input')
 const send = document.querySelector('#send')
+send.classList.add('btn')
 formPost.style.display = 'none'
 send.disabled = true
 
@@ -141,14 +142,17 @@ function cityElementObjectCreator(data){
     noRemove.style.display = 'none'
     
     // city-information
+    const cityInformationContainer = document.createElement('div')
+    cityItemContainer.appendChild(cityInformationContainer)
+    cityInformationContainer.classList.add('city-information-container')
     const cityName = document.createElement('h3')
     cityName.classList.add('city-item')
-    cityItemContainer.appendChild(cityName)
+    cityInformationContainer.appendChild(cityName)
     cityName.textContent = data.name
 
     const cityPopulation = document.createElement('p')
     cityPopulation.classList.add('city-item')
-    cityItemContainer.appendChild(cityPopulation)
+    cityInformationContainer.appendChild(cityPopulation)
     cityPopulation.textContent = data.population
 
 
