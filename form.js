@@ -172,11 +172,9 @@ function cityElementObjectCreator(data){
 
     // Input field from user
     const newNameInput = document.createElement('input')
-    //newNameInput.classList.add('new-input-information')
     newNameInput.classList.add('user-input')
     editCityContainer.appendChild(newNameInput)
     const newPopulationInput = document.createElement('input')
-    //newPopulationInput.classList.add('new-input-information')
     newPopulationInput.classList.add('user-input')
     editCityContainer.appendChild(newPopulationInput)
     
@@ -190,6 +188,9 @@ function cityElementObjectCreator(data){
     newNameInput.placeholder = data.name
     newPopulationInput.placeholder = data.population
 
+    let newName = ''
+    let newPopulation = 0
+
     // går in i edit-mode
     editButton.addEventListener('click',()=>{
         console.log('Enter Edit')
@@ -201,8 +202,6 @@ function cityElementObjectCreator(data){
         editButton.style.display = 'none'
         deleteButton.style.display = 'none'
         cityInformationContainer.style.display = 'none'
-        // cityName.style.display = 'none'
-        // cityPopulation.style.display = 'none'
     })
 
     // lämnar edit-mode
@@ -210,14 +209,65 @@ function cityElementObjectCreator(data){
         console.log('Lämnar Edit')
         // Displays
         editButton.style.display = 'block'
-        // cityName.style.display = 'inline-block'
-        // cityPopulation.style.display = 'inline-block'
         cityInformationContainer.style.display = 'block'
         deleteButton.style.display = 'block'
 
         // None-display
         editCityContainer.style.display = 'none'
         exitButton.style.display = 'none'
+    })
+
+    newNameInput.addEventListener('input',()=>{
+        if(newNameInput){
+            newName = newNameInput.value
+            console.log(newName)
+        } 
+    })
+
+    newPopulationInput.addEventListener('input',()=>{
+        if(newPopulationInput.value){
+            newPopulation = parseInt(newPopulationInput.value)
+            console.log(newPopulation)
+        }
+    })
+
+    patchCity.addEventListener('click', ()=>{
+        function documentations(){
+            if(newPopulation && !newName){
+                cityPopulation.textContent = newPopulation
+                return JSON.stringify({
+                    population : newPopulation
+                })
+            }
+            if(newName && !newPopulation){
+                cityName.textContent = newName
+                return JSON.stringify({
+                    name : newName ,
+                })
+            }
+            if(newName && newPopulation){
+                cityName.textContent = newName
+                cityPopulation.textContent = newPopulation
+                return JSON.stringify({
+                    name : newName ,population : newPopulation
+                })
+            }
+        }
+        fetch(`https://avancera.app/cities/${data.id}`,{
+            body : documentations(),
+            headers : {'Content-Type' : 'application/json'},
+            method : 'PATCH'
+        }).then(response=>{
+            console.log(response)
+        })
+        console.log('PATCH')
+
+        cityInformationContainer.style.display = 'block'
+        editButton.style.display = 'block'
+        deleteButton.style.display = 'block'
+
+        exitButton.style.display = 'none'
+        editCityContainer.style.display = 'none'
     })
 
     // FUNKAR
@@ -227,7 +277,7 @@ function cityElementObjectCreator(data){
         yesRemove.style.display = 'block'
         noRemove.style.display = 'block'
     })
-
+    
     yesRemove.addEventListener('click',()=>{
         console.log(data.id)
         fetch(`https://avancera.app/cities/${data.id}`,{
@@ -237,56 +287,12 @@ function cityElementObjectCreator(data){
             refresh()
         })
     })
-
+    
     noRemove.addEventListener('click', ()=>{
         deleteButton.style.display = 'block'
         editButton.style.display = 'block'
         yesRemove.style.display = 'none'
         noRemove.style.display = 'none'
-    })
-
-    patchCity.addEventListener('click', ()=>{
-        // LÄgg in input från användaren
-
-
-        // SE ÖVER
-        // let newName = ''
-        // let newPopulation = null
-
-        // if(newNameInput){
-        //     newName = newNameInput.value
-        // } if(newNameInput === null && newNameInput === '') {
-        //     newName = cityName.textContent
-        // }if(parseInt(newPopulationInput.value)){
-        //     newPopulation = parseInt(newPopulationInput.value)
-        // } if(parseInt(newPopulationInput.value) === null) {
-        //     newPopulation = cityPopulation.textContent
-        // }
-
-        let newName = newNameInput.value
-        let newPopulation = parseInt(newPopulationInput.value)
-
-        // PATCH
-        fetch(url+`${data.id}`,{
-        body : JSON.stringify({
-            name : newName ,
-            population : newPopulation
-        }),
-            headers : {'Content-Type' : 'application/json'},
-            method : 'PATCH'
-        }).then(response=>{
-            console.log(response)
-        })
-        console.log('PATCH')
-
-        editButton.style.display = 'block'
-        editCityContainer.style.display = 'none'
-        cityName.style.display = 'inline-block'
-        cityPopulation.style.display = 'inline-block'
-
-        // NYA UPPGIFTER
-        cityName.textContent = newName
-        cityPopulation.textContent = newPopulation
     })
 }
 
