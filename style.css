@@ -52,12 +52,18 @@ body{
 :root{
     --font-color-black : #000000;
     --bg-color-white : #FFFFFF;
+    --button-bg-color : #ffffff
 }
 
 /* 2. HTML settings */
 
 html{
     scroll-behavior: smooth;
+}
+
+input[type="button"]{
+    background-color:var(--button-bg-color);
+    font-weight: 900;
 }
 
 /* 3. Font settings */
@@ -90,11 +96,23 @@ a{
 
 
 /* 5-7. Form settings */
-.result-container{
+.city-item-container{
     border: 1px solid black;
-    margin: 1rem 0;
-    padding: 1rem;
+    background-color: aqua;
     display: grid;
     min-height: 150px;
+    margin: 1rem 0;
+}
+
+.item-select-container{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    margin: 0;
+    padding: 0;
+}
+
+.city-item{
+    background-color: white;
+    padding: 0 1rem;
 }
 /* 7-9. Footer settings */

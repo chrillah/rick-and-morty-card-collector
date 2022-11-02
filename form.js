@@ -17,7 +17,7 @@ const searchButton = document.querySelector('#search-button')
 const searchInput = document.querySelector('#search-input')
 
 /* TEST AREA */
-const displayResult = document.querySelector('#display-result')
+const displayContainer = document.querySelector('#display-container')
 const getCities = document.querySelector('#get-cities')
 const errorMessage = document.querySelector('#error-message')
 const nameError = document.querySelector('#name-error')
@@ -78,48 +78,82 @@ function displayErrorMessage(){
 // city element create function
 function cityElementObjectCreator(data){
 
-    const cityElement = document.createElement('div')
+    const cityItemContainer = document.createElement('div')
+    cityItemContainer.classList.add('city-item-container')
+    displayContainer.appendChild(cityItemContainer)
 
+    const itemSelectContainer = document.createElement('div')
+    itemSelectContainer.classList.add('item-select-container')
+    cityItemContainer.appendChild(itemSelectContainer)
+
+    const editButton = document.createElement('input')
+    editButton.type = 'button'
+    editButton.value = 'Edit'
+
+    const deleteButton = document.createElement('input')
+    deleteButton.type = 'button'
+    deleteButton.value = 'Ta bort'
+
+
+    const exitButton = document.createElement('input')
+    exitButton.type = 'button'
+    exitButton.value = 'Avbryt'
+
+    // ja och nej knapper till delete
+    const yesRemove = document.createElement('input')
+    yesRemove.type = 'button'
+    yesRemove.value = 'Ja'
+
+    const noRemove = document.createElement('input')
+    noRemove.type = 'button'
+    noRemove.value = 'Nej'
+
+    itemSelectContainer.appendChild(editButton)
+    itemSelectContainer.appendChild(deleteButton)
+    itemSelectContainer.appendChild(exitButton)
+    itemSelectContainer.appendChild(yesRemove)
+    itemSelectContainer.appendChild(noRemove)
+
+    exitButton.style.display = 'none'
+    yesRemove.style.display = 'none'
+    noRemove.style.display = 'none'
+    
     const cityName = document.createElement('h3')
     const cityPopulation = document.createElement('p')
-    const editButton = document.createElement('input')
+    cityName.classList.add('city-item')
+    cityPopulation.classList.add('city-item')
+    cityItemContainer.appendChild(cityName)
+    cityItemContainer.appendChild(cityPopulation)
 
-    const editCitySection = document.createElement('div')
-    const exitButton = document.createElement('input')
-    const deleteButton = document.createElement('input')
-    const enterChangeSection = document.createElement('input')
+
+    // NÄR MAN GÅR IN I EDIT
+    const editCityContainer = document.createElement('div')
+    cityItemContainer.appendChild(editCityContainer)
+    editCityContainer.style.display = 'none'
+
+    //const enterChangeSection = document.createElement('input')
+    //editCityContainer.appendChild(enterChangeSection)
+    //enterChangeSection.type = 'button'
+    //enterChangeSection.value = 'Ändra'
 
     const changeSection = document.createElement('div')
     const newNameInput = document.createElement('input')
     const newPopulationInput = document.createElement('input')
     const patchCity = document.createElement('input')
 
-    editCitySection.style.display = 'none'
 
-    cityElement.classList.add('result-container')
-    cityElement.appendChild(cityName)
-    cityElement.appendChild(cityPopulation)
-    displayResult.appendChild(cityElement)
-    cityElement.appendChild(editCitySection)
-    cityElement.appendChild(editButton)
-    editCitySection.appendChild(exitButton)
-    editCitySection.appendChild(enterChangeSection)
-    editCitySection.appendChild(changeSection)
+    
+    
+    
+    editCityContainer.appendChild(changeSection)
+
+    //
     changeSection.appendChild(newNameInput)
     changeSection.appendChild(newPopulationInput)
     changeSection.appendChild(patchCity)
-    changeSection.appendChild(deleteButton)
 
     changeSection.style.display = 'none'
     
-    editButton.type = 'button'
-    editButton.value = 'Edit'
-    exitButton.type = 'button'
-    exitButton.value = 'Avbryt'
-    deleteButton.type = 'button'
-    deleteButton.value = 'Ta bort'
-    enterChangeSection.type = 'button'
-    enterChangeSection.value = 'Ändra'
     patchCity.type = 'button'
     patchCity.value = 'Skicka in ändring'
 
@@ -130,30 +164,49 @@ function cityElementObjectCreator(data){
 
     // går in i edit-mode
     editButton.addEventListener('click',()=>{
+        console.log('Enter Edit')
         editButton.style.display = 'none'
-        editCitySection.style.display = 'block'
+        exitButton.style.display = 'block'
+
+        
+        editCityContainer.style.display = 'block'
+        deleteButton.style.display = 'none'
+        cityName.style.display = 'none'
+        cityPopulation.style.display = 'none'
+        changeSection.style.display = 'block'
+        //enterChangeSection.style.display = 'none'
     })
 
     // lämnar edit-mode
     exitButton.addEventListener('click', ()=>{
+        console.log('Lämnar Edit')
         editButton.style.display = 'block'
-        editCitySection.style.display = 'none'
+        editCityContainer.style.display = 'none'
         changeSection.style.display = 'none'
-        enterChangeSection.style.display = 'inline-block'
+        //enterChangeSection.style.display = 'inline-block'
         cityName.style.display = 'inline-block'
         cityPopulation.style.display = 'inline-block'
+        deleteButton.style.display = 'block'
+        exitButton.style.display = 'none'
     })
 
     // Går in i för att ändra värden i namn och invånare
-    enterChangeSection.addEventListener('click', ()=>{
-        cityName.style.display = 'none'
-        cityPopulation.style.display = 'none'
-        changeSection.style.display = 'block'
-        enterChangeSection.style.display = 'none'
-    })
+    // enterChangeSection.addEventListener('click', ()=>{
+    //     cityName.style.display = 'none'
+    //     cityPopulation.style.display = 'none'
+    //     changeSection.style.display = 'block'
+    //     enterChangeSection.style.display = 'none'
+    // })
 
     // FUNKAR
     deleteButton.addEventListener('click', ()=>{
+        deleteButton.style.display = 'none'
+        editButton.style.display = 'none'
+        yesRemove.style.display = 'block'
+        noRemove.style.display = 'block'
+    })
+
+    yesRemove.addEventListener('click',()=>{
         console.log(data.id)
         fetch(`https://avancera.app/cities/${data.id}`,{
         method:'DELETE'
@@ -161,6 +214,13 @@ function cityElementObjectCreator(data){
             console.log(response)
             refresh()
         })
+    })
+
+    noRemove.addEventListener('click', ()=>{
+        deleteButton.style.display = 'block'
+        editButton.style.display = 'block'
+        yesRemove.style.display = 'none'
+        noRemove.style.display = 'none'
     })
 
     patchCity.addEventListener('click', ()=>{
@@ -171,13 +231,13 @@ function cityElementObjectCreator(data){
         // let newName = ''
         // let newPopulation = null
 
-        // if(newNameInput.value){
+        // if(newNameInput){
         //     newName = newNameInput.value
-        // } else {
+        // } if(newNameInput === null && newNameInput === '') {
         //     newName = cityName.textContent
-        // }if(newPopulationInput.value){
+        // }if(parseInt(newPopulationInput.value)){
         //     newPopulation = parseInt(newPopulationInput.value)
-        // } else {
+        // } if(parseInt(newPopulationInput.value) === null) {
         //     newPopulation = cityPopulation.textContent
         // }
 
@@ -198,9 +258,9 @@ function cityElementObjectCreator(data){
         console.log('PATCH')
 
         editButton.style.display = 'block'
-        editCitySection.style.display = 'none'
+        editCityContainer.style.display = 'none'
         changeSection.style.display = 'none'
-        enterChangeSection.style.display = 'inline-block'
+        //enterChangeSection.style.display = 'inline-block'
         cityName.style.display = 'inline-block'
         cityPopulation.style.display = 'inline-block'
 
@@ -265,3 +325,14 @@ searchInput.addEventListener('input', ()=>{
 searchButton.addEventListener('click', ()=>{
     getCity(searchInput.value)
 })
+
+// delete function
+
+function deleteCity(data){
+    fetch(`https://avancera.app/cities/${data.id}`,{
+        method:'DELETE'
+        }).then(response=>{
+            console.log(response)
+            refresh()
+        })
+}
