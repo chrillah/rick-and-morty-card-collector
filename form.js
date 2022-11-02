@@ -33,7 +33,7 @@ searchInput.classList.add('user-input')
 formSearch.style.display = 'none'
 searchButton.disabled = true
 
-/* TEST AREA */
+/* display */
 const displayContainer = document.querySelector('#display-container')
 const getCities = document.querySelector('#get-cities')
 const refreshButton = document.querySelector('#refresh-button')
