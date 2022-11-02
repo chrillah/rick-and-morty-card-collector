@@ -27,6 +27,7 @@ send.disabled = true
 // Search after a city
 const formSearch = document.querySelector('#form-search')
 const searchButton = document.querySelector('#search-button')
+searchButton.classList.add('btn')
 const searchInput = document.querySelector('#search-input')
 searchInput.classList.add('user-input')
 formSearch.style.display = 'none'
@@ -36,8 +37,12 @@ searchButton.disabled = true
 const displayContainer = document.querySelector('#display-container')
 const getCities = document.querySelector('#get-cities')
 const refreshButton = document.querySelector('#refresh-button')
+
+
+// Error message
 const errorMessage = document.querySelector('#error-message')
-errorMessage.style.display = 'none'
+const addErrorMessage = document.querySelector('#add-error-message')
+addErrorMessage.style.display = 'none'
 const nameError = document.querySelector('#name-error')
 const populationError = document.querySelector('#population-error')
 
@@ -66,7 +71,7 @@ function inputNameValue(){
 /* GUARDFUNCTION */
 function isNameInputPass(){
     if(nameInput.value === ''){
-        nameError.style.display = 'block'
+        nameError.style.display = 'grid'
     }
     if(nameInput.value){
         nameError.style.display = 'none'
@@ -74,7 +79,7 @@ function isNameInputPass(){
 }
 function isPopulationInputPass(){
     if(!inputPopulation){
-        populationError.style = 'block'
+        populationError.style = 'inline-block'
     }
     if(inputPopulation){
         populationError.style.display = 'none'
@@ -82,11 +87,11 @@ function isPopulationInputPass(){
 }
 function displayErrorMessage(){
     if(populationError.style.display === 'none' && nameError.style.display === 'none'){
-        errorMessage.style.display = 'none'
+        addErrorMessage.style.display = 'none'
         send.disabled = false
     }
     else{
-        errorMessage.style.display = 'block'
+        addErrorMessage.style.display = 'block'
         send.disabled = true
     }
 }
@@ -121,11 +126,13 @@ function cityElementObjectCreator(data){
     // ja och nej knapper till delete
     const yesRemove = document.createElement('input')
     yesRemove.classList.add('btn')
+    yesRemove.classList.add('yes')
     yesRemove.type = 'button'
     yesRemove.value = 'Ja'
 
     const noRemove = document.createElement('input')
     noRemove.classList.add('btn')
+    noRemove.classList.add('no')
     noRemove.type = 'button'
     noRemove.value = 'Nej'
 
@@ -145,8 +152,9 @@ function cityElementObjectCreator(data){
     const cityInformationContainer = document.createElement('div')
     cityItemContainer.appendChild(cityInformationContainer)
     cityInformationContainer.classList.add('city-information-container')
-    const cityName = document.createElement('h3')
+    const cityName = document.createElement('h1')
     cityName.classList.add('city-item')
+    cityName.classList.add('city-header')
     cityInformationContainer.appendChild(cityName)
     cityName.textContent = data.name
 
@@ -158,6 +166,7 @@ function cityElementObjectCreator(data){
 
     // NÄR MAN GÅR IN I EDIT
     const editCityContainer = document.createElement('div')
+    editCityContainer.classList.add('edit-city-container')
     cityItemContainer.appendChild(editCityContainer)
     editCityContainer.style.display = 'none'
 
@@ -191,8 +200,9 @@ function cityElementObjectCreator(data){
         // None-display
         editButton.style.display = 'none'
         deleteButton.style.display = 'none'
-        cityName.style.display = 'none'
-        cityPopulation.style.display = 'none'
+        cityInformationContainer.style.display = 'none'
+        // cityName.style.display = 'none'
+        // cityPopulation.style.display = 'none'
     })
 
     // lämnar edit-mode
@@ -200,8 +210,9 @@ function cityElementObjectCreator(data){
         console.log('Lämnar Edit')
         // Displays
         editButton.style.display = 'block'
-        cityName.style.display = 'inline-block'
-        cityPopulation.style.display = 'inline-block'
+        // cityName.style.display = 'inline-block'
+        // cityPopulation.style.display = 'inline-block'
+        cityInformationContainer.style.display = 'block'
         deleteButton.style.display = 'block'
 
         // None-display
@@ -281,9 +292,9 @@ function cityElementObjectCreator(data){
 
 // Add new element btn
 addNewElement.addEventListener('click',()=>{
-    formPost.style.display = 'block'
+    formPost.style.display = 'grid'
     backFromAddNew.style.display = 'block'
-    errorMessage.style.display = 'block'
+    addErrorMessage.style.display = 'block'
 
     addNewElement.style.display = 'none'
     searchAfterCities.style.display = 'none'
@@ -299,12 +310,12 @@ backFromAddNew.addEventListener('click', ()=>{
 
     formPost.style.display = 'none'
     backFromAddNew.style.display = 'none'
-    errorMessage.style.display = 'none'
+    addErrorMessage.style.display = 'none'
 })
 
 // Search after cities
 searchAfterCities.addEventListener('click', ()=>{
-    formSearch.style.display = 'block'
+    formSearch.style.display = 'grid'
     backFromSearch.style.display = 'block'
 
     addNewElement.style.display = 'none'
@@ -368,6 +379,10 @@ function getCity(value){
             cityElementObjectCreator(element)
         })
     })
+    .catch(()=>{
+        errorMessage.innerHTML = `
+        <p class="get-error">Oops! Kunde inte hitta ${value}</p`
+    })
 }
 
 searchInput.addEventListener('input', ()=>{
@@ -378,14 +393,3 @@ searchInput.addEventListener('input', ()=>{
 searchButton.addEventListener('click', ()=>{
     getCity(searchInput.value)
 })
-
-// delete function
-
-function deleteCity(data){
-    fetch(`https://avancera.app/cities/${data.id}`,{
-        method:'DELETE'
-        }).then(response=>{
-            console.log(response)
-            refresh()
-        })
-}

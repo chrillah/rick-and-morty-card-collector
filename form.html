@@ -39,29 +39,35 @@
                 </div>
                 <div class="input-container">
 
-                    <section id="error-message">
+                    <div id="add-error-message">
                         <div id="name-error">
                             <p>Lägg till namn</p>
                         </div>
                         <div id="population-error">
                             <p>Lägg till invånare</p>
                         </div>
-                    </section>
+                    </div>
+
+                    <div id="error-message">
+
+                    </div>
 
                     <form id="form-post">
-                        <input id="name-input" placeholder="Namn">
-                        <input id="population-input" placeholder="Population">
+                        <input class="user-input" id="name-input" placeholder="Namn">
+                        <input class="user-input" id="population-input" placeholder="Population">
                         <input id="send" type="submit" value="Lägg till">
                     </form>
 
                     <form id="form-search">
-                        <input type="text" id="search-input" placeholder="Sök efter en stad">
+                        <input class="user-input" type="text" id="search-input" placeholder="Sök efter en stad">
                         <input id="search-button" type="button" value="Sök">
                     </form>
                 </div>
 
                 <!-- Display result -->
-                <div id="display-container"></div>
+                <div id="display-container">
+
+                </div>
             </div>
         </div>
     </main>
