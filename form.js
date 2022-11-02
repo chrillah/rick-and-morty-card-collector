@@ -5,28 +5,43 @@ function refresh(){
     location.reload()
 }
 
+// Select option container
+const addNewElement = document.querySelector('#add-new-city-element')
+const backFromAddNew = document.querySelector('#back-from-add-new')
+const searchAfterCities = document.querySelector('#search-after-cities')
+const backFromSearch = document.querySelector('#back-from-search')
+backFromAddNew.style.display = 'none'
+backFromSearch.style.display = 'none'
+
 // Form section
 const formPost = document.querySelector('#form-post')
 const nameInput = document.querySelector('#name-input')
 const populationInput = document.querySelector('#population-input')
+nameInput.classList.add('user-input')
+populationInput.classList.add('user-input')
 const send = document.querySelector('#send')
+formPost.style.display = 'none'
+send.disabled = true
 
 // Search after a city
 const formSearch = document.querySelector('#form-search')
 const searchButton = document.querySelector('#search-button')
 const searchInput = document.querySelector('#search-input')
+searchInput.classList.add('user-input')
+formSearch.style.display = 'none'
+searchButton.disabled = true
 
 /* TEST AREA */
 const displayContainer = document.querySelector('#display-container')
 const getCities = document.querySelector('#get-cities')
+const refreshButton = document.querySelector('#refresh-button')
 const errorMessage = document.querySelector('#error-message')
+errorMessage.style.display = 'none'
 const nameError = document.querySelector('#name-error')
 const populationError = document.querySelector('#population-error')
 
 
 // Start conditions
-send.disabled = true
-searchButton.disabled = true
 let inputName = ''
 let inputPopulation = ''
 
@@ -87,43 +102,54 @@ function cityElementObjectCreator(data){
     cityItemContainer.appendChild(itemSelectContainer)
 
     const editButton = document.createElement('input')
+    editButton.classList.add('btn')
     editButton.type = 'button'
     editButton.value = 'Edit'
 
     const deleteButton = document.createElement('input')
+    deleteButton.classList.add('btn')
     deleteButton.type = 'button'
     deleteButton.value = 'Ta bort'
 
 
     const exitButton = document.createElement('input')
+    exitButton.classList.add('btn')
     exitButton.type = 'button'
     exitButton.value = 'Avbryt'
 
     // ja och nej knapper till delete
     const yesRemove = document.createElement('input')
+    yesRemove.classList.add('btn')
     yesRemove.type = 'button'
     yesRemove.value = 'Ja'
 
     const noRemove = document.createElement('input')
+    noRemove.classList.add('btn')
     noRemove.type = 'button'
     noRemove.value = 'Nej'
 
+    // lägger till knapparna i select-avdelningen
     itemSelectContainer.appendChild(editButton)
     itemSelectContainer.appendChild(deleteButton)
     itemSelectContainer.appendChild(exitButton)
     itemSelectContainer.appendChild(yesRemove)
     itemSelectContainer.appendChild(noRemove)
 
+    // start condition
     exitButton.style.display = 'none'
     yesRemove.style.display = 'none'
     noRemove.style.display = 'none'
     
+    // city-information
     const cityName = document.createElement('h3')
-    const cityPopulation = document.createElement('p')
     cityName.classList.add('city-item')
-    cityPopulation.classList.add('city-item')
     cityItemContainer.appendChild(cityName)
+    cityName.textContent = data.name
+
+    const cityPopulation = document.createElement('p')
+    cityPopulation.classList.add('city-item')
     cityItemContainer.appendChild(cityPopulation)
+    cityPopulation.textContent = data.population
 
 
     // NÄR MAN GÅR IN I EDIT
@@ -131,72 +157,53 @@ function cityElementObjectCreator(data){
     cityItemContainer.appendChild(editCityContainer)
     editCityContainer.style.display = 'none'
 
-    //const enterChangeSection = document.createElement('input')
-    //editCityContainer.appendChild(enterChangeSection)
-    //enterChangeSection.type = 'button'
-    //enterChangeSection.value = 'Ändra'
-
-    const changeSection = document.createElement('div')
+    // Input field from user
     const newNameInput = document.createElement('input')
+    //newNameInput.classList.add('new-input-information')
+    newNameInput.classList.add('user-input')
+    editCityContainer.appendChild(newNameInput)
     const newPopulationInput = document.createElement('input')
+    //newPopulationInput.classList.add('new-input-information')
+    newPopulationInput.classList.add('user-input')
+    editCityContainer.appendChild(newPopulationInput)
+    
+
     const patchCity = document.createElement('input')
-
-
-    
-    
-    
-    editCityContainer.appendChild(changeSection)
-
-    //
-    changeSection.appendChild(newNameInput)
-    changeSection.appendChild(newPopulationInput)
-    changeSection.appendChild(patchCity)
-
-    changeSection.style.display = 'none'
-    
+    patchCity.classList.add('btn')
     patchCity.type = 'button'
     patchCity.value = 'Skicka in ändring'
+    editCityContainer.appendChild(patchCity)
 
-    cityName.textContent = data.name
-    cityPopulation.textContent = data.population
     newNameInput.placeholder = data.name
     newPopulationInput.placeholder = data.population
 
     // går in i edit-mode
     editButton.addEventListener('click',()=>{
         console.log('Enter Edit')
-        editButton.style.display = 'none'
+        // Displays
         exitButton.style.display = 'block'
-
-        
         editCityContainer.style.display = 'block'
+
+        // None-display
+        editButton.style.display = 'none'
         deleteButton.style.display = 'none'
         cityName.style.display = 'none'
         cityPopulation.style.display = 'none'
-        changeSection.style.display = 'block'
-        //enterChangeSection.style.display = 'none'
     })
 
     // lämnar edit-mode
     exitButton.addEventListener('click', ()=>{
         console.log('Lämnar Edit')
+        // Displays
         editButton.style.display = 'block'
-        editCityContainer.style.display = 'none'
-        changeSection.style.display = 'none'
-        //enterChangeSection.style.display = 'inline-block'
         cityName.style.display = 'inline-block'
         cityPopulation.style.display = 'inline-block'
         deleteButton.style.display = 'block'
+
+        // None-display
+        editCityContainer.style.display = 'none'
         exitButton.style.display = 'none'
     })
-
-    // Går in i för att ändra värden i namn och invånare
-    // enterChangeSection.addEventListener('click', ()=>{
-    //     cityName.style.display = 'none'
-    //     cityPopulation.style.display = 'none'
-    //     changeSection.style.display = 'block'
-    //     enterChangeSection.style.display = 'none'
-    // })
 
     // FUNKAR
     deleteButton.addEventListener('click', ()=>{
@@ -259,8 +266,6 @@ function cityElementObjectCreator(data){
 
         editButton.style.display = 'block'
         editCityContainer.style.display = 'none'
-        changeSection.style.display = 'none'
-        //enterChangeSection.style.display = 'inline-block'
         cityName.style.display = 'inline-block'
         cityPopulation.style.display = 'inline-block'
 
@@ -269,6 +274,50 @@ function cityElementObjectCreator(data){
         cityPopulation.textContent = newPopulation
     })
 }
+
+// Add new element btn
+addNewElement.addEventListener('click',()=>{
+    formPost.style.display = 'block'
+    backFromAddNew.style.display = 'block'
+    errorMessage.style.display = 'block'
+
+    addNewElement.style.display = 'none'
+    searchAfterCities.style.display = 'none'
+    getCities.style.display = 'none'
+    refreshButton.style.display = 'none'
+})
+
+backFromAddNew.addEventListener('click', ()=>{
+    getCities.style.display = 'inline-block'
+    addNewElement.style.display = 'inline-block'
+    searchAfterCities.style.display = 'inline-block'
+    refreshButton.style.display = 'inline-block'
+
+    formPost.style.display = 'none'
+    backFromAddNew.style.display = 'none'
+    errorMessage.style.display = 'none'
+})
+
+// Search after cities
+searchAfterCities.addEventListener('click', ()=>{
+    formSearch.style.display = 'block'
+    backFromSearch.style.display = 'block'
+
+    addNewElement.style.display = 'none'
+    searchAfterCities.style.display = 'none'
+    getCities.style.display = 'none'
+    refreshButton.style.display = 'none'
+})
+
+backFromSearch.addEventListener('click', ()=>{
+    getCities.style.display = 'inline-block'
+    addNewElement.style.display = 'inline-block'
+    searchAfterCities.style.display = 'inline-block'
+    refreshButton.style.display = 'inline-block'
+
+    formSearch.style.display = 'none'
+    backFromSearch.style.display = 'none'
+})
 
 /* POST */
 formPost.addEventListener('submit',(event)=>{

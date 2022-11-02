@@ -22,26 +22,41 @@
         </div>
     </div>
     <h1 class="intro">Labb 2</h1>
-    <form id="form-post">
-        <input id="name-input" placeholder="Namn">
-        <input id="population-input" placeholder="Population">
-        <input id="send" type="submit" value ="Lägg till">
-    </form>
-    <section id="error-message">
-        <h3>FEL</h3>
-        <div id="name-error"><h6>NAMN</h6></div>
-        <div id="population-error"><h6>POPULATION</h6></div>
-    </section>
 
-    <form id="form-search">
-        <input type="text" id="search-input" placeholder="Sök efter en stad">
-        <input id="search-button" type="button" value="Sök">
-    </form>
+<main class="main-container">
+    <div class="display-input-wrapper">
+        <!-- Select option container -->
+        <div class="option-container">
+            <input id="add-new-city-element" type="button" class="btn" value="Lägga till ny stad">
+            <input id="back-from-add-new" class="btn" type="button" value="Tillbaka">
+            <input id="search-after-cities" type="button" class="btn" value="Sök efter stad">
+            <input id="back-from-search" class="btn" type="button" value="Tillbaka">
+            <input id="get-cities" type="button" class="btn" value="Hämta alla städer">
+            <input id="refresh-button" onclick="refresh()" type="button" class="btn" value="Refräsh">
+        </div>
+        <div class="input-container">
 
-    <input id="get-cities" type="button" value="Hämta alla städer">
-    <input onclick="refresh()" type="button" value="Refräsh">
+            <section id="error-message">
+                <div id="name-error"><p>Lägg till namn</p></div>
+                <div id="population-error"><p>Lägg till invånare</p></div>
+            </section>
 
-    <div id="display-container"></div>
+            <form id="form-post">
+                <input id="name-input" placeholder="Namn">
+                <input id="population-input" placeholder="Population">
+                <input id="send" type="submit" value ="Lägg till">
+            </form>
+        
+            <form id="form-search">
+                <input type="text" id="search-input" placeholder="Sök efter en stad">
+                <input id="search-button" type="button" value="Sök">
+            </form>
+        </div>
+
+        <!-- Display result -->
+        <div id="display-container"></div>
+    </div>
+</main>
     <script src="form.js"></script>
     <script src="test.js"></script>
 </body>
