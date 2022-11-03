@@ -73,7 +73,7 @@ html{
 /* 4. Buttons style */
 
 .btn{
-    background-color: var(--light-yellow);
+    background-color: var(--greenish);
     border: var(--border-style);
     /* box-shadow: var(--button-shadow-color) 4px 4px 0 0;
     -webkit-box-shadow: 4px 4px 0px 0px rgba(0,0,0,1);
@@ -121,8 +121,7 @@ html{
 }
 
 .nav-btn{
-    border-right: var(--border-style);
-    border-left: var(--border-style);
+    border: var(--border-style);
     color: var(--font-color-black);
     cursor: pointer;
     display: inline-block;
@@ -300,7 +299,7 @@ html{
 .city-item-container{
     width: 100%;
     max-width: 600px;
-    background-color: var(--bg-color-white);
+    background-color: var(--whitish);
     border: var(--border-style);
     display: grid;
     min-height: 150px;

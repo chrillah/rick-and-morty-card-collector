@@ -111,6 +111,7 @@ function cityElementObjectCreator(data){
     const itemSelectContainer = document.createElement('div')
     itemSelectContainer.classList.add('item-select-container')
     cityItemContainer.appendChild(itemSelectContainer)
+    itemSelectContainer.style.display = 'none'
 
     const editButton = document.createElement('input')
     editButton.classList.add('btn')
@@ -168,6 +169,13 @@ function cityElementObjectCreator(data){
     cityInformationContainer.appendChild(cityPopulation)
     cityPopulation.textContent = data.population
 
+    cityItemContainer.addEventListener('mouseover',()=>{
+        itemSelectContainer.style.display="grid"
+    })
+
+    cityItemContainer.addEventListener('mouseout',()=>{
+        itemSelectContainer.style.display="none"
+    })
 
     // NÄR MAN GÅR IN I EDIT
     const editCityContainer = document.createElement('div')
