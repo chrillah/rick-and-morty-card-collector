@@ -1,30 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap');
 
-/*INTRO SECTION_ TEST ONLY */
-
-body{
-    font-family: Helvetica, sans-serif;
-}
-
-.intro{
-    font-weight: bolder;
-}
-
-.testP{
-    padding: 1rem;
-}
-
-#edit-button{
-    color: blue;
-}
-
-/*
-#display-result{
-
-}
-*/
-
-/* REMOVE ALL ABOVE AFTER TEST PERIOD IS OVER */
+@import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
 /* Table of content */
 /* 1. Root settings */
@@ -42,6 +18,7 @@ body{
 
 /* 1. Root settings */
 :root{
+    --whitish : #ffffff;
     --light-purple : #BDB1C0;
     --greenish : #108E74;
     --light-green : #23B78C;
@@ -61,9 +38,16 @@ body{
 
 *{
     box-sizing: border-box;
+    /*font-family: 'Space Mono', monospace;*/
+}
+
+
+/* REMOVE THIS BEFORE*/
+body{
     margin: 0;
     padding: 0;
-    font-family: 'Space Mono', monospace;
+    /*font-family: Helvetica, sans-serif;*/
+    font-family: 'Raleway', sans-serif;
 }
 
 html{
@@ -77,17 +61,16 @@ html{
     box-shadow: 5px 5px 0px 0px rgba(0,0,0,1);
 }
 
-/* 3. Font settings */
+/* 3. Font settings 
 ul li{
     list-style: none;
-    box-sizing: border-box;
 }
 
 a{
     text-decoration: none;
     color: var(--font-color);
 }
-
+*/
 .city-header{
     font-size: 5rem;
     line-height: 5rem;
@@ -145,13 +128,142 @@ a{
     background-color: var(--warning);
 }
 
+.nav-btn{
+    background-color: var(--light-yellow);
+    /* border-radius: 100px; */
+    border: var(--border-style);
+    /* box-shadow: var(--button-shadow-color) 4px 4px 0 0;
+    -webkit-box-shadow: 4px 4px 0px 0px rgba(0,0,0,1);
+    -moz-box-shadow: 4px 4px 0px 0px rgba(0,0,0,1); */
+    color: var(--font-color-black);
+    cursor: pointer;
+    display: inline-block;
+    font-weight: bolder;
+    /* margin: 1.5rem 0 1rem 0; */
+    line-height: 2rem;
+    text-align: center;
+    text-decoration: none;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+}
+
+.nav-btn:hover,
+.nav-btn:focus {
+    background-color: var(--button-bg-color-focus);
+    border: 1px solid #000000;
+    transform: translate(-6px, -6px);
+    box-shadow: var(--border_color) 7px 7px 0 0;
+    -webkit-box-shadow: 6px 6px 0px 0px rgba(0,0,0,1);
+    -moz-box-shadow: 6px 6px 0px 0px rgba(0,0,0,1);
+}
+
 /* 5. Nav settings */
 
-/* links */
+.nav-wrapper{
+    background-color: var(--light-purple);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.nav-container{
+    max-width: 800px;
+    width: 100%;
+}
+
+.navbar{
+    min-height: 4rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.brand-title{
+    padding-top: 1.3rem;
+    font-size: 1.5rem;
+
+    /* REMOVE THIS */
+    margin: .5rem;
+}
+
+.navbar-links ul{
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+
+.navbar-links li{
+    list-style: none;
+}
+
+.navbar-links li a{
+    text-decoration: none;
+    padding: 1rem;
+    display: block;
+}
+
+/* REMOVE THIS*/
+.navbar-links li:hover{
+    background-color: var(--greenish);
+}
+
+.toggle-button{
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 30px;
+    height: 21px;
+}
+
+.toggle-button .bar{
+    height: 3px;
+    width: 100%;
+    background-color: #000000;
+}
+
+@media (max-width: 600px) {
+    .toggle-button{
+        display: flex;
+    }
+
+    .navbar-links{
+        display: none;
+        width: 100%;
+    }
+
+    .navbar{
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .navbar-links ul{
+        width: 100%;
+        flex-direction: column;
+    }
+
+    .navbar-links li{
+        text-align: center;
+    }
+
+    .navbar-links li a{
+        padding: .5rem 1rem;
+    }
+
+    .navbar-links.active{
+        display: flex;
+    }
+}
+
+/* links 
 .links{
     padding: .1rem;
     font-weight: bold;
 }
+*/
 
 .links:hover{
     background: var(--font-color-black);
