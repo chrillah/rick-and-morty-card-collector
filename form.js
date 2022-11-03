@@ -119,7 +119,7 @@ function cityElementObjectCreator(data){
     const editButton = document.createElement('input')
     editButton.classList.add('btn')
     editButton.type = 'button'
-    editButton.value = 'Edit'
+    editButton.value = 'Ändra'
 
     const deleteButton = document.createElement('input')
     deleteButton.classList.add('btn')
@@ -198,7 +198,7 @@ function cityElementObjectCreator(data){
     const patchCity = document.createElement('input')
     patchCity.classList.add('btn')
     patchCity.type = 'button'
-    patchCity.value = 'Skicka in ändring'
+    patchCity.value = 'Uppdatera'
     editCityContainer.appendChild(patchCity)
 
     newNameInput.placeholder = data.name
@@ -221,7 +221,7 @@ function cityElementObjectCreator(data){
     })
 
     // lämnar edit-mode
-    exitButton.addEventListener('click', ()=>{
+    function exitEdit(){
         console.log('Lämnar Edit')
         // Displays
         editButton.style.display = 'block'
@@ -231,7 +231,8 @@ function cityElementObjectCreator(data){
         // None-display
         editCityContainer.style.display = 'none'
         exitButton.style.display = 'none'
-    })
+    }
+    exitButton.addEventListener('click', exitEdit)
 
     newNameInput.addEventListener('input',()=>{
         if(newNameInput){
@@ -277,13 +278,7 @@ function cityElementObjectCreator(data){
             console.log(response)
         })
         console.log('PATCH')
-
-        cityInformationContainer.style.display = 'block'
-        editButton.style.display = 'block'
-        deleteButton.style.display = 'block'
-
-        exitButton.style.display = 'none'
-        editCityContainer.style.display = 'none'
+        exitEdit()
     })
 
     // FUNKAR
