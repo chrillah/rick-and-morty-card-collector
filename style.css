@@ -225,6 +225,7 @@ html{
         align-items: flex-start;
     }
     .navbar-links ul{
+        height: 100vh;
         width: 100%;
         flex-direction: column;
     }

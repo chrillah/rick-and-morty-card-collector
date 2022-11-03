@@ -342,6 +342,10 @@ backFromAddNew.addEventListener('click', defaultFromAdd)
 
 // Search after cities
 function searchMode(){
+    while(displayContainer.firstChild){
+        displayContainer.firstChild.remove()
+    }
+
     formSearch.style.display = 'grid'
     backFromSearch.style.display = 'block'
 
