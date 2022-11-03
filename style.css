@@ -121,7 +121,8 @@ html{
 }
 
 .nav-btn{
-    border: var(--border-style);
+    border-right: var(--border-style);
+    border-left: var(--border-style);
     color: var(--font-color-black);
     cursor: pointer;
     display: inline-block;

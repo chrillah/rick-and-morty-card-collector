@@ -284,13 +284,12 @@ function cityElementObjectCreator(data){
     })
     
     yesRemove.addEventListener('click',()=>{
-        //console.log(data.id)
-        //displayContainer.removeChild(this)
+        displayContainer.removeChild(cityItemContainer)
         fetch(url+data.id,{
         method:'DELETE'
         }).then(response=>{
             console.log(response)
-            refresh()
+            //refresh()
         })
     })
     
