@@ -340,6 +340,7 @@ html{
     width: 100%;
     box-sizing: border-box;
     border: none;
+    background: none;
     border-bottom : var(--border-style);
 }
 
