@@ -117,33 +117,7 @@ html{
     background-color: var(--light-red);
 }
 
-.nav-btn{
-    border: var(--border-style);
-    color: var(--font-color-black);
-    cursor: pointer;
-    display: inline-block;
-    font-weight: bolder;
-    text-align: center;
-    text-decoration: none;
-    user-select: none;
-    -webkit-user-select: none;
-    touch-action: manipulation;
-}
 
-.nav-btn:active {
-    /*transform: translate(2px, 2px);*/
-    box-shadow: var(--button-bg-color-focus) -4px -4px 0 0;
-} 
-
-.nav-btn:hover,
-.nav-btn:focus {
-    background-color: var(--button-bg-color-focus);
-    border: var(--border-style);
-    transform: translate(-6px, 6px);
-    box-shadow: var(--border_color) 7px 7px 0 0;
-    -webkit-box-shadow: 6px -6px 0px 0px rgba(0,0,0,1);
-    -moz-box-shadow: 6px -6px 0px 0px rgba(0,0,0,1);
-}
 
 /* 5. Nav settings */
 
@@ -191,6 +165,34 @@ html{
     text-decoration: none;
     padding: 1rem;
     display: block;
+}
+
+.nav-btn{
+    border: var(--border-style);
+    color: var(--font-color-black);
+    cursor: pointer;
+    display: inline-block;
+    font-weight: bolder;
+    text-align: center;
+    text-decoration: none;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+}
+
+.nav-btn:active {
+    /*transform: translate(2px, 2px);*/
+    box-shadow: var(--button-bg-color-focus) -4px -4px 0 0;
+} 
+
+.nav-btn:hover,
+.nav-btn:focus {
+    background-color: var(--button-bg-color-focus);
+    border: var(--border-style);
+    transform: translate(-6px, 6px);
+    box-shadow: var(--border_color) 7px 7px 0 0;
+    -webkit-box-shadow: 6px -6px 0px 0px rgba(0,0,0,1);
+    -moz-box-shadow: 6px -6px 0px 0px rgba(0,0,0,1);
 }
 
 .toggle-button{
