@@ -68,54 +68,7 @@ html{
 
 /* 4. Buttons style */
 
-.btn{
-    /*background-color: var(--greenish);*/
-    background: none;
-    border: var(--border-style);
-    /* box-shadow: var(--button-shadow-color) 4px 4px 0 0;
-    -webkit-box-shadow: 4px 4px 0px 0px rgba(0,0,0,1);
-    -moz-box-shadow: 4px 4px 0px 0px rgba(0,0,0,1); */
-    color: var(--font-color-black);
-    cursor: pointer;
-    display: inline-block;
-    font-weight: bolder;
-    /* margin: 1.5rem 0 1rem 0; */
-    padding: 0 10px; 
-    line-height: 2rem;
-    text-align: center;
-    text-decoration: none;
-    user-select: none;
-    -webkit-user-select: none;
-    touch-action: manipulation;
-}
-  
-/* .btn{
-    background-color: var(--button-bg-color);
-    border: var(--border-style);
-} */
-  
-.btn:hover,
-.btn:focus {
-    background-color: var(--button-bg-color-focus);
-    border: 1px solid #000000;
-    transform: translate(6px, -6px);
-    box-shadow: var(--border_color) 7px 7px 0 0;
-    -webkit-box-shadow: -6px 6px 0px 0px rgba(0,0,0,1);
-    -moz-box-shadow: -6px 6px 0px 0px rgba(0,0,0,1);
-}
 
-.btn:active {
-    transform: translate(2px, 2px);
-    box-shadow: var(--button-shadow-color) -2px -2px 0 0;
-} 
-
-.yes{
-    background-color: var(--light-green);
-}
-
-.no{
-    background-color: var(--light-red);
-}
 
 
 
@@ -195,7 +148,7 @@ html{
     -moz-box-shadow: 6px -6px 0px 0px rgba(0,0,0,1);
 }
 
-.toggle-button{
+.toggle-btn{
     position: absolute;
     top: 1rem;
     right: 1rem;
@@ -206,14 +159,14 @@ html{
     height: 21px;
 }
 
-.toggle-button .bar{
+.toggle-btn .bar{
     height: 3px;
     width: 100%;
     background-color: #000000;
 }
 
 @media (max-width: 600px) {
-    .toggle-button{
+    .toggle-btn{
         display: flex;
     }
 
@@ -250,13 +203,15 @@ html{
     padding: .1rem;
     font-weight: bold;
 }
-*/
+
 
 .links:hover{
     background: var(--font-color-black);
     color: var(--bg-color-white);
     font-weight: 400;
 }
+*/
+
 
 /* Hero settings */
 .hero-wrapper{
@@ -355,7 +310,7 @@ html{
 .city-item-container{
     width: 100%;
     max-width: 600px;
-    background-color: var(--whitish);
+    /*background-color: var(--whitish);*/
     border: var(--border-style);
     display: grid;
     min-height: 150px;
@@ -372,6 +327,55 @@ html{
     max-height: 2rem; */
     margin: 0;
     padding: 0;
+}
+
+.btn{
+    /*background-color: var(--greenish);*/
+    background: none;
+    border: var(--border-style);
+    /* box-shadow: var(--button-shadow-color) 4px 4px 0 0;
+    -webkit-box-shadow: 4px 4px 0px 0px rgba(0,0,0,1);
+    -moz-box-shadow: 4px 4px 0px 0px rgba(0,0,0,1); */
+    color: var(--font-color-black);
+    cursor: pointer;
+    display: inline-block;
+    font-weight: bolder;
+    /* margin: 1.5rem 0 1rem 0; */
+    padding: 0 10px; 
+    line-height: 2rem;
+    text-align: center;
+    text-decoration: none;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+}
+  
+/* .btn{
+    background-color: var(--button-bg-color);
+    border: var(--border-style);
+} */
+  
+.btn:hover,
+.btn:focus {
+    background-color: var(--button-bg-color-focus);
+    border: 1px solid #000000;
+    transform: translate(6px, -6px);
+    box-shadow: var(--border_color) 7px 7px 0 0;
+    -webkit-box-shadow: -6px 6px 0px 0px rgba(0,0,0,1);
+    -moz-box-shadow: -6px 6px 0px 0px rgba(0,0,0,1);
+}
+
+.btn:active {
+    transform: translate(2px, 2px);
+    box-shadow: var(--button-shadow-color) -2px -2px 0 0;
+} 
+
+.yes{
+    background-color: var(--light-green);
+}
+
+.no{
+    background-color: var(--light-red);
 }
 
 /* city object information*/
