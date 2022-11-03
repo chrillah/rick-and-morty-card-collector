@@ -69,7 +69,8 @@ html{
 /* 4. Buttons style */
 
 .btn{
-    background-color: var(--greenish);
+    /*background-color: var(--greenish);*/
+    background: none;
     border: var(--border-style);
     /* box-shadow: var(--button-shadow-color) 4px 4px 0 0;
     -webkit-box-shadow: 4px 4px 0px 0px rgba(0,0,0,1);
@@ -347,37 +348,7 @@ html{
     overflow: scroll; */
 }
 
-.edit-city-container{
-    padding:1rem;
-    /* margin-top: 1.4rem;
-    background-color: aqua; */
-}
-
-.city-header{
-    font-size: 5rem;
-    line-height: 4rem;
-    word-break: break-all;
-}
-
-.city-item{
-}
-
-.item-select-container{
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    max-height: 2rem;
-    /* min-height: 2rem;
-    max-height: 2rem; */
-    margin: 0;
-    padding: 0;
-}
-
-.city-information-container{
-    display: grid;
-    grid-template-columns: auto;
-    padding: 1rem;
-}
-
+/* City Object*/
 .city-item-container{
     width: 100%;
     max-width: 600px;
@@ -389,6 +360,41 @@ html{
     /* margin: 1rem 0; */
 }
 
+/* edit selection */
+.item-select-container{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    max-height: 2rem;
+    /* min-height: 2rem;
+    max-height: 2rem; */
+    margin: 0;
+    padding: 0;
+}
+
+/* city object information*/
+.city-information-container{
+    display: grid;
+    grid-template-columns: auto;
+    padding: 1rem;
+}
+
+/* edit city mode*/
+.edit-city-container{
+    padding:1rem;
+    /* margin-top: 1.4rem;
+    background-color: aqua; */
+}
+
+.city-header{
+    margin-top: 1rem;
+    font-size: 5rem;
+    line-height: 6rem;
+    word-break: break-all;
+    margin-bottom: 1rem;
+}
+
+.city-item{
+}
 
 /* 7-9. Footer settings */
 

@@ -22,7 +22,7 @@ populationInput.classList.add('user-input')
 const send = document.querySelector('#send')
 send.classList.add('btn')
 formPost.style.display = 'none'
-send.disabled = true
+send.style.opacity = 0;
 
 // Search after a city
 const formSearch = document.querySelector('#form-search')
@@ -31,7 +31,7 @@ searchButton.classList.add('btn')
 const searchInput = document.querySelector('#search-input')
 searchInput.classList.add('user-input')
 formSearch.style.display = 'none'
-searchButton.disabled = true
+searchButton.style.opacity = 0
 
 /* display */
 const displayContainer = document.querySelector('#display-container')
@@ -69,6 +69,7 @@ function inputNameValue(){
     inputName = nameInput.value
 }
 
+// FUNKAR EJ
 /* GUARDFUNCTION */
 function isNameInputPass(){
     if(nameInput.value === ''){
@@ -90,14 +91,16 @@ function isPopulationInputPass(){
         populationError.style.display = 'none'
     }
 }
+
+// FUNKAR EJ?
 function displayErrorMessage(){
     if(populationError.style.display === 'none' && nameError.style.display === 'none'){
         addErrorMessage.style.display = 'none'
-        send.disabled = false
+        send.style.opacity = 1;
     }
     if(populationError.style.display === 'inline-block' || nameError.style.display === 'inline-block'){
         addErrorMessage.style.display = 'block'
-        send.disabled = true
+        send.style.opacity = 0;
     }
 }
 
@@ -111,7 +114,7 @@ function cityElementObjectCreator(data){
     const itemSelectContainer = document.createElement('div')
     itemSelectContainer.classList.add('item-select-container')
     cityItemContainer.appendChild(itemSelectContainer)
-    itemSelectContainer.style.display = 'none'
+    itemSelectContainer.style.opacity = 0;
 
     const editButton = document.createElement('input')
     editButton.classList.add('btn')
@@ -159,7 +162,7 @@ function cityElementObjectCreator(data){
     cityItemContainer.appendChild(cityInformationContainer)
     cityInformationContainer.classList.add('city-information-container')
     const cityName = document.createElement('h1')
-    cityName.classList.add('city-item')
+    //cityName.classList.add('city-item')
     cityName.classList.add('city-header')
     cityInformationContainer.appendChild(cityName)
     cityName.textContent = data.name
@@ -167,14 +170,14 @@ function cityElementObjectCreator(data){
     const cityPopulation = document.createElement('p')
     cityPopulation.classList.add('city-item')
     cityInformationContainer.appendChild(cityPopulation)
-    cityPopulation.textContent = data.population
+    cityPopulation.textContent = 'Invånare: '+data.population
 
     cityItemContainer.addEventListener('mouseover',()=>{
-        itemSelectContainer.style.display="grid"
+        itemSelectContainer.style.opacity = 1;
     })
 
     cityItemContainer.addEventListener('mouseout',()=>{
-        itemSelectContainer.style.display="none"
+        itemSelectContainer.style.opacity = 0;
     })
 
     // NÄR MAN GÅR IN I EDIT
@@ -247,7 +250,7 @@ function cityElementObjectCreator(data){
     patchCity.addEventListener('click', ()=>{
         function documentations(){
             if(newPopulation && !newName){
-                cityPopulation.textContent = newPopulation
+                cityPopulation.textContent = 'Invånare: '+newPopulation
                 return JSON.stringify({
                     population : newPopulation
                 })
@@ -309,8 +312,9 @@ function cityElementObjectCreator(data){
     })
 }
 
-// Add new element btn
-addNewElement.addEventListener('click',()=>{
+// POST - New city
+
+function addNewMode(){
     formPost.style.display = 'grid'
     backFromAddNew.style.display = 'block'
     addErrorMessage.style.display = 'block'
@@ -319,9 +323,11 @@ addNewElement.addEventListener('click',()=>{
     searchAfterCities.style.display = 'none'
     getCities.style.display = 'none'
     refreshButton.style.display = 'none'
-})
+}
 
-backFromAddNew.addEventListener('click', ()=>{
+addNewElement.addEventListener('click', addNewMode)
+
+function defaultFromAdd(){
     getCities.style.display = 'inline-block'
     addNewElement.style.display = 'inline-block'
     searchAfterCities.style.display = 'inline-block'
@@ -330,10 +336,12 @@ backFromAddNew.addEventListener('click', ()=>{
     formPost.style.display = 'none'
     backFromAddNew.style.display = 'none'
     addErrorMessage.style.display = 'none'
-})
+}
+
+backFromAddNew.addEventListener('click', defaultFromAdd)
 
 // Search after cities
-searchAfterCities.addEventListener('click', ()=>{
+function searchMode(){
     formSearch.style.display = 'grid'
     backFromSearch.style.display = 'block'
 
@@ -341,9 +349,10 @@ searchAfterCities.addEventListener('click', ()=>{
     searchAfterCities.style.display = 'none'
     getCities.style.display = 'none'
     refreshButton.style.display = 'none'
-})
+}
+searchAfterCities.addEventListener('click', searchMode)
 
-backFromSearch.addEventListener('click', ()=>{
+function defaultFromSearch(){
     getCities.style.display = 'inline-block'
     addNewElement.style.display = 'inline-block'
     searchAfterCities.style.display = 'inline-block'
@@ -351,7 +360,9 @@ backFromSearch.addEventListener('click', ()=>{
 
     formSearch.style.display = 'none'
     backFromSearch.style.display = 'none'
-})
+}
+
+backFromSearch.addEventListener('click', defaultFromSearch)
 
 /* POST */
 formPost.addEventListener('submit',(event)=>{
@@ -371,14 +382,7 @@ formPost.addEventListener('submit',(event)=>{
         }
     })
     console.log('POST')
-
-    // getCities.style.display = 'inline-block'
-    // addNewElement.style.display = 'inline-block'
-    // searchAfterCities.style.display = 'inline-block'
-    // refreshButton.style.display = 'inline-block'
-
-    // formSearch.style.display = 'none'
-    // backFromSearch.style.display = 'none'
+    defaultFromAdd()
 })
 
 /* GET-ANROP Hämtar alla cities*/
@@ -396,10 +400,10 @@ getCities.addEventListener('click', ()=>{
 /* SEARCH CITY */
 function searchInputPass(){
     if(searchInput){
-        searchButton.disabled = false
+        searchButton.style.opacity = 1
     }
-    if(!searchInput){
-        searchButton.disabled = true
+    if(!searchInput.value){
+        searchButton.style.opacity = 0
     }
 }
 
@@ -416,6 +420,7 @@ function getCity(value){
         errorMessage.innerHTML = `
         <p class="get-error">Oops! Kunde inte hitta ${value}</p`
     })
+    defaultFromSearch()
 }
 
 searchInput.addEventListener('input', ()=>{
