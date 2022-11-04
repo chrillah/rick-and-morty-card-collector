@@ -218,9 +218,13 @@ html{
     border: var(--border-style);
     height: 50vh;
     /*background-image: url(img/labb_2_native_js.png);*/
-    background-position: center;
+    /* background-position: center;
     background-size: contain;
-    background-repeat: no-repeat;
+    background-repeat: no-repeat; */
+}
+
+.chart{
+    width: 400px;
 }
 
 /* 5-7. Main settings */
