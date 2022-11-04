@@ -39,9 +39,6 @@
     </div>
     <div class="hero-wrapper">
         <div class="hero-container">
-            <div class="chart">
-                <canvas id="myChart"></canvas>
-            </div>
         </div>
     </div>
     <main class="main-wrapper">
@@ -85,7 +82,19 @@
 
                 <!-- Display result -->
                 <div id="display-container">
-
+                    <div id="display-chart">
+                        <div class="chart">
+                            <canvas id="myChart"></canvas>
+                        </div>
+                    </div>
+                    <div id="display-list-container">
+                        <ul id="display-city-list">
+                            
+                        </ul>
+                    </div>
+                    <div id="display-city-container">
+    
+                    </div>
                 </div>
             </div>
         </div>
@@ -130,7 +139,7 @@
     </footer>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="chart.js"></script>
-    <script src="form.js"></script>
+    <script src="city.js"></script>
     <script src="navbar.js"></script>
     <script src="test.js"></script>
 </body>

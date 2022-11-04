@@ -34,7 +34,10 @@ formSearch.style.display = 'none'
 searchButton.style.opacity = 0
 
 /* display */
-const displayContainer = document.querySelector('#display-container')
+const displayCityContainer = document.querySelector('#display-city-container')
+
+const displayListContainer = document.querySelector('#display-list-container')
+const displayCityList = document.querySelector('#display-city-list') 
 const getCities = document.querySelector('#get-cities')
 const refreshButton = document.querySelector('#refresh-button')
 
@@ -109,7 +112,7 @@ function cityElementObjectCreator(data){
 
     const cityItemContainer = document.createElement('div')
     cityItemContainer.classList.add('city-item-container')
-    displayContainer.appendChild(cityItemContainer)
+    displayCityContainer.appendChild(cityItemContainer)
 
     const itemSelectContainer = document.createElement('div')
     itemSelectContainer.classList.add('item-select-container')
@@ -290,7 +293,7 @@ function cityElementObjectCreator(data){
     })
     
     yesRemove.addEventListener('click',()=>{
-        displayContainer.removeChild(cityItemContainer)
+        displayCityContainer.removeChild(cityItemContainer)
         fetch(url+data.id,{
         method:'DELETE'
         }).then(response=>{
@@ -337,8 +340,8 @@ backFromAddNew.addEventListener('click', defaultFromAdd)
 
 // Search after cities
 function searchMode(){
-    while(displayContainer.firstChild){
-        displayContainer.firstChild.remove()
+    while(displayCityContainer.firstChild){
+        displayCityContainer.firstChild.remove()
     }
 
     formSearch.style.display = 'grid'
@@ -429,4 +432,19 @@ searchInput.addEventListener('input', ()=>{
 
 searchButton.addEventListener('click', ()=>{
     getCity(searchInput.value)
+})
+
+// display-list
+function createCityListItem(){
+
+}
+
+fetch(url).then(response => response.json()).then(data =>{
+    for (let i = 0; i < data.length;i++){
+        const cityListItem = document.createElement('li')
+        cityListItem.innerHTML = `<li class="city-list-item">
+        <input type="button" class="list-btn" value=${data[i].name}></li>`
+
+        displayCityList.appendChild(cityListItem)
+    }
 })

@@ -223,13 +223,6 @@ html{
     background-repeat: no-repeat; */
 }
 
-.chart{
-    overflow: hidden;
-    padding-top: 5rem;
-    height: auto;
-    width:100%;
-}
-
 /* 5-7. Main settings */
 .main-wrapper{
     display: flex;
@@ -306,18 +299,77 @@ html{
     padding: 1rem;
     border: var(--border-style);
     min-height: 50vh;
-    display: flex;
+    grid-template-columns: 400px 400px;
+    display: grid;
+    grid-template-areas: 
+    "chart city-list"
+    "city-items city-items";
+    /* display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
+    align-items: center; */
     /* max-height: 80vh;
     overflow: scroll; */
+}
+
+#display-city-container{
+    grid-area: city-items;
+}
+
+
+#display-list-container{
+    grid-area: city-list;
+}
+
+#display-city-list li{
+    list-style: none;
+    padding: .3rem 0;
+}
+
+.list-btn{
+    border: var(--border-style);
+    color: var(--font-color-black);
+    cursor: pointer;
+    display: inline-block;
+    font-weight: bolder;
+    text-align: center;
+    text-decoration: none;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+}
+
+.list-btn:active {
+    transform: translate(2px, 2px);
+    box-shadow: var(--button-bg-color-focus) -4px -4px 0 0;
+} 
+
+.list-btn:hover,
+.list-btn:focus {
+    background-color: var(--button-bg-color-focus);
+    border: var(--border-style);
+    transform: translate(-6px, 6px);
+    box-shadow: var(--border_color) 7px 7px 0 0;
+    -webkit-box-shadow: 6px -6px 0px 0px rgba(0,0,0,1);
+    -moz-box-shadow: 6px -6px 0px 0px rgba(0,0,0,1);
+}
+
+#display-chart{
+    grid-area: chart;
+}
+
+
+
+/* Chart */
+.chart{
+    overflow: hidden;
+    height: auto;
+    width:100%;
 }
 
 /* City Object*/
 .city-item-container{
     width: 100%;
-    max-width: 600px;
     /*background-color: var(--whitish);*/
     border: var(--border-style);
     display: grid;

@@ -36,7 +36,7 @@ const myChart = new Chart(ctx, {
         // lägger till labels -arrayen här
         labels: labels,
         datasets: [{
-            label: `Sveriges städer`,
+            label: ``,
 
             // data-arrayen läggs in här
             data: data,
