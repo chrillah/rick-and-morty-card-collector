@@ -302,8 +302,7 @@ html{
     grid-template-columns: 400px 400px;
     display: grid;
     grid-template-areas: 
-    "chart city-list"
-    "city-items city-items";
+    "city-items city-list";
     /* display: flex;
     flex-direction: column;
     justify-content: center;
@@ -454,8 +453,8 @@ html{
 
 .city-header{
     margin-top: 1rem;
-    font-size: 5rem;
-    line-height: 6rem;
+    font-size: 3rem;
+    font-weight: bold;
     word-break: break-all;
     margin-bottom: 1rem;
 }

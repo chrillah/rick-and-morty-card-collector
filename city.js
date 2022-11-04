@@ -1,5 +1,18 @@
 const url = `https://avancera.app/cities/`
 
+const cities = []
+
+fetch(url).then(response => response.json()).then(data => {
+    for (let i = 0; i < data.length; i++){
+        cities.push(data[i])
+    }
+
+    localStorage.setItem('city-element', JSON.stringify(cities))
+})
+
+listFromStorage = []
+listFromStorage = JSON.parse(localStorage.getItem('city-element'))
+
 // Functions
 function refresh(){
     location.reload()
@@ -76,21 +89,17 @@ function inputNameValue(){
 /* GUARDFUNCTION */
 function isNameInputPass(){
     if(nameInput.value === ''){
-        console.log('noll input namn')
         nameError.style.display = 'inline-block'
     }
     if(nameInput.value){
-        console.log('input namn')
         nameError.style.display = 'none'
     }
 }
 function isPopulationInputPass(){
     if(!inputPopulation){
-        console.log('noll input population')
         populationError.style = 'inline-block'
     }
     if(inputPopulation){
-        console.log('input population')
         populationError.style.display = 'none'
     }
 }
@@ -164,7 +173,7 @@ function cityElementObjectCreator(data){
     const cityInformationContainer = document.createElement('div')
     cityItemContainer.appendChild(cityInformationContainer)
     cityInformationContainer.classList.add('city-information-container')
-    const cityName = document.createElement('h1')
+    const cityName = document.createElement('p')
     //cityName.classList.add('city-item')
     cityName.classList.add('city-header')
     cityInformationContainer.appendChild(cityName)
@@ -212,7 +221,6 @@ function cityElementObjectCreator(data){
 
     // går in i edit-mode
     editButton.addEventListener('click',()=>{
-        console.log('Enter Edit')
         // Displays
         exitButton.style.display = 'block'
         editCityContainer.style.display = 'block'
@@ -225,7 +233,6 @@ function cityElementObjectCreator(data){
 
     // lämnar edit-mode
     function exitEdit(){
-        console.log('Lämnar Edit')
         // Displays
         editButton.style.display = 'block'
         cityInformationContainer.style.display = 'block'
@@ -240,14 +247,12 @@ function cityElementObjectCreator(data){
     newNameInput.addEventListener('input',()=>{
         if(newNameInput){
             newName = newNameInput.value
-            console.log(newName)
         } 
     })
 
     newPopulationInput.addEventListener('input',()=>{
         if(newPopulationInput.value){
             newPopulation = parseInt(newPopulationInput.value)
-            console.log(newPopulation)
         }
     })
 
@@ -277,9 +282,10 @@ function cityElementObjectCreator(data){
             body : documentations(),
             headers : {'Content-Type' : 'application/json'},
             method : 'PATCH'
-        }).then(response=>{
-            console.log(response)
         })
+        // .then(response=>{
+        //     console.log(response)
+        // })
         console.log('PATCH')
         exitEdit()
     })
@@ -294,12 +300,22 @@ function cityElementObjectCreator(data){
     
     yesRemove.addEventListener('click',()=>{
         displayCityContainer.removeChild(cityItemContainer)
+        for(let i = 0; i < listFromStorage.length; i++){
+            if(listFromStorage[i].name === data.name){
+                listFromStorage.splice(i, data.name)
+                console.log(displayCityList.children.length)
+            }
+        }
+
+
+
         fetch(url+data.id,{
         method:'DELETE'
         }).then(response=>{
             console.log(response)
             //refresh()
         })
+        console.log('DELETE')
     })
     
     noRemove.addEventListener('click', ()=>{
@@ -379,7 +395,8 @@ formPost.addEventListener('submit',(event)=>{
     }).then(resp => resp.json()).then(data =>{
         for(let i = 0; i < data.length; i++){
             if(data[i].name === inputName){
-                cityElementObjectCreator(data[i])
+                //cityElementObjectCreator(data[i])
+                createCityListItem(data)
             }
         }
     })
@@ -392,11 +409,11 @@ getCities.addEventListener('click', ()=>{
     fetch(url)
     .then(resp=>resp.json())
     .then(result=>{
-        console.log('GET')
         result.forEach(element => {
             cityElementObjectCreator(element)
         })
     })
+    console.log('GET')
 })
 
 /* SEARCH CITY */
@@ -435,16 +452,23 @@ searchButton.addEventListener('click', ()=>{
 })
 
 // display-list
-function createCityListItem(){
-
-}
-
-fetch(url).then(response => response.json()).then(data =>{
+function createCityListItem(data){
     for (let i = 0; i < data.length;i++){
         const cityListItem = document.createElement('li')
-        cityListItem.innerHTML = `<li class="city-list-item">
-        <input type="button" class="list-btn" value=${data[i].name}></li>`
+        cityListItem.innerHTML = `
+        <li class="city-list-item list-btn">${data[i].name}</li>`
 
         displayCityList.appendChild(cityListItem)
+
+        cityListItem.addEventListener('click',()=>{
+            cityElementObjectCreator(data[i])
+        })
     }
-})
+}
+createCityListItem(listFromStorage)
+
+let children = []
+children = displayCityList.querySelectorAll('.city-list-item')
+
+//console.log(children)
+
