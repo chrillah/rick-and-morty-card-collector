@@ -224,7 +224,10 @@ html{
 }
 
 .chart{
-    width: 400px;
+    overflow: hidden;
+    padding-top: 5rem;
+    height: auto;
+    width:100%;
 }
 
 /* 5-7. Main settings */
@@ -249,6 +252,7 @@ html{
 
 .option-container,
 .input-container{
+    background-color: var(--light-purple);
     border: var(--border-style);
 }
 
