@@ -31,7 +31,7 @@ const myChart = new Chart(ctx, {
     
     // här kan man byta chart-types 
     // kolla här: https://www.chartjs.org/docs/latest/charts/area.html
-    type: 'polarArea',
+    type: 'doughnut',
     data: {
         // lägger till labels -arrayen här
         labels: labels,

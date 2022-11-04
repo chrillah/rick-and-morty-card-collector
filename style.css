@@ -215,12 +215,32 @@ html{
 
 /* Hero settings */
 .hero-wrapper{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     border: var(--border-style);
-    height: 50vh;
     /*background-image: url(img/labb_2_native_js.png);*/
     /* background-position: center;
     background-size: contain;
     background-repeat: no-repeat; */
+    height: 80vh;
+    overflow: hidden;
+}
+
+.hero-container{
+    max-width: 400px;
+    width: 100%;
+}
+
+/* Chart */
+#display-chart{
+    padding-top: 5rem;
+}
+
+#myChart{
+    height: auto;
+    width: 100%
 }
 
 /* 5-7. Main settings */
@@ -240,7 +260,7 @@ html{
 .option-container{
     display: grid;
     grid-template-columns: 1fr 1fr;
-    grid-template-rows: 1fr 1fr;
+    /* grid-template-rows: 1fr 1fr; */
 }
 
 .option-container,
@@ -351,19 +371,6 @@ html{
     box-shadow: var(--border_color) 7px 7px 0 0;
     -webkit-box-shadow: 6px -6px 0px 0px rgba(0,0,0,1);
     -moz-box-shadow: 6px -6px 0px 0px rgba(0,0,0,1);
-}
-
-#display-chart{
-    grid-area: chart;
-}
-
-
-
-/* Chart */
-.chart{
-    overflow: hidden;
-    height: auto;
-    width:100%;
 }
 
 /* City Object*/

@@ -51,8 +51,10 @@ const displayCityContainer = document.querySelector('#display-city-container')
 
 const displayListContainer = document.querySelector('#display-list-container')
 const displayCityList = document.querySelector('#display-city-list') 
-const getCities = document.querySelector('#get-cities')
-const refreshButton = document.querySelector('#refresh-button')
+//const getCities = document.querySelector('#get-cities')
+//const refreshButton = document.querySelector('#refresh-button')
+
+
 
 
 // Error message
@@ -257,6 +259,8 @@ function cityElementObjectCreator(data){
     })
 
     patchCity.addEventListener('click', ()=>{
+
+        let listName = childFromDisplayList(data)
         function documentations(){
             if(newPopulation && !newName){
                 cityPopulation.textContent = 'Invånare: '+newPopulation
@@ -266,6 +270,7 @@ function cityElementObjectCreator(data){
             }
             if(newName && !newPopulation){
                 cityName.textContent = newName
+                listName.textContent = newName
                 return JSON.stringify({
                     name : newName ,
                 })
@@ -273,6 +278,7 @@ function cityElementObjectCreator(data){
             if(newName && newPopulation){
                 cityName.textContent = newName
                 cityPopulation.textContent = newPopulation
+                listName.textContent = newName
                 return JSON.stringify({
                     name : newName ,population : newPopulation
                 })
@@ -303,9 +309,17 @@ function cityElementObjectCreator(data){
         for(let i = 0; i < listFromStorage.length; i++){
             if(listFromStorage[i].name === data.name){
                 listFromStorage.splice(i, data.name)
-                console.log(displayCityList.children.length)
             }
         }
+
+
+        // REMOVE CHILD FROM PARENT - FUNKAR INTE!
+        // for (let i = 0; i <displayCityList.querySelectorAll('.city-list-item').length;i++){
+        //     if(displayCityList.querySelectorAll('.city-list-item')[i].textContent === data.name){
+        //         let child = displayCityList.querySelectorAll('.city-list-item')[i]
+        //         console.log(child.textContent)
+        //     }
+        // }
 
 
 
@@ -313,7 +327,7 @@ function cityElementObjectCreator(data){
         method:'DELETE'
         }).then(response=>{
             console.log(response)
-            //refresh()
+            refresh()
         })
         console.log('DELETE')
     })
@@ -335,17 +349,17 @@ function addNewMode(){
 
     addNewElement.style.display = 'none'
     searchAfterCities.style.display = 'none'
-    getCities.style.display = 'none'
-    refreshButton.style.display = 'none'
+    //getCities.style.display = 'none'
+    //refreshButton.style.display = 'none'
 }
 
 addNewElement.addEventListener('click', addNewMode)
 
 function defaultFromAdd(){
-    getCities.style.display = 'inline-block'
+    //getCities.style.display = 'inline-block'
     addNewElement.style.display = 'inline-block'
     searchAfterCities.style.display = 'inline-block'
-    refreshButton.style.display = 'inline-block'
+    //refreshButton.style.display = 'inline-block'
 
     formPost.style.display = 'none'
     backFromAddNew.style.display = 'none'
@@ -365,16 +379,16 @@ function searchMode(){
 
     addNewElement.style.display = 'none'
     searchAfterCities.style.display = 'none'
-    getCities.style.display = 'none'
+    //getCities.style.display = 'none'
     refreshButton.style.display = 'none'
 }
 searchAfterCities.addEventListener('click', searchMode)
 
 function defaultFromSearch(){
-    getCities.style.display = 'inline-block'
+    //getCities.style.display = 'inline-block'
     addNewElement.style.display = 'inline-block'
     searchAfterCities.style.display = 'inline-block'
-    refreshButton.style.display = 'inline-block'
+    //refreshButton.style.display = 'inline-block'
 
     formSearch.style.display = 'none'
     backFromSearch.style.display = 'none'
@@ -395,7 +409,6 @@ formPost.addEventListener('submit',(event)=>{
     }).then(resp => resp.json()).then(data =>{
         for(let i = 0; i < data.length; i++){
             if(data[i].name === inputName){
-                //cityElementObjectCreator(data[i])
                 createCityListItem(data)
             }
         }
@@ -405,16 +418,16 @@ formPost.addEventListener('submit',(event)=>{
 })
 
 /* GET-ANROP Hämtar alla cities*/
-getCities.addEventListener('click', ()=>{
-    fetch(url)
-    .then(resp=>resp.json())
-    .then(result=>{
-        result.forEach(element => {
-            cityElementObjectCreator(element)
-        })
-    })
-    console.log('GET')
-})
+// getCities.addEventListener('click', ()=>{
+//     fetch(url)
+//     .then(resp=>resp.json())
+//     .then(result=>{
+//         result.forEach(element => {
+//             cityElementObjectCreator(element)
+//         })
+//     })
+//     console.log('GET')
+// })
 
 /* SEARCH CITY */
 function searchInputPass(){
@@ -467,8 +480,21 @@ function createCityListItem(data){
 }
 createCityListItem(listFromStorage)
 
-let children = []
-children = displayCityList.querySelectorAll('.city-list-item')
 
-//console.log(children)
+// find children from displayCityList
+
+function childFromDisplayList(data){
+    let child
+    for (let i = 0; i <displayCityList.querySelectorAll('.city-list-item').length;i++){
+        if(displayCityList.querySelectorAll('.city-list-item')[i].textContent === data.name){
+            child = displayCityList.querySelectorAll('.city-list-item')[i]
+            console.log(child.textContent)
+        }
+    }
+    return child
+}
+
+function removeChildFromList(child){
+    displayCityList.removeChild(child)
+}
 
