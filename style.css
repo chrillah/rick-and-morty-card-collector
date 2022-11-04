@@ -266,9 +266,7 @@ html{
 .option-container,
 .input-container{
     background-color: var(--light-purple);
-    border: var(--border-style);
 }
-
 
 .display-input-wrapper{
     /* margin-top: 1rem; */
@@ -319,10 +317,11 @@ html{
     padding: 1rem;
     border: var(--border-style);
     min-height: 50vh;
-    grid-template-columns: 400px 400px;
     display: grid;
+    gap: 1rem;
     grid-template-areas: 
-    "city-items city-list";
+    "city-list city-items";
+    grid-template-columns: 1fr 2fr;
     /* display: flex;
     flex-direction: column;
     justify-content: center;
@@ -340,9 +339,19 @@ html{
     grid-area: city-list;
 }
 
+#display-list-container ul{
+    margin: 0;
+    padding: 0;
+}
+
 #display-city-list li{
+    padding-bottom: .3rem;
+    display: grid;
     list-style: none;
-    padding: .3rem 0;
+}
+
+.city-list-item{
+    max-width: 200px;
 }
 
 .list-btn{
@@ -350,7 +359,6 @@ html{
     color: var(--font-color-black);
     cursor: pointer;
     display: inline-block;
-    font-weight: bolder;
     text-align: center;
     text-decoration: none;
     user-select: none;
@@ -359,29 +367,35 @@ html{
 }
 
 .list-btn:active {
+    font-weight: bolder;
     transform: translate(2px, 2px);
     box-shadow: var(--button-bg-color-focus) -4px -4px 0 0;
 } 
 
 .list-btn:hover,
 .list-btn:focus {
+    font-weight: bolder;
     background-color: var(--button-bg-color-focus);
     border: var(--border-style);
-    transform: translate(-6px, 6px);
+    transform: translate(-2px, 2px);
     box-shadow: var(--border_color) 7px 7px 0 0;
-    -webkit-box-shadow: 6px -6px 0px 0px rgba(0,0,0,1);
-    -moz-box-shadow: 6px -6px 0px 0px rgba(0,0,0,1);
+    -webkit-box-shadow: 2px -2px 0px 0px rgba(0,0,0,1);
+    -moz-box-shadow: 2px -2px 0px 0px rgba(0,0,0,1);
 }
 
 /* City Object*/
 .city-item-container{
+    max-width: 400px;
     width: 100%;
-    /*background-color: var(--whitish);*/
     border: var(--border-style);
     display: grid;
     min-height: 150px;
-    margin: 1rem 0;
+    margin-bottom: 1rem;
     /* margin: 1rem 0; */
+}
+
+.city-item-container:hover{
+    background-color: var(--whitish);
 }
 
 /* edit selection */
@@ -427,8 +441,8 @@ html{
     border: 1px solid #000000;
     transform: translate(6px, -6px);
     box-shadow: var(--border_color) 7px 7px 0 0;
-    -webkit-box-shadow: -6px 6px 0px 0px rgba(0,0,0,1);
-    -moz-box-shadow: -6px 6px 0px 0px rgba(0,0,0,1);
+    -webkit-box-shadow: -4px 4px 0px 0px rgba(0,0,0,1);
+    -moz-box-shadow: -4px 4px 0px 0px rgba(0,0,0,1);
 }
 
 .btn:active {
@@ -454,8 +468,6 @@ html{
 /* edit city mode*/
 .edit-city-container{
     padding:1rem;
-    /* margin-top: 1.4rem;
-    background-color: aqua; */
 }
 
 .city-header{

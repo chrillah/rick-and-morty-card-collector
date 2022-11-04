@@ -56,7 +56,7 @@ const displayCityList = document.querySelector('#display-city-list')
 
 
 
-
+// TODO! KOLLA FÖRST VAD MAN FÅR FÖR VÄRDE FRÅN INPUT
 // Error message
 const errorMessage = document.querySelector('#error-message')
 const addErrorMessage = document.querySelector('#add-error-message')
@@ -224,8 +224,8 @@ function cityElementObjectCreator(data){
     // går in i edit-mode
     editButton.addEventListener('click',()=>{
         // Displays
-        exitButton.style.display = 'block'
-        editCityContainer.style.display = 'block'
+        exitButton.style.display = 'grid'
+        editCityContainer.style.display = 'grid'
 
         // None-display
         editButton.style.display = 'none'
@@ -236,8 +236,8 @@ function cityElementObjectCreator(data){
     // lämnar edit-mode
     function exitEdit(){
         // Displays
-        editButton.style.display = 'block'
-        cityInformationContainer.style.display = 'block'
+        editButton.style.display = 'grid'
+        cityInformationContainer.style.display = 'grid'
         deleteButton.style.display = 'block'
 
         // None-display
@@ -343,6 +343,7 @@ function cityElementObjectCreator(data){
 // POST - New city
 
 function addNewMode(){
+    removeAllCityObjects()
     formPost.style.display = 'grid'
     backFromAddNew.style.display = 'block'
     addErrorMessage.style.display = 'block'
@@ -368,11 +369,26 @@ function defaultFromAdd(){
 
 backFromAddNew.addEventListener('click', defaultFromAdd)
 
-// Search after cities
-function searchMode(){
+// Remove all city object elements
+function removeAllCityObjects(){
     while(displayCityContainer.firstChild){
         displayCityContainer.firstChild.remove()
     }
+}
+
+// Remove all in list
+function removeAllInList(){
+    while(displayCityList.firstChild){
+        displayCityList.firstChild.remove()
+    }
+}
+
+// Search after cities
+function searchMode(){
+    removeAllCityObjects()
+    // while(displayCityContainer.firstChild){
+    //     displayCityContainer.firstChild.remove()
+    // }
 
     formSearch.style.display = 'grid'
     backFromSearch.style.display = 'block'
@@ -464,25 +480,47 @@ searchButton.addEventListener('click', ()=>{
     getCity(searchInput.value)
 })
 
-// display-list
-function createCityListItem(data){
-    for (let i = 0; i < data.length;i++){
-        const cityListItem = document.createElement('li')
-        cityListItem.innerHTML = `
-        <li class="city-list-item list-btn">${data[i].name}</li>`
-
-        displayCityList.appendChild(cityListItem)
-
-        cityListItem.addEventListener('click',()=>{
-            cityElementObjectCreator(data[i])
-        })
-    }
+// TODO get fetch
+// display-city-list-item
+function createCityListItem(){
+    removeAllInList()
+    fetch(url).then(response=>response.json())
+    .then(data=>{
+        for (let i = 0; i < data.length;i++){
+            const cityListItem = document.createElement('li')
+            cityListItem.innerHTML = `
+            <li class="city-list-item list-btn">${data[i].name}</li>`
+    
+            displayCityList.appendChild(cityListItem)
+    
+            cityListItem.addEventListener('click',()=>{
+                removeAllCityObjects()
+                cityElementObjectCreator(data[i])
+            })
+        }
+    })
 }
-createCityListItem(listFromStorage)
+createCityListItem()
+
+// ORIGINAL
+// function createCityListItem(data){
+//     for (let i = 0; i < data.length;i++){
+//         const cityListItem = document.createElement('li')
+//         cityListItem.innerHTML = `
+//         <li class="city-list-item list-btn">${data[i].name}</li>`
+
+//         displayCityList.appendChild(cityListItem)
+
+//         cityListItem.addEventListener('click',()=>{
+//             removeAllCityObjects()
+//             cityElementObjectCreator(data[i])
+//         })
+//     }
+// }
+// createCityListItem(listFromStorage)
 
 
 // find children from displayCityList
-
 function childFromDisplayList(data){
     let child
     for (let i = 0; i <displayCityList.querySelectorAll('.city-list-item').length;i++){
