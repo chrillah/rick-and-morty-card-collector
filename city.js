@@ -258,9 +258,10 @@ function cityElementObjectCreator(data){
         }
     })
 
+    // FIXA!!! innerHtml
     patchCity.addEventListener('click', ()=>{
 
-        let listName = childFromDisplayList(data)
+        let listName = childFromDisplayListName(data)
         function documentations(){
             if(newPopulation && !newName){
                 cityPopulation.textContent = 'Invånare: '+newPopulation
@@ -488,8 +489,11 @@ function createCityListItem(){
     .then(data=>{
         for (let i = 0; i < data.length;i++){
             const cityListItem = document.createElement('li')
+            // fixa detta för patchCity strong delen funkar inte
             cityListItem.innerHTML = `
-            <li class="city-list-item list-btn">${data[i].name}</li>`
+            <li class="city-list-item list-btn">
+                <p class="list-name">${data[i].name}</p>
+            </li>`
     
             displayCityList.appendChild(cityListItem)
     
@@ -520,12 +524,24 @@ createCityListItem()
 // createCityListItem(listFromStorage)
 
 
-// find children from displayCityList
-function childFromDisplayList(data){
+// find children from displayCityList -- funkar inte....
+function childFromDisplayListPopulation(data){
     let child
-    for (let i = 0; i <displayCityList.querySelectorAll('.city-list-item').length;i++){
-        if(displayCityList.querySelectorAll('.city-list-item')[i].textContent === data.name){
-            child = displayCityList.querySelectorAll('.city-list-item')[i]
+    for (let i = 0; i <displayCityList.querySelectorAll('.list-population').length;i++){
+        if(displayCityList.querySelectorAll('.list-population')[i].textContent === data.population){
+            child = displayCityList.querySelectorAll('.list-population')[i]
+            console.log(child.textContent)
+        }
+    }
+    return child
+}
+
+//Fixa Strong delen
+function childFromDisplayListName(data){
+    let child
+    for (let i = 0; i <displayCityList.querySelectorAll('.list-name').length;i++){
+        if(displayCityList.querySelectorAll('.list-name')[i].textContent === data.name){
+            child = displayCityList.querySelectorAll('.list-name')[i]
             console.log(child.textContent)
         }
     }

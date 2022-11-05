@@ -354,12 +354,21 @@ html{
     max-width: 200px;
 }
 
+.list-name,
+.list-population{
+    padding: .4rem 0 0 .4rem;
+    margin: 0;
+}
+
+.list-population{
+    font-size: .6rem;
+}
+
 .list-btn{
     border: var(--border-style);
     color: var(--font-color-black);
     cursor: pointer;
     display: inline-block;
-    text-align: center;
     text-decoration: none;
     user-select: none;
     -webkit-user-select: none;
