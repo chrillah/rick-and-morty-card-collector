@@ -29,7 +29,8 @@
     --button-bg-color : #ffffff;
     --button-bg-color-focus : #ffffff;
     --button-shadow-color: #000000;
-    --border-style: solid 1px black;
+    --border-style-1px: solid 1px black;
+    --border-style-2px: solid 2px black;
     --warning : red;
     --ok : green;
 }
@@ -83,7 +84,7 @@ html{
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    border: var(--border-style)
+    border: var(--border-style-1px)
 }
 
 .nav-container{
@@ -101,7 +102,7 @@ html{
 .brand-title img{
     /* margin-top: 1rem; */
     width: 100%;
-    height: 3rem;
+    height: 2rem;
 }
 
 .navbar-links ul{
@@ -115,13 +116,14 @@ html{
 }
 
 .navbar-links li a{
+    font-size: .7rem;
     text-decoration: none;
-    padding: 1rem;
+    padding: 1rem 1.5rem;
     display: block;
 }
 
 .nav-btn{
-    border: var(--border-style);
+    border: var(--border-style-1px);
     color: var(--font-color-black);
     cursor: pointer;
     display: inline-block;
@@ -141,7 +143,7 @@ html{
 .nav-btn:hover,
 .nav-btn:focus {
     background-color: var(--button-bg-color-focus);
-    border: var(--border-style);
+    border: var(--border-style-1px);
     transform: translate(-6px, 6px);
     box-shadow: var(--border_color) 7px 7px 0 0;
     -webkit-box-shadow: 6px -6px 0px 0px rgba(0,0,0,1);
@@ -219,7 +221,7 @@ html{
     display: flex;
     justify-content: center;
     align-items: center;
-    border: var(--border-style);
+    border: var(--border-style-1px);
     /*background-image: url(img/labb_2_native_js.png);*/
     /* background-position: center;
     background-size: contain;
@@ -298,7 +300,7 @@ html{
     box-sizing: border-box;
     border: none;
     background: none;
-    border-bottom : var(--border-style);
+    border-bottom : var(--border-style-1px);
 }
 
 /* ERROR-MESSAGE */
@@ -315,7 +317,7 @@ html{
     background-color:var(--light-purple);
     margin: 1rem 0;
     padding: 1rem;
-    border: var(--border-style);
+    border: var(--border-style-1px);
     min-height: 50vh;
     display: grid;
     gap: 1rem;
@@ -365,7 +367,7 @@ html{
 }
 
 .list-btn{
-    border: var(--border-style);
+    border: var(--border-style-1px);
     color: var(--font-color-black);
     cursor: pointer;
     display: inline-block;
@@ -385,7 +387,7 @@ html{
 .list-btn:focus {
     font-weight: bolder;
     background-color: var(--button-bg-color-focus);
-    border: var(--border-style);
+    border: var(--border-style-1px);
     transform: translate(-2px, 2px);
     box-shadow: var(--border_color) 7px 7px 0 0;
     -webkit-box-shadow: 2px -2px 0px 0px rgba(0,0,0,1);
@@ -396,7 +398,7 @@ html{
 .city-item-container{
     max-width: 400px;
     width: 100%;
-    border: var(--border-style);
+    border: var(--border-style-1px);
     display: grid;
     min-height: 150px;
     margin-bottom: 1rem;
@@ -421,7 +423,7 @@ html{
 .btn{
     /*background-color: var(--greenish);*/
     background: none;
-    border: var(--border-style);
+    border: var(--border-style-1px);
     /* box-shadow: var(--button-shadow-color) 4px 4px 0 0;
     -webkit-box-shadow: 4px 4px 0px 0px rgba(0,0,0,1);
     -moz-box-shadow: 4px 4px 0px 0px rgba(0,0,0,1); */
@@ -493,7 +495,7 @@ html{
 /* 7-9. Footer settings */
 
 .footer-wrapper{
-    border: var(--border-style);
+    border: var(--border-style-1px);
     background-color: var(--greenish);
     display: flex;
     flex-direction: column;
