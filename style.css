@@ -303,6 +303,10 @@ html{
     border-bottom : var(--border-style-1px);
 }
 
+#search-button:disabled{
+    cursor: default;
+}
+
 /* ERROR-MESSAGE */
 
 #add-error-message{
@@ -338,6 +342,13 @@ html{
 }
 
 #display-city-container{
+    /* overflow: scroll;
+    height: 30vh; */
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     grid-area: city-items;
 }
 
@@ -367,10 +378,14 @@ html{
     margin: 0;
 }
 
+/*
+
 .list-name a{
     text-decoration: none;
     color: black
 }
+
+*/
 
 .list-population{
     font-size: .6rem;
@@ -406,7 +421,7 @@ html{
 
 /* City Object*/
 .city-item-container{
-    max-width: 400px;
+    max-width: 800px;
     width: 100%;
     border: var(--border-style-1px);
     display: grid;
