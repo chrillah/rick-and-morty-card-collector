@@ -1,7 +1,64 @@
+/* GLOBAL VARIABLES */
+
+const addNewElement = document.querySelector('#add-new-city-element')
+const backFromAddNew = document.querySelector('#back-from-add-new')
+const searchAfterCities = document.querySelector('#search-after-cities')
+const backFromSearch = document.querySelector('#back-from-search')
+
+const formPost = document.querySelector('#form-post')
+const nameInput = document.querySelector('#name-input')
+const populationInput = document.querySelector('#population-input')
+
+const send = document.querySelector('#send')
+
+const formSearch = document.querySelector('#form-search')
+const searchButton = document.querySelector('#search-button')
+const searchInput = document.querySelector('#search-input')
+
+// DISPLAY RESULT CONTAINER
+const displayCityContainer = document.querySelector('#display-city-container')
+const displayListContainer = document.querySelector('#display-list-container')
+const displayCityList = document.querySelector('#display-city-list')
+
+// ERROR MESSAGE
+const errorMessage = document.querySelector('#error-message')
+const addErrorMessage = document.querySelector('#add-error-message')
+const nameError = document.querySelector('#name-error')
+const populationError = document.querySelector('#population-error')
+
+// CITY LIST
+const cities = []
+listFromStorage = []
+
+/* ------------------------------- */
+
+/* CLASSLIST */
+nameInput.classList.add('user-input')
+populationInput.classList.add('user-input')
+send.classList.add('btn')
+
+searchButton.classList.add('btn')
+searchInput.classList.add('user-input')
+
+/* ------------------------------- */
+
+/* START CONDITIONS */
+backFromAddNew.style.display = 'none'
+backFromSearch.style.display = 'none'
+formPost.style.display = 'none'
+send.style.opacity = 0;
+
+formSearch.style.display = 'none'
+searchButton.style.opacity = 0
+
+addErrorMessage.style.display = 'none'
+
+/* ------------------------------- */
+
+/* API */
 const url = `https://avancera.app/cities/`
 
-const cities = []
-
+// FILL LOCALSTORAGE WITH CITIES
 fetch(url).then(response => response.json()).then(data => {
     for (let i = 0; i < data.length; i++){
         cities.push(data[i])
@@ -9,116 +66,16 @@ fetch(url).then(response => response.json()).then(data => {
 
     localStorage.setItem('city-element', JSON.stringify(cities))
 })
-
-listFromStorage = []
 listFromStorage = JSON.parse(localStorage.getItem('city-element'))
 
-// Functions
+/* ------------------------------- */
+
+/* FUNCTIONS */
 function refresh(){
     location.reload()
 }
 
-// Select option container
-const addNewElement = document.querySelector('#add-new-city-element')
-const backFromAddNew = document.querySelector('#back-from-add-new')
-const searchAfterCities = document.querySelector('#search-after-cities')
-const backFromSearch = document.querySelector('#back-from-search')
-backFromAddNew.style.display = 'none'
-backFromSearch.style.display = 'none'
-
-// Form section
-const formPost = document.querySelector('#form-post')
-const nameInput = document.querySelector('#name-input')
-const populationInput = document.querySelector('#population-input')
-nameInput.classList.add('user-input')
-populationInput.classList.add('user-input')
-const send = document.querySelector('#send')
-send.classList.add('btn')
-formPost.style.display = 'none'
-send.style.opacity = 0;
-
-// Search after a city
-const formSearch = document.querySelector('#form-search')
-const searchButton = document.querySelector('#search-button')
-searchButton.classList.add('btn')
-const searchInput = document.querySelector('#search-input')
-searchInput.classList.add('user-input')
-formSearch.style.display = 'none'
-searchButton.style.opacity = 0
-
-/* display */
-const displayCityContainer = document.querySelector('#display-city-container')
-
-const displayListContainer = document.querySelector('#display-list-container')
-const displayCityList = document.querySelector('#display-city-list') 
-//const getCities = document.querySelector('#get-cities')
-//const refreshButton = document.querySelector('#refresh-button')
-
-
-
-// TODO! KOLLA FÖRST VAD MAN FÅR FÖR VÄRDE FRÅN INPUT
-// Error message
-const errorMessage = document.querySelector('#error-message')
-const addErrorMessage = document.querySelector('#add-error-message')
-addErrorMessage.style.display = 'none'
-const nameError = document.querySelector('#name-error')
-const populationError = document.querySelector('#population-error')
-
-
-// Start conditions
-let inputName = ''
-let inputPopulation = ''
-
-/* USER-INPUT */
-nameInput.addEventListener('input', ()=>{
-    displayErrorMessage()
-    inputNameValue()
-    isNameInputPass()
-})
-populationInput.addEventListener('input',()=>{
-    displayErrorMessage()
-    inputPopulationValue()
-    isPopulationInputPass()
-})
-function inputPopulationValue(){
-    inputPopulation = parseInt(populationInput.value)
-}
-function inputNameValue(){
-    inputName = nameInput.value
-}
-
-// FUNKAR EJ
-/* GUARDFUNCTION */
-function isNameInputPass(){
-    if(nameInput.value === ''){
-        nameError.style.display = 'inline-block'
-    }
-    if(nameInput.value){
-        nameError.style.display = 'none'
-    }
-}
-function isPopulationInputPass(){
-    if(!inputPopulation){
-        populationError.style = 'inline-block'
-    }
-    if(inputPopulation){
-        populationError.style.display = 'none'
-    }
-}
-
-// FUNKAR EJ?
-function displayErrorMessage(){
-    if(populationError.style.display === 'none' && nameError.style.display === 'none'){
-        addErrorMessage.style.display = 'none'
-        send.style.opacity = 1;
-    }
-    if(populationError.style.display === 'inline-block' || nameError.style.display === 'inline-block'){
-        addErrorMessage.style.display = 'block'
-        send.style.opacity = 0;
-    }
-}
-
-// city element create function
+// CITY OBJECT CREATOR
 function cityElementObjectCreator(data){
 
     const cityItemContainer = document.createElement('div')
@@ -313,17 +270,6 @@ function cityElementObjectCreator(data){
             }
         }
 
-
-        // REMOVE CHILD FROM PARENT - FUNKAR INTE!
-        // for (let i = 0; i <displayCityList.querySelectorAll('.city-list-item').length;i++){
-        //     if(displayCityList.querySelectorAll('.city-list-item')[i].textContent === data.name){
-        //         let child = displayCityList.querySelectorAll('.city-list-item')[i]
-        //         console.log(child.textContent)
-        //     }
-        // }
-
-
-
         fetch(url+data.id,{
         method:'DELETE'
         }).then(response=>{
@@ -340,6 +286,97 @@ function cityElementObjectCreator(data){
         noRemove.style.display = 'none'
     })
 }
+
+/* ------------------------------- */
+
+
+/* EVENTS */
+
+
+
+
+/* ------------------------------- */
+
+
+
+
+
+/* KOLLA UPP SECTIONS! */
+let inputName = ''
+let inputPopulation = 0
+
+function inputPopulationValue(){
+    inputPopulation = parseInt(populationInput.value)
+}
+function inputNameValue(){
+    inputName = nameInput.value
+}
+
+// FUNKAR EJ
+/* GUARDFUNCTION */
+function isNameInputPass(){
+    if(nameInput.value === ''){
+        nameError.style.display = 'inline-block'
+    }
+    if(nameInput.value){
+        nameError.style.display = 'none'
+    }
+}
+function isPopulationInputPass(){
+    if(!inputPopulation){
+        populationError.style = 'inline-block'
+    }
+    if(inputPopulation){
+        populationError.style.display = 'none'
+    }
+}
+
+// FUNKAR EJ?
+function displayErrorMessage(){
+    if(populationError.style.display === 'none' && nameError.style.display === 'none'){
+        addErrorMessage.style.display = 'none'
+        send.style.opacity = 1;
+    }
+    if(populationError.style.display === 'inline-block' || nameError.style.display === 'inline-block'){
+        addErrorMessage.style.display = 'block'
+        send.style.opacity = 0;
+    }
+}
+
+nameInput.addEventListener('input', ()=>{
+    displayErrorMessage()
+    inputNameValue()
+    isNameInputPass()
+})
+populationInput.addEventListener('input',()=>{
+    displayErrorMessage()
+    inputPopulationValue()
+    isPopulationInputPass()
+})
+
+// Form section
+
+// Search after a city
+
+/* display */
+//const getCities = document.querySelector('#get-cities')
+//const refreshButton = document.querySelector('#refresh-button')
+
+
+
+// TODO! KOLLA FÖRST VAD MAN FÅR FÖR VÄRDE FRÅN INPUT
+// Error message
+
+
+
+
+// Start conditions
+
+
+/* USER-INPUT */
+
+
+// city element create function
 
 // POST - New city
 
