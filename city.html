@@ -39,11 +39,9 @@
     </div>
     <div class="hero-wrapper">
         <div class="hero-container">
-            <div id="display-chart">
-                <canvas id="myChart"></canvas>
-            </div>
         </div>
     </div>
+    <div id="scroll-to-display"></div>
     <main class="main-wrapper">
         <div class="main-container">
             <div class="display-input-wrapper">
@@ -59,6 +57,7 @@
                     <input id="refresh-button" onclick="refresh()" type="button" class="btn" value="Refräsh">
                     -->
                 </div>
+
                 <div class="input-container">
 
                     <div id="add-error-message">
@@ -77,7 +76,7 @@
                     <form id="form-post">
                         <input class="user-input" id="name-input" placeholder="Namn">
                         <input class="user-input" id="population-input" placeholder="Population">
-                        <input id="send" type="submit" value="Lägg till">
+                        <input id="post-city" type="submit" value="Lägg till">
                     </form>
 
                     <form id="form-search">
@@ -87,6 +86,7 @@
                 </div>
 
                 <!-- Display result -->
+
                 <div id="display-container">
                     <div id="display-list-container">
                         <ul id="display-city-list">
@@ -139,10 +139,11 @@
         </div>
     </footer>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="chart.js"></script>
     <script src="city.js"></script>
     <script src="navbar.js"></script>
-    <script src="test.js"></script>
+    <!--
+            <script src="test.js"></script>
+    -->
 </body>
 
 </html>

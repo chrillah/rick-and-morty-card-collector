@@ -267,6 +267,7 @@ html{
 
 .option-container,
 .input-container{
+    border: var(--border-style-1px);
     background-color: var(--light-purple);
 }
 
@@ -280,7 +281,6 @@ html{
     justify-content: center;
     flex-direction: column;
     align-items: center;
-    margin-top: 2rem;
 }
 
 /* 5-7. User input settings */
@@ -294,8 +294,8 @@ html{
 .user-input{
     /* margin: 2rem; */
     margin-bottom: 1rem;
-    margin: 1rem 0;
-    padding: .5rem;
+    margin: .5rem 0;
+    padding: .2rem 0;
     width: 100%;
     box-sizing: border-box;
     border: none;
@@ -306,9 +306,14 @@ html{
 /* ERROR-MESSAGE */
 
 #add-error-message{
+    grid-template-columns: 1fr 1fr;
     font-weight: bold;
     margin: 0;
     padding: 0;
+}
+
+#name-error,
+#population-error{
 }
 
 
@@ -360,6 +365,11 @@ html{
 .list-population{
     padding: .4rem 0 0 .4rem;
     margin: 0;
+}
+
+.list-name a{
+    text-decoration: none;
+    color: black
 }
 
 .list-population{
@@ -468,6 +478,14 @@ html{
 .no{
     background-color: var(--light-red);
 }
+
+.yes:hover{
+    background-color: #108E74;
+}
+.no:hover{
+    background-color: red;
+}
+
 
 /* city object information*/
 .city-information-container{

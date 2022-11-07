@@ -9,7 +9,7 @@ const formPost = document.querySelector('#form-post')
 const nameInput = document.querySelector('#name-input')
 const populationInput = document.querySelector('#population-input')
 
-const send = document.querySelector('#send')
+const postCity = document.querySelector('#post-city')
 
 const formSearch = document.querySelector('#form-search')
 const searchButton = document.querySelector('#search-button')
@@ -35,7 +35,7 @@ listFromStorage = []
 /* CLASSLIST */
 nameInput.classList.add('user-input')
 populationInput.classList.add('user-input')
-send.classList.add('btn')
+postCity.classList.add('btn')
 
 searchButton.classList.add('btn')
 searchInput.classList.add('user-input')
@@ -46,7 +46,7 @@ searchInput.classList.add('user-input')
 backFromAddNew.style.display = 'none'
 backFromSearch.style.display = 'none'
 formPost.style.display = 'none'
-send.style.opacity = 0;
+postCity.style.display = 'grid'
 
 formSearch.style.display = 'none'
 searchButton.style.opacity = 0
@@ -302,56 +302,70 @@ function cityElementObjectCreator(data){
 
 
 /* KOLLA UPP SECTIONS! */
-let inputName = ''
+//let inputName = ''
 let inputPopulation = 0
 
 function inputPopulationValue(){
     inputPopulation = parseInt(populationInput.value)
 }
-function inputNameValue(){
-    inputName = nameInput.value
-}
+
+// TAR EMOT VÄRDE FRÅN ANVÄNDAREN
+// function inputNameValue(){
+//     if(nameInput){
+//         nameError.style.display = 'none'
+//     }
+//     //inputName = nameInput.value
+// }
 
 // FUNKAR EJ
 /* GUARDFUNCTION */
-function isNameInputPass(){
-    if(nameInput.value === ''){
-        nameError.style.display = 'inline-block'
-    }
-    if(nameInput.value){
-        nameError.style.display = 'none'
-    }
-}
-function isPopulationInputPass(){
-    if(!inputPopulation){
-        populationError.style = 'inline-block'
-    }
-    if(inputPopulation){
-        populationError.style.display = 'none'
-    }
-}
+// function isNameInputPass(){
+//     if(nameInput.value === ''){
+//         nameError.style.display = 'inline-block'
+//     }
+// }
+// function isPopulationInputPass(){
+//     if(!inputPopulation){
+//         populationError.style = 'inline-block'
+//     }
+//     if(inputPopulation){
+//         populationError.style.display = 'none'
+//     }
+// }
 
-// FUNKAR EJ?
 function displayErrorMessage(){
-    if(populationError.style.display === 'none' && nameError.style.display === 'none'){
-        addErrorMessage.style.display = 'none'
-        send.style.opacity = 1;
+    if(nameError.style.opacity === 0 || populationError.style.opacity === 0){
+        postCity.style.display = 'grid'
     }
-    if(populationError.style.display === 'inline-block' || nameError.style.display === 'inline-block'){
-        addErrorMessage.style.display = 'block'
-        send.style.opacity = 0;
+    if(nameError.style.opacity === 1 && populationError.style.opacity === 1){
+        postCity.style.display = 'none'
     }
 }
-
+// TAR EMOT ETT NAMN, VISAR EJ ERROR OM DET FINNS ETT VÄRDE
 nameInput.addEventListener('input', ()=>{
-    displayErrorMessage()
-    inputNameValue()
-    isNameInputPass()
+    console.log(nameInput.value)
+    if(nameInput.value){
+        nameError.style.opacity = 0
+    }
+    if(!nameInput.value){
+        nameError.style.opacity = 1
+    }
+    //displayErrorMessage()
+    //inputNameValue()
+    //isNameInputPass()
 })
+
+// TAR EMOT ETT NAMN, VISAR EJ ERROR OM DET FINNS ETT VÄRDE
 populationInput.addEventListener('input',()=>{
-    displayErrorMessage()
-    inputPopulationValue()
-    isPopulationInputPass()
+    if(parseInt(populationInput.value)){
+        console.log(parseInt(populationInput.value))
+        populationError.style.opacity = 0
+    } if(!parseInt(populationInput.value)){
+        populationError.style.opacity = 1
+    }
+    //displayErrorMessage()
+    // inputPopulationValue()
+    // isPopulationInputPass()
 })
 
 // Form section
@@ -384,7 +398,7 @@ function addNewMode(){
     removeAllCityObjects()
     formPost.style.display = 'grid'
     backFromAddNew.style.display = 'block'
-    addErrorMessage.style.display = 'block'
+    addErrorMessage.style.display = 'grid'
 
     addNewElement.style.display = 'none'
     searchAfterCities.style.display = 'none'
@@ -453,16 +467,22 @@ backFromSearch.addEventListener('click', defaultFromSearch)
 /* POST */
 formPost.addEventListener('submit',(event)=>{
     event.preventDefault()
+
+    console.log(nameInput.value)
+    console.log(populationInput.value)
+
+    let name = nameInput.value
+    let population = parseInt(populationInput.value)
     fetch(url,{
         body: JSON.stringify({
-            name : inputName,
-            population : inputPopulation
+            name : name ,
+            population : population
         }),
         headers : {'Content-Type' : 'application/json'},
         method : 'POST'
     }).then(resp => resp.json()).then(data =>{
         for(let i = 0; i < data.length; i++){
-            if(data[i].name === inputName){
+            if(data[i].name === name){
                 createCityListItem(data)
             }
         }
@@ -529,7 +549,9 @@ function createCityListItem(){
             // fixa detta för patchCity strong delen funkar inte
             cityListItem.innerHTML = `
             <li class="city-list-item list-btn">
-                <p class="list-name">${data[i].name}</p>
+                <p class="list-name">
+                <a href="#scroll-to-display">${data[i].name}</a>
+                </p>
             </li>`
     
             displayCityList.appendChild(cityListItem)

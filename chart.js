@@ -1,5 +1,12 @@
 //const url = 
-const inputLabel = 'Sveriges städer och invånare'
+const inputLabel = 'GAMES'
+
+// HTML-TAGGEN
+/*
+<div id="display-chart">
+    <canvas id="myChart"></canvas>
+</div>
+*/
 
 fetch('https://avancera.app/cities/')
 .then(response => response.json())

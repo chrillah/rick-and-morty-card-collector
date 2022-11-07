@@ -2,7 +2,7 @@ console.log('TEST AREA')
 
 const topListFromServer = []
 
-const gameUrl = `https://opencritic-api.p.rapidapi.com/game/`
+//const gameUrl = `https://opencritic-api.p.rapidapi.com/game/`
 
 const options = {
     method: 'GET',
@@ -119,7 +119,7 @@ let testId = 0
 
 //${testId}
 
-fetch('https://opencritic-api.p.rapidapi.com/game/463', options)
+fetch(gameUrl+'463', options)
 	.then(response => response.json())
 	.then(response => console.log(response))
 	.catch(err => console.error(err));
