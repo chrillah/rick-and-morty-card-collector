@@ -613,3 +613,12 @@ html{
     font-style: italic;
 }
 
+#display-test{
+    width: 100px;
+    height: 100px;
+}
+
+#display-test img{
+    width: 100%;
+    height: auto;
+}
