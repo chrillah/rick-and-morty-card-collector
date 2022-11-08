@@ -120,8 +120,8 @@ backFromAddNew.style.display = 'none'
 backFromSearch.style.display = 'none'
 formPost.style.display = 'none'
 //postCity.style.display = 'grid'
-postCity.style.opacity = 0
-postCity.disabled = true
+postCity.style.opacity = 1
+//postCity.disabled = true
 
 formSearch.style.display = 'none'
 
@@ -142,9 +142,9 @@ fetch(url).then(response => response.json()).then(data => {
         cities.push(data[i])
     }
 
-    localStorage.setItem('city-element', JSON.stringify(cities))
+    //localStorage.setItem('city-element', JSON.stringify(cities))
 })
-listFromStorage = JSON.parse(localStorage.getItem('city-element'))
+//listFromStorage = JSON.parse(localStorage.getItem('city-element'))
 
 /* ------------------------------- */
 
@@ -545,16 +545,16 @@ populationInput.addEventListener('input',()=>{
     }
 })
 
-function displayError(){
-    if(!nameInput.value || !populationError.value){
-        postCity.style.opacity = 0
-        postCity.disabled = true
-    }
-    if(nameInput.value && populationError.value){
-        postCity.style.opacity = 1
-        postCity.disabled = false
-    }
-}
+// function displayError(){
+//     if(!nameInput.value || !populationError.value){
+//         postCity.style.opacity = 0
+//         postCity.disabled = true
+//     }
+//     if(nameInput.value && parseInt(populationError.value)){
+//         postCity.style.opacity = 1
+//         postCity.disabled = false
+//     }
+// }
 
 searchAfterCities.addEventListener('click', searchMode)
 backFromSearch.addEventListener('click', defaultFromSearch)
@@ -563,7 +563,7 @@ backFromAddNew.addEventListener('click', defaultFromAdd)
 
 /* POST */
 formPost.addEventListener('submit',(event)=>{
-    displayError()
+    //displayError()
     event.preventDefault()
     let name = nameInput.value
     let population = parseInt(populationInput.value)
@@ -604,7 +604,7 @@ searchButton.addEventListener('click', ()=>{
 /* ------------------------------- */
 
 // FUNCTION CALLS
-displayError()
+//displayError()
 createCityListItem()
 
 

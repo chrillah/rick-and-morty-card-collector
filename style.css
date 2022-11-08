@@ -33,6 +33,8 @@
     --border-style-2px: solid 2px black;
     --warning : red;
     --ok : green;
+    --tablet-size : 600px;
+    --mobile-size : 500px;
 }
 
 /* 2. HTML settings */
@@ -84,7 +86,7 @@ html{
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    border: var(--border-style-1px)
+    /*border: var(--border-style-1px)*/
 }
 
 .nav-container{
@@ -118,7 +120,7 @@ html{
 .navbar-links li a{
     font-size: .7rem;
     text-decoration: none;
-    padding: 1rem 1.5rem;
+    padding: .5rem 1.5rem;
     display: block;
 }
 
@@ -126,7 +128,7 @@ html{
     border: var(--border-style-1px);
     color: var(--font-color-black);
     cursor: pointer;
-    display: inline-block;
+    display: block;
     font-weight: bolder;
     text-align: center;
     text-decoration: none;
@@ -144,10 +146,10 @@ html{
 .nav-btn:focus {
     background-color: var(--button-bg-color-focus);
     border: var(--border-style-1px);
-    transform: translate(-6px, 6px);
+    transform: translate(-3px, 3px);
     box-shadow: var(--border_color) 7px 7px 0 0;
-    -webkit-box-shadow: 6px -6px 0px 0px rgba(0,0,0,1);
-    -moz-box-shadow: 6px -6px 0px 0px rgba(0,0,0,1);
+    -webkit-box-shadow: 3px -3px 0px 0px rgba(0,0,0,1);
+    -moz-box-shadow: 3px -3px 0px 0px rgba(0,0,0,1);
 }
 
 .toggle-btn{
@@ -226,7 +228,7 @@ html{
     /* background-position: center;
     background-size: contain;
     background-repeat: no-repeat; */
-    height: 80vh;
+    height: 10vh;
     overflow: hidden;
 }
 
@@ -341,6 +343,17 @@ html{
     overflow: scroll; */
 }
 
+@media(max-width: 600px) {
+    
+    #display-container{
+        grid-template-areas: 
+        "city-items"
+        "city-list";
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr 2fr;
+    }
+}
+
 #display-city-container{
     /* overflow: scroll;
     height: 30vh; */
@@ -370,6 +383,12 @@ html{
 
 .city-list-item{
     max-width: 200px;
+}
+
+@media(max-width: 600px){
+    .city-list-item{
+        max-width:100%
+    }
 }
 
 .list-name,
