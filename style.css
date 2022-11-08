@@ -572,6 +572,7 @@ html{
 
 /* small logos*/
 .logo-items{
+    width: 100%;
     gap: 1rem;
     display: grid;
     grid-template-columns: repeat(4,1fr);
@@ -583,11 +584,25 @@ html{
     }
 }
 
+
 .small-logo-container{
+    width: 3rem;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
+}
+
+.small-logo-container img{
+    width: 100%;
+    max-height: auto;
+}
+
+.small-logo-text{
+    padding:0;
+    margin: .6rem 0;
+    font-size: .6rem;
+    font-weight: bold;
 }
 
 .contact-information{
