@@ -81,12 +81,6 @@ function episodeListMaker(data){
     }
 }
 
-function removeAllInList(){
-    while(displayEpisodeList.firstChild){
-        displayEpisodeList.firstChild.remove()
-    }
-}
-
 // EPO
 function episodeObjectMake(data){
 
@@ -100,6 +94,8 @@ function episodeObjectMake(data){
     const charactersContainer = document.createElement('ul')
 
     episodeContainer.classList.add('episode-container')
+    episodeBottom.classList.add('episode-container-bottom')
+    episodeTop.classList.add('episode-container-top')
     episodeNameInformation.classList.add('episode-name-information')
     episodeName.classList.add('episode-name')
     episodeAirDate.classList.add('episode-airdate')
@@ -118,6 +114,7 @@ function episodeObjectMake(data){
     episodeName.textContent = data.episode
     episodeAirDate.textContent = data.air_date
 
+    removeAllCharacterInList()
     charactersListFromEpisode(data.characters)
 }
 
@@ -130,18 +127,22 @@ function charactersListFromEpisode(data){
 
 localStorage.setItem('favorite', JSON.stringify(favorite))
 
-function removeEpisodeObject(){
-    while(displayEpisodeObject.firstChild){
-        displayEpisodeObject.firstChild.remove()
-    }
-}
-
 function characterFinder(characterUrl){
     fetch(characterUrl)
     .then(response => response.json())
     .then(data => {
-        characterObjectMaker(data)
+        //characterObjectMaker(data)
+        characterListFromEpisode(data)
     })
+}
+
+// Adds character from episodeObject
+function characterListFromEpisode(data){
+    const listItem = document.createElement('li')
+    listItem.classList.add('character-list-item')
+    //const itemInformation = document.createElement('p')
+    listItem.textContent = data.name
+    displayCharacterList.appendChild(listItem)
 }
 
 function characterObjectMaker(data){
@@ -181,6 +182,24 @@ function characterObjectMaker(data){
 function removeCharacterObject(){
     while(displayCharacterObject.firstChild){
         displayCharacterObject.firstChild.remove()
+    }
+}
+
+function removeEpisodeObject(){
+    while(displayEpisodeObject.firstChild){
+        displayEpisodeObject.firstChild.remove()
+    }
+}
+
+function removeAllInList(){
+    while(displayEpisodeList.firstChild){
+        displayEpisodeList.firstChild.remove()
+    }
+}
+
+function removeAllCharacterInList(){
+    while(displayCharacterList.firstChild){
+        displayCharacterList.firstChild.remove()
     }
 }
 
