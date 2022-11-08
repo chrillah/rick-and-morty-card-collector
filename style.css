@@ -2,6 +2,8 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
+@import url('https://fonts.googleapis.com/css2?family=Creepster&display=swap');
+
 /* Table of content */
 /* 1. Root settings */
 /* 2. HTML settings */
@@ -247,8 +249,17 @@ html{
     background-repeat: no-repeat;
     height: 100vh;
     overflow: hidden;
-    border: var(--border-style-1px)
+    border: var(--border-style-1px);
+    background-color: #BDB1C0; 
+    animation: colorChange 5s infinite;
 }
+@keyframes colorChange { /* flame pulses */
+    0%   { background-color: #BDB1C0;  }
+    25%  { background-color: #23B78C;  }
+    50%  { background-color: #108E74; }
+    75%  { background-color: #00B4CC; }
+    100%  { background-color: #BDB1C0; }
+  }
 
 .hero-container{
     display: flex;
@@ -258,10 +269,12 @@ html{
 }
 
 .hero-header{
+    font-family: 'Creepster', cursive;
     font-style: italic;
     font-size: 6rem;
-    color: var(--whitish);
+    color: #00B4CC;
     word-break: break-all;
+    border-radius: 100%;
 }
 
 @media (max-width: 600px) {
@@ -302,11 +315,23 @@ html{
     }
 }
 
+.middle-display{
+    max-height: 50vh;
+    overflow: scroll;
+    border:var(--border-style-1px)
+}
+
+#display-character-list{
+    
+}
+
 #display-episode-list{
     margin: 0;
     padding: 0;
     display: grid;
     max-width: 200px;
+    max-height: 50vh;
+    overflow: scroll;
 }
 
 #display-episode-list li{
@@ -697,6 +722,10 @@ html{
     display: flex;
     justify-content: center;
     flex-direction: column;
+}
+
+.footer-header{
+    font-family: 'Creepster', cursive;
 }
 
 /* small logos*/

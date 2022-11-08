@@ -217,35 +217,37 @@ function removeAllCharacterInList(){
 // }
 
 // DISPLAYS THE 10 MOST POPULAR CHARACTERS
-// fetch(url+'/character/1').then(response => response.json())
-// .then(data =>{
-//     characterObjectMaker(data)
-// })
-// fetch(url+'/character/2').then(response => response.json())
-// .then(data =>{
-//     characterObjectMaker(data)
-// })
-// fetch(url+'/character/3').then(response => response.json())
-// .then(data =>{
-//     characterObjectMaker(data)
-// })
-// fetch(url+'/character/4').then(response => response.json())
-// .then(data =>{
-//     characterObjectMaker(data)
-// })
-// fetch(url+'/character/5').then(response => response.json())
-// .then(data =>{
-//     characterObjectMaker(data)
-// })
-// fetch(url+'/character/6').then(response => response.json())
-// .then(data =>{
-//     characterObjectMaker(data)
-// })
-// fetch(url+'/character/7').then(response => response.json())
-// .then(data =>{
-//     characterObjectMaker(data)
-// })
-// fetch(url+'/character/8').then(response => response.json())
-// .then(data =>{
-//     characterObjectMaker(data)
-// })
+/*
+fetch(url+'/character/1').then(response => response.json())
+.then(data =>{
+    characterObjectMaker(data)
+})
+fetch(url+'/character/2').then(response => response.json())
+.then(data =>{
+    characterObjectMaker(data)
+})
+fetch(url+'/character/3').then(response => response.json())
+.then(data =>{
+    characterObjectMaker(data)
+})
+fetch(url+'/character/4').then(response => response.json())
+.then(data =>{
+    characterObjectMaker(data)
+})
+fetch(url+'/character/5').then(response => response.json())
+.then(data =>{
+    characterObjectMaker(data)
+})
+fetch(url+'/character/6').then(response => response.json())
+.then(data =>{
+    characterObjectMaker(data)
+})
+fetch(url+'/character/7').then(response => response.json())
+.then(data =>{
+    characterObjectMaker(data)
+})
+fetch(url+'/character/8').then(response => response.json())
+.then(data =>{
+    characterObjectMaker(data)
+})
+*/
