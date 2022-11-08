@@ -242,10 +242,10 @@ html{
     justify-content: center;
     align-items: center;
     border: var(--border-style-1px);
-    /*background-image: url(img/labb_2_native_js.png);*/
-    /* background-position: center;
+    background-image: url(img/labb_2_native_js.png);
+    background-position: center;
     background-size: contain;
-    background-repeat: no-repeat; */
+    background-repeat: no-repeat;
     height: 10vh;
     overflow: hidden;
 }
