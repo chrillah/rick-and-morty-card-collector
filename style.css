@@ -107,6 +107,24 @@ html{
     height: 2rem;
 }
 
+.regular-logo{
+    display: block;
+}
+
+.small-logo{
+    display: none;
+}
+
+@media(max-width:600px){
+    .regular-logo{
+        display: none;
+    }
+    
+    .small-logo{
+        display: block;
+    }
+}
+
 .navbar-links ul{
     margin: 0;
     padding: 0;
@@ -154,7 +172,7 @@ html{
 
 .toggle-btn{
     position: absolute;
-    top: 1rem;
+    top: .4rem;
     right: 1rem;
     display: none;
     flex-direction: column;
