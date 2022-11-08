@@ -86,11 +86,11 @@ html{
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    /*border: var(--border-style-1px)*/
+    border: var(--border-style-1px)
 }
 
 .nav-container{
-    max-width: 800px;
+    max-width: 1200px;
     width: 100%;
 }
 
@@ -240,19 +240,37 @@ html{
     width: 100%;
     display: flex;
     justify-content: center;
-    align-items: center;
-    border: var(--border-style-1px);
-    background-image: url(img/labb_2_native_js.png);
+    align-items: center bottom;
+    background-image: url(img/rickandmorty_logo_og.png);
     background-position: center;
     background-size: contain;
     background-repeat: no-repeat;
-    height: 10vh;
+    height: 100vh;
     overflow: hidden;
+    border: var(--border-style-1px)
 }
 
 .hero-container{
-    max-width: 400px;
-    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    flex-direction: column;
+}
+
+.hero-header{
+    font-style: italic;
+    font-size: 6rem;
+    color: var(--whitish);
+    word-break: break-all;
+}
+
+@media (max-width: 600px) {
+    .hero-wrapper{
+        height: 50vh;
+    }
+    .hero-header{
+        font-size: 4rem;
+    }
 }
 
 /* Chart */
@@ -274,7 +292,7 @@ html{
 }
 
 .main-container{
-    max-width: 800px;
+    max-width: 1200px;
     width: 100%;
     display: grid;
 }
@@ -458,7 +476,7 @@ html{
 
 /* City Object*/
 .city-item-container{
-    max-width: 800px;
+    max-width: 1200px;
     width: 100%;
     border: var(--border-style-1px);
     display: grid;
@@ -576,7 +594,7 @@ html{
 }
 
 .footer-container{
-    max-width: 800px;
+    max-width: 1200px;
     width: 100%;
     display: grid;
 }
