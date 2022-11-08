@@ -284,6 +284,100 @@ html{
 }
 
 /* 5-7. Main settings */
+
+/* RICK AND MORTY */
+.display-content-container-top{
+    border: var(--border-style-1px);
+}
+
+.display-result{
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+}
+
+@media (max-width:600px) {
+    .display-result{
+        grid-template-columns: 1fr;
+        grid-template-rows: 2fr 1fr;
+    }
+}
+
+#display-episode-list{
+    margin: 0;
+    padding: 0;
+    display: grid;
+    max-width: 200px;
+}
+
+#display-episode-list li{
+    list-style: none;
+}
+
+
+#display-episode-object{
+    border: var(--border-style-1px);
+}
+
+.episode-btn{
+    font-size: .7rem;
+    border: var(--border-style-1px);
+    color: var(--font-color-black);
+    cursor: pointer;
+    display: inline-block;
+    text-decoration: none;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+}
+
+.episode-btn:active {
+    transform: translate(2px, 2px);
+    box-shadow: var(--button-bg-color-focus) -4px -4px 0 0;
+} 
+
+.episode-btn:hover,
+.episode-btn:focus {
+    font-weight: bolder;
+    background-color: var(--button-bg-color-focus);
+    border: var(--border-style-1px);
+    transform: translate(-2px, 2px);
+    box-shadow: var(--border_color) 7px 7px 0 0;
+    -webkit-box-shadow: 2px -2px 0px 0px rgba(0,0,0,1);
+    -moz-box-shadow: 2px -2px 0px 0px rgba(0,0,0,1);
+}
+
+
+.episode-container{
+    max-width: 200px;
+    height: 300px;
+    background-color: var(--whitish);
+    overflow: scroll;
+}
+
+.episode-name-information{
+    font-style: italic;
+}
+
+.episode-name,
+.episode-airdate{
+    font-size: .6rem;
+}
+
+.character-container{
+    background-color: var(--whitish);
+}
+
+.character-name{
+    font-style: italic;
+}
+
+.character-info{
+    font-size:  .6rem;
+}
+
+/* RICK AND MORTY */
+
+/*City*/
 .main-wrapper{
     display: flex;
     flex-direction: column;
