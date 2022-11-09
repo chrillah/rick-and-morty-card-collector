@@ -12,8 +12,8 @@
         <div class="nav-container">
             <nav class="navbar">
                 <div class="brand-title">
-                    <img class="regular-logo" src="img/rickandmorty_logo_og.png" alt="Rick and Morty logotype">
-                    <img class="small-logo" src="img/rickandmorty_logo_small.png" alt="Rick and Morty logotype">
+                    <img class="regular-logotype" src="img/rickandmorty_logo_og.png" alt="Rick and Morty logotype">
+                    <img class="small-logotype" src="img/rickandmorty_logo_small.png" alt="Rick and Morty logotype">
                 </div>
                 <a class="toggle-btn" href="#">
                     <span class="bar"></span>
@@ -41,16 +41,30 @@
             </h1>
         </div>
     </div>
-<main class="rm-main-wrapper">
+    <main class="rm-main-wrapper">
+    <section class="main-intro-container">
+        <h1 class="main-intro-header">
+            Check out our popular characters
+        </h1>
+        <h3 class="main-intro-text">
+            Found out were they are, their status or why not find out their gender?
+        </h3>
+    </section>
     <div class="display-content-container-top">
-        <input type="button" class="btn" onclick="seasonOneList()" value="Season 1">
-        <input type="button" class="btn" onclick="seasonTwoList()"
-        value="Season 2">
-        <input type="button" class="btn" onclick="seasonThreeList()" value="Season 3">
-        <input type="button" class="btn" onclick="seasonFourList()"
-        value="Season 4">
-        <input type="button" class="btn" onclick="seasonFiveList()"
-        value="Season 5">
+        <section class="season-option-container">
+            <h1 class="season-header">Seasons</h1>
+            <h4 class="season-text">Season picker to pick a season</h4>
+            <div class="top-btn-container">
+                <input type="button" class="btn" onclick="seasonOneList()" value="1">
+                <input type="button" class="btn" onclick="seasonTwoList()"
+                value="2">
+                <input type="button" class="btn" onclick="seasonThreeList()" value="3">
+                <input type="button" class="btn" onclick="seasonFourList()"
+                value="4">
+                <input type="button" class="btn" onclick="seasonFiveList()"
+                value="5">
+            </div>
+        </section>
         <div class="display-result">
             <ul id="display-episode-list"></ul>
             <div class="middle-display">
@@ -67,7 +81,7 @@
         </section>
         -->
     </div>
-</main>
+    </main>
     <footer class="footer-wrapper">
         <div class="footer-container">
             <div class="footer-information-items">
@@ -81,22 +95,22 @@
                 </div>
             </div>
             <div class="logo-items">
-                <div class="small-logo-container">
-                    <img src="img/twitch_logo.png" alt="Twitch logo" class="small-logo">
-                    <p class="small-logo-text">Twitch</p>
-                </div>
-                <div class="small-logo-container">
-                    <img src="img/twitter_logo.png" alt="Elon Musk social media game logo" class="small-logo">
-                    <p class="small-logo-text">Twitter</p>
-                </div>
-                <div class="small-logo-container">
+                <a href="https://rickandmorty.com/watch/" target="_blank" class="small-logo-container">
+                    <img src="img/rm_logo.png" alt="Rick and MOrty logo" class="small-logo">
+                    <p class="small-logo-text">Rick and Morty</p>
+                </a>
+                <a href="https://www.adultswim.com/videos/rick-and-morty/" target="_blank" class="small-logo-container">
+                    <img src="img/adultswim_logo.png" alt="" class="small-logo">
+                    <p class="small-logo-text">Adult Swim</p>
+                </a>
+                <a href="https://www.hbomax.com/se/sv?utm_id=sa%7C71700000087780632%7C58700007461294360%7Cp67076016441&gclid=e61883eb8880119f5380e080872a1264&gclsrc=3p.ds&msclkid=e61883eb8880119f5380e080872a1264" target="_blank" class="small-logo-container">
+                    <img src="img/hbo_logo.png" alt="HBO logo" class="small-logo">
+                    <p class="small-logo-text">HBO</p>
+                </a>
+                <a href="https://www.youtube.com/watch?v=L99s7ovGagQ" target="_blank" class="small-logo-container">
                     <img src="img/youtube_logo.png" alt="Youtube logo" class="small-logo">
                     <p class="small-logo-text">Youtube</p>
-                </div>
-                <div class="small-logo-container">
-                    <img src="img/adultswim_logo.png" alt="Adult Swim logo logo" class="small-logo">
-                    <p class="small-logo-text">Adultswim</p>
-                </div>
+                </a>
             </div>
             <div class="contact-items">
                 <div class="contact-conatiner">

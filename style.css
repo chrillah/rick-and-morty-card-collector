@@ -49,7 +49,7 @@
 
 /* REMOVE THIS BEFORE*/
 body{
-    background-color: var(--light-purple);
+    /* background-color: var(--light-purple); */
     margin: 0;
     padding: 0;
     /*font-family: Helvetica, sans-serif;*/
@@ -92,7 +92,7 @@ html{
 }
 
 .nav-container{
-    max-width: 1200px;
+    max-width: 800px;
     width: 100%;
 }
 
@@ -109,20 +109,20 @@ html{
     height: 2rem;
 }
 
-.regular-logo{
+.regular-logotype{
     display: block;
 }
 
-.small-logo{
+.small-logotype{
     display: none;
 }
 
 @media(max-width:600px){
-    .regular-logo{
+    .regular-logotype{
         display: none;
     }
     
-    .small-logo{
+    .small-logotype{
         display: block;
     }
 }
@@ -299,13 +299,40 @@ html{
 /* 5-7. Main settings */
 
 /* RICK AND MORTY */
+
+.rm-main-wrapper{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.main-intro-container{
+    margin-top: 15vh;
+    width: 100%;
+    max-width: 800px;
+    min-height: 50vh;
+}
+
+.main-intro-header{
+    font-family: 'Creepster', cursive;
+    font-style: italic;
+    font-size: 4rem;
+    padding: 0;
+    margin: 0;
+}
+
 .display-content-container-top{
+    max-width: 800px;
+    width: 100%;
     border: var(--border-style-1px);
 }
 
 .display-result{
-    display: grid;
-    grid-template-columns: 1fr 1fr;
+    /* display: grid;
+    grid-template-columns: 1fr 1fr; */
+
 }
 
 @media (max-width:600px) {
@@ -313,6 +340,21 @@ html{
         grid-template-columns: 1fr;
         grid-template-rows: auto 1fr;
     }
+}
+
+.season-header{
+    font-family: 'Creepster', cursive;
+    font-style: italic;
+    font-size: 6rem;
+    padding: 0;
+    margin: 0;
+}
+
+.season-text{
+
+}
+
+.season-option-container{
 }
 
 .middle-display{
@@ -410,7 +452,7 @@ html{
 }
 
 .main-container{
-    max-width: 1200px;
+    max-width: 800px;
     width: 100%;
     display: grid;
 }
@@ -594,7 +636,7 @@ html{
 
 /* City Object*/
 .city-item-container{
-    max-width: 1200px;
+    max-width: 800px;
     width: 100%;
     border: var(--border-style-1px);
     display: grid;
@@ -702,17 +744,18 @@ html{
 
 .footer-wrapper{
     border: var(--border-style-1px);
-    background-color: var(--greenish);
+    background-color: black;
+    color: white;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding-bottom: 2rem;
     padding: 0 1rem;
 }
 
 .footer-container{
-    max-width: 1200px;
+    padding: 4rem 0 2rem 0;
+    max-width: 800px;
     width: 100%;
     display: grid;
 }
@@ -722,10 +765,15 @@ html{
     display: flex;
     justify-content: center;
     flex-direction: column;
+    padding-bottom: 2rem;
 }
 
 .footer-header{
     font-family: 'Creepster', cursive;
+    font-style: italic;
+    font-size: 4rem;
+    padding: 0;
+    margin: 0;
 }
 
 /* small logos*/
@@ -734,6 +782,7 @@ html{
     gap: 1rem;
     display: grid;
     grid-template-columns: repeat(4,1fr);
+    padding-bottom: 2rem;
 }
 
 @media (max-width:600px) {
@@ -744,6 +793,8 @@ html{
 
 
 .small-logo-container{
+    text-decoration: none;
+    color: white;
     width: 3rem;
     display: flex;
     justify-content: center;
