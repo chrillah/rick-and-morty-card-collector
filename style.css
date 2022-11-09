@@ -80,6 +80,7 @@ html{
 /* 5. Nav settings */
 
 .nav-wrapper{
+    z-index: 3;
     padding: 0 1rem;
     background-color: var(--light-purple);
     width: 100%;
@@ -315,7 +316,6 @@ html{
     margin-top: 15vh;
     width: 100%;
     max-width: 800px;
-    min-height: 50vh;
 }
 
 .main-intro-header{
@@ -324,6 +324,74 @@ html{
     font-size: 4rem;
     padding: 0;
     margin: 0;
+}
+
+@media (max-width: 500px) {
+    .main-intro-header{
+        font-size: 3rem;
+    }
+}
+
+#main-character-galleri-container{
+    max-width: 800px;
+    /* max-width: 1200px;
+    display: grid;
+    grid-template-columns: repeat(3, 15.3vw);
+    grid-template-rows: repeat(2,1fr);
+    gap: 1rem; */
+    gap: 1rem;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap; 
+}
+
+.character-card-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    /* border: var(--border-style-1px);
+    background-color: var(--whitish);
+    box-shadow: var(--border_color) 7px 7px 0 0;
+    -webkit-box-shadow: 7px 7px 0px 0px rgba(0,0,0,1);
+    -moz-box-shadow: 7px 7px 0px 0px rgba(0,0,0,1); */
+}
+
+.character-img-container{
+}
+
+.card-img{
+    clip-path: circle(50% at 50% 50%);
+    max-width: 180px;
+    background-color: #EF5C5E;
+    
+}
+
+.card-img img{
+    width: 100%;
+    height: auto;
+}
+
+.character-card-information-container{
+    /* padding: .3rem 1rem 1rem 1rem; */
+}
+
+.character-name-header{
+    font-family: 'Creepster', cursive;
+    font-style: italic;
+    padding: 0 0 .5rem 0;
+    margin: 0;
+}
+
+.card-text{
+    padding: 0;
+    margin: 0;
+}
+
+.card-text span{
+    font-weight: bold;
+    font-size: .6rem;
 }
 
 .display-content-container-top{
@@ -351,6 +419,12 @@ html{
     font-size: 6rem;
     padding: 0;
     margin: 0;
+}
+
+@media(max-width: 400px) {
+    .season-header{
+        font-size: 4rem;
+    }
 }
 
 .season-text{

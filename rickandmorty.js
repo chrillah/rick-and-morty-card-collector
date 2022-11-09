@@ -28,6 +28,8 @@ const displayCharacterList = document.querySelector('#display-character-list')
 const displayEpisodeObject = document.querySelector('#display-episode-object')
 const displayCharacterObject = document.querySelector('#display-character-object')
 
+const mainCharacterGalleriContainer = document.querySelector('#main-character-galleri-container')
+
 /* FUNCTIONS */
 function seasonOneList(){
     fetch(url+seasonOne).then(response => response.json())
@@ -76,13 +78,13 @@ function episodeListMaker(data){
 
         listItem.addEventListener('click',()=>{
             removeEpisodeObject()
-            episodeObjectMake(data[i])
+            episodeObjectMaker(data[i])
         })
     }
 }
 
 // EPO
-function episodeObjectMake(data){
+function episodeObjectMaker(data){
 
     const episodeContainer = document.createElement('div')
     const episodeTop = document.createElement('div')
@@ -140,9 +142,50 @@ function characterFinder(characterUrl){
 function characterListFromEpisode(data){
     const listItem = document.createElement('li')
     listItem.classList.add('character-list-item')
+    // TEST!/////////////////////
+    listItem.classList.add('btn')
     //const itemInformation = document.createElement('p')
-    listItem.textContent = data.name
+    listItem.textContent = data.name + data.id
     displayCharacterList.appendChild(listItem)
+}
+
+function characterCardMaker(data){
+    // Create
+    const characterCardContainer = document.createElement('div')
+    const characterImgContainer = document.createElement('div')
+    const cardImg = document.createElement('img')
+    const characterCardInformationContainer = document.createElement('div')
+    const characterHeader = document.createElement('p')
+    const genderText = document.createElement('p')
+    const statusText = document.createElement('p')
+
+    // Classlist
+    characterCardContainer.classList.add('character-card-container')
+    characterImgContainer.classList.add('character-img-container')
+    cardImg.classList.add('card-img')
+    characterCardInformationContainer.classList.add('character-card-information-container')
+    characterHeader.classList.add('character-name-header')
+    genderText.classList.add('card-text')
+    statusText.classList.add('card-text')
+
+    // Append
+    mainCharacterGalleriContainer.appendChild(characterCardContainer)
+    characterCardContainer.appendChild(characterImgContainer)
+    characterImgContainer.appendChild(cardImg)
+    characterCardContainer.appendChild(characterCardInformationContainer)
+    characterCardInformationContainer.appendChild(characterHeader)
+    characterCardInformationContainer.appendChild(genderText)
+    characterCardInformationContainer.appendChild(statusText)
+
+    cardImg.src = data.image
+    // cardImg.innerHTML = 
+    // `<img src=${data.image} alt="" class="card-img" >`
+    characterHeader.innerHTML = 
+    `<h3 class="character-name-header">${data.name}</h3>`
+    // genderText.innerHTML = 
+    // `<p class="card-text"><span>Gender: </span>${data.gender}</p>`
+    // statusText.innerHTML = 
+    // `<p class="card-text"><span>Status: </span>${data.status}</p>`
 }
 
 function characterObjectMaker(data){
@@ -216,38 +259,12 @@ function removeAllCharacterInList(){
 //     });
 // }
 
-// DISPLAYS THE 10 MOST POPULAR CHARACTERS
-/*
-fetch(url+'/character/1').then(response => response.json())
+// DISPLAYS THE 4 mOST POPULAR CHARACTERS
+
+fetch(url+'/character/244,47,282, 154, 598, 252, 171').then(response => response.json())
 .then(data =>{
-    characterObjectMaker(data)
+    data.forEach(character => {
+        characterCardMaker(character)
+    });
 })
-fetch(url+'/character/2').then(response => response.json())
-.then(data =>{
-    characterObjectMaker(data)
-})
-fetch(url+'/character/3').then(response => response.json())
-.then(data =>{
-    characterObjectMaker(data)
-})
-fetch(url+'/character/4').then(response => response.json())
-.then(data =>{
-    characterObjectMaker(data)
-})
-fetch(url+'/character/5').then(response => response.json())
-.then(data =>{
-    characterObjectMaker(data)
-})
-fetch(url+'/character/6').then(response => response.json())
-.then(data =>{
-    characterObjectMaker(data)
-})
-fetch(url+'/character/7').then(response => response.json())
-.then(data =>{
-    characterObjectMaker(data)
-})
-fetch(url+'/character/8').then(response => response.json())
-.then(data =>{
-    characterObjectMaker(data)
-})
-*/
+
