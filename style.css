@@ -395,21 +395,25 @@ html{
 }
 
 .display-content-container-top{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
     max-width: 800px;
-    width: 100%;
-    border: var(--border-style-1px);
 }
 
 .display-result{
+    width: 100%;
     /* display: grid;
     grid-template-columns: 1fr 1fr; */
-
+    display: grid;
+    grid-template-columns: 1fr 3fr;
 }
 
 @media (max-width:600px) {
     .display-result{
-        grid-template-columns: 1fr;
-        grid-template-rows: auto 1fr;
+        /* grid-template-columns: 1fr;
+        grid-template-rows: auto 1fr; */
     }
 }
 
@@ -432,16 +436,20 @@ html{
 }
 
 .season-option-container{
+    width: 100%;
 }
 
 .middle-display{
-    max-height: 50vh;
+    /* max-height: 50vh;
     overflow: scroll;
-    border:var(--border-style-1px)
+    border:var(--border-style-1px) */
+    display: grid;
+    grid-template-columns: 1fr 2fr;
 }
 
 #display-character-list{
-    
+    max-height: 50vh;
+    overflow: scroll;
 }
 
 #display-episode-list{
@@ -459,6 +467,8 @@ html{
 
 
 #display-episode-object{
+    border: var(--border-style-1px);
+    padding: 1rem;
 }
 
 .episode-btn{
@@ -515,7 +525,48 @@ html{
 }
 
 .character-list-item{
+    max-width: 200px;
     list-style: none;
+}
+
+.character-btn{
+    /*background-color: var(--greenish);*/
+    background: none;
+    border: var(--border-style-1px);
+    /* box-shadow: var(--button-shadow-color) 4px 4px 0 0;
+    -webkit-box-shadow: 4px 4px 0px 0px rgba(0,0,0,1);
+    -moz-box-shadow: 4px 4px 0px 0px rgba(0,0,0,1); */
+    color: var(--font-color-black);
+    cursor: pointer;
+    display: block;
+    font-weight: bolder;
+    /* margin: 1.5rem 0 1rem 0; */
+    padding: 0 10px; 
+    line-height: 2rem;
+    text-decoration: none;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+}
+  
+/* .btn{
+    background-color: var(--button-bg-color);
+    border: var(--border-style);
+} */
+  
+.character-btn:hover,
+.character-btn:focus {
+    background-color: var(--button-bg-color-focus);
+    border: 1px solid #000000;
+    transform: translate(-6px,-6px);
+    box-shadow: var(--border_color) 4px 4px 0 0;
+    -webkit-box-shadow: -4px -4px 0px 0px rgba(0,0,0,1);
+    -moz-box-shadow: -4px -4px 0px 0px rgba(0,0,0,1);
+}
+
+.character-btn:active {
+    transform: translate(2px, 2px);
+    box-shadow: var(--button-shadow-color) -2px -2px 0 0;
 }
 
 /* RICK AND MORTY */

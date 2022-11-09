@@ -143,9 +143,9 @@ function characterListFromEpisode(data){
     const listItem = document.createElement('li')
     listItem.classList.add('character-list-item')
     // TEST!/////////////////////
-    listItem.classList.add('btn')
+    listItem.classList.add('character-btn')
     //const itemInformation = document.createElement('p')
-    listItem.textContent = data.name + data.id
+    listItem.textContent = data.name
     displayCharacterList.appendChild(listItem)
 }
 
