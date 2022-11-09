@@ -445,7 +445,7 @@ html{
     margin: 0;
     border: var(--border-style-1px);
     overflow: scroll;
-    height: 60vh;
+    height: 70vh;
     width: 100%;
     display: grid;
     grid-area: ep-list;
@@ -456,17 +456,20 @@ html{
 }
 
 .middle-display{
+    width: 100%;
     border: var(--border-style-1px);
     grid-area: objects;
     display: grid;
-    grid-template-columns: 2fr 1fr;
+    grid-template-columns: 1fr 1fr;
 }
 
 .display-object{
+    width: 100%;
     display: grid;
 }
 
 #display-episode-object{
+    height: 30vh;
     padding: 1rem;
 }
 
@@ -475,8 +478,9 @@ html{
 }
 
 #display-character-list{
+
     overflow: scroll;
-    height: 60vh;
+    height: 70vh;
 }
 
 .episode-btn{
@@ -518,6 +522,8 @@ html{
 
 .episode-name,
 .episode-airdate{
+    padding:0;
+    margin:0;
     font-size: .6rem;
 }
 

@@ -157,6 +157,7 @@ function characterListFromEpisode(data){
     listItem.textContent = data.name
     displayCharacterList.appendChild(listItem)
     listItem.addEventListener('click', ()=> {
+        console.log(data)
         characterObjectMaker(data)
     })
 }
@@ -201,22 +202,30 @@ function characterCardMaker(data){
 }
 
 function characterObjectMaker(data){
+
+    // TODO favorite character/ episode button
     removeCharacterObject()
 
     const characterContainer = document.createElement('div')
     const infoContainer = document.createElement('div')
     const imgCharacterContainer = document.createElement('div')
     const characterImg = document.createElement('img')
+
+    const favoriteButton = document.querySelector('input')
     const characterName = document.createElement('h3')
 
+    const characterSpecies = document.createElement('p')
     const characterGender = document.createElement('p')
     const characterStatus = document.createElement('p')
 
     characterContainer.classList.add('character-container')
     infoContainer.classList.add('character-info-container')
     imgCharacterContainer.classList.add('img-character-container')
+    //favoriteButton.classList.add('btn')
+
     characterName.classList.add('character-name')
 
+    characterSpecies.classList.add('character-info')
     characterGender.classList.add('character-info')
     characterStatus.classList.add('character-info')
 
@@ -225,14 +234,23 @@ function characterObjectMaker(data){
     characterContainer.appendChild(imgCharacterContainer)
     imgCharacterContainer.appendChild(characterImg)
     infoContainer.appendChild(characterName)
+    infoContainer.appendChild(characterSpecies)
     infoContainer.appendChild(characterGender)
     infoContainer.appendChild(characterStatus)
+    //infoContainer.appendChild(favoriteButton)
+
+    //favoriteButton.type = 'button'
+    //favoriteButton.value = '<3'
 
     characterName.textContent = data.name
     characterImg.src = data.image
+    characterSpecies.textContent = data.species
     characterGender.textContent = data.gender
     characterStatus.textContent = data.status
-    
+
+    // favoriteButton.addEventListener('click',() => {
+    //     console.log(data.name + data.id)
+    // })
 }
 
 
@@ -281,4 +299,79 @@ fetch(url+'/character/244,47,282, 154, 598, 252, 171,2').then(response => respon
         characterCardMaker(character)
     });
 })
+
+
+
+///////////////////////////////////////////
+// CHART /// HTML UTKOMMENTERAD
+
+
+
+let input = 'Someone'
+
+fetch(url+'/character/1,2,3,4,5')
+.then(response => response.json())
+.then(result => {
+
+    /* Chart.js demo */
+    // selecterar id från html
+    const ctx = document.getElementById('myChart').getContext('2d')
+
+    // för att få ut alla data från objektet på api/server/lokal jsonfil behöver vi skapa lådor som just nu är tomma men ska fyllas för att sen arbeta längre ner 
+    const data = [],
+    labels = []
+
+
+// vi ska mata in data, enskilt, i våra tomma lådor(arrayer)
+
+for (let i = 0; i < result.length; i++){
+
+    const character = result[i]
+
+    data.push(character.episode.length)
+    labels.push(character.name)
+
+}
+
+const myChart = new Chart(ctx, {
+    
+    type: 'polarArea',
+    data: {
+        labels: labels,
+        datasets: [{
+            label: `${input}`,
+
+            data: data,
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(255, 159, 64, 0.2)'
+            ],
+            borderColor: [
+                'rgba(255, 99, 132, 1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)',
+                'rgba(255, 159, 64, 1)'
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            y: {
+                beginAtZero: true
+            }
+        }
+    }
+});
+
+})
+
+
+
 
