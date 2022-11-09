@@ -313,6 +313,7 @@ html{
 }
 
 .main-intro-container{
+    text-align: center;
     margin-top: 15vh;
     width: 100%;
     max-width: 800px;
@@ -344,6 +345,8 @@ html{
     justify-content: space-around;
     align-items: center;
     flex-wrap: wrap; 
+    padding-top: 15vh;
+    padding-bottom: 5rem;
 }
 
 .character-card-container{
@@ -351,11 +354,6 @@ html{
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    /* border: var(--border-style-1px);
-    background-color: var(--whitish);
-    box-shadow: var(--border_color) 7px 7px 0 0;
-    -webkit-box-shadow: 7px 7px 0px 0px rgba(0,0,0,1);
-    -moz-box-shadow: 7px 7px 0px 0px rgba(0,0,0,1); */
 }
 
 .character-img-container{
@@ -394,27 +392,19 @@ html{
     font-size: .6rem;
 }
 
-.display-content-container-top{
+/* Main-content */
+.display-content-wrapper-top{
+    width: 100%;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-    flex-direction: column;
-    max-width: 800px;
+    padding-bottom: 15vh;
 }
 
-.display-result{
+.season-option-container{
     width: 100%;
-    /* display: grid;
-    grid-template-columns: 1fr 1fr; */
-    display: grid;
-    grid-template-columns: 1fr 3fr;
-}
-
-@media (max-width:600px) {
-    .display-result{
-        /* grid-template-columns: 1fr;
-        grid-template-rows: auto 1fr; */
-    }
+    max-width: 800px;
 }
 
 .season-header{
@@ -425,50 +415,56 @@ html{
     margin: 0;
 }
 
+.season-text{
+
+}
+
 @media(max-width: 400px) {
     .season-header{
         font-size: 4rem;
     }
 }
 
-.season-text{
-
-}
-
-.season-option-container{
-    width: 100%;
-}
-
-.middle-display{
-    /* max-height: 50vh;
-    overflow: scroll;
-    border:var(--border-style-1px) */
+.display-result{
+    gap: 1rem;
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    width: 100%;
+    max-width: 800px;
+    grid-template-columns: 300px auto;
+    grid-template-areas: 
+    "ep-list objects";
 }
 
-.display-object{
-    border: var(--border-style-1px)
-}
-
-#display-character-list{
-    max-height: 50vh;
-    overflow: scroll;
+@media (max-width:600px) {
+    .display-result{
+    }
 }
 
 #display-episode-list{
-    margin: 0;
     padding: 0;
-    display: grid;
-    max-width: 200px;
-    max-height: 50vh;
+    margin: 0;
+    border: var(--border-style-1px);
     overflow: scroll;
+    height: 60vh;
+    width: 100%;
+    display: grid;
+    grid-area: ep-list;
 }
 
 #display-episode-list li{
     list-style: none;
 }
 
+.middle-display{
+    border: var(--border-style-1px);
+    grid-area: objects;
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+}
+
+.display-object{
+    display: grid;
+}
 
 #display-episode-object{
     padding: 1rem;
@@ -476,6 +472,11 @@ html{
 
 #display-character-object{
     padding: 1rem;
+}
+
+#display-character-list{
+    overflow: scroll;
+    height: 60vh;
 }
 
 .episode-btn{
@@ -511,6 +512,7 @@ html{
 }
 
 .episode-name-information{
+    max-width: 150px;
     font-style: italic;
 }
 
