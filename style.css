@@ -444,7 +444,11 @@ html{
     overflow: scroll;
     border:var(--border-style-1px) */
     display: grid;
-    grid-template-columns: 1fr 2fr;
+    grid-template-columns: 1fr 1fr;
+}
+
+.display-object{
+    border: var(--border-style-1px)
 }
 
 #display-character-list{
@@ -467,7 +471,10 @@ html{
 
 
 #display-episode-object{
-    border: var(--border-style-1px);
+    padding: 1rem;
+}
+
+#display-character-object{
     padding: 1rem;
 }
 
@@ -514,10 +521,13 @@ html{
 
 .character-container{
     background-color: var(--whitish);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
 }
 
 .character-name{
     font-style: italic;
+    font-size: .6rem;
 }
 
 .character-info{
@@ -527,6 +537,15 @@ html{
 .character-list-item{
     max-width: 200px;
     list-style: none;
+}
+
+.img-character-container{
+    width: 100px;
+}
+
+.img-character-container img{
+    height: auto;
+    width: 100%;
 }
 
 .character-btn{

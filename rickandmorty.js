@@ -32,30 +32,35 @@ const mainCharacterGalleriContainer = document.querySelector('#main-character-ga
 
 /* FUNCTIONS */
 function seasonOneList(){
+    removeAllCharacterInList()
     fetch(url+seasonOne).then(response => response.json())
     .then(data=>{
         episodeListMaker(data)
     })
 }
 function seasonTwoList(){
+    removeAllCharacterInList()
     fetch(url+seasonTwo).then(response => response.json())
     .then(data=>{
         episodeListMaker(data)
     })
 }
 function seasonThreeList(){
+    removeAllCharacterInList()
     fetch(url+seasonThree).then(response => response.json())
     .then(data=>{
         episodeListMaker(data)
     })
 }
 function seasonFourList(){
+    removeAllCharacterInList()
     fetch(url+seasonFour).then(response => response.json())
     .then(data=>{
         episodeListMaker(data)
     })
 }
 function seasonFiveList(){
+    removeAllCharacterInList()
     fetch(url+seasonFive).then(response => response.json())
     .then(data=>{
         episodeListMaker(data)
@@ -63,7 +68,10 @@ function seasonFiveList(){
 }
 
 function episodeListMaker(data){
+    removeCharacterObject()
+    removeEpisodeObject()
     removeAllInList()
+
     for(let i = 0; i < data.length; i++){
 
         const listItem = document.createElement('li')
@@ -77,6 +85,7 @@ function episodeListMaker(data){
         displayEpisodeList.appendChild(listItem)
 
         listItem.addEventListener('click',()=>{
+            removeCharacterObject()
             removeEpisodeObject()
             episodeObjectMaker(data[i])
         })
@@ -147,6 +156,9 @@ function characterListFromEpisode(data){
     //const itemInformation = document.createElement('p')
     listItem.textContent = data.name
     displayCharacterList.appendChild(listItem)
+    listItem.addEventListener('click', ()=> {
+        characterObjectMaker(data)
+    })
 }
 
 function characterCardMaker(data){
@@ -189,6 +201,8 @@ function characterCardMaker(data){
 }
 
 function characterObjectMaker(data){
+    removeCharacterObject()
+
     const characterContainer = document.createElement('div')
     const infoContainer = document.createElement('div')
     const imgCharacterContainer = document.createElement('div')
