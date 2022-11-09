@@ -426,6 +426,7 @@ html{
 }
 
 .display-result{
+    margin: 1rem 0;
     gap: 1rem;
     display: grid;
     width: 100%;
@@ -435,8 +436,12 @@ html{
     "ep-list objects";
 }
 
-@media (max-width:600px) {
+@media (max-width:750px) {
     .display-result{
+        grid-template-columns: 400px;
+        grid-template-areas: 
+        "ep-list" 
+        "objects";
     }
 }
 
