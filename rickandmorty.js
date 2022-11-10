@@ -413,29 +413,20 @@ function characterObjectMaker(data){
     })
 
     removeFromFavoriteButton.addEventListener('click',() => {
-  
+        console.log('remove button pressed')
         let favorite = []
         favorite = JSON.parse(localStorage.getItem('favorite'))
     
-        for (let i = 0; i < arrayFromLocalStorage.length;i++){
-            console.log('hej')
+        for (let i = 0; i < favorite.length;i++){
+
            if(favorite[i].id === data.id){
                 favorite.pop(data)
-                favoriteButton.style.display = 'grid'
-                removeFromFavoriteButton.style.display = 'none'
+                console.log('Borttagen')
             }
         }
-
+        favoriteButton.style.display = 'grid'
+        removeFromFavoriteButton.style.display = 'none'
         localStorage.setItem('favorite', JSON.stringify(favorite))
-        // let arrayFromLocalStorage = []
-        // arrayFromLocalStorage = JSON.parse(localStorage.getItem('favorite'))
-    
-        // for (let i = 0; i < arrayFromLocalStorage.length;i++){
-        //    if(arrayFromLocalStorage[i].id === data.id){
-        //         favoriteButton.style.display = 'grid'
-        //         removeFromFavoriteButton.style.display = 'none'
-        //     }
-        // }
     })
 }
 
