@@ -98,6 +98,7 @@
                 Save your favorite characters because why not?
             </h1>
         </section>
+        <input type="button" onclick="getAllInFavoriteList()" class="btn" value="Show me my favorites!">
     </div>
     <div class="display-content-wrapper-bottom">
         <div class="chart">
@@ -109,7 +110,25 @@
             <ul id="favorite-list"></ul>
 
             <!-- DISPLAY CONTAINER FOR SAVED CHARACTERS -->
-            <div id="display-character-container"></div>
+            <div id="display-character-container">
+                <div class="character-container">
+                    <div class="character-top-container">
+                        <button class="playcard-btn">&hearts;</button>
+                        <div class="playcard-logo-container">
+                            <img src="img/rickandmorty_logo_og.png" alt="" class="playcard-logo">
+                        </div>
+                    </div>
+                    <div class="img-character-container">
+                        <img src="" alt="" class="character-img">
+                    </div>
+                    <div class="character-info-container">
+                        <h3 class="character-name-header">Character name</h3>
+                        <p class="character-info">Status: <span></span></p>
+                        <p class="character-info">Species: <span></span></p>
+                        <p class="character-info">Gender: <span></span></p>
+                    </div>
+                </div>
+            </div>
         </div>
         
     </div>

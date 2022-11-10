@@ -150,6 +150,8 @@ function characterFinder(characterUrl){
     })
 }
 
+
+// Characters from favorite list
 function characterListFromFavorite(data){
     const listItem = document.createElement('li')
     listItem.classList.add('character-list-item')
@@ -194,7 +196,7 @@ function characterCardMaker(data){
     characterImgContainer.classList.add('character-img-container')
     cardImg.classList.add('card-img')
     characterCardInformationContainer.classList.add('character-card-information-container')
-    characterHeader.classList.add('character-name-header')
+    characterHeader.classList.add('character-name-card-header')
     genderText.classList.add('card-text')
     statusText.classList.add('card-text')
 
@@ -269,10 +271,6 @@ function characterObjectMaker(data){
         favorite.push(data)
         localStorage.setItem('favorite', JSON.stringify(favorite))
     })
-
-    characterName.addEventListener('click', ()=> {
-
-    })
 }
 
 function getAllInFavoriteList(){
@@ -280,7 +278,8 @@ function getAllInFavoriteList(){
     arrayFromLocalStorage = JSON.parse(localStorage.getItem('favorite'))
     if(arrayFromLocalStorage){
         for(let i = 0; i < arrayFromLocalStorage.length; i++){
-            console.log(arrayFromLocalStorage[i].name)
+            //console.log(arrayFromLocalStorage[i].name)
+            characterListFromFavorite(arrayFromLocalStorage[i])
         }
     }
 }
