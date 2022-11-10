@@ -31,6 +31,16 @@ const displayCharacterContainer = document.querySelector('#display-character-con
 
 const mainCharacterGalleriContainer = document.querySelector('#main-character-galleri-container')
 
+const showMeFavoritButton = document.querySelector('#show-me-favorite-button')
+
+
+// Start condition
+showMeFavoritButton.style.opacity = 0;
+
+if(favorite){
+    showMeFavoritButton.style.opacity = 1
+}
+
 // Append to favorite-list-item
 const favoriteList = document.querySelector('#favorite-list')
 
@@ -153,21 +163,21 @@ function characterFinder(characterUrl){
 
 
 // Characters from favorite list
-function characterListFromFavorite(data){
-    const listItem = document.createElement('li')
-    listItem.classList.add('character-list-item')
-    // TEST!/////////////////////
-    listItem.classList.add('character-btn')
-    //const itemInformation = document.createElement('p')
-    listItem.textContent = data.name
-    favoriteList.appendChild(listItem)
-    listItem.addEventListener('click', ()=> {
-        console.log(data)
-        // characterObjectMaker(data)
-        // PLAYCARDMAKER
-        playcardMakerFromFavoriteList(data)
-    })
-}
+// function characterListFromFavorite(data){
+//     const listItem = document.createElement('li')
+//     listItem.classList.add('character-list-item')
+//     // TEST!/////////////////////
+//     listItem.classList.add('character-btn')
+//     //const itemInformation = document.createElement('p')
+//     listItem.textContent = data.name
+//     favoriteList.appendChild(listItem)
+//     listItem.addEventListener('click', ()=> {
+//         console.log(data)
+//         // characterObjectMaker(data)
+//         // PLAYCARDMAKER
+//         playcardMakerFromFavoriteList(data)
+//     })
+// }
 
 function playcardMakerFromFavoriteList(data){
     const characterContainer = document.createElement('div')
@@ -378,7 +388,9 @@ function getAllInFavoriteList(){
     if(arrayFromLocalStorage){
         for(let i = 0; i < arrayFromLocalStorage.length; i++){
             //console.log(arrayFromLocalStorage[i].name)
-            characterListFromFavorite(arrayFromLocalStorage[i])
+            // characterListFromFavorite(arrayFromLocalStorage[i])
+
+            playcardMakerFromFavoriteList(arrayFromLocalStorage[i])
         }
     }
 }

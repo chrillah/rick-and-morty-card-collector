@@ -526,7 +526,7 @@ html{
 
 /* PLAYCARDS START */
 .character-container{
-    margin: 0 1rem;
+    margin: 1rem;
     padding: 0 .4rem;
     display: flex;
     flex-direction: column;
@@ -707,6 +707,13 @@ background-color: #23B78C;
 #myChart{
     height: auto;
     width: 100%
+}
+
+#display-character-container{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-wrap: wrap;
 }
 
 /* RICK AND MORTY */
