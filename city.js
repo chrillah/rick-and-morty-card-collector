@@ -229,6 +229,7 @@ function cityElementObjectCreator(data){
     noRemove.style.display = 'none'
     cityInformationContainer.style.display = 'none'
     editButton.style.display = 'none'
+    patchCity.style.display = 'none'
     
     // editCityContainer.style.display = 'none'
     editCityContainer.style.display = 'grid'
@@ -297,52 +298,78 @@ function cityElementObjectCreator(data){
     exitButton.addEventListener('click', exitEdit)
 
     newNameInput.addEventListener('input',()=>{
+        updateReady()
         if(newNameInput){
             newName = newNameInput.value
-        } 
+        }
     })
 
     newPopulationInput.addEventListener('input',()=>{
+        updateReady()
         if(newPopulationInput.value){
             newPopulation = parseInt(newPopulationInput.value)
         }
     })
 
+    function updateReady(){
+        if(newNameInput && parseInt(newPopulationInput.value)){
+            patchCity.style.display = 'grid'
+        }
+        if(!newNameInput.value || !parseInt(newPopulationInput.value)){
+            patchCity.style.display = 'none'
+        }
+    }
+
     // PUT/PATCH - BYT TILL PUT!!!!!!
     patchCity.addEventListener('click', ()=>{
 
         let listName = childFromDisplayListName(data)
+        listName.textContent = newName
 
 
-        function documentations(){
-            if(newPopulation && !newName){
-                cityPopulation.textContent = 'Invånare: '+newPopulation
-                return JSON.stringify({
-                    population : newPopulation
-                })
-            }
-            if(newName && !newPopulation){
-                cityName.textContent = newName
-                listName.textContent = newName
-                return JSON.stringify({
-                    name : newName ,
-                })
-            }
-            if(newName && newPopulation){
-                cityName.textContent = newName
-                cityPopulation.textContent = newPopulation
-                listName.textContent = newName
-                return JSON.stringify({
-                    name : newName ,population : newPopulation
-                })
-            }
-        }
         fetch(url+data.id,{
-            body : documentations(),
-            headers : {'Content-Type' : 'application/json'},
-            method : 'PATCH'
+        body : JSON.stringify({
+        id : data.id, name : newName , population : newPopulation
+        }),
+            headers : {'Content-Type':'application/json'},
+            method : 'PUT'
         })
-        console.log('PATCH')
+        .then(response=>{
+            console.log(response)
+            console.log('PUT That in my mouth')
+        })
+
+
+        // OG
+        // function documentations(){
+        //     if(newPopulation && !newName){
+        //         cityPopulation.textContent = 'Invånare: '+newPopulation
+        //         return JSON.stringify({
+        //             population : newPopulation
+        //         })
+        //     }
+        //     if(newName && !newPopulation){
+        //         cityName.textContent = newName
+        //         listName.textContent = newName
+        //         return JSON.stringify({
+        //             name : newName ,
+        //         })
+        //     }
+        //     if(newName && newPopulation){
+        //         cityName.textContent = newName
+        //         cityPopulation.textContent = newPopulation
+        //         listName.textContent = newName
+        //         return JSON.stringify({
+        //             name : newName ,population : newPopulation
+        //         })
+        //     }
+        // }
+        // fetch(url+data.id,{
+        //     body : documentations(),
+        //     headers : {'Content-Type' : 'application/json'},
+        //     method : 'PATCH'
+        // })
+        // console.log('PATCH')
         //exitEdit()
     })
 
