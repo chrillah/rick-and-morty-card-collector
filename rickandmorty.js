@@ -316,6 +316,7 @@ function characterObjectMaker(data){
 
     // CHARACTER-TOP-CONTAINER
     const favoriteButton = document.createElement('button')
+    const removeFromFavoriteButton = document.createElement('button')
 
     const infoContainer = document.createElement('div')
     const playcardLogoContainer = document.createElement('div')
@@ -336,6 +337,7 @@ function characterObjectMaker(data){
     infoContainer.classList.add('character-info-container')
     imgCharacterContainer.classList.add('img-character-container')
     favoriteButton.classList.add('playcard-btn')
+    removeFromFavoriteButton.classList.add('playcard-btn')
     playcardLogoContainer.classList.add('playcard-logo-container')
     characterName.classList.add('character-name-header')
     playcardLogo.classList.add('playcard-logo')
@@ -346,6 +348,7 @@ function characterObjectMaker(data){
     characterContainer.appendChild(imgCharacterContainer)
     characterContainer.appendChild(infoContainer)
     characterTopContainer.appendChild(favoriteButton)
+    characterTopContainer.appendChild(removeFromFavoriteButton)
     characterTopContainer.appendChild(playcardLogoContainer)
     playcardLogoContainer.appendChild(playcardLogo)
 
@@ -355,9 +358,13 @@ function characterObjectMaker(data){
     infoContainer.appendChild(characterGender)
     infoContainer.appendChild(characterStatus)
 
+    removeFromFavoriteButton.innerHTML = 
+    `<button>X</button>`
     favoriteButton.innerHTML = 
     `<button>&hearts;</button>`
 
+    removeFromFavoriteButton.style.margin = '0'
+    removeFromFavoriteButton.style.padding = '0'
     favoriteButton.style.margin = '0'
     favoriteButton.style.padding = '0'
     characterGender.style.margin = '0'
@@ -375,12 +382,17 @@ function characterObjectMaker(data){
     characterGender.innerHTML = 
     `<p class="character-info">Gender: <span>${data.gender}</span></p>`
 
+    // start condition
+    removeFromFavoriteButton.style.display = 'none'
+
+    // If the card already is in teh list, the favorite-button note visible
     let arrayFromLocalStorage = []
     arrayFromLocalStorage = JSON.parse(localStorage.getItem('favorite'))
 
     for (let i = 0; i < arrayFromLocalStorage.length;i++){
        if(arrayFromLocalStorage[i].id === data.id){
-        favoriteButton.style.display = 'none'
+            favoriteButton.style.display = 'none'
+            removeFromFavoriteButton.style.display = 'grid'
         }
     }
 
@@ -388,6 +400,7 @@ function characterObjectMaker(data){
         favorite.push(data)
         localStorage.setItem('favorite', JSON.stringify(favorite))
         favoriteButton.style.display = 'none'
+        removeFromFavoriteButton.style.display = 'grid'
         // if(arrayFromLocalStorage.find(character =>{
         //     character === data
         // })){
@@ -397,6 +410,32 @@ function characterObjectMaker(data){
         // favorite.push(data)
         // localStorage.setItem('favorite', JSON.stringify(favorite))
         
+    })
+
+    removeFromFavoriteButton.addEventListener('click',() => {
+  
+        let favorite = []
+        favorite = JSON.parse(localStorage.getItem('favorite'))
+    
+        for (let i = 0; i < arrayFromLocalStorage.length;i++){
+            console.log('hej')
+           if(favorite[i].id === data.id){
+                favorite.pop(data)
+                favoriteButton.style.display = 'grid'
+                removeFromFavoriteButton.style.display = 'none'
+            }
+        }
+
+        localStorage.setItem('favorite', JSON.stringify(favorite))
+        // let arrayFromLocalStorage = []
+        // arrayFromLocalStorage = JSON.parse(localStorage.getItem('favorite'))
+    
+        // for (let i = 0; i < arrayFromLocalStorage.length;i++){
+        //    if(arrayFromLocalStorage[i].id === data.id){
+        //         favoriteButton.style.display = 'grid'
+        //         removeFromFavoriteButton.style.display = 'none'
+        //     }
+        // }
     })
 }
 
