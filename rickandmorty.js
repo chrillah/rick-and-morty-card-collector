@@ -27,6 +27,7 @@ const displayCharacterList = document.querySelector('#display-character-list')
 // object container
 const displayEpisodeObject = document.querySelector('#display-episode-object')
 const displayCharacterObject = document.querySelector('#display-character-object')
+const displayCharacterContainer = document.querySelector('#display-character-container')
 
 const mainCharacterGalleriContainer = document.querySelector('#main-character-galleri-container')
 
@@ -162,8 +163,82 @@ function characterListFromFavorite(data){
     favoriteList.appendChild(listItem)
     listItem.addEventListener('click', ()=> {
         console.log(data)
-        characterObjectMaker(data)
+        // characterObjectMaker(data)
+        // PLAYCARDMAKER
+        playcardMakerFromFavoriteList(data)
     })
+}
+
+function playcardMakerFromFavoriteList(data){
+    const characterContainer = document.createElement('div')
+    const characterTopContainer = document.createElement('div')
+
+    // CHARACTER-TOP-CONTAINER
+    //const favoriteButton = document.createElement('button')
+
+    const infoContainer = document.createElement('div')
+    const playcardLogoContainer = document.createElement('div')
+    const characterImg = document.createElement('img')
+    const playcardLogo = document.createElement('img')
+    const imgCharacterContainer = document.createElement('div')
+
+    const characterName = document.createElement('h3')
+
+    const characterSpecies = document.createElement('p')
+    const characterGender = document.createElement('p')
+    const characterStatus = document.createElement('p')
+
+    // Topp
+    characterContainer.classList.add('character-container')
+    characterTopContainer.classList.add('character-top-container')
+
+    infoContainer.classList.add('character-info-container')
+    imgCharacterContainer.classList.add('img-character-container')
+    //favoriteButton.classList.add('playcard-btn')
+    playcardLogoContainer.classList.add('playcard-logo-container')
+    characterName.classList.add('character-name-header')
+    playcardLogo.classList.add('playcard-logo')
+    characterImg.classList.add('character-img')
+
+    displayCharacterContainer.appendChild(characterContainer)
+    characterContainer.appendChild(characterTopContainer)
+    characterContainer.appendChild(imgCharacterContainer)
+    characterContainer.appendChild(infoContainer)
+    //characterTopContainer.appendChild(favoriteButton)
+    characterTopContainer.appendChild(playcardLogoContainer)
+    playcardLogoContainer.appendChild(playcardLogo)
+
+    imgCharacterContainer.appendChild(characterImg)
+    infoContainer.appendChild(characterName)
+    infoContainer.appendChild(characterSpecies)
+    infoContainer.appendChild(characterGender)
+    infoContainer.appendChild(characterStatus)
+
+    // favoriteButton.innerHTML = 
+    // `<button>&hearts;</button>`
+
+    // favoriteButton.style.margin = '0'
+    // favoriteButton.style.padding = '0'
+    characterGender.style.margin = '0'
+    characterStatus.style.margin = '0'
+    characterSpecies.style.margin = '0'
+    playcardLogo.src = 'img/rickandmorty_logo_og.png'
+    characterName.textContent = data.name
+    characterImg.src = data.image
+    characterStatus.innerHTML = 
+    `<p class="character-info">Status: <span>${data.status}</span></p>`
+
+    characterSpecies.innerHTML = 
+    `<p class="character-info">Species: <span>${data.species}</span></p>`
+
+    characterGender.innerHTML = 
+    `<p class="character-info">Gender: <span>${data.gender}</span></p>`
+
+    // favoriteButton.addEventListener('click',() => {
+    //     console.log(data.name + data.id)
+    //     favorite.push(data)
+    //     localStorage.setItem('favorite', JSON.stringify(favorite))
+    // })
 }
 
 // Adds character from episodeObject
@@ -176,11 +251,12 @@ function characterListFromEpisode(data){
     listItem.textContent = data.name
     displayCharacterList.appendChild(listItem)
     listItem.addEventListener('click', ()=> {
-        console.log(data)
         characterObjectMaker(data)
     })
 }
 
+
+// RUNDA KARAKTÄRER I GALLERI
 function characterCardMaker(data){
     // Create
     const characterCardContainer = document.createElement('div')
@@ -220,51 +296,74 @@ function characterCardMaker(data){
     // `<p class="card-text"><span>Status: </span>${data.status}</p>`
 }
 
+// MAKES A PLAYCARD IN EPISODE OBJECT
 function characterObjectMaker(data){
-
-    // TODO favorite character/ episode button
     removeCharacterObject()
 
+    // TOPP
     const characterContainer = document.createElement('div')
-    const infoContainer = document.createElement('div')
-    const imgCharacterContainer = document.createElement('div')
-    const characterImg = document.createElement('img')
+    const characterTopContainer = document.createElement('div')
 
-    const favoriteButton = document.querySelector('p')
+    // CHARACTER-TOP-CONTAINER
+    const favoriteButton = document.createElement('button')
+
+    const infoContainer = document.createElement('div')
+    const playcardLogoContainer = document.createElement('div')
+    const characterImg = document.createElement('img')
+    const playcardLogo = document.createElement('img')
+    const imgCharacterContainer = document.createElement('div')
+
     const characterName = document.createElement('h3')
 
     const characterSpecies = document.createElement('p')
     const characterGender = document.createElement('p')
     const characterStatus = document.createElement('p')
 
+    // Topp
     characterContainer.classList.add('character-container')
+    characterTopContainer.classList.add('character-top-container')
+
     infoContainer.classList.add('character-info-container')
     imgCharacterContainer.classList.add('img-character-container')
-
-    characterName.classList.add('character-name')
-
-    characterSpecies.classList.add('character-info')
-    characterGender.classList.add('character-info')
-    characterStatus.classList.add('character-info')
+    favoriteButton.classList.add('playcard-btn')
+    playcardLogoContainer.classList.add('playcard-logo-container')
+    characterName.classList.add('character-name-header')
+    playcardLogo.classList.add('playcard-logo')
+    characterImg.classList.add('character-img')
 
     displayCharacterObject.appendChild(characterContainer)
-    characterContainer.appendChild(infoContainer)
+    characterContainer.appendChild(characterTopContainer)
     characterContainer.appendChild(imgCharacterContainer)
+    characterContainer.appendChild(infoContainer)
+    characterTopContainer.appendChild(favoriteButton)
+    characterTopContainer.appendChild(playcardLogoContainer)
+    playcardLogoContainer.appendChild(playcardLogo)
+
     imgCharacterContainer.appendChild(characterImg)
     infoContainer.appendChild(characterName)
     infoContainer.appendChild(characterSpecies)
     infoContainer.appendChild(characterGender)
     infoContainer.appendChild(characterStatus)
-    infoContainer.appendChild(favoriteButton)
 
     favoriteButton.innerHTML = 
-    `<p><3</p>`
+    `<button>&hearts;</button>`
 
+    favoriteButton.style.margin = '0'
+    favoriteButton.style.padding = '0'
+    characterGender.style.margin = '0'
+    characterStatus.style.margin = '0'
+    characterSpecies.style.margin = '0'
+    playcardLogo.src = 'img/rickandmorty_logo_og.png'
     characterName.textContent = data.name
     characterImg.src = data.image
-    characterSpecies.textContent = data.species
-    characterGender.textContent = data.gender
-    characterStatus.textContent = data.status
+    characterStatus.innerHTML = 
+    `<p class="character-info">Status: <span>${data.status}</span></p>`
+
+    characterSpecies.innerHTML = 
+    `<p class="character-info">Species: <span>${data.species}</span></p>`
+
+    characterGender.innerHTML = 
+    `<p class="character-info">Gender: <span>${data.gender}</span></p>`
 
     favoriteButton.addEventListener('click',() => {
         console.log(data.name + data.id)

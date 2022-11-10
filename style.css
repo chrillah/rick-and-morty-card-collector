@@ -524,8 +524,14 @@ html{
 }
 
 
-/* PLAYCARDS */
+/* PLAYCARDS START */
 .character-container{
+    margin: 0 1rem;
+    padding: 0 .4rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     border: 5px solid var(--light-green);
     background-color:#F3CC16;
     height: 280px;
@@ -534,6 +540,7 @@ html{
 }
 
 .character-top-container{
+    width: 100%;
     padding: .4rem .4rem;
     display: flex;
     justify-content: space-between;
@@ -570,23 +577,29 @@ html{
 }
 
 .img-character-container{
+    width: 100%;
     border-radius: 10px;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
     height: 100px;
+    background-image: url(img/alp-ancel-WKQt_X-SKFI-unsplash_croped_graffiti.jpg);
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
     overflow: hidden;
     border: 5px solid var(--light-purple);
 }
 
 .character-img{
-    padding-top:4rem;
-    width: 190px;
+    padding-top:1rem;
+    width: 120px;
     height: auto;
 }
 
 .character-info-container{
+    width: 100%;
     border-radius: 10px;
     padding: .5rem;
     margin: .4rem;
@@ -600,8 +613,9 @@ html{
     text-align: center;
     font-family: 'Creepster', cursive;
     font-style: italic;
-    font-size: 1.5rem;
+    font-size: 1rem;
     line-height: 0;
+    word-break: break-all;
 }
 
 .character-info{
@@ -659,6 +673,9 @@ html{
     transform: translate(2px, 2px);
     box-shadow: var(--button-shadow-color) -2px -2px 0 0;
 }
+
+
+/* PLAYCARD STOP*/
 
 .display-main-header-wrapper{
     width: 100%;
