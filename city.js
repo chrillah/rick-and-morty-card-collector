@@ -26,8 +26,8 @@ const nameError = document.querySelector('#name-error')
 const populationError = document.querySelector('#population-error')
 
 // CITY LIST
-const cities = []
-listFromStorage = []
+// const cities = []
+// listFromStorage = []
 
 
 // REMOVE WHEN FINISHED //////////////////////////////////////////
@@ -119,8 +119,8 @@ searchInput.classList.add('user-input')
 backFromAddNew.style.display = 'none'
 backFromSearch.style.display = 'none'
 formPost.style.display = 'none'
-//postCity.style.display = 'grid'
-postCity.style.opacity = 1
+postCity.style.display = 'none'
+//postCity.style.opacity = 1
 //postCity.disabled = true
 
 formSearch.style.display = 'none'
@@ -137,13 +137,13 @@ addErrorMessage.style.display = 'none'
 const url = `https://avancera.app/cities/`
 
 // FILL LOCALSTORAGE WITH CITIES
-fetch(url).then(response => response.json()).then(data => {
-    for (let i = 0; i < data.length; i++){
-        cities.push(data[i])
-    }
+// fetch(url).then(response => response.json()).then(data => {
+//     for (let i = 0; i < data.length; i++){
+//         cities.push(data[i])
+//     }
 
-    //localStorage.setItem('city-element', JSON.stringify(cities))
-})
+//     //localStorage.setItem('city-element', JSON.stringify(cities))
+// })
 //listFromStorage = JSON.parse(localStorage.getItem('city-element'))
 
 /* ------------------------------- */
@@ -526,25 +526,38 @@ function removeChildFromList(child){
 /* EVENTS */
 // TAR EMOT ETT NAMN, VISAR EJ ERROR OM DET FINNS ETT VÄRDE
 nameInput.addEventListener('input', ()=>{
-    console.log(nameError.style.opacity === 0)
-    console.log(nameInput.value)
     if(nameInput.value){
-        nameError.style.opacity = 0
+        nameError.style.display = 'none'
+        displayPostCity()
     }
     if(!nameInput.value){
-        nameError.style.opacity = 1
+        nameError.style.display = 'grid'
+        displayPostCity()
     }
 })
 
 // TAR EMOT ETT NAMN, VISAR EJ ERROR OM DET FINNS ETT VÄRDE
 populationInput.addEventListener('input',()=>{
     if(parseInt(populationInput.value)){
-        populationError.style.opacity = 0
+        populationError.style.display = 'none'
+        displayPostCity()
     } if(!parseInt(populationInput.value)){
-        populationError.style.opacity = 1
+        populationError.style.display = 'grid'
+        displayPostCity()
     }
 })
 
+function displayPostCity(){
+    if(populationError.style.display === 'none' && nameError.style.display === 'none'){
+        postCity.style.display = 'grid'
+    }
+    if(populationError.style.display === 'grid'){
+        postCity.style.display = 'none'
+    }
+    if(nameError.style.display === 'grid'){
+        postCity.style.display = 'none'
+    }
+}
 // function displayError(){
 //     if(!nameInput.value || !populationError.value){
 //         postCity.style.opacity = 0
@@ -563,10 +576,10 @@ backFromAddNew.addEventListener('click', defaultFromAdd)
 
 /* POST */
 formPost.addEventListener('submit',(event)=>{
-    //displayError()
     event.preventDefault()
-    let name = nameInput.value
-    let population = parseInt(populationInput.value)
+    let   name = nameInput.value
+    let   population = parseInt(populationInput.value)
+
     fetch(url,{
         body: JSON.stringify({
             name : name ,
