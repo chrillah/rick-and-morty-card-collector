@@ -30,6 +30,9 @@ const displayCharacterObject = document.querySelector('#display-character-object
 
 const mainCharacterGalleriContainer = document.querySelector('#main-character-galleri-container')
 
+// Append to favorite-list-item
+const favoriteList = document.querySelector('#favorite-list')
+
 /* FUNCTIONS */
 function seasonOneList(){
     removeAllCharacterInList()
@@ -136,7 +139,7 @@ function charactersListFromEpisode(data){
     }
 }
 
-localStorage.setItem('favorite', JSON.stringify(favorite))
+
 
 function characterFinder(characterUrl){
     fetch(characterUrl)
@@ -144,6 +147,20 @@ function characterFinder(characterUrl){
     .then(data => {
         //characterObjectMaker(data)
         characterListFromEpisode(data)
+    })
+}
+
+function characterListFromFavorite(data){
+    const listItem = document.createElement('li')
+    listItem.classList.add('character-list-item')
+    // TEST!/////////////////////
+    listItem.classList.add('character-btn')
+    //const itemInformation = document.createElement('p')
+    listItem.textContent = data.name
+    favoriteList.appendChild(listItem)
+    listItem.addEventListener('click', ()=> {
+        console.log(data)
+        characterObjectMaker(data)
     })
 }
 
@@ -211,7 +228,7 @@ function characterObjectMaker(data){
     const imgCharacterContainer = document.createElement('div')
     const characterImg = document.createElement('img')
 
-    const favoriteButton = document.querySelector('input')
+    const favoriteButton = document.querySelector('p')
     const characterName = document.createElement('h3')
 
     const characterSpecies = document.createElement('p')
@@ -221,7 +238,6 @@ function characterObjectMaker(data){
     characterContainer.classList.add('character-container')
     infoContainer.classList.add('character-info-container')
     imgCharacterContainer.classList.add('img-character-container')
-    //favoriteButton.classList.add('btn')
 
     characterName.classList.add('character-name')
 
@@ -237,10 +253,10 @@ function characterObjectMaker(data){
     infoContainer.appendChild(characterSpecies)
     infoContainer.appendChild(characterGender)
     infoContainer.appendChild(characterStatus)
-    //infoContainer.appendChild(favoriteButton)
+    infoContainer.appendChild(favoriteButton)
 
-    //favoriteButton.type = 'button'
-    //favoriteButton.value = '<3'
+    favoriteButton.innerHTML = 
+    `<p><3</p>`
 
     characterName.textContent = data.name
     characterImg.src = data.image
@@ -248,9 +264,25 @@ function characterObjectMaker(data){
     characterGender.textContent = data.gender
     characterStatus.textContent = data.status
 
-    // favoriteButton.addEventListener('click',() => {
-    //     console.log(data.name + data.id)
-    // })
+    favoriteButton.addEventListener('click',() => {
+        console.log(data.name + data.id)
+        favorite.push(data)
+        localStorage.setItem('favorite', JSON.stringify(favorite))
+    })
+
+    characterName.addEventListener('click', ()=> {
+
+    })
+}
+
+function getAllInFavoriteList(){
+    let arrayFromLocalStorage = []
+    arrayFromLocalStorage = JSON.parse(localStorage.getItem('favorite'))
+    if(arrayFromLocalStorage){
+        for(let i = 0; i < arrayFromLocalStorage.length; i++){
+            console.log(arrayFromLocalStorage[i].name)
+        }
+    }
 }
 
 
@@ -305,6 +337,81 @@ fetch(url+'/character/244,47,282, 154, 598, 252, 171,2').then(response => respon
 ///////////////////////////////////////////
 // CHART /// HTML UTKOMMENTERAD
 
+// function characterChart(array){
+
+//     let characters = ''
+
+//     for (let i = 0; i < array.length; i++){
+//         characters += array[i].id + ','
+//         if(array)
+//     }
+
+//     let input = 'Someone'
+
+// fetch(url+'/character/1,2,3,4,5')
+// .then(response => response.json())
+// .then(result => {
+
+//     /* Chart.js demo */
+//     // selecterar id från html
+//     const ctx = document.getElementById('myChart').getContext('2d')
+
+//     // för att få ut alla data från objektet på api/server/lokal jsonfil behöver vi skapa lådor som just nu är tomma men ska fyllas för att sen arbeta längre ner 
+//     const data = [],
+//     labels = []
+
+
+// // vi ska mata in data, enskilt, i våra tomma lådor(arrayer)
+
+// for (let i = 0; i < result.length; i++){
+
+//     const character = result[i]
+
+//     data.push(character.episode.length)
+//     labels.push(character.name)
+
+// }
+
+// const myChart = new Chart(ctx, {
+    
+//     type: 'polarArea',
+//     data: {
+//         labels: labels,
+//         datasets: [{
+//             label: `${input}`,
+
+//             data: data,
+//             backgroundColor: [
+//                 'rgba(255, 99, 132, 0.2)',
+//                 'rgba(54, 162, 235, 0.2)',
+//                 'rgba(255, 206, 86, 0.2)',
+//                 'rgba(75, 192, 192, 0.2)',
+//                 'rgba(153, 102, 255, 0.2)',
+//                 'rgba(255, 159, 64, 0.2)'
+//             ],
+//             borderColor: [
+//                 'rgba(255, 99, 132, 1)',
+//                 'rgba(54, 162, 235, 1)',
+//                 'rgba(255, 206, 86, 1)',
+//                 'rgba(75, 192, 192, 1)',
+//                 'rgba(153, 102, 255, 1)',
+//                 'rgba(255, 159, 64, 1)'
+//             ],
+//             borderWidth: 1
+//         }]
+//     },
+//     options: {
+//         scales: {
+//             y: {
+//                 beginAtZero: true
+//             }
+//         }
+//     }
+// });
+
+// })
+
+// }
 
 
 let input = 'Someone'
@@ -371,7 +478,4 @@ const myChart = new Chart(ctx, {
 });
 
 })
-
-
-
 

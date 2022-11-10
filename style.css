@@ -290,15 +290,6 @@ html{
     }
 }
 
-/* Chart */
-#display-chart{
-    padding-top: 5rem;
-}
-
-#myChart{
-    height: auto;
-    width: 100%
-}
 
 /* 5-7. Main settings */
 
@@ -599,6 +590,38 @@ html{
 .character-btn:active {
     transform: translate(2px, 2px);
     box-shadow: var(--button-shadow-color) -2px -2px 0 0;
+}
+
+.display-main-header-wrapper{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.header-container{
+    max-width: 800px;
+    width: 100%;
+}
+
+.main-header{
+    font-family: 'Creepster', cursive;
+    font-style: italic;
+    font-size: 4rem;
+    padding: 0;
+    margin: 0;
+}
+
+/* Chart */
+.chart{
+background-color: #23B78C;
+}
+
+
+#myChart{
+    height: auto;
+    width: 100%
 }
 
 /* RICK AND MORTY */
