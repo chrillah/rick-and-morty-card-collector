@@ -169,8 +169,6 @@ function cityElementObjectCreator(data){
     const cityInformationContainer = document.createElement('div')
     const cityName = document.createElement('p')
     const cityPopulation = document.createElement('p')
-
-    // SYNS INTE I BÖRJAN
     const editCityContainer = document.createElement('div')
     // EDITinput //
     const newNameInput = document.createElement('input')
@@ -210,8 +208,8 @@ function cityElementObjectCreator(data){
 
     cityItemContainer.appendChild(itemSelectContainer)
     itemSelectContainer.appendChild(editButton)
-    itemSelectContainer.appendChild(deleteButton)
     itemSelectContainer.appendChild(exitButton)
+    itemSelectContainer.appendChild(deleteButton)
     itemSelectContainer.appendChild(yesRemove)
     itemSelectContainer.appendChild(noRemove)
 
@@ -225,12 +223,15 @@ function cityElementObjectCreator(data){
     editCityContainer.appendChild(patchCity)
 
     // START CONDITIONS //
-    itemSelectContainer.style.opacity = 0;
-    exitButton.style.display = 'none'
+    itemSelectContainer.style.opacity = 1;
+    exitButton.style.display = 'grid'
     yesRemove.style.display = 'none'
     noRemove.style.display = 'none'
+    cityInformationContainer.style.display = 'none'
+    editButton.style.display = 'none'
     
-    editCityContainer.style.display = 'none'
+    // editCityContainer.style.display = 'none'
+    editCityContainer.style.display = 'grid'
 
     // TYPES AND VALUES //
     editButton.type = 'button'
@@ -260,31 +261,26 @@ function cityElementObjectCreator(data){
     // FUNCTION //
     // EXIT EDIT MODE
     function exitEdit(){
+        displayCityContainer.removeChild(cityItemContainer)
         // Displays
-        editButton.style.display = 'grid'
-        cityInformationContainer.style.display = 'grid'
-        deleteButton.style.display = 'block'
+        // editButton.style.display = 'grid'
+        // cityInformationContainer.style.display = 'grid'
+        // deleteButton.style.display = 'block'
 
-        // None-display
-        editCityContainer.style.display = 'none'
-        exitButton.style.display = 'none'
+        // // None-display
+        // editCityContainer.style.display = 'none'
+        // exitButton.style.display = 'none'
     }
     
     // EVENTS //
     // SE ÖVER DETTA!
-    cityItemContainer.addEventListener('mouseover',()=>{
-        itemSelectContainer.style.opacity = 1;
-    })
+    // cityItemContainer.addEventListener('mouseover',()=>{
+    //     itemSelectContainer.style.opacity = 1;
+    // })
 
-    cityItemContainer.addEventListener('mouseout',()=>{
-        itemSelectContainer.style.opacity = 0;
-    })
-
-    cityItemContainer.addEventListener('click', (event)=> {
-        if(!event.target){
-            console.log('YO')
-        }
-    })
+    // cityItemContainer.addEventListener('mouseout',()=>{
+    //     itemSelectContainer.style.opacity = 0;
+    // })
 
     // ENTERING EDIT MODE
     editButton.addEventListener('click',()=>{
@@ -312,10 +308,12 @@ function cityElementObjectCreator(data){
         }
     })
 
-    // PUT/PATCH
+    // PUT/PATCH - BYT TILL PUT!!!!!!
     patchCity.addEventListener('click', ()=>{
 
         let listName = childFromDisplayListName(data)
+
+
         function documentations(){
             if(newPopulation && !newName){
                 cityPopulation.textContent = 'Invånare: '+newPopulation
@@ -345,25 +343,28 @@ function cityElementObjectCreator(data){
             method : 'PATCH'
         })
         console.log('PATCH')
-        exitEdit()
+        //exitEdit()
     })
 
     // ENTERING DELETE MODE
     deleteButton.addEventListener('click', ()=>{
+        exitButton.style.display = 'none'
         deleteButton.style.display = 'none'
         editButton.style.display = 'none'
         yesRemove.style.display = 'block'
         noRemove.style.display = 'block'
+
+        editCityContainer.style.opacity = .2
     })
     
     // DELETE AND EXIT DELETE MODE
     yesRemove.addEventListener('click',()=>{
         displayCityContainer.removeChild(cityItemContainer)
-        for(let i = 0; i < listFromStorage.length; i++){
-            if(listFromStorage[i].name === data.name){
-                listFromStorage.splice(i, data.name)
-            }
-        }
+        // for(let i = 0; i < listFromStorage.length; i++){
+        //     if(listFromStorage[i].name === data.name){
+        //         listFromStorage.splice(i, data.name)
+        //     }
+        // }
 
         fetch(url+data.id,{
         method:'DELETE'
@@ -376,8 +377,10 @@ function cityElementObjectCreator(data){
     
     // EXIT DELETE MODE
     noRemove.addEventListener('click', ()=>{
+        editCityContainer.style.opacity = 1
         deleteButton.style.display = 'block'
-        editButton.style.display = 'block'
+        exitButton.style.display = 'block'
+        editButton.style.display = 'none'
         yesRemove.style.display = 'none'
         noRemove.style.display = 'none'
     })
@@ -558,16 +561,6 @@ function displayPostCity(){
         postCity.style.display = 'none'
     }
 }
-// function displayError(){
-//     if(!nameInput.value || !populationError.value){
-//         postCity.style.opacity = 0
-//         postCity.disabled = true
-//     }
-//     if(nameInput.value && parseInt(populationError.value)){
-//         postCity.style.opacity = 1
-//         postCity.disabled = false
-//     }
-// }
 
 searchAfterCities.addEventListener('click', searchMode)
 backFromSearch.addEventListener('click', defaultFromSearch)
@@ -617,7 +610,6 @@ searchButton.addEventListener('click', ()=>{
 /* ------------------------------- */
 
 // FUNCTION CALLS
-//displayError()
 createCityListItem()
 
 

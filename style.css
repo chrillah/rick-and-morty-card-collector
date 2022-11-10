@@ -1012,6 +1012,12 @@ background-color: #23B78C;
     margin-bottom: 1rem;
 }
 
+input::placeholder{
+    font-size: 1rem;
+    color: black;
+    opacity: .8;
+}
+
 .city-item{
 }
 
