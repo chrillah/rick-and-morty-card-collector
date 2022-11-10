@@ -371,6 +371,8 @@ function cityElementObjectCreator(data){
         // })
         // console.log('PATCH')
         //exitEdit()
+
+        patchCity.style.display = 'none'
     })
 
     // ENTERING DELETE MODE
@@ -382,6 +384,7 @@ function cityElementObjectCreator(data){
         noRemove.style.display = 'block'
 
         editCityContainer.style.opacity = .2
+        editCityContainer.disabled = true;
     })
     
     // DELETE AND EXIT DELETE MODE
@@ -486,7 +489,15 @@ function getCity(value){
     .then(result =>{
         console.log('GET')
         result.forEach(element => {
-            cityElementObjectCreator(element)
+            if(element){
+                cityElementObjectCreator(element)
+            }
+            if(!element){
+                const cityItemContainer = document.createElement('div')
+                displayCityContainer.appendChild(cityItemContainer)
+                cityItemContainer.innerHTML = 
+                `<h5 class="get-error">Oops! Nothing with ${value} here.... </h5>`
+            }
         })
     })
 

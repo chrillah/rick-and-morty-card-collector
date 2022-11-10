@@ -267,7 +267,7 @@ function characterListFromEpisode(data){
 
 
 // RUNDA KARAKTÄRER I GALLERI
-function characterCardMaker(data){
+function characterPresentationMaker(data){
     // Create
     const characterCardContainer = document.createElement('div')
     const characterImgContainer = document.createElement('div')
@@ -375,21 +375,37 @@ function characterObjectMaker(data){
     characterGender.innerHTML = 
     `<p class="character-info">Gender: <span>${data.gender}</span></p>`
 
+    let arrayFromLocalStorage = []
+    arrayFromLocalStorage = JSON.parse(localStorage.getItem('favorite'))
+
+    for (let i = 0; i < arrayFromLocalStorage.length;i++){
+       if(arrayFromLocalStorage[i].id === data.id){
+        favoriteButton.style.display = 'none'
+        }
+    }
+
     favoriteButton.addEventListener('click',() => {
-        console.log(data.name + data.id)
         favorite.push(data)
         localStorage.setItem('favorite', JSON.stringify(favorite))
+        favoriteButton.style.display = 'none'
+        // if(arrayFromLocalStorage.find(character =>{
+        //     character === data
+        // })){
+        //     console.log(data.name + data.id)
+
+        // } else{
+        // favorite.push(data)
+        // localStorage.setItem('favorite', JSON.stringify(favorite))
+        
     })
 }
 
 function getAllInFavoriteList(){
+    clearCardContainer()
     let arrayFromLocalStorage = []
     arrayFromLocalStorage = JSON.parse(localStorage.getItem('favorite'))
     if(arrayFromLocalStorage){
         for(let i = 0; i < arrayFromLocalStorage.length; i++){
-            //console.log(arrayFromLocalStorage[i].name)
-            // characterListFromFavorite(arrayFromLocalStorage[i])
-
             playcardMakerFromFavoriteList(arrayFromLocalStorage[i])
         }
     }
@@ -399,6 +415,13 @@ function getAllInFavoriteList(){
 function removeCharacterObject(){
     while(displayCharacterObject.firstChild){
         displayCharacterObject.firstChild.remove()
+    }
+
+}
+
+function clearCardContainer(){
+    while(displayCharacterContainer.firstChild){
+        displayCharacterContainer.firstChild.remove()
     }
 }
 
@@ -438,7 +461,7 @@ function removeAllCharacterInList(){
 fetch(url+'/character/244,47,282, 154, 598, 252, 171,2').then(response => response.json())
 .then(data =>{
     data.forEach(character => {
-        characterCardMaker(character)
+        characterPresentationMaker(character)
     });
 })
 

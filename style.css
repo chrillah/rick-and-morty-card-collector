@@ -194,7 +194,7 @@ html{
 }
 
 @media (max-width: 600px) {
-    .toggle-btn{
+    /* .toggle-btn{
         display: flex;
     }
 
@@ -223,7 +223,7 @@ html{
 
     .navbar-links.active{
         display: flex;
-    }
+    } */
 }
 
 /* links 
