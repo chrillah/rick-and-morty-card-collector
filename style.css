@@ -21,6 +21,8 @@
 /* 1. Root settings */
 :root{
     --active-btn : #06F3AF;
+    --screen-bg : #000000;
+    --screen-text : #ffffff;
     --whitish : #ffffff;
     --light-purple : #BDB1C0;
     --greenish : #108E74;
@@ -428,6 +430,7 @@ html{
     display: grid;
     grid-template-columns:  repeat(5, auto);
     width: 100%;
+    margin-bottom: 1rem;
 }
 
 .season-btn{
@@ -471,30 +474,29 @@ html{
 } 
 
 .display-result{
+    max-height: 400px;
     margin: 0;
-    gap: 1rem;
     display: grid;
     width: 100%;
     max-width: 800px;
     grid-template-columns: 300px auto;
     grid-template-rows: auto auto;
     grid-template-areas: 
-    ".. header"
     "ep-list objects";
 }
 
 @media (max-width:750px) {
+
     .display-result{
-        grid-template-columns: 300px;
+        gap: 2rem;
+        min-height: 800px;
         grid-template-areas:
         "ep-list" 
-        "header" 
         "objects";
     }
 }
 
 .headers-container{
-    height: 100%;
     border: var(--border-style-1px);
     grid-area: header;
     display: grid;
@@ -508,17 +510,17 @@ html{
 }
 
 #display-episode-list{
-    background-color: black;
+    width: 100%;
+    background-color: var(--screen-bg);
     padding: 0;
     margin: 0;
     border: var(--border-style-1px);
     overflow: scroll;
-    height: 60vh;
+    /*height: 70vh;*/
     display: flex;
     flex-direction: column;
     align-items: center;
     grid-area: ep-list;
-    margin-top: -2rem;
 }
 
 #display-episode-list li{
@@ -526,35 +528,56 @@ html{
     list-style: none;
 }
 
+@media (max-width: 500px) {
+    #display-episode-list{
+        max-height: 100px;
+        flex-direction: row;
+        height: auto;
+    }
+    #display-episode-list li{
+        height: 100%;
+        max-height: 80px;
+    }
+}
 
 .middle-display{
+    background-color: var(--screen-bg);
     width: 100%;
     border: var(--border-style-1px);
     grid-area: objects;
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: auto 200px;
 }
+
+#display-character-object{
+    min-width: 190px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
 
 .display-object{
     width: 100%;
 }
 
 #display-episode-object{
+    color: var(--screen-text);
     padding: .5rem .5rem 0 .5rem;
 }
 
-#display-character-object{
-}
-
-
 /* Display a list of character from episode*/
 #display-character-list{
+    max-width: 200px;
+    background-color: var(--screen-bg);
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     overflow: scroll;
-    height: 70vh;
+    max-height: 400px;
 }
 
 
@@ -573,7 +596,7 @@ html{
 
 .episode-btn{
     background-color: #FFFFFF;
-    max-width: 210px;
+    max-width: 250px;
     font-size: .7rem;
     border: var(--border-style-1px);
     color: var(--font-color-black);
@@ -615,6 +638,7 @@ html{
 }
 
 .episode-name-information{
+    font-size: .7rem;
     padding: 0;
     margin: 0;
     max-width: 150px;
@@ -635,22 +659,24 @@ html{
 
 /* PLAYCARDS START */
 .character-container{
-    margin: 1rem;
     padding: 0 .4rem;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-evenly;
     align-items: center;
     border: 5px solid var(--light-green);
     background-color:#F3CC16;
-    height: 280px;
-    width: 200px;
+    height: 260px;
+    width: 180px;
     border-radius: 20px;
+    overflow: scroll;
 }
 
 .character-top-container{
+    margin-top: -.7rem;
+    margin-bottom: -.7rem;
     width: 100%;
-    padding: .4rem .4rem;
+    padding: .1rem .4rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -728,6 +754,7 @@ html{
 }
 
 .character-info{
+    margin: .1rem 0;
     font-style: italic;
     font-size:  .6rem;
 }
@@ -747,15 +774,11 @@ html{
 .character-btn{
     background-color: var(--button-bg-color);
     border: var(--border-style-1px);
-    /* box-shadow: var(--button-shadow-color) 4px 4px 0 0;
-    -webkit-box-shadow: 4px 4px 0px 0px rgba(0,0,0,1);
-    -moz-box-shadow: 4px 4px 0px 0px rgba(0,0,0,1); */
     color: var(--font-color-black);
     cursor: pointer;
     display: block;
     font-size: .8rem;
     font-weight: bold;
-    /* margin: 1.5rem 0 1rem 0; */
     padding: .4rem .3rem; 
     text-decoration: none;
     user-select: none;
@@ -770,18 +793,18 @@ html{
   
 .character-btn:hover,
 .character-btn:focus {
-    background-color: var(--button-bg-color-focus);
+    background-color: var(--active-btn);
     border: 1px solid #000000;
-    transform: translate(-6px,-6px);
-    box-shadow: var(--border_color) 4px 4px 0 0;
-    -webkit-box-shadow: -4px -4px 0px 0px rgba(0,0,0,1);
-    -moz-box-shadow: -4px -4px 0px 0px rgba(0,0,0,1);
+    transform: translate(-6px, 0px);
+    box-shadow: var(--border_color) 4px 0px 0 0;
+    -webkit-box-shadow: -4px 0px 0px 0px rgba(0,0,0,1);
+    -moz-box-shadow: -4px 0px 0px 0px rgba(0,0,0,1);
 }
 
 .character-btn:active {
-    transform: translate(2px, 2px);
-    box-shadow: var(--button-shadow-color) -2px -2px 0 0;
+    transform: translate(2px, 0px);
 }
+
 
 
 /* PLAYCARD STOP*/
@@ -909,7 +932,7 @@ background-color: #23B78C;
     margin: 1rem 0;
     padding: 1rem;
     border: var(--border-style-1px);
-    min-height: 50vh;
+    /*min-height: 50vh;*/
     display: grid;
     gap: 1rem;
     grid-template-areas: 
