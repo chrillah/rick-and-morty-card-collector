@@ -23,6 +23,7 @@
     --active-btn : #06F3AF;
     --screen-bg : #000000;
     --screen-text : #ffffff;
+    --screen-border : solid 5px #23B78C;
     --whitish : #ffffff;
     --light-purple : #BDB1C0;
     --greenish : #108E74;
@@ -388,7 +389,6 @@ html{
 
 /* Main-content */
 .display-content-wrapper-top{
-    background-color: aliceblue;
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -397,9 +397,30 @@ html{
     padding-bottom: 15vh;
 }
 
+.top-content-wrapper{
+    display: grid;
+    grid-template-columns: repeat(2, auto);
+}
+
+@media(max-width: 750px){
+    .top-content-wrapper{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+}
+
 .season-option-container{
+    text-align: center;
     width: 100%;
-    max-width: 800px;
+}
+
+@media (min-width:750px){
+    .season-option-container{
+        width: 100%;
+        max-width: 800px;
+    }
 }
 
 .season-header{
@@ -414,10 +435,7 @@ html{
 
 }
 
-.top-content-wrapper{
-    display: grid;
-    grid-template-columns: repeat(2, auto);
-}
+
 
 @media(max-width: 400px) {
     .season-header{
@@ -426,11 +444,16 @@ html{
 }
 
 .top-btn-container{
-    max-width: 300px;
     display: grid;
     grid-template-columns:  repeat(5, auto);
     width: 100%;
     margin-bottom: 1rem;
+}
+
+@media(min-width: 750px){
+    .top-btn-container{
+        max-width: 300px;
+    }
 }
 
 .season-btn{
@@ -469,12 +492,18 @@ html{
 }
 
 .season-btn:active {
-    transform: translate(2px, 2px);
-    box-shadow: var(--button-shadow-color) -2px -2px 0 0;
+    transform: translate(0px, 2px);
+    box-shadow: var(--button-shadow-color) 0px 3px 0 0;
 } 
 
 .display-result{
-    max-height: 400px;
+    width: 100%;
+    max-width: 800px;
+    height: 400px;
+    display: grid;
+    grid-template-areas: 
+    "ep-list objects";
+    /* max-height: 400px;
     margin: 0;
     display: grid;
     width: 100%;
@@ -482,42 +511,32 @@ html{
     grid-template-columns: 300px auto;
     grid-template-rows: auto auto;
     grid-template-areas: 
-    "ep-list objects";
+    "ep-list objects"; */
 }
 
 @media (max-width:750px) {
 
     .display-result{
         gap: 2rem;
-        min-height: 800px;
+         /* min-height: 800px;*/
+        height: 800px;
         grid-template-areas:
         "ep-list" 
-        "objects";
+        "objects"; 
     }
 }
 
-.headers-container{
-    border: var(--border-style-1px);
-    grid-area: header;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-}
-
-.display-characters-header{
-    margin: 0;
-    padding: 0;
-    margin-right: auto;
-}
-
 #display-episode-list{
+    border-radius: 10px;
     width: 100%;
     background-color: var(--screen-bg);
     padding: 0;
     margin: 0;
-    border: var(--border-style-1px);
+    border: var(--screen-border);
     overflow: scroll;
     /*height: 70vh;*/
     display: flex;
+    justify-content: center;
     flex-direction: column;
     align-items: center;
     grid-area: ep-list;
@@ -528,7 +547,13 @@ html{
     list-style: none;
 }
 
-@media (max-width: 500px) {
+@media (min-width: 750px){
+    #display-episode-list{
+        max-width: 300px;
+    }
+}
+
+/* @media (max-width: 500px) {
     #display-episode-list{
         max-height: 100px;
         flex-direction: row;
@@ -538,18 +563,53 @@ html{
         height: 100%;
         max-height: 80px;
     }
-}
+} */
 
+/* .headers-container{
+    border: var(--border-style-1px);
+    grid-area: header;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+} */
+
+/* .display-characters-header{
+    margin: 0;
+    padding: 0;
+    margin-right: auto;
+} */
+
+
+/* */
 .middle-display{
+    border: var(--screen-border);
+    border-radius: 10px;
     background-color: var(--screen-bg);
     width: 100%;
-    border: var(--border-style-1px);
     grid-area: objects;
     display: grid;
-    grid-template-columns: auto 200px;
+    grid-template-areas: 
+    "epAndCardobjects char-list";
+    /* display: grid;
+    grid-template-columns: auto 200px; */
+}
+
+.display-object{
+    grid-area: epAndCardobjects;
+    display: grid;
+    grid-template-areas: 
+    "ep-object"
+    "char-object";
+    width: 100%;
+}
+
+#display-episode-object{
+    grid-area: ep-object;
+    color: var(--screen-text);
+    padding: .5rem .5rem 0 .5rem;
 }
 
 #display-character-object{
+    grid-area: char-object;
     min-width: 190px;
     width: 100%;
     display: flex;
@@ -558,18 +618,9 @@ html{
     align-items: center;
 }
 
-
-.display-object{
-    width: 100%;
-}
-
-#display-episode-object{
-    color: var(--screen-text);
-    padding: .5rem .5rem 0 .5rem;
-}
-
 /* Display a list of character from episode*/
 #display-character-list{
+    grid-area: char-list;
     max-width: 200px;
     background-color: var(--screen-bg);
     display: flex;
@@ -578,6 +629,12 @@ html{
     justify-content: center;
     overflow: scroll;
     max-height: 400px;
+}
+
+@media (min-width:750px) {
+    #display-character-list{
+        width: 200px;
+    }
 }
 
 
@@ -591,6 +648,7 @@ html{
 }
 
 .episode-btn p {
+    word-break: break-all;
     margin-left: .3rem;
 }
 
@@ -608,10 +666,15 @@ html{
     touch-action: manipulation;
 }
 
-.episode-btn:active {
+/* .episode-btn:active {
     transform: translate(2px, 2px);
     box-shadow: var(--button-bg-color-focus) -4px -4px 0 0;
-} 
+}  */
+
+/* .episode-btn:active {
+    transform: translate(0px, 2px);
+    box-shadow: var(--button-shadow-color) 0px -3px 0 0;
+}  */
 
 .episode-btn:hover,
 .episode-btn:focus {

@@ -33,6 +33,11 @@ const mainCharacterGalleriContainer = document.querySelector('#main-character-ga
 
 const showMeFavoritButton = document.querySelector('#show-me-favorite-button')
 
+const season1 = document.querySelector('#season-1')
+const season2 = document.querySelector('#season-3')
+const season3 = document.querySelector('#season-3')
+const season4 = document.querySelector('#season-4')
+const season5 = document.querySelector('#season-5')
 
 // Start condition
 showMeFavoritButton.style.opacity = 0;
