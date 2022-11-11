@@ -28,6 +28,7 @@ const displayCharacterList = document.querySelector('#display-character-list')
 const displayEpisodeObject = document.querySelector('#display-episode-object')
 const displayCharacterObject = document.querySelector('#display-character-object')
 const displayCharacterContainer = document.querySelector('#display-character-container')
+const charactersStats = document.querySelector('#characters-stats')
 
 const mainCharacterGalleriContainer = document.querySelector('#main-character-galleri-container')
 
@@ -632,7 +633,7 @@ for (let i = 0; i < result.length; i++){
 
     data.push(character.episode.length)
     labels.push(character.name)
-
+    characterStats(result[i])
 }
 
 const myChart = new Chart(ctx, {
@@ -673,4 +674,32 @@ const myChart = new Chart(ctx, {
 });
 
 })
+
+// Stats characters
+function characterStats(data){
+    // Create
+    const characterCardContainer = document.createElement('div')
+    const characterImgContainer = document.createElement('div')
+    const cardImg = document.createElement('img')
+    const characterCardInformationContainer = document.createElement('div')
+    const characterHeader = document.createElement('p')
+
+    // Classlist
+    characterCardContainer.classList.add('character-card-container')
+    characterImgContainer.classList.add('character-img-container')
+    cardImg.classList.add('card-img')
+    characterCardInformationContainer.classList.add('character-card-information-container')
+    characterHeader.classList.add('character-name-card-header')
+
+    // Append
+    charactersStats.appendChild(characterCardContainer)
+    characterCardContainer.appendChild(characterImgContainer)
+    characterImgContainer.appendChild(cardImg)
+    characterCardContainer.appendChild(characterCardInformationContainer)
+    characterCardInformationContainer.appendChild(characterHeader)
+
+    cardImg.src = data.image
+    characterHeader.innerHTML = 
+    `<h3 class="character-name-header">${data.name}</h3>`
+}
 
