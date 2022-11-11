@@ -540,6 +540,7 @@ html{
     flex-direction: column;
     align-items: center;
     grid-area: ep-list;
+    padding-top: 16rem;
 }
 
 #display-episode-list li{
