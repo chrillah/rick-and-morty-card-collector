@@ -20,6 +20,7 @@
 
 /* 1. Root settings */
 :root{
+    --active-btn : #06F3AF;
     --whitish : #ffffff;
     --light-purple : #BDB1C0;
     --greenish : #108E74;
@@ -28,7 +29,7 @@
     --light-red : #EF5C5E;
     --font-color-black : #000000;
     --bg-color-white : #FFFFFF;
-    --button-bg-color : #ffffff;
+    --button-bg-color : #EDDDDE;
     --button-bg-color-focus : #ffffff;
     --button-shadow-color: #000000;
     --border-style-1px: solid 1px black;
@@ -416,19 +417,6 @@ html{
     grid-template-columns: repeat(2, auto);
 }
 
-.headers-container{
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-}
-
-.display-characters-header{
-    margin: 0;
-    padding: 0;
-    margin-right: auto;
-}
-
-
-
 @media(max-width: 400px) {
     .season-header{
         font-size: 4rem;
@@ -443,8 +431,7 @@ html{
 }
 
 .season-btn{
-    /*background-color: var(--greenish);*/
-    background: none;
+    background-color: var(--button-bg-color);
     border: var(--border-style-1px);
     box-shadow: var(--button-shadow-color) 4px 4px 0 0;
     -webkit-box-shadow: 0px 5px 0px 0px rgba(0,0,0,1);
@@ -470,7 +457,7 @@ html{
   
 .season-btn:hover,
 .season-btn:focus {
-    background-color: var(--button-bg-color-focus);
+    background-color: var(--active-btn);
     border: 1px solid #000000;
     transform: translate(0px, 6px);
     box-shadow: var(--border_color) 7px 7px 0 0;
@@ -484,39 +471,61 @@ html{
 } 
 
 .display-result{
-    margin: 1rem 0;
+    margin: 0;
     gap: 1rem;
     display: grid;
     width: 100%;
     max-width: 800px;
     grid-template-columns: 300px auto;
+    grid-template-rows: auto auto;
     grid-template-areas: 
+    ".. header"
     "ep-list objects";
 }
 
 @media (max-width:750px) {
     .display-result{
-        grid-template-columns: 400px;
-        grid-template-areas: 
+        grid-template-columns: 300px;
+        grid-template-areas:
         "ep-list" 
+        "header" 
         "objects";
     }
 }
 
+.headers-container{
+    height: 100%;
+    border: var(--border-style-1px);
+    grid-area: header;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.display-characters-header{
+    margin: 0;
+    padding: 0;
+    margin-right: auto;
+}
+
 #display-episode-list{
+    background-color: black;
     padding: 0;
     margin: 0;
     border: var(--border-style-1px);
     overflow: scroll;
-    height: 70vh;
-    width: 100%;
-    display: grid;
+    height: 60vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     grid-area: ep-list;
+    margin-top: -2rem;
 }
 
 #display-episode-list li{
+    width: 100%;
     list-style: none;
 }
+
 
 .middle-display{
     width: 100%;
@@ -528,27 +537,43 @@ html{
 
 .display-object{
     width: 100%;
-    display: grid;
 }
 
 #display-episode-object{
-    height: 30vh;
-    padding: 1rem;
+    padding: .5rem .5rem 0 .5rem;
 }
 
 #display-character-object{
-    padding: 1rem;
 }
 
-#display-character-list{
 
+/* Display a list of character from episode*/
+#display-character-list{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     overflow: scroll;
     height: 70vh;
 }
 
 
 /* listItem episode*/
+.episode-information p{
+    padding: 0;
+    margin: 0;
+}
+.episode-information span{
+    font-weight: bold;
+}
+
+.episode-btn p {
+    margin-left: .3rem;
+}
+
 .episode-btn{
+    background-color: #FFFFFF;
+    max-width: 210px;
     font-size: .7rem;
     border: var(--border-style-1px);
     color: var(--font-color-black);
@@ -568,21 +593,31 @@ html{
 .episode-btn:hover,
 .episode-btn:focus {
     font-weight: bolder;
-    background-color: var(--button-bg-color-focus);
+    background-color: var(--active-btn);
     border: var(--border-style-1px);
-    transform: translate(-2px, 2px);
-    box-shadow: var(--border_color) 7px 7px 0 0;
-    -webkit-box-shadow: 2px -2px 0px 0px rgba(0,0,0,1);
-    -moz-box-shadow: 2px -2px 0px 0px rgba(0,0,0,1);
+    transform: translate(6px, 0px);
+    box-shadow: var(--border_color) 0px 0px 0 0;
+    -webkit-box-shadow: 0px 0px 0px 0px rgba(0,0,0,1);
+    -moz-box-shadow: 0px 0px 0px 0px rgba(0,0,0,1);
 }
 
 
 .episode-container{
+    margin-top: -5rem;
+    padding: 0;
+    margin: 0;
+}
+
+.episode-container-top,
+.episode-container-bottom{
+    padding: 0;
+    margin: 0;
 }
 
 .episode-name-information{
+    padding: 0;
+    margin: 0;
     max-width: 150px;
-    font-style: italic;
 }
 
 .episode-name,
@@ -590,6 +625,11 @@ html{
     padding:0;
     margin:0;
     font-size: .6rem;
+}
+
+.episode-name span,
+.episode-airdate span{
+    font-weight: bold;
 }
 
 
@@ -699,13 +739,13 @@ html{
 }
 
 .character-list-item{
-    max-width: 200px;
+    width: 100%;
+    max-width: 150px;
     list-style: none;
 }
 
 .character-btn{
-    /*background-color: var(--greenish);*/
-    background: none;
+    background-color: var(--button-bg-color);
     border: var(--border-style-1px);
     /* box-shadow: var(--button-shadow-color) 4px 4px 0 0;
     -webkit-box-shadow: 4px 4px 0px 0px rgba(0,0,0,1);
@@ -713,10 +753,10 @@ html{
     color: var(--font-color-black);
     cursor: pointer;
     display: block;
-    font-weight: bolder;
+    font-size: .8rem;
+    font-weight: bold;
     /* margin: 1.5rem 0 1rem 0; */
-    padding: 0 10px; 
-    line-height: 2rem;
+    padding: .4rem .3rem; 
     text-decoration: none;
     user-select: none;
     -webkit-user-select: none;

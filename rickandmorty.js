@@ -91,10 +91,19 @@ function episodeListMaker(data){
         const listItem = document.createElement('li')
         const itemInformation = document.createElement('p')
         listItem.classList.add('episode-btn')
-        itemInformation.classList.add('episode-information')
+        //itemInformation.classList.add('episode-information')
 
-        listItem.textContent = data[i].name
-        itemInformation.textContent = 'Episode '+data[i].episode
+
+        itemInformation.style.padding = '0'
+        itemInformation.style.margin = '0'
+        listItem.style.margin = '0'
+        listItem.style.padding = '0'
+
+        listItem.innerHTML = 
+        `<li><p style=" font-weight: bold" >${data[i].name}</p>`
+        itemInformation.innerHTML =
+        `<p class="episode-information" >Episode: <span>${data[i].episode}</span></p>`
+
         listItem.appendChild(itemInformation)
         displayEpisodeList.appendChild(listItem)
 
@@ -115,29 +124,47 @@ function episodeObjectMaker(data){
     const episodeNameInformation = document.createElement('h4')
     const episodeName = document.createElement('p')
     const episodeAirDate = document.createElement('p')
+    const episodeTitle = document.createElement('p')
 
     const charactersContainer = document.createElement('ul')
 
     episodeContainer.classList.add('episode-container')
     episodeBottom.classList.add('episode-container-bottom')
     episodeTop.classList.add('episode-container-top')
-    episodeNameInformation.classList.add('episode-name-information')
-    episodeName.classList.add('episode-name')
-    episodeAirDate.classList.add('episode-airdate')
+    // episodeNameInformation.classList.add('episode-name-information')
+    episodeTitle.classList.add('episode-name')
+    // episodeAirDate.classList.add('episode-airdate')
 
     charactersContainer.id = 'characters-container-in-epo'
 
     displayEpisodeObject.appendChild(episodeContainer)
     episodeContainer.appendChild(episodeTop)
     episodeContainer.appendChild(episodeBottom)
+    episodeTop.appendChild(episodeTitle)
     episodeTop.appendChild(episodeNameInformation)
     episodeTop.appendChild(episodeName)
     episodeBottom.appendChild(episodeAirDate)
     episodeBottom.appendChild(charactersContainer)
 
-    episodeNameInformation.textContent = data.name
-    episodeName.textContent = data.episode
-    episodeAirDate.textContent = data.air_date
+    episodeTitle.style.padding = '0'
+    episodeTitle.style.margin = '0'
+    episodeNameInformation.style.padding = '0'
+    episodeNameInformation.style.margin = '0'
+    episodeName.style.padding = '0'
+    episodeName.style.margin = '0'
+    episodeAirDate.style.padding = '0'
+    episodeAirDate.style.margin = '0'
+
+    episodeTitle.textContent = 'Title'
+
+    episodeNameInformation.innerHTML = 
+    `<h4 class='episode-name-information' > ${data.name}</h4>`
+
+    episodeName.innerHTML = 
+    `<p class="episode-name">Episode: <span>${data.episode}</span></p>`
+
+    episodeAirDate.innerHTML = 
+    `<p class="episode-airdate">Air date: <span>${data.air_date}</span></p>`
 
     removeAllCharacterInList()
     charactersListFromEpisode(data.characters)
