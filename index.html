@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
     <title>Rick and Morty-pediaish</title>
+    <link rel="shortcut icon" href="img/rickandmorty_favicon.png" type="image/x-icon">
 </head>
 <body>
     <div class="nav-wrapper">
@@ -66,34 +67,40 @@
         </div>
         -->
     </div>
+    <!-- WORK AREA -->
     <div class="display-content-wrapper-top">
         <section class="season-option-container">
             <h1 class="season-header">Seasons</h1>
             <h4 class="season-text">Season picker to pick a season, to see who was killed or not, or whatever</h4>
-            <div class="top-btn-container">
-                <input type="button" class="btn" onclick="seasonOneList()" value="1">
-                <input type="button" class="btn" onclick="seasonTwoList()"
-                value="2">
-                <input type="button" class="btn" onclick="seasonThreeList()" value="3">
-                <input type="button" class="btn" onclick="seasonFourList()"
-                value="4">
-                <input type="button" class="btn" onclick="seasonFiveList()"
-                value="5">
+            <div class="top-content-wrapper">
+                <div class="top-btn-container">
+                    <input type="button" class="season-btn" onclick="seasonOneList()" value="1">
+                    <input type="button" class="season-btn" onclick="seasonTwoList()"
+                    value="2">
+                    <input type="button" class="season-btn" onclick="seasonThreeList()" value="3">
+                    <input type="button" class="season-btn" onclick="seasonFourList()"
+                    value="4">
+                    <input type="button" class="season-btn" onclick="seasonFiveList()"
+                    value="5">
+                </div>
+                <section class="headers-container">
+                    <h3 class="display-characters-header">Episode</h3>
+                    <h3 class="display-characters-header">Characters</h3>
+                </section>
             </div>
         </section>
         <div class="display-result">
             <ul id="display-episode-list"></ul>
             <div class="middle-display">
                 <div class="display-object">
-                    <h3 class="display-characters-header">Episode</h3>
                     <div id="display-episode-object"></div>
-                    <h3 class="display-characters-header">Characters</h3>
                     <div id="display-character-object"></div>
                 </div>
                 <div id="display-character-list"></div>
             </div>
         </div>
     </div>
+    <!-- WORK AREA -->
     <div class="display-main-header-wrapper">
         <section class="header-container">
             <h1 class="main-header">

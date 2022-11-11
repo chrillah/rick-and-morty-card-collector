@@ -385,6 +385,7 @@ html{
 
 /* Main-content */
 .display-content-wrapper-top{
+    background-color: aliceblue;
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -410,11 +411,77 @@ html{
 
 }
 
+.top-content-wrapper{
+    display: grid;
+    grid-template-columns: repeat(2, auto);
+}
+
+.headers-container{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.display-characters-header{
+    margin: 0;
+    padding: 0;
+    margin-right: auto;
+}
+
+
+
 @media(max-width: 400px) {
     .season-header{
         font-size: 4rem;
     }
 }
+
+.top-btn-container{
+    max-width: 300px;
+    display: grid;
+    grid-template-columns:  repeat(5, auto);
+    width: 100%;
+}
+
+.season-btn{
+    /*background-color: var(--greenish);*/
+    background: none;
+    border: var(--border-style-1px);
+    box-shadow: var(--button-shadow-color) 4px 4px 0 0;
+    -webkit-box-shadow: 0px 5px 0px 0px rgba(0,0,0,1);
+    -moz-box-shadow: 0px 5px 0px 0px rgba(0,0,0,1);
+    color: var(--font-color-black);
+    cursor: pointer;
+    display: inline-block;
+    font-weight: bolder;
+    /* margin: 1.5rem 0 1rem 0; */
+    padding: 0 10px; 
+    line-height: 2rem;
+    text-align: center;
+    text-decoration: none;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+}
+  
+/* .btn{
+    background-color: var(--button-bg-color);
+    border: var(--border-style);
+} */
+  
+.season-btn:hover,
+.season-btn:focus {
+    background-color: var(--button-bg-color-focus);
+    border: 1px solid #000000;
+    transform: translate(0px, 6px);
+    box-shadow: var(--border_color) 7px 7px 0 0;
+    -webkit-box-shadow: 0px 0px 0px 0px rgba(0,0,0,1);
+    -moz-box-shadow: -4px 4px 0px 0px rgba(0,0,0,1);
+}
+
+.season-btn:active {
+    transform: translate(2px, 2px);
+    box-shadow: var(--button-shadow-color) -2px -2px 0 0;
+} 
 
 .display-result{
     margin: 1rem 0;
@@ -479,6 +546,8 @@ html{
     height: 70vh;
 }
 
+
+/* listItem episode*/
 .episode-btn{
     font-size: .7rem;
     border: var(--border-style-1px);

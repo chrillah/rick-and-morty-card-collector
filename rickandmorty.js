@@ -488,7 +488,7 @@ function removeAllCharacterInList(){
 
 // DISPLAYS THE 4 mOST POPULAR CHARACTERS
 
-fetch(url+'/character/244,47,282, 154, 598, 252, 171,2').then(response => response.json())
+fetch(url+'/character/244, 47, 154, 598, 2').then(response => response.json())
 .then(data =>{
     data.forEach(character => {
         characterPresentationMaker(character)
