@@ -36,7 +36,7 @@ const mainCharacterGalleryContainer = document.querySelector('#main-character-ga
 const showMeFavoritButton = document.querySelector('#show-me-favorite-button')
 
 const season1 = document.querySelector('#season-1')
-const season2 = document.querySelector('#season-3')
+const season2 = document.querySelector('#season-2')
 const season3 = document.querySelector('#season-3')
 const season4 = document.querySelector('#season-4')
 const season5 = document.querySelector('#season-5')
@@ -53,13 +53,24 @@ const favoriteList = document.querySelector('#favorite-list')
 
 /* FUNCTIONS */
 function seasonOneList() {
+    season1.classList.add('btn-pressed')
+    season2.classList.remove('btn-pressed')
+    season3.classList.remove('btn-pressed')
+    season4.classList.remove('btn-pressed')
+    season5.classList.remove('btn-pressed')
     removeAllCharacterInList()
     fetch(url + seasonOne).then(response => response.json())
         .then(data => {
             episodeListMaker(data)
         })
 }
+
 function seasonTwoList() {
+    season2.classList.add('btn-pressed')
+    season1.classList.remove('btn-pressed')
+    season3.classList.remove('btn-pressed')
+    season4.classList.remove('btn-pressed')
+    season5.classList.remove('btn-pressed')
     removeAllCharacterInList()
     fetch(url + seasonTwo).then(response => response.json())
         .then(data => {
@@ -67,6 +78,11 @@ function seasonTwoList() {
         })
 }
 function seasonThreeList() {
+    season3.classList.add('btn-pressed')
+    season1.classList.remove('btn-pressed')
+    season2.classList.remove('btn-pressed')
+    season4.classList.remove('btn-pressed')
+    season5.classList.remove('btn-pressed')
     removeAllCharacterInList()
     fetch(url + seasonThree).then(response => response.json())
         .then(data => {
@@ -74,6 +90,11 @@ function seasonThreeList() {
         })
 }
 function seasonFourList() {
+    season4.classList.add('btn-pressed')
+    season1.classList.remove('btn-pressed')
+    season2.classList.remove('btn-pressed')
+    season3.classList.remove('btn-pressed')
+    season5.classList.remove('btn-pressed')
     removeAllCharacterInList()
     fetch(url + seasonFour).then(response => response.json())
         .then(data => {
@@ -81,6 +102,11 @@ function seasonFourList() {
         })
 }
 function seasonFiveList() {
+    season5.classList.add('btn-pressed')
+    season1.classList.remove('btn-pressed')
+    season2.classList.remove('btn-pressed') 
+    season3.classList.remove('btn-pressed')
+    season4.classList.remove('btn-pressed')
     removeAllCharacterInList()
     fetch(url + seasonFive).then(response => response.json())
         .then(data => {
@@ -450,15 +476,11 @@ function playcardObjectMaker(data) {
             localStorage.setItem('favorite', JSON.stringify(favorite))
         }
 
-
-        //favorite.push(data)
-        // localStorage.setItem('favorite', JSON.stringify(favorite))
         favoriteButton.style.display = 'none'
         removeFromFavoriteButton.style.display = 'grid'
     })
 
-    // If the card already is in teh list, the favorite-button note visible
-    
+    // If the card already is in the list, the favorite-button note visible
     let arrayFromLocalStorage = []
     arrayFromLocalStorage = JSON.parse(localStorage.getItem('favorite'))
     if(arrayFromLocalStorage){
@@ -469,27 +491,12 @@ function playcardObjectMaker(data) {
             }
         }
     }
-
-
-
-
-        // if(favorite){
-        //     let arrayFromLocalStorage = []
-        //     arrayFromLocalStorage = JSON.parse(localStorage.getItem('favorite'))
-        //     for (let i = 0; i < arrayFromLocalStorage.length; i++) {
-        //         if (arrayFromLocalStorage[i].id === data.id) {
-        //             favoriteButton.style.display = 'none'
-        //             removeFromFavoriteButton.style.display = 'grid'
-        //         }
-        //     }
-        // }
-        
-        removeFromFavoriteButton.addEventListener('click', () => {
-            console.log('remove button pressed')
-            let favorite = []
-            favorite = JSON.parse(localStorage.getItem('favorite'))
-            for (let i = 0; i < favorite.length; i++) {
-                if (favorite[i].id === data.id) {
+    removeFromFavoriteButton.addEventListener('click', () => {
+        console.log('remove button pressed')
+        let favorite = []
+        favorite = JSON.parse(localStorage.getItem('favorite'))
+        for (let i = 0; i < favorite.length; i++) {
+            if (favorite[i].id === data.id) {
                 favorite.pop(data)
                 console.log('Borttagen')
             }

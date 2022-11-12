@@ -330,7 +330,7 @@ html{
 }
 
 #main-character-gallery-container{
-    max-width: 800px;
+    max-width: 1000px;
     /* max-width: 1200px;
     display: grid;
     grid-template-columns: repeat(3, 15.3vw);
@@ -341,7 +341,7 @@ html{
     justify-content: space-around;
     align-items: center;
     flex-wrap: wrap; 
-    padding-top: 15vh;
+    padding-top: 2rem;
     padding-bottom: 5rem;
 }
 
@@ -495,7 +495,16 @@ html{
 .season-btn:active {
     transform: translate(0px, 2px);
     box-shadow: var(--button-shadow-color) 0px 3px 0 0;
-} 
+}
+
+.btn-pressed{
+    background-color: var(--active-btn);
+    border: 1px solid #000000;
+    transform: translate(0px, 6px);
+    box-shadow: var(--border_color) 7px 7px 0 0;
+    -webkit-box-shadow: 0px 0px 0px 0px rgba(0,0,0,1);
+    -moz-box-shadow: -4px 4px 0px 0px rgba(0,0,0,1);
+}
 
 
 
