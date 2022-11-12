@@ -22,7 +22,7 @@
 :root{
     --favorite-bg : #000000;
     --active-btn : #06F3AF;
-    --screen-bg : #000000;
+    --screen-bg : #0C0D23;
     --screen-text : #ffffff;
     --screen-border : solid 5px #23B78C;
     --whitish : #ffffff;
@@ -683,12 +683,12 @@ html{
 
 .character-name-header{
     margin:0;
-    padding:.6rem 0;
+    padding:.1rem 0;
     text-align: center;
     font-family: 'Creepster', cursive;
     font-style: italic;
     font-size: 1rem;
-    line-height: 0;
+    line-height: .9rem;
     word-break: break-all;
 }
 
@@ -819,7 +819,7 @@ html{
 }
 
 .chart-container{
-    max-height: 400px;
+    width: 100%;
     border-radius: 10px;
     border: var(--screen-border);
     background-color: var(--screen-bg);

@@ -384,6 +384,7 @@ function characterPresentationMaker(data) {
 
 // MAKES A PLAYCARD IN EPISODE OBJECT
 function playcardObjectMaker(data) {
+
     removeCharacterObject()
 
     // TOPP
@@ -508,6 +509,7 @@ function playcardObjectMaker(data) {
 }
 
 showMeFavoritButton.addEventListener('click', ()=>{
+    console.log(displayCharacterContainer.querySelectorAll('character-name-header'))
     getAllInFavoriteList()
     showMeFavoritButton.value = 'Update' 
 })
