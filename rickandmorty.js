@@ -17,6 +17,7 @@ const episodeListSESix = []
 
 // SAVES FAVOURITE CHARACTERS / EPISODES
 let favorite = []
+// localStorage.setItem('favorite', JSON.stringify(favorite))
 
 
 
@@ -434,41 +435,61 @@ function playcardObjectMaker(data) {
     // start condition
     removeFromFavoriteButton.style.display = 'none'
 
+    favoriteButton.addEventListener('click', () => {
+        // Lägger till
+        console.log('Lägger till')
+        let arrayFromLocalStorage = []
+        arrayFromLocalStorage = JSON.parse(localStorage.getItem('favorite'))
+        
+        if(arrayFromLocalStorage){
+            arrayFromLocalStorage.push(data)
+            localStorage.setItem('favorite', JSON.stringify(arrayFromLocalStorage))
+        }if(!arrayFromLocalStorage){
+            let favorite = []
+            favorite.push(data)
+            localStorage.setItem('favorite', JSON.stringify(favorite))
+        }
+
+
+        //favorite.push(data)
+        // localStorage.setItem('favorite', JSON.stringify(favorite))
+        favoriteButton.style.display = 'none'
+        removeFromFavoriteButton.style.display = 'grid'
+    })
+
     // If the card already is in teh list, the favorite-button note visible
+    
     let arrayFromLocalStorage = []
     arrayFromLocalStorage = JSON.parse(localStorage.getItem('favorite'))
-
-    for (let i = 0; i < arrayFromLocalStorage.length; i++) {
-        if (arrayFromLocalStorage[i].id === data.id) {
-            favoriteButton.style.display = 'none'
-            removeFromFavoriteButton.style.display = 'grid'
+    if(arrayFromLocalStorage){
+        for (let i = 0; i < arrayFromLocalStorage.length; i++) {
+            if (arrayFromLocalStorage[i].id === data.id) {
+                favoriteButton.style.display = 'none'
+                removeFromFavoriteButton.style.display = 'grid'
+            }
         }
     }
 
-    favoriteButton.addEventListener('click', () => {
-        favorite.push(data)
-        localStorage.setItem('favorite', JSON.stringify(favorite))
-        favoriteButton.style.display = 'none'
-        removeFromFavoriteButton.style.display = 'grid'
-        // if(arrayFromLocalStorage.find(character =>{
-        //     character === data
-        // })){
-        //     console.log(data.name + data.id)
 
-        // } else{
-        // favorite.push(data)
-        // localStorage.setItem('favorite', JSON.stringify(favorite))
 
-    })
 
-    removeFromFavoriteButton.addEventListener('click', () => {
-        console.log('remove button pressed')
-        let favorite = []
-        favorite = JSON.parse(localStorage.getItem('favorite'))
-
-        for (let i = 0; i < favorite.length; i++) {
-
-            if (favorite[i].id === data.id) {
+        // if(favorite){
+        //     let arrayFromLocalStorage = []
+        //     arrayFromLocalStorage = JSON.parse(localStorage.getItem('favorite'))
+        //     for (let i = 0; i < arrayFromLocalStorage.length; i++) {
+        //         if (arrayFromLocalStorage[i].id === data.id) {
+        //             favoriteButton.style.display = 'none'
+        //             removeFromFavoriteButton.style.display = 'grid'
+        //         }
+        //     }
+        // }
+        
+        removeFromFavoriteButton.addEventListener('click', () => {
+            console.log('remove button pressed')
+            let favorite = []
+            favorite = JSON.parse(localStorage.getItem('favorite'))
+            for (let i = 0; i < favorite.length; i++) {
+                if (favorite[i].id === data.id) {
                 favorite.pop(data)
                 console.log('Borttagen')
             }
