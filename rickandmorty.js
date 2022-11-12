@@ -219,7 +219,8 @@ function playcardMakerFromFavoriteList(data) {
     const characterTopContainer = document.createElement('div')
 
     // CHARACTER-TOP-CONTAINER
-    //const favoriteButton = document.createElement('button')
+    // const favoriteButton = document.createElement('button')
+    // const removeFromFavoriteButton = document.createElement('button')
 
     const infoContainer = document.createElement('div')
     const playcardLogoContainer = document.createElement('div')
@@ -239,7 +240,8 @@ function playcardMakerFromFavoriteList(data) {
 
     infoContainer.classList.add('character-info-container')
     imgCharacterContainer.classList.add('img-character-container')
-    //favoriteButton.classList.add('playcard-btn')
+    // favoriteButton.classList.add('playcard-btn')
+    // removeFromFavoriteButton.classList.add('playcard-btn')
     playcardLogoContainer.classList.add('playcard-logo-container')
     characterName.classList.add('character-name-header')
     playcardLogo.classList.add('playcard-logo')
@@ -249,7 +251,8 @@ function playcardMakerFromFavoriteList(data) {
     characterContainer.appendChild(characterTopContainer)
     characterContainer.appendChild(imgCharacterContainer)
     characterContainer.appendChild(infoContainer)
-    //characterTopContainer.appendChild(favoriteButton)
+    // characterTopContainer.appendChild(favoriteButton)
+    // characterTopContainer.appendChild(removeFromFavoriteButton)
     characterTopContainer.appendChild(playcardLogoContainer)
     playcardLogoContainer.appendChild(playcardLogo)
 
@@ -259,9 +262,13 @@ function playcardMakerFromFavoriteList(data) {
     infoContainer.appendChild(characterGender)
     infoContainer.appendChild(characterStatus)
 
-    // favoriteButton.innerHTML = 
-    // `<button>&hearts;</button>`
+    // removeFromFavoriteButton.innerHTML =
+    //     `<button>X</button>`
+    // favoriteButton.innerHTML =
+    //     `<button>&hearts;</button>`
 
+    // removeFromFavoriteButton.style.margin = '0'
+    // removeFromFavoriteButton.style.padding = '0'
     // favoriteButton.style.margin = '0'
     // favoriteButton.style.padding = '0'
     characterGender.style.margin = '0'
@@ -279,9 +286,27 @@ function playcardMakerFromFavoriteList(data) {
     characterGender.innerHTML =
         `<p class="character-info">Gender: <span>${data.gender}</span></p>`
 
-    // favoriteButton.addEventListener('click',() => {
-    //     console.log(data.name + data.id)
+    // start condition
+    // removeFromFavoriteButton.style.display = 'none'
+    // favoriteButton.addEventListener('click', () => {
     //     favorite.push(data)
+    //     localStorage.setItem('favorite', JSON.stringify(favorite))
+    //     favoriteButton.style.display = 'none'
+    //     removeFromFavoriteButton.style.display = 'grid'
+    // })
+    
+    // removeFromFavoriteButton.addEventListener('click', () => {
+    //     console.log('remove button pressed')
+    //     let favorite = []
+    //     favorite = JSON.parse(localStorage.getItem('favorite'))
+    //     for (let i = 0; i < favorite.length; i++) {
+    //         if (favorite[i].id === data.id) {
+    //             favorite.pop(data)
+    //             console.log('Borttagen')
+    //         }
+    //     }
+    //     favoriteButton.style.display = 'grid'
+    //     removeFromFavoriteButton.style.display = 'none'
     //     localStorage.setItem('favorite', JSON.stringify(favorite))
     // })
 }
@@ -296,7 +321,7 @@ function characterListFromEpisode(data) {
     listItem.textContent = data.name
     displayCharacterList.appendChild(listItem)
     listItem.addEventListener('click', () => {
-        characterObjectMaker(data)
+        playcardObjectMaker(data)
     })
 }
 
@@ -331,7 +356,7 @@ function characterPresentationMaker(data) {
 }
 
 // MAKES A PLAYCARD IN EPISODE OBJECT
-function characterObjectMaker(data) {
+function playcardObjectMaker(data) {
     removeCharacterObject()
 
     // TOPP
@@ -453,6 +478,11 @@ function characterObjectMaker(data) {
         localStorage.setItem('favorite', JSON.stringify(favorite))
     })
 }
+
+showMeFavoritButton.addEventListener('click', ()=>{
+    getAllInFavoriteList()
+    showMeFavoritButton.value = 'Update' 
+})
 
 function getAllInFavoriteList() {
     clearCardContainer()

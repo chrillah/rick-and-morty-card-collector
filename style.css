@@ -767,7 +767,9 @@ html{
     /* display: flex;
     justify-content: space-around;
     align-items: center; */
-    background-color: var(--favorite-bg);
+    background-color: var(--screen-bg);
+    border-radius: 10px;
+    border: var(--screen-border)
 }
 
 
