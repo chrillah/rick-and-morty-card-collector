@@ -30,7 +30,7 @@ const displayCharacterObject = document.querySelector('#display-character-object
 const displayCharacterContainer = document.querySelector('#display-character-container')
 const charactersStats = document.querySelector('#characters-stats')
 
-const mainCharacterGalleriContainer = document.querySelector('#main-character-galleri-container')
+const mainCharacterGalleryContainer = document.querySelector('#main-character-gallery-container')
 
 const showMeFavoritButton = document.querySelector('#show-me-favorite-button')
 
@@ -43,7 +43,7 @@ const season5 = document.querySelector('#season-5')
 // Start condition
 showMeFavoritButton.style.opacity = 0;
 
-if(favorite){
+if (favorite) {
     showMeFavoritButton.style.opacity = 1
 }
 
@@ -51,48 +51,48 @@ if(favorite){
 const favoriteList = document.querySelector('#favorite-list')
 
 /* FUNCTIONS */
-function seasonOneList(){
+function seasonOneList() {
     removeAllCharacterInList()
-    fetch(url+seasonOne).then(response => response.json())
-    .then(data=>{
-        episodeListMaker(data)
-    })
+    fetch(url + seasonOne).then(response => response.json())
+        .then(data => {
+            episodeListMaker(data)
+        })
 }
-function seasonTwoList(){
+function seasonTwoList() {
     removeAllCharacterInList()
-    fetch(url+seasonTwo).then(response => response.json())
-    .then(data=>{
-        episodeListMaker(data)
-    })
+    fetch(url + seasonTwo).then(response => response.json())
+        .then(data => {
+            episodeListMaker(data)
+        })
 }
-function seasonThreeList(){
+function seasonThreeList() {
     removeAllCharacterInList()
-    fetch(url+seasonThree).then(response => response.json())
-    .then(data=>{
-        episodeListMaker(data)
-    })
+    fetch(url + seasonThree).then(response => response.json())
+        .then(data => {
+            episodeListMaker(data)
+        })
 }
-function seasonFourList(){
+function seasonFourList() {
     removeAllCharacterInList()
-    fetch(url+seasonFour).then(response => response.json())
-    .then(data=>{
-        episodeListMaker(data)
-    })
+    fetch(url + seasonFour).then(response => response.json())
+        .then(data => {
+            episodeListMaker(data)
+        })
 }
-function seasonFiveList(){
+function seasonFiveList() {
     removeAllCharacterInList()
-    fetch(url+seasonFive).then(response => response.json())
-    .then(data=>{
-        episodeListMaker(data)
-    })
+    fetch(url + seasonFive).then(response => response.json())
+        .then(data => {
+            episodeListMaker(data)
+        })
 }
 
-function episodeListMaker(data){
+function episodeListMaker(data) {
     removeCharacterObject()
     removeEpisodeObject()
     removeAllInList()
 
-    for(let i = 0; i < data.length; i++){
+    for (let i = 0; i < data.length; i++) {
 
         const listItem = document.createElement('li')
         const itemInformation = document.createElement('p')
@@ -105,15 +105,15 @@ function episodeListMaker(data){
         listItem.style.margin = '0'
         listItem.style.padding = '0'
 
-        listItem.innerHTML = 
-        `<li><p style=" font-weight: bold" >${data[i].name}</p>`
+        listItem.innerHTML =
+            `<li><p style=" font-weight: bold" >${data[i].name}</p>`
         itemInformation.innerHTML =
-        `<p class="episode-information" >Episode: <span>${data[i].episode}</span></p>`
+            `<p class="episode-information" >Episode: <span>${data[i].episode}</span></p>`
 
         listItem.appendChild(itemInformation)
         displayEpisodeList.appendChild(listItem)
 
-        listItem.addEventListener('click',()=>{
+        listItem.addEventListener('click', () => {
             removeCharacterObject()
             removeEpisodeObject()
             episodeObjectMaker(data[i])
@@ -122,7 +122,7 @@ function episodeListMaker(data){
 }
 
 // EPO
-function episodeObjectMaker(data){
+function episodeObjectMaker(data) {
 
     const episodeContainer = document.createElement('div')
     const episodeTop = document.createElement('div')
@@ -163,35 +163,35 @@ function episodeObjectMaker(data){
 
     episodeTitle.textContent = 'Title'
 
-    episodeNameInformation.innerHTML = 
-    `<h4 class='episode-name-information' > ${data.name}</h4>`
+    episodeNameInformation.innerHTML =
+        `<h4 class='episode-name-information' > ${data.name}</h4>`
 
-    episodeName.innerHTML = 
-    `<p class="episode-name">Episode: <span>${data.episode}</span></p>`
+    episodeName.innerHTML =
+        `<p class="episode-name">Episode: <span>${data.episode}</span></p>`
 
-    episodeAirDate.innerHTML = 
-    `<p class="episode-airdate">Air date: <span>${data.air_date}</span></p>`
+    episodeAirDate.innerHTML =
+        `<p class="episode-airdate">Air date: <span>${data.air_date}</span></p>`
 
     removeAllCharacterInList()
     charactersListFromEpisode(data.characters)
 }
 
 // LOOPS THROUGH CHARACTER LIST FROM EPISODE
-function charactersListFromEpisode(data){
-    for(let i = 0; i < data.length;i++){
+function charactersListFromEpisode(data) {
+    for (let i = 0; i < data.length; i++) {
         characterFinder(data[i])
     }
 }
 
 
 
-function characterFinder(characterUrl){
+function characterFinder(characterUrl) {
     fetch(characterUrl)
-    .then(response => response.json())
-    .then(data => {
-        //characterObjectMaker(data)
-        characterListFromEpisode(data)
-    })
+        .then(response => response.json())
+        .then(data => {
+            //characterObjectMaker(data)
+            characterListFromEpisode(data)
+        })
 }
 
 
@@ -212,7 +212,7 @@ function characterFinder(characterUrl){
 //     })
 // }
 
-function playcardMakerFromFavoriteList(data){
+function playcardMakerFromFavoriteList(data) {
     const characterContainer = document.createElement('div')
     const characterTopContainer = document.createElement('div')
 
@@ -268,14 +268,14 @@ function playcardMakerFromFavoriteList(data){
     playcardLogo.src = 'img/rickandmorty_logo_og.png'
     characterName.textContent = data.name
     characterImg.src = data.image
-    characterStatus.innerHTML = 
-    `<p class="character-info">Status: <span>${data.status}</span></p>`
+    characterStatus.innerHTML =
+        `<p class="character-info">Status: <span>${data.status}</span></p>`
 
-    characterSpecies.innerHTML = 
-    `<p class="character-info">Species: <span>${data.species}</span></p>`
+    characterSpecies.innerHTML =
+        `<p class="character-info">Species: <span>${data.species}</span></p>`
 
-    characterGender.innerHTML = 
-    `<p class="character-info">Gender: <span>${data.gender}</span></p>`
+    characterGender.innerHTML =
+        `<p class="character-info">Gender: <span>${data.gender}</span></p>`
 
     // favoriteButton.addEventListener('click',() => {
     //     console.log(data.name + data.id)
@@ -285,7 +285,7 @@ function playcardMakerFromFavoriteList(data){
 }
 
 // Adds character from episodeObject
-function characterListFromEpisode(data){
+function characterListFromEpisode(data) {
     const listItem = document.createElement('li')
     listItem.classList.add('character-list-item')
     // TEST!/////////////////////
@@ -293,54 +293,43 @@ function characterListFromEpisode(data){
     //const itemInformation = document.createElement('p')
     listItem.textContent = data.name
     displayCharacterList.appendChild(listItem)
-    listItem.addEventListener('click', ()=> {
+    listItem.addEventListener('click', () => {
         characterObjectMaker(data)
     })
 }
 
 
-// RUNDA KARAKTÄRER I GALLERI
-function characterPresentationMaker(data){
+// Presentation gallery
+function characterPresentationMaker(data) {
     // Create
     const characterCardContainer = document.createElement('div')
     const characterImgContainer = document.createElement('div')
     const cardImg = document.createElement('img')
     const characterCardInformationContainer = document.createElement('div')
     const characterHeader = document.createElement('p')
-    const genderText = document.createElement('p')
-    const statusText = document.createElement('p')
 
     // Classlist
-    characterCardContainer.classList.add('character-card-container')
-    characterImgContainer.classList.add('character-img-container')
+    characterCardContainer.classList.add('presentation-container')
+    characterImgContainer.classList.add('presentation-img-container')
     cardImg.classList.add('card-img')
-    characterCardInformationContainer.classList.add('character-card-information-container')
-    characterHeader.classList.add('character-name-card-header')
-    genderText.classList.add('card-text')
-    statusText.classList.add('card-text')
+    characterCardInformationContainer.classList.add('presentation-information-container')
+    characterHeader.classList.add('presentation-header')
 
     // Append
-    mainCharacterGalleriContainer.appendChild(characterCardContainer)
+    mainCharacterGalleryContainer.appendChild(characterCardContainer)
     characterCardContainer.appendChild(characterImgContainer)
     characterImgContainer.appendChild(cardImg)
     characterCardContainer.appendChild(characterCardInformationContainer)
     characterCardInformationContainer.appendChild(characterHeader)
-    characterCardInformationContainer.appendChild(genderText)
-    characterCardInformationContainer.appendChild(statusText)
+    characterCardInformationContainer.appendChild
 
     cardImg.src = data.image
-    // cardImg.innerHTML = 
-    // `<img src=${data.image} alt="" class="card-img" >`
-    characterHeader.innerHTML = 
-    `<h3 class="character-name-header">${data.name}</h3>`
-    // genderText.innerHTML = 
-    // `<p class="card-text"><span>Gender: </span>${data.gender}</p>`
-    // statusText.innerHTML = 
-    // `<p class="card-text"><span>Status: </span>${data.status}</p>`
+    characterHeader.innerHTML =
+        `<h3 class="presentation-header">${data.name}</h3>`
 }
 
 // MAKES A PLAYCARD IN EPISODE OBJECT
-function characterObjectMaker(data){
+function characterObjectMaker(data) {
     removeCharacterObject()
 
     // TOPP
@@ -391,10 +380,10 @@ function characterObjectMaker(data){
     infoContainer.appendChild(characterGender)
     infoContainer.appendChild(characterStatus)
 
-    removeFromFavoriteButton.innerHTML = 
-    `<button>X</button>`
-    favoriteButton.innerHTML = 
-    `<button>&hearts;</button>`
+    removeFromFavoriteButton.innerHTML =
+        `<button>X</button>`
+    favoriteButton.innerHTML =
+        `<button>&hearts;</button>`
 
     removeFromFavoriteButton.style.margin = '0'
     removeFromFavoriteButton.style.padding = '0'
@@ -406,14 +395,14 @@ function characterObjectMaker(data){
     playcardLogo.src = 'img/rickandmorty_logo_og.png'
     characterName.textContent = data.name
     characterImg.src = data.image
-    characterStatus.innerHTML = 
-    `<p class="character-info">Status: <span>${data.status}</span></p>`
+    characterStatus.innerHTML =
+        `<p class="character-info">Status: <span>${data.status}</span></p>`
 
-    characterSpecies.innerHTML = 
-    `<p class="character-info">Species: <span>${data.species}</span></p>`
+    characterSpecies.innerHTML =
+        `<p class="character-info">Species: <span>${data.species}</span></p>`
 
-    characterGender.innerHTML = 
-    `<p class="character-info">Gender: <span>${data.gender}</span></p>`
+    characterGender.innerHTML =
+        `<p class="character-info">Gender: <span>${data.gender}</span></p>`
 
     // start condition
     removeFromFavoriteButton.style.display = 'none'
@@ -422,14 +411,14 @@ function characterObjectMaker(data){
     let arrayFromLocalStorage = []
     arrayFromLocalStorage = JSON.parse(localStorage.getItem('favorite'))
 
-    for (let i = 0; i < arrayFromLocalStorage.length;i++){
-       if(arrayFromLocalStorage[i].id === data.id){
+    for (let i = 0; i < arrayFromLocalStorage.length; i++) {
+        if (arrayFromLocalStorage[i].id === data.id) {
             favoriteButton.style.display = 'none'
             removeFromFavoriteButton.style.display = 'grid'
         }
     }
 
-    favoriteButton.addEventListener('click',() => {
+    favoriteButton.addEventListener('click', () => {
         favorite.push(data)
         localStorage.setItem('favorite', JSON.stringify(favorite))
         favoriteButton.style.display = 'none'
@@ -442,17 +431,17 @@ function characterObjectMaker(data){
         // } else{
         // favorite.push(data)
         // localStorage.setItem('favorite', JSON.stringify(favorite))
-        
+
     })
 
-    removeFromFavoriteButton.addEventListener('click',() => {
+    removeFromFavoriteButton.addEventListener('click', () => {
         console.log('remove button pressed')
         let favorite = []
         favorite = JSON.parse(localStorage.getItem('favorite'))
-    
-        for (let i = 0; i < favorite.length;i++){
 
-           if(favorite[i].id === data.id){
+        for (let i = 0; i < favorite.length; i++) {
+
+            if (favorite[i].id === data.id) {
                 favorite.pop(data)
                 console.log('Borttagen')
             }
@@ -463,45 +452,45 @@ function characterObjectMaker(data){
     })
 }
 
-function getAllInFavoriteList(){
+function getAllInFavoriteList() {
     clearCardContainer()
     let arrayFromLocalStorage = []
     arrayFromLocalStorage = JSON.parse(localStorage.getItem('favorite'))
-    if(arrayFromLocalStorage){
-        for(let i = 0; i < arrayFromLocalStorage.length; i++){
+    if (arrayFromLocalStorage) {
+        for (let i = 0; i < arrayFromLocalStorage.length; i++) {
             playcardMakerFromFavoriteList(arrayFromLocalStorage[i])
         }
     }
 }
 
 
-function removeCharacterObject(){
-    while(displayCharacterObject.firstChild){
+function removeCharacterObject() {
+    while (displayCharacterObject.firstChild) {
         displayCharacterObject.firstChild.remove()
     }
 
 }
 
-function clearCardContainer(){
-    while(displayCharacterContainer.firstChild){
+function clearCardContainer() {
+    while (displayCharacterContainer.firstChild) {
         displayCharacterContainer.firstChild.remove()
     }
 }
 
-function removeEpisodeObject(){
-    while(displayEpisodeObject.firstChild){
+function removeEpisodeObject() {
+    while (displayEpisodeObject.firstChild) {
         displayEpisodeObject.firstChild.remove()
     }
 }
 
-function removeAllInList(){
-    while(displayEpisodeList.firstChild){
+function removeAllInList() {
+    while (displayEpisodeList.firstChild) {
         displayEpisodeList.firstChild.remove()
     }
 }
 
-function removeAllCharacterInList(){
-    while(displayCharacterList.firstChild){
+function removeAllCharacterInList() {
+    while (displayCharacterList.firstChild) {
         displayCharacterList.firstChild.remove()
     }
 }
@@ -521,12 +510,12 @@ function removeAllCharacterInList(){
 
 // DISPLAYS THE 4 mOST POPULAR CHARACTERS
 
-fetch(url+'/character/244, 47, 154, 598, 2').then(response => response.json())
-.then(data =>{
-    data.forEach(character => {
-        characterPresentationMaker(character)
-    });
-})
+fetch(url + '/character/244, 47, 154, 598, 2').then(response => response.json())
+    .then(data => {
+        data.forEach(character => {
+            characterPresentationMaker(character)
+        });
+    })
 
 
 
@@ -569,7 +558,7 @@ fetch(url+'/character/244, 47, 154, 598, 2').then(response => response.json())
 // }
 
 // const myChart = new Chart(ctx, {
-    
+
 //     type: 'polarArea',
 //     data: {
 //         labels: labels,
@@ -612,94 +601,97 @@ fetch(url+'/character/244, 47, 154, 598, 2').then(response => response.json())
 
 let input = 'Someone'
 
-fetch(url+'/character/1,2,3,4,5')
-.then(response => response.json())
-.then(result => {
+fetch(url + '/character/1,2,3,4,5')
+    .then(response => response.json())
+    .then(result => {
 
-    /* Chart.js demo */
-    // selecterar id från html
-    const ctx = document.getElementById('myChart').getContext('2d')
+        /* Chart.js demo */
+        // selecterar id från html
+        const ctx = document.getElementById('myChart').getContext('2d')
 
-    // för att få ut alla data från objektet på api/server/lokal jsonfil behöver vi skapa lådor som just nu är tomma men ska fyllas för att sen arbeta längre ner 
-    const data = [],
-    labels = []
+        // för att få ut alla data från objektet på api/server/lokal jsonfil behöver vi skapa lådor som just nu är tomma men ska fyllas för att sen arbeta längre ner 
+        const data = [],
+            labels = []
 
 
-// vi ska mata in data, enskilt, i våra tomma lådor(arrayer)
+        // vi ska mata in data, enskilt, i våra tomma lådor(arrayer)
 
-for (let i = 0; i < result.length; i++){
+        for (let i = 0; i < result.length; i++) {
 
-    const character = result[i]
+            const character = result[i]
 
-    data.push(character.episode.length)
-    labels.push(character.name)
-    characterStats(result[i])
-}
-
-const myChart = new Chart(ctx, {
-    
-    type: 'polarArea',
-    data: {
-        labels: labels,
-        datasets: [{
-            label: `${input}`,
-
-            data: data,
-            backgroundColor: [
-                'rgba(255, 99, 132, 0.2)',
-                'rgba(54, 162, 235, 0.2)',
-                'rgba(255, 206, 86, 0.2)',
-                'rgba(75, 192, 192, 0.2)',
-                'rgba(153, 102, 255, 0.2)',
-                'rgba(255, 159, 64, 0.2)'
-            ],
-            borderColor: [
-                'rgba(255, 99, 132, 1)',
-                'rgba(54, 162, 235, 1)',
-                'rgba(255, 206, 86, 1)',
-                'rgba(75, 192, 192, 1)',
-                'rgba(153, 102, 255, 1)',
-                'rgba(255, 159, 64, 1)'
-            ],
-            borderWidth: 1
-        }]
-    },
-    options: {
-        scales: {
-            y: {
-                beginAtZero: true
-            }
+            data.push(character.episode.length)
+            labels.push(character.name)
+            characterStats(result[i])
         }
-    }
-});
 
-})
+        const myChart = new Chart(ctx, {
+
+            type: 'polarArea',
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: `${input}`,
+
+                    data: data,
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(153, 102, 255, 0.2)',
+                        'rgba(255, 159, 64, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 159, 64, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+
+    })
 
 // Stats characters
-function characterStats(data){
+function characterStats(data) {
     // Create
-    const characterCardContainer = document.createElement('div')
-    const characterImgContainer = document.createElement('div')
-    const cardImg = document.createElement('img')
-    const characterCardInformationContainer = document.createElement('div')
-    const characterHeader = document.createElement('p')
+
+    const statsWrapper = document.createElement('div')
+    const statsImgContainer = document.createElement('div')
+    const statsImg = document.createElement('img')
+    const statsHeaderContainer = document.createElement('div')
+    const statsHeader = document.createElement('p')
 
     // Classlist
-    characterCardContainer.classList.add('character-card-container')
-    characterImgContainer.classList.add('character-img-container')
-    cardImg.classList.add('card-img')
-    characterCardInformationContainer.classList.add('character-card-information-container')
-    characterHeader.classList.add('character-name-card-header')
+    statsWrapper.classList.add
+    ('stats-wrapper')
+    statsImgContainer.classList.add('stats-img-container')
+    statsImg.classList.add('stats-img')
+
+    statsHeaderContainer.classList.add('stats-header-container')
+    statsHeader.classList.add('stats-header')
 
     // Append
-    charactersStats.appendChild(characterCardContainer)
-    characterCardContainer.appendChild(characterImgContainer)
-    characterImgContainer.appendChild(cardImg)
-    characterCardContainer.appendChild(characterCardInformationContainer)
-    characterCardInformationContainer.appendChild(characterHeader)
+    charactersStats.appendChild(statsWrapper)
+    statsWrapper.appendChild(statsImgContainer)
+    statsImgContainer.appendChild(statsImg)
+    statsWrapper.appendChild(statsHeaderContainer)
+    statsHeaderContainer.appendChild(statsHeader)
 
-    cardImg.src = data.image
-    characterHeader.innerHTML = 
-    `<h3 class="character-name-header">${data.name}</h3>`
+    statsImg.src = data.image
+    statsHeader.innerHTML =
+        `<p class="stats-header">${data.name}</p>`
 }
 

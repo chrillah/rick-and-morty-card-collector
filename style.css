@@ -328,7 +328,7 @@ html{
     }
 }
 
-#main-character-galleri-container{
+#main-character-gallery-container{
     max-width: 800px;
     /* max-width: 1200px;
     display: grid;
@@ -344,21 +344,20 @@ html{
     padding-bottom: 5rem;
 }
 
-.character-card-container{
+.presentation-container{
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
 }
 
-.character-img-container{
+.presentation-img-container{
 }
 
 .card-img{
     clip-path: circle(50% at 50% 50%);
     max-width: 180px;
     background-color: #EF5C5E;
-    
 }
 
 .card-img img{
@@ -366,11 +365,12 @@ html{
     height: auto;
 }
 
-.character-card-information-container{
+.presentation-information-container{
     /* padding: .3rem 1rem 1rem 1rem; */
 }
 
-.character-card-name-header{
+
+.presentation-header{
     font-family: 'Creepster', cursive;
     font-style: italic;
     padding: 0 0 .5rem 0;
@@ -496,152 +496,6 @@ html{
     box-shadow: var(--button-shadow-color) 0px 3px 0 0;
 } 
 
-.display-result{
-    width: 100%;
-    max-width: 800px;
-    height: 380px;
-    display: grid;
-    grid-template-columns: 300px auto;
-    grid-template-areas: 
-    "ep-list objects";
-    /* max-height: 400px;
-    margin: 0;
-    display: grid;
-    width: 100%;
-    max-width: 800px;
-    grid-template-columns: 300px auto;
-    grid-template-rows: auto auto;
-    grid-template-areas: 
-    "ep-list objects"; */
-}
-
-@media (max-width:750px) {
-
-    .display-result{
-        gap: 2rem;
-         /* min-height: 800px;*/
-        height: 800px;
-        grid-template-columns:auto;
-        grid-template-rows: auto auto;
-        grid-template-areas:
-        "ep-list" 
-        "objects"; 
-        padding-bottom: 6rem;
-    }
-}
-
-#display-episode-list{
-    height: 400px;
-    border-radius: 10px;
-    width: 100%;
-    background-color: var(--screen-bg);
-    padding: 0;
-    margin: 0;
-    border: var(--screen-border);
-    overflow: scroll;
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    align-items: center;
-    grid-area: ep-list;
-    padding-top: 19rem;
-}
-
-#display-episode-list li{
-    width: 100%;
-    list-style: none;
-}
-
-@media (min-width: 750px){
-    #display-episode-list{
-        max-width: 300px;
-    }
-}
-
-/* @media (max-width: 500px) {
-    #display-episode-list{
-        max-height: 100px;
-        flex-direction: row;
-        height: auto;
-    }
-    #display-episode-list li{
-        height: 100%;
-        max-height: 80px;
-    }
-} */
-
-/* .headers-container{
-    border: var(--border-style-1px);
-    grid-area: header;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-} */
-
-/* .display-characters-header{
-    margin: 0;
-    padding: 0;
-    margin-right: auto;
-} */
-
-
-/* */
-.middle-display{
-    border: var(--screen-border);
-    border-radius: 10px;
-    background-color: var(--screen-bg);
-    width: 100%;
-    grid-area: objects;
-    display: grid;
-    grid-template-areas: 
-    "epAndCardobjects char-list";
-    /* display: grid;
-    grid-template-columns: auto 200px; */
-}
-
-.display-object{
-    grid-area: epAndCardobjects;
-    display: grid;
-    grid-template-areas: 
-    "ep-object"
-    "char-object";
-    width: 100%;
-}
-
-#display-episode-object{
-    grid-area: ep-object;
-    color: var(--screen-text);
-    padding: .5rem .5rem 0 .5rem;
-}
-
-#display-character-object{
-    grid-area: char-object;
-    min-width: 190px;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-
-/* Display a list of character from episode*/
-#display-character-list{
-    height: 100%;
-    grid-area: char-list;
-    max-width: 200px;
-    background-color: var(--screen-bg);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    overflow: scroll;
-    height: 400px;
-}
-
-@media (min-width:750px) {
-    #display-character-list{
-        width: 200px;
-    }
-}
 
 
 /* listItem episode*/
@@ -901,6 +755,23 @@ html{
     margin: 0;
 }
 
+.favorite-container{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap; 
+    background-color: #BDB1C0;
+}
+
+
+/* visar sparade kort*/
+#display-character-container{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
 /* @media (max-width:750px){
     .display-content-wrapper-bottom{
         margin-top: 20rem;
@@ -910,33 +781,91 @@ html{
 /* Chart */
 
 .stats-container{
+    padding: 2rem 0;
+    gap: 1rem;
+    max-width: 800px;
     display: grid;
     grid-template-columns: 1fr 1fr;
 }
 
-.chart-conatiner{
+@media (max-width:750px) {
+    .stats-container{
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr 1fr ;
+    }
+}
+
+.chart-container{
+    max-height: 400px;
+    border-radius: 10px;
+    border: var(--screen-border);
+    background-color: var(--screen-bg);
+    margin: 0 auto;
     max-width: 400px;
-    background-color: #23B78C;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
 }
 
 
 #myChart{
     height: auto;
-    width: 100%
+    width: 100%;
 }
 
-.favorite-container{
+/* STATS characters*/
+/* visar från js- behållare för #characters-stats - finns endast i js*/
+#characters-stats{
+    max-height: 400px;
+    margin: 0 auto;
+    max-width: 400px;
+    border-radius: 10px;
+    border: var(--screen-border);
+    background-color: var(--screen-bg);
+    gap: .5rem;
     display: flex;
     justify-content: space-around;
     align-items: center;
     flex-wrap: wrap; 
-    background-color: #BDB1C0;
+    padding-top: 15vh;
+    padding-bottom: 5rem;
 }
-#display-character-container{
+
+.characters-stats-container{
+    
+}
+
+.stats-wrapper{
     display: flex;
-    justify-content: flex-start;
+    justify-content: center;
     align-items: center;
-    flex-wrap: wrap;
+    flex-direction: column;
+}
+
+.stats-img-container{
+
+}
+
+.stats-img{
+    clip-path: circle(50% at 50% 50%);
+    max-width: 90px;
+    background-color: #EF5C5E;
+}
+
+.stats-img img{
+    width: 100%;
+    height: auto;
+}
+
+.stats-header-container{
+
+}
+
+.stats-header{
+    color: white;
+    padding: 0 0 .5rem 0;
+    margin: 0;
 }
 
 /* RICK AND MORTY */
