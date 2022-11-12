@@ -20,6 +20,7 @@
 
 /* 1. Root settings */
 :root{
+    --favorite-bg : #000000;
     --active-btn : #06F3AF;
     --screen-bg : #000000;
     --screen-text : #ffffff;
@@ -581,6 +582,8 @@ html{
 
 
 /* PLAYCARDS START */
+
+/* TO STYLE!!!*/
 .character-container{
     padding: 0 .4rem;
     display: flex;
@@ -592,7 +595,11 @@ html{
     height: 260px;
     width: 180px;
     border-radius: 20px;
-    overflow: scroll;
+    transition: transform .2s;
+}
+
+.character-container:hover{
+    transform: scale(1.1);
 }
 
 .character-top-container{
@@ -756,21 +763,26 @@ html{
 }
 
 .favorite-container{
-    display: flex;
+    max-width: 800px;
+    /* display: flex;
     justify-content: space-around;
-    align-items: center;
-    flex-wrap: wrap; 
-    background-color: #BDB1C0;
+    align-items: center; */
+    background-color: var(--favorite-bg);
 }
 
 
 /* visar sparade kort*/
 #display-character-container{
-    display: flex;
+    padding: 2rem;
+    margin: auto 0;
+    overflow-x: scroll;
+    display: grid;
+    grid-template-columns: repeat(20, 100px);
+    /* display: flex;
     justify-content: flex-start;
     align-items: center;
-    flex-wrap: wrap;
-}
+    flex-wrap: wrap;*/
+} 
 
 /* @media (max-width:750px){
     .display-content-wrapper-bottom{

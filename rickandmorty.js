@@ -212,6 +212,8 @@ function characterFinder(characterUrl) {
 //     })
 // }
 
+
+// SAVED CARDS
 function playcardMakerFromFavoriteList(data) {
     const characterContainer = document.createElement('div')
     const characterTopContainer = document.createElement('div')
