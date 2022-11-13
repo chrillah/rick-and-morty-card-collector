@@ -33,7 +33,7 @@ const charactersStats = document.querySelector('#characters-stats')
 
 const mainCharacterGalleryContainer = document.querySelector('#main-character-gallery-container')
 
-const showMeFavoritButton = document.querySelector('#show-me-favorite-button')
+//const showMeFavoritButton = document.querySelector('#show-me-favorite-button')
 
 const season1 = document.querySelector('#season-1')
 const season2 = document.querySelector('#season-2')
@@ -42,11 +42,11 @@ const season4 = document.querySelector('#season-4')
 const season5 = document.querySelector('#season-5')
 
 // Start condition
-showMeFavoritButton.style.opacity = 0;
+//showMeFavoritButton.style.opacity = 0;
 
-if (favorite) {
-    showMeFavoritButton.style.opacity = 1
-}
+// if (favorite) {
+//     showMeFavoritButton.style.opacity = 1
+// }
 
 // Append to favorite-list-item
 const favoriteList = document.querySelector('#favorite-list')
@@ -101,6 +101,7 @@ function seasonFourList() {
             episodeListMaker(data)
         })
 }
+
 function seasonFiveList() {
     season5.classList.add('btn-pressed')
     season1.classList.remove('btn-pressed')
@@ -479,6 +480,7 @@ function playcardObjectMaker(data) {
 
         favoriteButton.style.display = 'none'
         removeFromFavoriteButton.style.display = 'grid'
+        getAllInFavoriteList()
     })
 
     // If the card already is in the list, the favorite-button note visible
@@ -505,19 +507,21 @@ function playcardObjectMaker(data) {
         favoriteButton.style.display = 'grid'
         removeFromFavoriteButton.style.display = 'none'
         localStorage.setItem('favorite', JSON.stringify(favorite))
+        getAllInFavoriteList()
     })
 }
 
-showMeFavoritButton.addEventListener('click', ()=>{
-    console.log(displayCharacterContainer.querySelectorAll('character-name-header'))
-    getAllInFavoriteList()
-    showMeFavoritButton.value = 'Update' 
-})
+// showMeFavoritButton.addEventListener('click', ()=>{
+//     getAllInFavoriteList()
+//     showMeFavoritButton.value = 'Update' 
+// })
 
 function getAllInFavoriteList() {
+
     clearCardContainer()
     let arrayFromLocalStorage = []
     arrayFromLocalStorage = JSON.parse(localStorage.getItem('favorite'))
+    console.log(arrayFromLocalStorage)
     if (arrayFromLocalStorage) {
         for (let i = 0; i < arrayFromLocalStorage.length; i++) {
             playcardMakerFromFavoriteList(arrayFromLocalStorage[i])
