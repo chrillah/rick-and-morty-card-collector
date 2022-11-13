@@ -403,7 +403,7 @@ html{
     grid-template-columns: repeat(2, auto);
 }
 
-@media(max-width: 750px){
+@media(max-width: 800px){
     .top-content-wrapper{
         display: flex;
         justify-content: center;
@@ -417,7 +417,7 @@ html{
     width: 100%;
 }
 
-@media (min-width:750px){
+@media (min-width:800px){
     .season-option-container{
         width: 100%;
         max-width: 800px;
@@ -452,7 +452,7 @@ html{
     margin-bottom: 1rem;
 }
 
-@media(min-width: 750px){
+@media(min-width: 800px){
     .top-btn-container{
         max-width: 300px;
     }
@@ -519,7 +519,7 @@ html{
     "ep-list objects";
 }
 
-@media (max-width:750px) {
+@media (max-width:800px) {
 
     .display-result{
         gap: 2rem;
@@ -549,7 +549,7 @@ html{
     overflow: auto;
 }
 
-@media (max-width:750px){
+@media (max-width: 800px){
     #display-episode-list{
         margin: 0 auto;
         max-width: 400px;
@@ -561,7 +561,7 @@ html{
     list-style: none;
 }
 
-@media (min-width: 750px){
+@media (min-width: 800px){
     #display-episode-list{
         max-width: 300px;
     }
@@ -580,7 +580,7 @@ html{
     "epAndCardobjects char-list";
 }
 
-@media (max-width: 750px){
+@media (max-width: 800px){
     .middle-display{
         max-width: 400px;
         margin: 0 auto;
@@ -611,7 +611,7 @@ html{
     justify-content: flex-start;
 }
 
-@media (min-width:750px) {
+@media (min-width:800px) {
     #display-character-list{
         width: 200px;
     }
@@ -666,10 +666,6 @@ html{
     touch-action: manipulation;
 }
 
-/* .episode-btn:active {
-    transform: translate(2px, 2px);
-    box-shadow: var(--button-bg-color-focus) -4px -4px 0 0;
-}  */
 
 /* .episode-btn:active {
     transform: translate(0px, 2px);
@@ -683,6 +679,11 @@ html{
     border: var(--border-style-1px);
     transform: translate(6px, 0px);
 }
+
+.episode-btn:active {
+    transform: translate(-2px, 0px);
+} 
+
 
 .episode-btn-pressed{
     font-weight: bolder;
@@ -930,7 +931,7 @@ html{
     border: var(--screen-border)
 }
 
-@media(max-width: 750px){
+@media(max-width: 800px){
     .favorite-container{
         max-width: 400px;
     }
@@ -965,7 +966,7 @@ html{
     grid-template-columns: 1fr 1fr;
 }
 
-@media (max-width:750px) {
+@media (max-width:800px) {
     .stats-container{
         grid-template-columns: 1fr;
         grid-template-rows: 1fr 1fr ;
