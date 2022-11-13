@@ -48,6 +48,7 @@ if (arrayFromLocalStorage) {
     for (let i = 0; i < arrayFromLocalStorage.length; i++) {
         playcardMakerFromFavoriteList(arrayFromLocalStorage[i])
     }
+    displayPlaycardsContainer.style.gridTemplateColumns = `repeat(${arrayFromLocalStorage.length}, 100px)`
 }
 
 // Start condition
@@ -599,6 +600,7 @@ function getAllInFavoriteList() {
         for (let i = 0; i < arrayFromLocalStorage.length; i++) {
             playcardMakerFromFavoriteList(arrayFromLocalStorage[i])
         }
+        displayPlaycardsContainer.style.gridTemplateColumns = `repeat(${arrayFromLocalStorage.length}, 100px)`
     }
 }
 

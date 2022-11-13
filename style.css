@@ -929,7 +929,7 @@ html{
     margin: auto 0;
     overflow-x: scroll;
     display: grid;
-    grid-template-columns: repeat(20, 100px);
+    /* grid-template-columns: repeat(20, 100px); */
     /* display: flex;
     justify-content: flex-start;
     align-items: center;
