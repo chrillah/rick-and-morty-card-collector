@@ -445,6 +445,7 @@ html{
 }
 
 .top-btn-container{
+    max-width: 400px;
     display: grid;
     grid-template-columns:  repeat(5, auto);
     width: 100%;
@@ -504,6 +505,135 @@ html{
     box-shadow: var(--border_color) 7px 7px 0 0;
     -webkit-box-shadow: 0px 0px 0px 0px rgba(0,0,0,1);
     -moz-box-shadow: -4px 4px 0px 0px rgba(0,0,0,1);
+}
+
+.display-result{
+    gap: 1rem;
+    width: 100%;
+    max-width: 800px;
+    height: 380px;
+    display: grid;
+    grid-template-columns: 300px auto;
+    grid-template-rows: 400px;
+    grid-template-areas: 
+    "ep-list objects";
+}
+
+@media (max-width:750px) {
+
+    .display-result{
+        gap: 2rem;
+        height: 800px;
+        grid-template-columns:auto;
+        grid-template-rows: auto auto;
+        grid-template-areas:
+        "ep-list" 
+        "objects"; 
+        padding-bottom: 6rem;
+    }
+}
+
+/* children to Display-result */
+#display-episode-list{
+    border-radius: 10px;
+    width: 100%;
+    background-color: var(--screen-bg);
+    padding: 0;
+    margin: 0;
+    border: var(--screen-border);
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+    align-items: center;
+    grid-area: ep-list;
+    overflow: auto;
+}
+
+@media (max-width:750px){
+    #display-episode-list{
+        margin: 0 auto;
+        max-width: 400px;
+    }
+}
+
+#display-episode-list li{
+    width: 100%;
+    list-style: none;
+}
+
+@media (min-width: 750px){
+    #display-episode-list{
+        max-width: 300px;
+    }
+}
+
+/* children to Display-result */
+.middle-display{
+    border: var(--screen-border);
+    border-radius: 10px;
+    background-color: var(--screen-bg);
+    width: 100%;
+    grid-area: objects;
+    grid-template-rows: 390px;
+    display: grid;
+    grid-template-areas: 
+    "epAndCardobjects char-list";
+}
+
+@media (max-width: 750px){
+    .middle-display{
+        max-width: 400px;
+        margin: 0 auto;
+    }
+}
+
+/* children to Middle-display*/
+.display-object{
+    grid-area: epAndCardobjects;
+    display: grid;
+    grid-template-areas: 
+    "ep-object"
+    "char-object";
+    width: 100%;
+}
+
+
+/* children to Middle-display*/
+#display-character-list{
+    overflow: auto;
+    height: 100%;
+    grid-area: char-list;
+    max-width: 200px;
+    background-color: var(--screen-bg);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+@media (min-width:750px) {
+    #display-character-list{
+        width: 200px;
+    }
+}
+
+
+/* children to object-display*/
+#display-episode-object{
+    grid-area: ep-object;
+    color: var(--screen-text);
+    padding: .5rem .5rem 0 .5rem;
+}
+
+/* children to object-display*/
+#display-one-playcard-object{
+    grid-area: char-object;
+    min-width: 190px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 
@@ -771,16 +901,27 @@ html{
     margin: 0;
 }
 
+.display-content-wrapper-bottom{
+    margin: 0 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
 .favorite-container{
+    margin: 0 auto;
     max-width: 800px;
-    /* display: flex;
-    justify-content: space-around;
-    align-items: center; */
     background-color: var(--screen-bg);
     border-radius: 10px;
     border: var(--screen-border)
 }
 
+@media(max-width: 750px){
+    .favorite-container{
+        max-width: 400px;
+    }
+}
 
 /* visar sparade kort*/
 #display-playcards-container{
