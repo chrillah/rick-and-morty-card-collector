@@ -131,12 +131,10 @@ function episodeListMaker(data) {
     removeAllInList()
 
     for (let i = 0; i < data.length; i++) {
-
         const listItem = document.createElement('li')
         const itemInformation = document.createElement('p')
         listItem.classList.add('episode-btn')
         //itemInformation.classList.add('episode-information')
-
 
         itemInformation.style.padding = '0'
         itemInformation.style.margin = '0'
@@ -152,6 +150,11 @@ function episodeListMaker(data) {
         displayEpisodeList.appendChild(listItem)
 
         listItem.addEventListener('click', () => {
+            const btnPressed = displayEpisodeList.querySelectorAll('.episode-btn-pressed')
+            btnPressed.forEach(btn => {
+                btn.classList.remove('episode-btn-pressed')
+            })
+            listItem.classList.add('episode-btn-pressed')
             removePlaycardObject()
             removeEpisodeObject()
             episodeObjectMaker(data[i])
@@ -423,6 +426,12 @@ function characterListFromEpisode(data) {
     listItem.textContent = data.name
     displayCharacterList.appendChild(listItem)
     listItem.addEventListener('click', () => {
+        const btnPressed = displayCharacterList.querySelectorAll('.character-btn-pressed')
+        btnPressed.forEach(btn => {
+            btn.classList.remove('character-btn-pressed')
+        })
+        listItem.classList.add('character-btn-pressed')
+
         playcardObjectMaker(data)
     })
 }

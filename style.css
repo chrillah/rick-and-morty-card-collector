@@ -682,9 +682,13 @@ html{
     background-color: var(--active-btn);
     border: var(--border-style-1px);
     transform: translate(6px, 0px);
-    box-shadow: var(--border_color) 0px 0px 0 0;
-    -webkit-box-shadow: 0px 0px 0px 0px rgba(0,0,0,1);
-    -moz-box-shadow: 0px 0px 0px 0px rgba(0,0,0,1);
+}
+
+.episode-btn-pressed{
+    font-weight: bolder;
+    background-color: var(--active-btn);
+    border: var(--border-style-1px);
+    transform: translate(6px, 0px);
 }
 
 
@@ -867,12 +871,21 @@ html{
     border: 1px solid #000000;
     transform: translate(-6px, 0px);
     box-shadow: var(--border_color) 4px 0px 0 0;
-    -webkit-box-shadow: -4px 0px 0px 0px rgba(0,0,0,1);
-    -moz-box-shadow: -4px 0px 0px 0px rgba(0,0,0,1);
+    -webkit-box-shadow: 4px 0px 0px 0px rgba(0,0,0,1);
+    -moz-box-shadow: 4px 0px 0px 0px rgba(0,0,0,1);
 }
 
 .character-btn:active {
     transform: translate(2px, 0px);
+}
+
+.character-btn-pressed{
+    background-color: var(--active-btn);
+    border: 1px solid #000000;
+    transform: translate(-6px, 0px);
+    box-shadow: var(--border_color) 4px 0px 0 0;
+    -webkit-box-shadow: 4px 0px 0px 0px rgba(0,0,0,1);
+    -moz-box-shadow: 4px 0px 0px 0px rgba(0,0,0,1);
 }
 
 
