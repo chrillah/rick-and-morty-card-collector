@@ -301,6 +301,7 @@ function cityElementObjectCreator(data){
         updateReady()
         if(newNameInput){
             newName = newNameInput.value
+            newNameInput.placeholder = newName
         }
     })
 
@@ -308,6 +309,7 @@ function cityElementObjectCreator(data){
         updateReady()
         if(newPopulationInput.value){
             newPopulation = parseInt(newPopulationInput.value)
+            newPopulationInput.placeholder = newPopulation
         }
     })
 
@@ -320,14 +322,12 @@ function cityElementObjectCreator(data){
         }
     }
 
-    // PUT/PATCH - BYT TILL PUT!!!!!!
+    // PUT
     patchCity.addEventListener('click', ()=>{
 
         let listName = childFromDisplayListName(data)
         listName.textContent = newName
-
-
-
+        
         fetch(url+data.id,{
         body : JSON.stringify({
         id : data.id, name : newName , population : newPopulation
@@ -338,6 +338,7 @@ function cityElementObjectCreator(data){
         .then(response=>{
             console.log(response)
             console.log('PUT That in my mouth')
+            createCityListItem()
         })
 
 
@@ -374,6 +375,8 @@ function cityElementObjectCreator(data){
         //exitEdit()
 
         patchCity.style.display = 'none'
+        //createCityListItem()
+        //refresh()
     })
 
     // ENTERING DELETE MODE
@@ -401,7 +404,8 @@ function cityElementObjectCreator(data){
         method:'DELETE'
         }).then(response=>{
             console.log(response)
-            refresh()
+            createCityListItem()
+            //refresh()
         })
         console.log('DELETE')
     })
