@@ -7,7 +7,6 @@ const seasonThree = '/episode/22,23,24,25,26,27,28,29,30,31'
 const seasonFour = '/episode/32,33,34,35,36,37,38,39,40,41'
 const seasonFive = '/episode/42,43,44,45,46,47,48,49,50,51'
 
-
 const episodeListSEOne = []
 const episodeListSETwo = []
 const episodeListSEThree = []
@@ -40,6 +39,16 @@ const season2 = document.querySelector('#season-2')
 const season3 = document.querySelector('#season-3')
 const season4 = document.querySelector('#season-4')
 const season5 = document.querySelector('#season-5')
+
+let arrayFromLocalStorage = []
+arrayFromLocalStorage = JSON.parse(localStorage.getItem('favorite'))
+console.log(arrayFromLocalStorage)
+
+if (arrayFromLocalStorage) {
+    for (let i = 0; i < arrayFromLocalStorage.length; i++) {
+        playcardMakerFromFavoriteList(arrayFromLocalStorage[i])
+    }
+}
 
 // Start condition
 //showMeFavoritButton.style.opacity = 0;
@@ -351,21 +360,18 @@ function playcardMakerFromFavoriteList(data) {
     // }
 
     removeFromFavoriteButton.addEventListener('click', () => {
-
-        displayPlaycardsContainer.removeChild(characterContainer)
-
-        console.log('remove button pressed'+ data.name)
         let favorite = []
         favorite = JSON.parse(localStorage.getItem('favorite'))
+        let newArray = []
         for (let i = 0; i < favorite.length; i++) {
-            if (favorite[i].id === data.id) {
-                let prutt = favorite.pop(data)
-                console.log(prutt)
-                localStorage.setItem('favorite', JSON.stringify(favorite))
+            if (favorite[i].id !== data.id) {
+                newArray.push(favorite[i])
             }
         }
+        localStorage.setItem('favorite', JSON.stringify(newArray))
+        displayPlaycardsContainer.removeChild(characterContainer)
         removePlaycardObject()
-        clearCardContainer()
+        // clearCardContainer()
         getAllInFavoriteList()
 
 
@@ -562,18 +568,17 @@ function playcardObjectMaker(data) {
         }
     }
     removeFromFavoriteButton.addEventListener('click', () => {
-        console.log('remove button pressed')
         let favorite = []
         favorite = JSON.parse(localStorage.getItem('favorite'))
+        let newArray = []
         for (let i = 0; i < favorite.length; i++) {
-            if (favorite[i].id === data.id) {
-                favorite.pop(data)
-                console.log('Borttagen')
+            if (favorite[i].id !== data.id) {
+                newArray.push(favorite[i])
             }
         }
         favoriteButton.style.display = 'grid'
         removeFromFavoriteButton.style.display = 'none'
-        localStorage.setItem('favorite', JSON.stringify(favorite))
+        localStorage.setItem('favorite', JSON.stringify(newArray))
         getAllInFavoriteList()
     })
 }
@@ -586,6 +591,7 @@ function playcardObjectMaker(data) {
 function getAllInFavoriteList() {
 
     clearCardContainer()
+
     let arrayFromLocalStorage = []
     arrayFromLocalStorage = JSON.parse(localStorage.getItem('favorite'))
     console.log(arrayFromLocalStorage)

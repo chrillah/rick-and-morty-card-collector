@@ -327,6 +327,7 @@ function cityElementObjectCreator(data){
         listName.textContent = newName
 
 
+
         fetch(url+data.id,{
         body : JSON.stringify({
         id : data.id, name : newName , population : newPopulation
