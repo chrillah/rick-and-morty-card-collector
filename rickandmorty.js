@@ -27,8 +27,8 @@ const displayCharacterList = document.querySelector('#display-character-list')
 
 // object container
 const displayEpisodeObject = document.querySelector('#display-episode-object')
-const displayCharacterObject = document.querySelector('#display-character-object')
-const displayCharacterContainer = document.querySelector('#display-character-container')
+const displayOnePlaycardObject = document.querySelector('#display-one-playcard-object')
+const displayPlaycardsContainer = document.querySelector('#display-playcards-container')
 const charactersStats = document.querySelector('#characters-stats')
 
 const mainCharacterGalleryContainer = document.querySelector('#main-character-gallery-container')
@@ -116,7 +116,7 @@ function seasonFiveList() {
 }
 
 function episodeListMaker(data) {
-    removeCharacterObject()
+    removePlaycardObject()
     removeEpisodeObject()
     removeAllInList()
 
@@ -142,7 +142,7 @@ function episodeListMaker(data) {
         displayEpisodeList.appendChild(listItem)
 
         listItem.addEventListener('click', () => {
-            removeCharacterObject()
+            removePlaycardObject()
             removeEpisodeObject()
             episodeObjectMaker(data[i])
         })
@@ -247,8 +247,8 @@ function playcardMakerFromFavoriteList(data) {
     const characterTopContainer = document.createElement('div')
 
     // CHARACTER-TOP-CONTAINER
-    // const favoriteButton = document.createElement('button')
-    // const removeFromFavoriteButton = document.createElement('button')
+    //const favoriteButton = document.createElement('button')
+    const removeFromFavoriteButton = document.createElement('button')
 
     const infoContainer = document.createElement('div')
     const playcardLogoContainer = document.createElement('div')
@@ -268,19 +268,19 @@ function playcardMakerFromFavoriteList(data) {
 
     infoContainer.classList.add('character-info-container')
     imgCharacterContainer.classList.add('img-character-container')
-    // favoriteButton.classList.add('playcard-btn')
-    // removeFromFavoriteButton.classList.add('playcard-btn')
+    //favoriteButton.classList.add('playcard-btn')
+    removeFromFavoriteButton.classList.add('playcard-btn')
     playcardLogoContainer.classList.add('playcard-logo-container')
     characterName.classList.add('character-name-header')
     playcardLogo.classList.add('playcard-logo')
     characterImg.classList.add('character-img')
 
-    displayCharacterContainer.appendChild(characterContainer)
+    displayPlaycardsContainer.appendChild(characterContainer)
     characterContainer.appendChild(characterTopContainer)
     characterContainer.appendChild(imgCharacterContainer)
     characterContainer.appendChild(infoContainer)
-    // characterTopContainer.appendChild(favoriteButton)
-    // characterTopContainer.appendChild(removeFromFavoriteButton)
+    //characterTopContainer.appendChild(favoriteButton)
+    characterTopContainer.appendChild(removeFromFavoriteButton)
     characterTopContainer.appendChild(playcardLogoContainer)
     playcardLogoContainer.appendChild(playcardLogo)
 
@@ -290,13 +290,13 @@ function playcardMakerFromFavoriteList(data) {
     infoContainer.appendChild(characterGender)
     infoContainer.appendChild(characterStatus)
 
-    // removeFromFavoriteButton.innerHTML =
-    //     `<button>X</button>`
+    removeFromFavoriteButton.innerHTML =
+        `<button>X</button>`
     // favoriteButton.innerHTML =
     //     `<button>&hearts;</button>`
 
-    // removeFromFavoriteButton.style.margin = '0'
-    // removeFromFavoriteButton.style.padding = '0'
+    removeFromFavoriteButton.style.margin = '0'
+    removeFromFavoriteButton.style.padding = '0'
     // favoriteButton.style.margin = '0'
     // favoriteButton.style.padding = '0'
     characterGender.style.margin = '0'
@@ -315,7 +315,74 @@ function playcardMakerFromFavoriteList(data) {
         `<p class="character-info">Gender: <span>${data.gender}</span></p>`
 
     // start condition
-    // removeFromFavoriteButton.style.display = 'none'
+    //removeFromFavoriteButton.style.display = 'none'
+
+    // FROM PLAYCARDOBJECTMAKER
+    // favoriteButton.addEventListener('click', () => {
+    //     // Lägger till
+    //     console.log('Lägger till')
+    //     let arrayFromLocalStorage = []
+    //     arrayFromLocalStorage = JSON.parse(localStorage.getItem('favorite'))
+        
+    //     if(arrayFromLocalStorage){
+    //         arrayFromLocalStorage.push(data)
+    //         localStorage.setItem('favorite', JSON.stringify(arrayFromLocalStorage))
+    //     }if(!arrayFromLocalStorage){
+    //         let favorite = []
+    //         favorite.push(data)
+    //         localStorage.setItem('favorite', JSON.stringify(favorite))
+    //     }
+
+    //     favoriteButton.style.display = 'none'
+    //     removeFromFavoriteButton.style.display = 'grid'
+    //     getAllInFavoriteList()
+    // })
+
+    // If the card already is in the list, the favorite-button note visible
+    // let arrayFromLocalStorage = []
+    // arrayFromLocalStorage = JSON.parse(localStorage.getItem('favorite'))
+    // if(arrayFromLocalStorage){
+    //     for (let i = 0; i < arrayFromLocalStorage.length; i++) {
+    //         if (arrayFromLocalStorage[i].id === data.id) {
+    //             favoriteButton.style.display = 'none'
+    //             removeFromFavoriteButton.style.display = 'grid'
+    //         }
+    //     }
+    // }
+
+    removeFromFavoriteButton.addEventListener('click', () => {
+
+        displayPlaycardsContainer.removeChild(characterContainer)
+
+        console.log('remove button pressed'+ data.name)
+        let favorite = []
+        favorite = JSON.parse(localStorage.getItem('favorite'))
+        for (let i = 0; i < favorite.length; i++) {
+            if (favorite[i].id === data.id) {
+                let prutt = favorite.pop(data)
+                console.log(prutt)
+                localStorage.setItem('favorite', JSON.stringify(favorite))
+            }
+        }
+        removePlaycardObject()
+        clearCardContainer()
+        getAllInFavoriteList()
+
+
+
+            // let arrayFromLocalStorage = []
+            // favorite = JSON.parse(localStorage.getItem('favorite'))
+            // for (let i = 0; i < arrayFromLocalStorage.length; i++) {
+            //     console.log(favorite[i])
+            //     playcardMakerFromFavoriteList(favorite[i])
+            // }
+
+            // favoriteButton.style.display = 'grid'
+            // removeFromFavoriteButton.style.display = 'none'
+        })
+
+
+    // OLD
     // favoriteButton.addEventListener('click', () => {
     //     favorite.push(data)
     //     localStorage.setItem('favorite', JSON.stringify(favorite))
@@ -386,7 +453,7 @@ function characterPresentationMaker(data) {
 // MAKES A PLAYCARD IN EPISODE OBJECT
 function playcardObjectMaker(data) {
 
-    removeCharacterObject()
+    removePlaycardObject()
 
     // TOPP
     const characterContainer = document.createElement('div')
@@ -421,7 +488,7 @@ function playcardObjectMaker(data) {
     playcardLogo.classList.add('playcard-logo')
     characterImg.classList.add('character-img')
 
-    displayCharacterObject.appendChild(characterContainer)
+    displayOnePlaycardObject.appendChild(characterContainer)
     characterContainer.appendChild(characterTopContainer)
     characterContainer.appendChild(imgCharacterContainer)
     characterContainer.appendChild(infoContainer)
@@ -465,7 +532,7 @@ function playcardObjectMaker(data) {
 
     favoriteButton.addEventListener('click', () => {
         // Lägger till
-        console.log('Lägger till')
+        console.log('Lägger till '+ data.name)
         let arrayFromLocalStorage = []
         arrayFromLocalStorage = JSON.parse(localStorage.getItem('favorite'))
         
@@ -530,16 +597,16 @@ function getAllInFavoriteList() {
 }
 
 
-function removeCharacterObject() {
-    while (displayCharacterObject.firstChild) {
-        displayCharacterObject.firstChild.remove()
+function removePlaycardObject() {
+    while (displayOnePlaycardObject.firstChild) {
+        displayOnePlaycardObject.firstChild.remove()
     }
 
 }
 
 function clearCardContainer() {
-    while (displayCharacterContainer.firstChild) {
-        displayCharacterContainer.firstChild.remove()
+    while (displayPlaycardsContainer.firstChild) {
+        displayPlaycardsContainer.firstChild.remove()
     }
 }
 

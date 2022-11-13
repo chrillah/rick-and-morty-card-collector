@@ -113,7 +113,7 @@
 }
 
 /* children to object-display*/
-#display-character-object{
+#display-one-playcard-object{
     grid-area: char-object;
     min-width: 190px;
     width: 100%;
