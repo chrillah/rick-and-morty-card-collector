@@ -7,6 +7,7 @@
 }
 
 .main-container{
+    padding: 1rem;
     border-radius: 10px;
     background-color: var(--screen-bg);
     border: var(--screen-border);
@@ -20,7 +21,6 @@
 }
 
 .option-container{
-    padding: 1rem 1rem 0 1rem;
     display: grid;
     grid-template-columns: 1fr 1fr;
 }
@@ -31,12 +31,15 @@
 }
 
 
+
+
 .input-container{
     min-height: 200px;
     width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
+    border: var(--screen-text) 1px solid;
 }
 
 .input-container:hover{
@@ -127,7 +130,7 @@
     color: var(--screen-text);
     background-color: var(--screen-bg);
     margin: 1rem 0;
-    padding: 1rem;
+    padding: 1rem 0;
     display: grid;
     gap: 1rem;
     grid-template-areas: 
@@ -170,7 +173,7 @@
 }
 
 .city-list-item{
-    background-color: var(--button-bg-color);
+    /* background-color: var(--button-bg-color); */
     max-width: 200px;
 }
 
@@ -191,10 +194,11 @@
 }
 
 .list-btn{
+    padding: .3rem 0 .3rem .3rem;
     max-width: 250px;
     font-size: 1rem;
-    border: var(--screen-bg) 1px solid;
-    color: var(--screen-bg);
+    border: var(--screen-text) 1px solid;
+    color: var(--screen-text);
     cursor: pointer;
     display: inline-block;
     text-decoration: none;
@@ -207,14 +211,16 @@
 .list-btn:focus {
     font-weight: bolder;
     background-color: var(--active-btn);
-    border: var(--border-screen-style-1px);
+    color: var(--screen-bg);
+    border: var(--screen-bg) 1px solid;
     transform: translate(6px, 0px);
 }
 
 .list-btn-pressed{
     background-color: var(--active-btn);
     font-weight: bolder;
-    border: var(--border-screen-style-1px);
+    color: var(--screen-bg);
+    border: var(--screen-bg) 1px solid;
     transform: translate(6px, 0px);
 }
 

@@ -351,8 +351,8 @@ function cityElementObjectCreator(data){
     // PUT
     patchCity.addEventListener('click', ()=>{
 
-        let listName = childFromDisplayListName(data)
-        listName.textContent = newName
+        // let listName = childFromDisplayListName(data)
+        // listName.textContent = newName
         
         fetch(url+data.id,{
         body : JSON.stringify({
@@ -623,8 +623,8 @@ function createCityListItem(){
             ///////// BORT
 
             cityListItem.innerHTML = `
-            <li class="city-list-item list-btn">
-                <p class="list-name">${data[i].name}</p>
+            <li class="list-btn">
+                ${data[i].name}
             </li>`
     
             displayCityList.appendChild(cityListItem)
