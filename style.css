@@ -6,6 +6,8 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Major+Mono+Display&display=swap');
 
+@import url('https://fonts.googleapis.com/css2?family=Xanh+Mono:ital@0;1&display=swap');
+
 /* Table of content */
 /* 1. Root settings */
 /* 2. HTML settings */
@@ -23,8 +25,9 @@
 /* 1. Root settings */
 :root{
     --favorite-bg : #000000;
+    --gallery-border: solid 5px #D49CC6;
     --active-btn : #06F3AF;
-    --screen-bg : #0C0D23;
+    --screen-bg : #15133F;
     --screen-text : #ffffff;
     --screen-border : solid 5px #23B78C;
     --whitish : #ffffff;
@@ -39,6 +42,7 @@
     --button-bg-color-focus : #ffffff;
     --button-shadow-color: #000000;
     --border-style-1px: solid 1px black;
+    --border-screen-style-1px: solid 1px black;
     --border-style-2px: solid 2px black;
     --warning : red;
     --ok : green;
@@ -174,7 +178,8 @@ html{
 }
 
 .nav-btn{
-    border: var(--border-style-1px);
+    border-right: var(--border-style-1px);
+    border-left: var(--border-style-1px);
     color: var(--font-color-black);
     cursor: pointer;
     font-weight: bolder;
@@ -186,17 +191,19 @@ html{
 
 .nav-btn:active {
     /*transform: translate(2px, 2px);*/
-    box-shadow: var(--button-bg-color-focus) -4px -4px 0 0;
+    /* box-shadow: var(--button-bg-color-focus) -4px -4px 0 0; */
 } 
 
 .nav-btn:hover,
 .nav-btn:focus {
     background-color: var(--button-bg-color-focus);
-    border: var(--border-style-1px);
-    transform: translate(0px, 3px);
-    box-shadow: var(--border_color) 0px -5px 0 0;
-    -webkit-box-shadow: 0px -5px 0px 0px rgba(0,0,0,1);
-    -moz-box-shadow: 0px -5px 0px 0px rgba(0,0,0,1);
+    border-right: var(--border-style-1px);
+    border-left: var(--border-style-1px);
+    border-bottom: var(--border-style-1px);
+    transform: translate(0px, 5px);
+    box-shadow: var(--border_color) 0px -6px 0 0;
+    -webkit-box-shadow: 0px -6px 0px 0px rgba(0,0,0,1);
+    -moz-box-shadow: 0px -6px 0px 0px rgba(0,0,0,1);
 }
 
 .toggle-btn{
@@ -281,9 +288,9 @@ html{
 }
 @keyframes colorChange { /* flame pulses */
     0%   { background-color: #BDB1C0;  }
-    25%  { background-color: var(--screen-bg);  }
+    25%  { background-color: #B2D235;  }
     50%  { background-color: #000000; }
-    75%  { background-color: #00B4CC; }
+    75%  { background-color: #B2D235; }
     100%  { background-color: #BDB1C0; }
   }
 
@@ -701,11 +708,11 @@ html{
 }
 
 .episode-btn{
-    background-color: #FFFFFF;
+    background-color: var(--button-bg-color);
     max-width: 250px;
     font-size: .7rem;
-    border: var(--border-style-1px);
-    color: var(--font-color-black);
+    border: var(--border-screen-style-1px);
+    color: var(--screen-bg);
     cursor: pointer;
     display: inline-block;
     text-decoration: none;
@@ -724,7 +731,7 @@ html{
 .episode-btn:focus {
     font-weight: bolder;
     background-color: var(--active-btn);
-    border: var(--border-style-1px);
+    border: var(--border-screen-style-1px);
     transform: translate(6px, 0px);
 }
 
@@ -736,7 +743,7 @@ html{
 .episode-btn-pressed{
     font-weight: bolder;
     background-color: var(--active-btn);
-    border: var(--border-style-1px);
+    border: var(--border-screen-style-1px);
     transform: translate(6px, 0px);
 }
 
@@ -876,8 +883,9 @@ button{
     margin:0;
     padding:.1rem 0;
     text-align: center;
-    font-family: 'Creepster', cursive;
-    font-style: italic;
+    /* font-family: 'Creepster', cursive;
+    font-style: italic; */
+    font-family: 'Xanh Mono', monospace;
     font-size: 1rem;
     line-height: .9rem;
     word-break: break-all;
@@ -904,8 +912,8 @@ button{
 
 .character-btn{
     background-color: var(--button-bg-color);
-    border: var(--border-style-1px);
-    color: var(--font-color-black);
+    border: var(--border-screen-style-1px);
+    color: var(--screen-bg);
     cursor: pointer;
     display: block;
     font-size: .8rem;
@@ -925,9 +933,9 @@ button{
 .character-btn:hover,
 .character-btn:focus {
     background-color: var(--active-btn);
-    border: 1px solid #000000;
+    border: var(--border-screen-style-1px);
     transform: translate(-6px, 0px);
-    box-shadow: var(--border_color) 4px 0px 0 0;
+    box-shadow: var(--screen-bg) 4px 0px 0 0;
     -webkit-box-shadow: 4px 0px 0px 0px rgba(0,0,0,1);
     -moz-box-shadow: 4px 0px 0px 0px rgba(0,0,0,1);
 }
@@ -938,9 +946,9 @@ button{
 
 .character-btn-pressed{
     background-color: var(--active-btn);
-    border: 1px solid #000000;
+    border: var(--border-screen-style-1px);
     transform: translate(-6px, 0px);
-    box-shadow: var(--border_color) 4px 0px 0 0;
+    box-shadow: var(--screen-bg) 4px 0px 0 0;
     -webkit-box-shadow: 4px 0px 0px 0px rgba(0,0,0,1);
     -moz-box-shadow: 4px 0px 0px 0px rgba(0,0,0,1);
 }
@@ -1015,6 +1023,23 @@ button{
 } */
 
 /* Chart */
+.stats-intro-header-container{
+    padding-top: 10vh;
+    max-width: 1000px;
+}
+
+.stats-intro-header{
+    text-align: center;
+    font-family: 'Creepster', cursive;
+    font-style: italic;
+    font-size: 6rem;
+    padding: 0;
+    margin: 0;
+}
+
+.stats-intro-text{
+    max-width: 800px;
+}
 
 .stats-container{
     padding: 2rem 0;
@@ -1050,26 +1075,30 @@ button{
     width: 100%;
 }
 
+.stats-text{
+    padding: .2rem 2rem 0 2rem;
+    color: var(--screen-text);
+}
 /* STATS characters*/
 /* visar från js- behållare för #characters-stats - finns endast i js*/
+
+.characters-stats-container{
+    border: var(--screen-border);
+    background-color: var(--screen-bg);
+    border-radius: 10px;
+}
+
 #characters-stats{
     max-height: 400px;
     margin: 0 auto;
     max-width: 400px;
-    border-radius: 10px;
-    border: var(--screen-border);
-    background-color: var(--screen-bg);
     gap: .5rem;
     display: flex;
     justify-content: space-around;
     align-items: center;
     flex-wrap: wrap; 
-    padding-top: 15vh;
-    padding-bottom: 5rem;
-}
-
-.characters-stats-container{
-    
+    /* padding-top: 15vh; */
+    /* padding-bottom: 5rem; */
 }
 
 .stats-wrapper{
@@ -1102,6 +1131,7 @@ button{
     color: white;
     padding: 0 0 .5rem 0;
     margin: 0;
+    font-size: .6rem;
 }
 
 /* RICK AND MORTY */

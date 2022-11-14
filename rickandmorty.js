@@ -34,11 +34,10 @@ const mainCharacterGalleryContainer = document.querySelector('#main-character-ga
 
 const favoriteHeader = document.querySelector('#favorite-header')
 const cardMessageContainer = document.querySelector('#card-message-container')
-
+let statsCharacterID = ''
 const cardMessage = document.createElement('h1')
 cardMessage.classList.add('main-header')
 cardMessageContainer.appendChild(cardMessage)
-
 //const showMeFavoritButton = document.querySelector('#show-me-favorite-button')
 
 const season1 = document.querySelector('#season-1')
@@ -340,6 +339,13 @@ function playcardMakerFromFavoriteList(data) {
         imgCharacterContainer.style.border = '5px solid #F3CC15'
         infoContainer.style.backgroundColor = '#F3CC15'
     }
+    if(data.species !== 'Animal' && data.species !== 'Human' && data.species !== 'Robot' && data.species !== 'Mythological Creature' &&  data.species !== 'Alien'){
+        characterContainer.style.background = 'rgb(238,174,202)'
+        characterContainer.style.background = 'linear-gradient(140deg, rgba(238,174,202,1) 0%, rgba(148,187,233,1) 100%)'
+        characterContainer.style.border = '5px solid #D49CC6'
+        imgCharacterContainer.style.border = '5px solid #D49CC6'
+        infoContainer.style.backgroundColor = '#D49CC6'
+    }
 
     removeFromFavoriteButton.style.margin = '0'
     removeFromFavoriteButton.style.padding = '0'
@@ -374,6 +380,12 @@ function playcardMakerFromFavoriteList(data) {
         removePlaycardObject()
         getAllInFavoriteList()
         cardMessageDisplayer()
+        })
+
+        characterContainer.addEventListener('click', ()=>{
+            console.log('click')
+            statsCharacterID = `,${data.id}`
+            console.log(statsCharacterID)
         })
 
 }
@@ -514,6 +526,14 @@ function playcardObjectMaker(data) {
         characterContainer.style.border = '5px solid #F3CC15'
         imgCharacterContainer.style.border = '5px solid #F3CC15'
         infoContainer.style.backgroundColor = '#F3CC15'
+    }
+
+    if(data.species !== 'Animal' && data.species !== 'Human' && data.species !== 'Robot' && data.species !== 'Mythological Creature' &&  data.species !== 'Alien'){
+        characterContainer.style.background = 'rgb(238,174,202)'
+        characterContainer.style.background = 'linear-gradient(140deg, rgba(238,174,202,1) 0%, rgba(148,187,233,1) 100%)'
+        characterContainer.style.border = '5px solid #D49CC6'
+        imgCharacterContainer.style.border = '5px solid #D49CC6'
+        infoContainer.style.backgroundColor = '#D49CC6'
     }
 
     removeFromFavoriteButton.style.margin = '0'
@@ -673,7 +693,8 @@ fetch(url + '/character/244, 47, 154, 598, 2').then(response => response.json())
 
 let input = 'Someone'
 
-fetch(url + '/character/1,2,3,4,5')
+
+fetch(url + '/character/1,2,3,4,5,47, 154,' + statsCharacterID)
     .then(response => response.json())
     .then(result => {
 
@@ -696,7 +717,7 @@ fetch(url + '/character/1,2,3,4,5')
             labels.push(character.name)
             characterStats(result[i])
         }
-
+        
         const myChart = new Chart(ctx, {
 
             type: 'polarArea',
@@ -707,20 +728,20 @@ fetch(url + '/character/1,2,3,4,5')
 
                     data: data,
                     backgroundColor: [
-                        'rgba(255, 99, 132, 0.2)',
-                        'rgba(54, 162, 235, 0.2)',
-                        'rgba(255, 206, 86, 0.2)',
-                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(212, 156, 198, 0.2)',
+                        'rgba(28, 69, 137, 0.2)',
+                        'rgba(10, 116, 106, 0.2)',
+                        'rgba(192, 125, 43, 0.2)',
                         'rgba(153, 102, 255, 0.2)',
-                        'rgba(255, 159, 64, 0.2)'
+                        'rgba(190, 37, 39, 0.2)'
                     ],
                     borderColor: [
-                        'rgba(255, 99, 132, 1)',
-                        'rgba(54, 162, 235, 1)',
-                        'rgba(255, 206, 86, 1)',
-                        'rgba(75, 192, 192, 1)',
+                        'rgba(212, 156, 198, 1)',
+                        'rgba(28, 69, 137, 1)',
+                        'rgba(10, 116, 106, 1)',
+                        'rgba(192, 125, 43, 1)',
                         'rgba(153, 102, 255, 1)',
-                        'rgba(255, 159, 64, 1)'
+                        'rgba(190, 37, 39, 1)'
                     ],
                     borderWidth: 1
                 }]
