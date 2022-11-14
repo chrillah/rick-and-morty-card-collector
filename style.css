@@ -964,6 +964,7 @@ button{
 }
 
 .main-header{
+    text-align: center;
     font-family: 'Creepster', cursive;
     font-style: italic;
     font-size: 4rem;
@@ -982,6 +983,7 @@ button{
 .favorite-container{
     margin: 0 auto;
     max-width: 800px;
+    min-width: 800px;
     background-color: var(--screen-bg);
     border-radius: 10px;
     border: var(--screen-border)

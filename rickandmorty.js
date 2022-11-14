@@ -15,7 +15,7 @@ const episodeListSEFive = []
 const episodeListSESix = []
 
 // SAVES FAVOURITE CHARACTERS / EPISODES
-let favorite = []
+//let favorite = []
 // localStorage.setItem('favorite', JSON.stringify(favorite))
 
 
@@ -32,6 +32,13 @@ const charactersStats = document.querySelector('#characters-stats')
 
 const mainCharacterGalleryContainer = document.querySelector('#main-character-gallery-container')
 
+const favoriteHeader = document.querySelector('#favorite-header')
+const cardMessageContainer = document.querySelector('#card-message-container')
+
+const cardMessage = document.createElement('h1')
+cardMessage.classList.add('main-header')
+cardMessageContainer.appendChild(cardMessage)
+
 //const showMeFavoritButton = document.querySelector('#show-me-favorite-button')
 
 const season1 = document.querySelector('#season-1')
@@ -42,9 +49,10 @@ const season5 = document.querySelector('#season-5')
 
 let arrayFromLocalStorage = []
 arrayFromLocalStorage = JSON.parse(localStorage.getItem('favorite'))
-console.log(arrayFromLocalStorage)
+//console.log(arrayFromLocalStorage)
 
 if (arrayFromLocalStorage) {
+    cardMessageDisplayer()
     for (let i = 0; i < arrayFromLocalStorage.length; i++) {
         playcardMakerFromFavoriteList(arrayFromLocalStorage[i])
     }
@@ -59,7 +67,7 @@ if (arrayFromLocalStorage) {
 // }
 
 // Append to favorite-list-item
-const favoriteList = document.querySelector('#favorite-list')
+//const favoriteList = document.querySelector('#favorite-list')
 
 /* FUNCTIONS */
 function seasonOneList() {
@@ -256,6 +264,7 @@ function characterFinder(characterUrl) {
 
 // SAVED CARDS
 function playcardMakerFromFavoriteList(data) {
+    
     const characterContainer = document.createElement('div')
     const characterTopContainer = document.createElement('div')
 
@@ -364,7 +373,7 @@ function playcardMakerFromFavoriteList(data) {
         displayPlaycardsContainer.removeChild(characterContainer)
         removePlaycardObject()
         getAllInFavoriteList()
-
+        cardMessageDisplayer()
         })
 
 }
@@ -420,7 +429,6 @@ function characterPresentationMaker(data) {
 
 // MAKES A PLAYCARD IN EPISODE OBJECT
 function playcardObjectMaker(data) {
-
     removePlaycardObject()
 
     // TOPP
@@ -548,6 +556,7 @@ function playcardObjectMaker(data) {
         favoriteButton.style.display = 'none'
         removeFromFavoriteButton.style.display = 'grid'
         getAllInFavoriteList()
+        cardMessageDisplayer()
     })
 
     // If the card already is in the list, the favorite-button note visible
@@ -574,6 +583,7 @@ function playcardObjectMaker(data) {
         removeFromFavoriteButton.style.display = 'none'
         localStorage.setItem('favorite', JSON.stringify(newArray))
         getAllInFavoriteList()
+        cardMessageDisplayer()
     })
 }
 
@@ -583,7 +593,7 @@ function playcardObjectMaker(data) {
 // })
 
 function getAllInFavoriteList() {
-
+    
     clearCardContainer()
 
     let arrayFromLocalStorage = []
@@ -626,6 +636,28 @@ function removeAllInList() {
 function removeAllCharacterInList() {
     while (displayCharacterList.firstChild) {
         displayCharacterList.firstChild.remove()
+    }
+}
+
+function cardMessageDisplayer(){
+    console.log('anropad')
+    cardMessage.textContent = ''
+    let arrayFromLocalStorage = []
+    arrayFromLocalStorage = JSON.parse(localStorage.getItem('favorite'))
+    if((arrayFromLocalStorage.length) === 0){
+        console.log('0 kort')
+        console.log(arrayFromLocalStorage.length)
+        cardMessage.textContent = `You have no cards in your collection, hit that heart symbol and start collecting?`
+    }
+    if((arrayFromLocalStorage.length) <= 1){
+        console.log('1 kort')
+        console.log(arrayFromLocalStorage.length)
+        cardMessage.textContent = `You have currently ${ arrayFromLocalStorage.length} card in your collection, why not collect more?`
+    }
+    if((arrayFromLocalStorage.length) > 1){
+        console.log('mer än 1 kort')
+        console.log(arrayFromLocalStorage.length)
+        cardMessage.textContent = `You have currently ${ arrayFromLocalStorage.length} cards in your collection`
     }
 }
 
