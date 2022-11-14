@@ -687,18 +687,12 @@ function cardMessageDisplayer(){
     let arrayFromLocalStorage = []
     arrayFromLocalStorage = JSON.parse(localStorage.getItem('favorite'))
     if((arrayFromLocalStorage.length) === 0){
-        console.log('0 kort')
-        console.log(arrayFromLocalStorage.length)
         cardMessage.textContent = `You have no cards in your collection, hit that heart symbol and start collecting?`
     }
     if((arrayFromLocalStorage.length) <= 1){
-        console.log('1 kort')
-        console.log(arrayFromLocalStorage.length)
         cardMessage.textContent = `You have currently ${ arrayFromLocalStorage.length} card in your collection, why not collect more?`
     }
     if((arrayFromLocalStorage.length) > 1){
-        console.log('mer än 1 kort')
-        console.log(arrayFromLocalStorage.length)
         cardMessage.textContent = `You have currently ${ arrayFromLocalStorage.length} cards in your collection`
     }
 }
