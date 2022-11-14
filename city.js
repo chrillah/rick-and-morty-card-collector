@@ -25,6 +25,8 @@ const addErrorMessage = document.querySelector('#add-error-message')
 const nameError = document.querySelector('#name-error')
 const populationError = document.querySelector('#population-error')
 
+
+///////// BORT
 // CITY LIST
 // const cities = []
 // listFromStorage = []
@@ -101,7 +103,7 @@ const populationError = document.querySelector('#population-error')
 // createCityListItem(listFromStorage)
 /////////////////////////////////////////////////////////////////////
 
-
+///////// BORT
 
 /* ------------------------------- */
 
@@ -120,8 +122,11 @@ backFromAddNew.style.display = 'none'
 backFromSearch.style.display = 'none'
 formPost.style.display = 'none'
 postCity.style.display = 'none'
+
+///////// BORT
 //postCity.style.opacity = 1
 //postCity.disabled = true
+///////// BORT
 
 formSearch.style.display = 'none'
 
@@ -136,6 +141,7 @@ addErrorMessage.style.display = 'none'
 /* API */
 const url = `https://avancera.app/cities/`
 
+///////// BORT
 // FILL LOCALSTORAGE WITH CITIES
 // fetch(url).then(response => response.json()).then(data => {
 //     for (let i = 0; i < data.length; i++){
@@ -145,6 +151,7 @@ const url = `https://avancera.app/cities/`
 //     //localStorage.setItem('city-element', JSON.stringify(cities))
 // })
 //listFromStorage = JSON.parse(localStorage.getItem('city-element'))
+///////// BORT
 
 /* ------------------------------- */
 
@@ -165,10 +172,11 @@ function cityElementObjectCreator(data){
     const exitButton = document.createElement('input')
     const yesRemove = document.createElement('input')
     const noRemove = document.createElement('input')
+    const displayMessage = document.createElement('div')
 
     const cityInformationContainer = document.createElement('div')
-    const cityName = document.createElement('p')
-    const cityPopulation = document.createElement('p')
+    // const cityName = document.createElement('p')
+    // const cityPopulation = document.createElement('p')
     const editCityContainer = document.createElement('div')
     // EDITinput //
     const newNameInput = document.createElement('input')
@@ -193,10 +201,17 @@ function cityElementObjectCreator(data){
 
     cityInformationContainer.classList.add('city-information-container')
 
+    ///////// BORT
     // SE ÖVER !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!cityName////////////////////////////////////////////////////////////////////////////////////////
-    cityName.classList.add('city-header')
+    ///////// BORT
+
+    // cityName.classList.add('city-header')
+
+    ///////// BORT
     //cityName.classList.add('city-item')
-    cityPopulation.classList.add('city-item')
+    ///////// BORT
+
+    // cityPopulation.classList.add('city-item')
 
     editCityContainer.classList.add('edit-city-container')
     newNameInput.classList.add('user-input')
@@ -214,8 +229,9 @@ function cityElementObjectCreator(data){
     itemSelectContainer.appendChild(noRemove)
 
     cityItemContainer.appendChild(cityInformationContainer)
-    cityInformationContainer.appendChild(cityName)
-    cityInformationContainer.appendChild(cityPopulation)
+    cityInformationContainer.appendChild(displayMessage)
+    // cityInformationContainer.appendChild(cityName)
+    // cityInformationContainer.appendChild(cityPopulation)
 
     cityItemContainer.appendChild(editCityContainer)
     editCityContainer.appendChild(newNameInput)
@@ -230,8 +246,13 @@ function cityElementObjectCreator(data){
     cityInformationContainer.style.display = 'none'
     editButton.style.display = 'none'
     patchCity.style.display = 'none'
+
+    displayMessage.style.display = 'none'
     
+    ///////// BORT
     // editCityContainer.style.display = 'none'
+    ///////// BORT
+
     editCityContainer.style.display = 'grid'
 
     // TYPES AND VALUES //
@@ -239,13 +260,13 @@ function cityElementObjectCreator(data){
     editButton.value = 'Edit'
     
     deleteButton.type = 'button'
-    deleteButton.value = 'Remove'
+    deleteButton.value = 'Nuke em'
     
     exitButton.type = 'button'
     exitButton.value = 'Exit'
 
     yesRemove.type = 'button'
-    yesRemove.value = 'Yes'
+    yesRemove.value = 'Ok'
 
     noRemove.type = 'button'
     noRemove.value = 'No'
@@ -253,8 +274,8 @@ function cityElementObjectCreator(data){
     patchCity.type = 'button'
     patchCity.value = 'Update'
 
-    cityName.textContent = data.name
-    cityPopulation.textContent = 'Invånare: '+data.population
+    // cityName.textContent = data.name
+    // cityPopulation.textContent = 'Invånare: '+data.population
 
     newNameInput.placeholder = data.name
     newPopulationInput.placeholder = data.population
@@ -263,6 +284,7 @@ function cityElementObjectCreator(data){
     // EXIT EDIT MODE
     function exitEdit(){
         displayCityContainer.removeChild(cityItemContainer)
+        ///////// BORT
         // Displays
         // editButton.style.display = 'grid'
         // cityInformationContainer.style.display = 'grid'
@@ -271,8 +293,10 @@ function cityElementObjectCreator(data){
         // // None-display
         // editCityContainer.style.display = 'none'
         // exitButton.style.display = 'none'
+        ///////// BORT
     }
     
+    ///////// BORT
     // EVENTS //
     // SE ÖVER DETTA!
     // cityItemContainer.addEventListener('mouseover',()=>{
@@ -282,6 +306,8 @@ function cityElementObjectCreator(data){
     // cityItemContainer.addEventListener('mouseout',()=>{
     //     itemSelectContainer.style.opacity = 0;
     // })
+    ///////// BORT
+
 
     // ENTERING EDIT MODE
     editButton.addEventListener('click',()=>{
@@ -342,6 +368,7 @@ function cityElementObjectCreator(data){
         })
 
 
+        ///////// BORT
         // OG
         // function documentations(){
         //     if(newPopulation && !newName){
@@ -373,10 +400,13 @@ function cityElementObjectCreator(data){
         // })
         // console.log('PATCH')
         //exitEdit()
+        ///////// BORT
 
         patchCity.style.display = 'none'
+        ///////// BORT
         //createCityListItem()
         //refresh()
+        ///////// BORT
     })
 
     // ENTERING DELETE MODE
@@ -386,33 +416,47 @@ function cityElementObjectCreator(data){
         editButton.style.display = 'none'
         yesRemove.style.display = 'block'
         noRemove.style.display = 'block'
+        cityInformationContainer.style.display = 'grid'
+        displayMessage.style.display = 'grid'
 
-        editCityContainer.style.opacity = .2
+        displayMessage.innerHTML = 
+        `<h1>Nuke ${data.name}?</h1>`
+
+        // editCityContainer.style.opacity = .2
+
+        editCityContainer.style.display = 'none'
         editCityContainer.disabled = true;
     })
     
     // DELETE AND EXIT DELETE MODE
     yesRemove.addEventListener('click',()=>{
         displayCityContainer.removeChild(cityItemContainer)
+
+        ///////// BORT
         // for(let i = 0; i < listFromStorage.length; i++){
         //     if(listFromStorage[i].name === data.name){
         //         listFromStorage.splice(i, data.name)
         //     }
         // }
+        ///////// BORT
 
         fetch(url+data.id,{
         method:'DELETE'
         }).then(response=>{
             console.log(response)
             createCityListItem()
+            ///////// BORT
             //refresh()
+            ///////// BORT
         })
         console.log('DELETE')
     })
     
     // EXIT DELETE MODE
     noRemove.addEventListener('click', ()=>{
-        editCityContainer.style.opacity = 1
+        editCityContainer.style.display = 'grid'
+        displayMessage.style.display = 'none'
+        cityInformationContainer.style.display = 'none'
         deleteButton.style.display = 'block'
         exitButton.style.display = 'block'
         editButton.style.display = 'none'
@@ -431,16 +475,23 @@ function addNewMode(){
 
     addNewElement.style.display = 'none'
     searchAfterCities.style.display = 'none'
+
+    ///////// BORT
     //getCities.style.display = 'none'
     //refreshButton.style.display = 'none'
+    ///////// BORT
 }
 
 // EXIT ADD NEW MODE
 function defaultFromAdd(){
+    ///////// BORT
     //getCities.style.display = 'inline-block'
+    ///////// BORT
     addNewElement.style.display = 'inline-block'
     searchAfterCities.style.display = 'inline-block'
+    ///////// BORT
     //refreshButton.style.display = 'inline-block'
+    ///////// BORT
 
     formPost.style.display = 'none'
     backFromAddNew.style.display = 'none'
@@ -450,25 +501,37 @@ function defaultFromAdd(){
 // ENTER SEARCH CITY MODE
 function searchMode(){
     removeAllCityObjects()
+    ///////// BORT
     // while(displayCityContainer.firstChild){
     //     displayCityContainer.firstChild.remove()
     // }
+    ///////// BORT
 
     formSearch.style.display = 'grid'
     backFromSearch.style.display = 'block'
 
     addNewElement.style.display = 'none'
     searchAfterCities.style.display = 'none'
+
+    ///////// BORT
     //getCities.style.display = 'none'
     //refreshButton.style.display = 'none'
+    ///////// BORT
 }
 
 // EXIT SEARCH MODE
 function defaultFromSearch(){
+
+    ///////// BORT
     //getCities.style.display = 'inline-block'
+    ///////// BORT
+
     addNewElement.style.display = 'inline-block'
     searchAfterCities.style.display = 'inline-block'
+
+    ///////// BORT
     //refreshButton.style.display = 'inline-block'
+    ///////// BORT
 
     formSearch.style.display = 'none'
     backFromSearch.style.display = 'none'
@@ -517,6 +580,7 @@ function getCity(value){
     defaultFromSearch()
 }
 
+///////// BORT
 // find children from displayCityList -- funkar inte....
 // function childFromDisplayListPopulation(data){
 //     let child
@@ -530,6 +594,12 @@ function getCity(value){
 // }
 
 //Fixa Strong delen
+
+
+///////// BORT
+
+
+
 function childFromDisplayListName(data){
     let child
     for (let i = 0; i <displayCityList.querySelectorAll('.list-name').length;i++){
@@ -547,7 +617,11 @@ function createCityListItem(){
     .then(data=>{
         for (let i = 0; i < data.length;i++){
             const cityListItem = document.createElement('li')
+
+            ///////// BORT
             // fixa detta för patchCity strong delen funkar inte
+            ///////// BORT
+
             cityListItem.innerHTML = `
             <li class="city-list-item list-btn">
                 <p class="list-name">${data[i].name}</p>
@@ -556,6 +630,12 @@ function createCityListItem(){
             displayCityList.appendChild(cityListItem)
     
             cityListItem.addEventListener('click',()=>{
+                const btnPressed = displayCityList.querySelectorAll('.list-btn-pressed')
+                btnPressed.forEach(btn=>{
+                    btn.classList.remove('list-btn-pressed')
+                })
+                cityListItem.classList.add('list-btn-pressed')
+
                 removeAllCityObjects()
                 cityElementObjectCreator(data[i])
             })

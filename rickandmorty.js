@@ -14,11 +14,13 @@ const episodeListSEFour = []
 const episodeListSEFive = []
 const episodeListSESix = []
 
+
+
+///////// BORT
 // SAVES FAVOURITE CHARACTERS / EPISODES
 //let favorite = []
 // localStorage.setItem('favorite', JSON.stringify(favorite))
-
-
+///////// BORT
 
 // List container
 const displayEpisodeList = document.querySelector('#display-episode-list')
@@ -38,7 +40,10 @@ let statsCharacterID = ''
 const cardMessage = document.createElement('h1')
 cardMessage.classList.add('main-header')
 cardMessageContainer.appendChild(cardMessage)
+
+///////// BORT
 //const showMeFavoritButton = document.querySelector('#show-me-favorite-button')
+///////// BORT
 
 const season1 = document.querySelector('#season-1')
 const season2 = document.querySelector('#season-2')
@@ -48,7 +53,6 @@ const season5 = document.querySelector('#season-5')
 
 let arrayFromLocalStorage = []
 arrayFromLocalStorage = JSON.parse(localStorage.getItem('favorite'))
-//console.log(arrayFromLocalStorage)
 
 if (arrayFromLocalStorage) {
     cardMessageDisplayer()
@@ -58,6 +62,7 @@ if (arrayFromLocalStorage) {
     displayPlaycardsContainer.style.gridTemplateColumns = `repeat(${arrayFromLocalStorage.length}, 100px)`
 }
 
+///////// BORT
 // Start condition
 //showMeFavoritButton.style.opacity = 0;
 
@@ -67,6 +72,8 @@ if (arrayFromLocalStorage) {
 
 // Append to favorite-list-item
 //const favoriteList = document.querySelector('#favorite-list')
+///////// BORT
+
 
 /* FUNCTIONS */
 function seasonOneList() {
@@ -141,7 +148,10 @@ function episodeListMaker(data) {
         const listItem = document.createElement('li')
         const itemInformation = document.createElement('p')
         listItem.classList.add('episode-btn')
+
+        ///////// BORT
         //itemInformation.classList.add('episode-information')
+        ///////// BORT
 
         itemInformation.style.padding = '0'
         itemInformation.style.margin = '0'
@@ -185,9 +195,16 @@ function episodeObjectMaker(data) {
     episodeContainer.classList.add('episode-container')
     episodeBottom.classList.add('episode-container-bottom')
     episodeTop.classList.add('episode-container-top')
+
+    ///////// BORT
     // episodeNameInformation.classList.add('episode-name-information')
+    ///////// BORT
+
     episodeTitle.classList.add('episode-name')
+
+    ///////// BORT
     // episodeAirDate.classList.add('episode-airdate')
+    ///////// BORT
 
     charactersContainer.id = 'characters-container-in-epo'
 
@@ -237,12 +254,14 @@ function characterFinder(characterUrl) {
     fetch(characterUrl)
         .then(response => response.json())
         .then(data => {
+            ///////// BORT
             //characterObjectMaker(data)
+            ///////// BORT
             characterListFromEpisode(data)
         })
 }
 
-
+///////// BORT
 // Characters from favorite list
 // function characterListFromFavorite(data){
 //     const listItem = document.createElement('li')
@@ -259,7 +278,7 @@ function characterFinder(characterUrl) {
 //         playcardMakerFromFavoriteList(data)
 //     })
 // }
-
+///////// BORT
 
 // SAVED CARDS
 function playcardMakerFromFavoriteList(data) {
@@ -607,10 +626,13 @@ function playcardObjectMaker(data) {
     })
 }
 
+///////// BORT
 // showMeFavoritButton.addEventListener('click', ()=>{
 //     getAllInFavoriteList()
 //     showMeFavoritButton.value = 'Update' 
 // })
+///////// BORT
+
 
 function getAllInFavoriteList() {
     
