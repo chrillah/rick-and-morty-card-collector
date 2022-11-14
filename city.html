@@ -7,7 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!--Add description -->
     <link rel="stylesheet" href="style.css">
-    <title>Rick and Morty-pediaish</title>
+    <link rel="stylesheet" href="city.css">
+    <title>Rick and Morty City Planner</title>
     <link rel="shortcut icon" href="img/rickandmorty_favicon.png" type="image/x-icon">
 </head>
 
@@ -15,10 +16,11 @@
     <div class="nav-wrapper">
         <div class="nav-container">
             <nav class="navbar">
-                <div class="brand-title">
+                <a href="#home" class="brand-title">
                     <img class="regular-logotype" src="img/rickandmorty_logo_bw.png" alt="Rick and Morty logotype">
                     <img class="small-logotype" src="img/rickandmorty_logo_small.png" alt="Rick and Morty logotype">
-                </div>
+                    <p class="navbar-header">City Planner</p>
+                </a>
                 <a class="toggle-btn" href="#">
                     <span class="bar"></span>
                     <span class="bar"></span>
@@ -38,11 +40,9 @@
             </nav>
         </div>
     </div>
-    <div class="hero-wrapper">
+    <div id="home" class="hero-wrapper">
         <div class="hero-container">
-            <h1 class="hero-header">
-                - City Planner
-            </h1>
+            <img class="rotating-text" src="img/rotating_text_city_planner.png" alt="">
         </div>
     </div>
     <div id="scroll-to-display"></div>
