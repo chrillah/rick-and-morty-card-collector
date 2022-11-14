@@ -4,6 +4,8 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Creepster&display=swap');
 
+@import url('https://fonts.googleapis.com/css2?family=Major+Mono+Display&display=swap');
+
 /* Table of content */
 /* 1. Root settings */
 /* 2. HTML settings */
@@ -95,11 +97,10 @@ html{
     align-items: center;
     flex-direction: column;
     border: var(--border-style-1px);
-    height: 2.3rem;
 }
 
 .nav-container{
-    max-width: 800px;
+    max-width: 1000px;
     width: 100%;
 }
 
@@ -110,8 +111,24 @@ html{
     align-items: center;
 }
 
+.brand-title{
+    text-decoration: none;
+    color: var(--font-color-black);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.navbar-header{
+    width: 100%;
+    font-weight: bold;
+    font-size: .7rem;
+    padding: 0;
+    margin: 0;
+    margin-left: 1rem;
+}
+
 .brand-title img{
-    /* margin-top: 1rem; */
     width: 100%;
     height: 2rem;
 }
@@ -132,6 +149,10 @@ html{
     .small-logotype{
         display: block;
     }
+
+    .navbar-header{
+        min-width: 80px;
+    }
 }
 
 .navbar-links ul{
@@ -146,8 +167,7 @@ html{
 }
 
 .navbar-links li a{
-    
-    font-size: .7rem;
+    font-size: .6rem;
     text-decoration: none;
     padding: .7rem 1.5rem;
     display: block;
@@ -157,10 +177,8 @@ html{
     border: var(--border-style-1px);
     color: var(--font-color-black);
     cursor: pointer;
-    display: block;
     font-weight: bolder;
     text-align: center;
-    text-decoration: none;
     user-select: none;
     -webkit-user-select: none;
     touch-action: manipulation;
@@ -175,10 +193,10 @@ html{
 .nav-btn:focus {
     background-color: var(--button-bg-color-focus);
     border: var(--border-style-1px);
-    transform: translate(-3px, 3px);
-    box-shadow: var(--border_color) 7px 7px 0 0;
-    -webkit-box-shadow: 3px -3px 0px 0px rgba(0,0,0,1);
-    -moz-box-shadow: 3px -3px 0px 0px rgba(0,0,0,1);
+    transform: translate(0px, 3px);
+    box-shadow: var(--border_color) 0px -5px 0 0;
+    -webkit-box-shadow: 0px -5px 0px 0px rgba(0,0,0,1);
+    -moz-box-shadow: 0px -5px 0px 0px rgba(0,0,0,1);
 }
 
 .toggle-btn{
