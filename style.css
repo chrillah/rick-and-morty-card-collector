@@ -782,8 +782,8 @@ html{
     flex-direction: column;
     justify-content: space-evenly;
     align-items: center;
-    border: 5px solid var(--light-green);
-    background-color:#F2D74C;
+    border: 5px solid #21B68B;
+    background-color:#F3CC15;
     height: 260px;
     width: 180px;
     border-radius: 20px;
@@ -854,7 +854,7 @@ button{
     background-size: cover;
     background-repeat: no-repeat;
     overflow: hidden;
-    border: 5px solid var(--light-purple);
+    border: 5px solid #21B68B;
 }
 
 .character-img{
@@ -868,7 +868,7 @@ button{
     border-radius: 10px;
     padding: .5rem;
     margin: .4rem;
-    background-color: var(--light-purple);
+    background-color: #21B68B;
     display: block;
 }
 

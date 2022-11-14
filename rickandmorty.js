@@ -304,6 +304,34 @@ function playcardMakerFromFavoriteList(data) {
 
     heartSymbol.src = 'img/heart_symbol.png'
 
+    if(data.species === 'Alien'){
+        characterContainer.style.backgroundColor = '#6050A1'
+        infoContainer.style.backgroundColor = '#C07D2B'
+        characterContainer.style.border = '5px solid #C07D2B'
+        imgCharacterContainer.style.border = '5px solid #C07D2B'
+    }
+
+    if(data.species === 'Mythological Creature'){
+        characterContainer.style.backgroundColor = '#1C4589'
+        infoContainer.style.backgroundColor = '#D49CC6'
+        characterContainer.style.border = '5px solid #D49CC6'
+        imgCharacterContainer.style.border = '5px solid #D49CC6'
+    }
+
+    if(data.species === 'Robot'){
+        characterContainer.style.backgroundColor = '#F59492'
+        characterContainer.style.border = '5px solid #F3CC15'
+        imgCharacterContainer.style.border = '5px solid #F3CC15'
+        infoContainer.style.backgroundColor = '#F3CC15'
+    }
+
+    if(data.species === 'Animal'){
+        characterContainer.style.backgroundColor = '#BCB0BF'
+        characterContainer.style.border = '5px solid #F3CC15'
+        imgCharacterContainer.style.border = '5px solid #F3CC15'
+        infoContainer.style.backgroundColor = '#F3CC15'
+    }
+
     removeFromFavoriteButton.style.margin = '0'
     removeFromFavoriteButton.style.padding = '0'
 
@@ -451,6 +479,34 @@ function playcardObjectMaker(data) {
 
     heartSymbol.src = 'img/heart_symbol.png'
     noHeartSymbol.src = 'img/no_heart_symbol.png'
+
+    if(data.species === 'Alien'){
+        characterContainer.style.backgroundColor = '#6050A1'
+        infoContainer.style.backgroundColor = '#C07D2B'
+        characterContainer.style.border = '5px solid #C07D2B'
+        imgCharacterContainer.style.border = '5px solid #C07D2B'
+    }
+
+    if(data.species === 'Mythological Creature'){
+        characterContainer.style.backgroundColor = '#1C4589'
+        infoContainer.style.backgroundColor = '#D49CC6'
+        characterContainer.style.border = '5px solid #D49CC6'
+        imgCharacterContainer.style.border = '5px solid #D49CC6'
+    }
+
+    if(data.species === 'Robot'){
+        characterContainer.style.backgroundColor = '#F59492'
+        characterContainer.style.border = '5px solid #F3CC15'
+        imgCharacterContainer.style.border = '5px solid #F3CC15'
+        infoContainer.style.backgroundColor = '#F3CC15'
+    }
+
+    if(data.species === 'Animal'){
+        characterContainer.style.backgroundColor = '#BCB0BF'
+        characterContainer.style.border = '5px solid #F3CC15'
+        imgCharacterContainer.style.border = '5px solid #F3CC15'
+        infoContainer.style.backgroundColor = '#F3CC15'
+    }
 
     removeFromFavoriteButton.style.margin = '0'
     removeFromFavoriteButton.style.padding = '0'
