@@ -272,28 +272,20 @@ html{
     align-items: center bottom;
     background-image: url(img/rickandmorty_logo_og.png);
     background-position: center;
-    background-size: contain;
+    background-size: 70%;
     background-repeat: no-repeat;
     height: 100vh;
     overflow: hidden;
-    border: var(--border-style-1px);
     background-color: #BDB1C0; 
     animation: colorChange 5s infinite;
 }
 @keyframes colorChange { /* flame pulses */
     0%   { background-color: #BDB1C0;  }
-    25%  { background-color: #23B78C;  }
-    50%  { background-color: #108E74; }
+    25%  { background-color: var(--screen-bg);  }
+    50%  { background-color: #000000; }
     75%  { background-color: #00B4CC; }
     100%  { background-color: #BDB1C0; }
   }
-
-.hero-container{
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    flex-direction: column;
-}
 
 .hero-header{
     font-family: 'Creepster', cursive;
@@ -310,6 +302,40 @@ html{
     }
     .hero-header{
         font-size: 4rem;
+    }
+}
+
+.hero-container{
+    display: flex;
+    /* justify-content: flex-end; */
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.rotating-text{
+    animation: rotation 5s infinite linear;
+    max-width: 700px
+}
+
+.rotating-text img{
+    width: 100%;
+    height: auto;
+}
+
+@keyframes rotation {
+    from{
+        transform: rotate(0deg);
+    }
+
+    to{
+        transform: rotate(359deg);
+    }
+}
+
+@media (max-width: 600px) {
+    .rotating-text{
+        width: 200px;
     }
 }
 
@@ -336,7 +362,7 @@ html{
 .main-intro-header{
     font-family: 'Creepster', cursive;
     font-style: italic;
-    font-size: 4rem;
+    font-size: 6rem;
     padding: 0;
     margin: 0;
 }
@@ -618,6 +644,7 @@ html{
 
 /* children to Middle-display*/
 #display-character-list{
+    padding-left: auto;
     overflow: auto;
     height: 100%;
     grid-area: char-list;
@@ -641,10 +668,13 @@ html{
     grid-area: ep-object;
     color: var(--screen-text);
     padding: .5rem .5rem 0 .5rem;
+    margin: 1.1rem 0 0 1.6rem;
 }
 
 /* children to object-display*/
 #display-one-playcard-object{
+    margin: .6rem;
+    margin-bottom: 1rem;
     grid-area: char-object;
     min-width: 190px;
     width: 100%;
@@ -753,7 +783,7 @@ html{
     justify-content: space-evenly;
     align-items: center;
     border: 5px solid var(--light-green);
-    background-color:#F3CC16;
+    background-color:#F2D74C;
     height: 260px;
     width: 180px;
     border-radius: 20px;
@@ -774,24 +804,32 @@ html{
     align-items: center;
 }
 
-.playcard-btn{
-    border-radius: 100px;
+button{
+    border: none;
     background: none;
-    border: var(--border-style-1px);
-    /* box-shadow: var(--button-shadow-color) 4px 4px 0 0;
-    -webkit-box-shadow: 4px 4px 0px 0px rgba(0,0,0,1);
-    -moz-box-shadow: 4px 4px 0px 0px rgba(0,0,0,1); */
+}
+
+.playcard-btn{
     color: var(--font-color-black);
     cursor: pointer;
     display: block;
     font-weight: bolder;
     /* margin: 1.5rem 0 1rem 0; */
-    padding: .7rem; 
-    line-height: 0;
-    text-decoration: none;
     user-select: none;
     -webkit-user-select: none;
     touch-action: manipulation;
+}
+
+.heart-symbol{
+    width: 20px;
+    transition: transform 2s linear;
+}
+.heart-symbol img{
+    width: 100%;
+    height: auto;
+}
+.heart-symbol:hover{
+    transform: scale(1.5)
 }
 
 .playcard-logo-container{

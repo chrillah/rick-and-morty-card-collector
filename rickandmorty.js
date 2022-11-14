@@ -259,14 +259,13 @@ function playcardMakerFromFavoriteList(data) {
     const characterContainer = document.createElement('div')
     const characterTopContainer = document.createElement('div')
 
-    // CHARACTER-TOP-CONTAINER
-    //const favoriteButton = document.createElement('button')
     const removeFromFavoriteButton = document.createElement('button')
 
     const infoContainer = document.createElement('div')
     const playcardLogoContainer = document.createElement('div')
     const characterImg = document.createElement('img')
     const playcardLogo = document.createElement('img')
+    const heartSymbol = document.createElement('img')
     const imgCharacterContainer = document.createElement('div')
 
     const characterName = document.createElement('h3')
@@ -281,7 +280,7 @@ function playcardMakerFromFavoriteList(data) {
 
     infoContainer.classList.add('character-info-container')
     imgCharacterContainer.classList.add('img-character-container')
-    //favoriteButton.classList.add('playcard-btn')
+    heartSymbol.classList.add('heart-symbol')
     removeFromFavoriteButton.classList.add('playcard-btn')
     playcardLogoContainer.classList.add('playcard-logo-container')
     characterName.classList.add('character-name-header')
@@ -292,8 +291,8 @@ function playcardMakerFromFavoriteList(data) {
     characterContainer.appendChild(characterTopContainer)
     characterContainer.appendChild(imgCharacterContainer)
     characterContainer.appendChild(infoContainer)
-    //characterTopContainer.appendChild(favoriteButton)
     characterTopContainer.appendChild(removeFromFavoriteButton)
+    removeFromFavoriteButton.appendChild(heartSymbol)
     characterTopContainer.appendChild(playcardLogoContainer)
     playcardLogoContainer.appendChild(playcardLogo)
 
@@ -303,15 +302,11 @@ function playcardMakerFromFavoriteList(data) {
     infoContainer.appendChild(characterGender)
     infoContainer.appendChild(characterStatus)
 
-    removeFromFavoriteButton.innerHTML =
-        `<button>X</button>`
-    // favoriteButton.innerHTML =
-    //     `<button>&hearts;</button>`
+    heartSymbol.src = 'img/heart_symbol.png'
 
     removeFromFavoriteButton.style.margin = '0'
     removeFromFavoriteButton.style.padding = '0'
-    // favoriteButton.style.margin = '0'
-    // favoriteButton.style.padding = '0'
+
     characterGender.style.margin = '0'
     characterStatus.style.margin = '0'
     characterSpecies.style.margin = '0'
@@ -327,41 +322,6 @@ function playcardMakerFromFavoriteList(data) {
     characterGender.innerHTML =
         `<p class="character-info">Gender: <span>${data.gender}</span></p>`
 
-    // start condition
-    //removeFromFavoriteButton.style.display = 'none'
-
-    // FROM PLAYCARDOBJECTMAKER
-    // favoriteButton.addEventListener('click', () => {
-    //     // Lägger till
-    //     console.log('Lägger till')
-    //     let arrayFromLocalStorage = []
-    //     arrayFromLocalStorage = JSON.parse(localStorage.getItem('favorite'))
-        
-    //     if(arrayFromLocalStorage){
-    //         arrayFromLocalStorage.push(data)
-    //         localStorage.setItem('favorite', JSON.stringify(arrayFromLocalStorage))
-    //     }if(!arrayFromLocalStorage){
-    //         let favorite = []
-    //         favorite.push(data)
-    //         localStorage.setItem('favorite', JSON.stringify(favorite))
-    //     }
-
-    //     favoriteButton.style.display = 'none'
-    //     removeFromFavoriteButton.style.display = 'grid'
-    //     getAllInFavoriteList()
-    // })
-
-    // If the card already is in the list, the favorite-button note visible
-    // let arrayFromLocalStorage = []
-    // arrayFromLocalStorage = JSON.parse(localStorage.getItem('favorite'))
-    // if(arrayFromLocalStorage){
-    //     for (let i = 0; i < arrayFromLocalStorage.length; i++) {
-    //         if (arrayFromLocalStorage[i].id === data.id) {
-    //             favoriteButton.style.display = 'none'
-    //             removeFromFavoriteButton.style.display = 'grid'
-    //         }
-    //     }
-    // }
 
     removeFromFavoriteButton.addEventListener('click', () => {
         let favorite = []
@@ -375,54 +335,18 @@ function playcardMakerFromFavoriteList(data) {
         localStorage.setItem('favorite', JSON.stringify(newArray))
         displayPlaycardsContainer.removeChild(characterContainer)
         removePlaycardObject()
-        // clearCardContainer()
         getAllInFavoriteList()
 
-
-
-            // let arrayFromLocalStorage = []
-            // favorite = JSON.parse(localStorage.getItem('favorite'))
-            // for (let i = 0; i < arrayFromLocalStorage.length; i++) {
-            //     console.log(favorite[i])
-            //     playcardMakerFromFavoriteList(favorite[i])
-            // }
-
-            // favoriteButton.style.display = 'grid'
-            // removeFromFavoriteButton.style.display = 'none'
         })
 
-
-    // OLD
-    // favoriteButton.addEventListener('click', () => {
-    //     favorite.push(data)
-    //     localStorage.setItem('favorite', JSON.stringify(favorite))
-    //     favoriteButton.style.display = 'none'
-    //     removeFromFavoriteButton.style.display = 'grid'
-    // })
-    
-    // removeFromFavoriteButton.addEventListener('click', () => {
-    //     console.log('remove button pressed')
-    //     let favorite = []
-    //     favorite = JSON.parse(localStorage.getItem('favorite'))
-    //     for (let i = 0; i < favorite.length; i++) {
-    //         if (favorite[i].id === data.id) {
-    //             favorite.pop(data)
-    //             console.log('Borttagen')
-    //         }
-    //     }
-    //     favoriteButton.style.display = 'grid'
-    //     removeFromFavoriteButton.style.display = 'none'
-    //     localStorage.setItem('favorite', JSON.stringify(favorite))
-    // })
 }
 
 // Adds character from episodeObject
 function characterListFromEpisode(data) {
     const listItem = document.createElement('li')
     listItem.classList.add('character-list-item')
-    // TEST!/////////////////////
+
     listItem.classList.add('character-btn')
-    //const itemInformation = document.createElement('p')
     listItem.textContent = data.name
     displayCharacterList.appendChild(listItem)
     listItem.addEventListener('click', () => {
@@ -483,6 +407,8 @@ function playcardObjectMaker(data) {
     const playcardLogoContainer = document.createElement('div')
     const characterImg = document.createElement('img')
     const playcardLogo = document.createElement('img')
+    const heartSymbol = document.createElement('img')
+    const noHeartSymbol = document.createElement('img')
     const imgCharacterContainer = document.createElement('div')
 
     const characterName = document.createElement('h3')
@@ -503,6 +429,8 @@ function playcardObjectMaker(data) {
     characterName.classList.add('character-name-header')
     playcardLogo.classList.add('playcard-logo')
     characterImg.classList.add('character-img')
+    heartSymbol.classList.add('heart-symbol')
+    noHeartSymbol.classList.add('heart-symbol')
 
     displayOnePlaycardObject.appendChild(characterContainer)
     characterContainer.appendChild(characterTopContainer)
@@ -510,6 +438,8 @@ function playcardObjectMaker(data) {
     characterContainer.appendChild(infoContainer)
     characterTopContainer.appendChild(favoriteButton)
     characterTopContainer.appendChild(removeFromFavoriteButton)
+    favoriteButton.appendChild(noHeartSymbol)
+    removeFromFavoriteButton.appendChild(heartSymbol)
     characterTopContainer.appendChild(playcardLogoContainer)
     playcardLogoContainer.appendChild(playcardLogo)
 
@@ -519,10 +449,8 @@ function playcardObjectMaker(data) {
     infoContainer.appendChild(characterGender)
     infoContainer.appendChild(characterStatus)
 
-    removeFromFavoriteButton.innerHTML =
-        `<button>X</button>`
-    favoriteButton.innerHTML =
-        `<button>&hearts;</button>`
+    heartSymbol.src = 'img/heart_symbol.png'
+    noHeartSymbol.src = 'img/no_heart_symbol.png'
 
     removeFromFavoriteButton.style.margin = '0'
     removeFromFavoriteButton.style.padding = '0'
@@ -645,18 +573,6 @@ function removeAllCharacterInList() {
     }
 }
 
-// fetch("https://rickandmortyapi.com/api/character")
-// .then(response => response.json())
-// .then(data => makeCards(data.results))
-
-// function makeCards(charactersArray){
-//     const cardContainer = document.querySelector('#card-container')
-
-//     // DEN HÄR ITERERAR
-//     charactersArray.forEach(character => {
-//         characterObjectMaker(character)
-//     });
-// }
 
 // DISPLAYS THE 4 mOST POPULAR CHARACTERS
 
@@ -666,88 +582,6 @@ fetch(url + '/character/244, 47, 154, 598, 2').then(response => response.json())
             characterPresentationMaker(character)
         });
     })
-
-
-
-///////////////////////////////////////////
-// CHART /// HTML UTKOMMENTERAD
-
-// function characterChart(array){
-
-//     let characters = ''
-
-//     for (let i = 0; i < array.length; i++){
-//         characters += array[i].id + ','
-//         if(array)
-//     }
-
-//     let input = 'Someone'
-
-// fetch(url+'/character/1,2,3,4,5')
-// .then(response => response.json())
-// .then(result => {
-
-//     /* Chart.js demo */
-//     // selecterar id från html
-//     const ctx = document.getElementById('myChart').getContext('2d')
-
-//     // för att få ut alla data från objektet på api/server/lokal jsonfil behöver vi skapa lådor som just nu är tomma men ska fyllas för att sen arbeta längre ner 
-//     const data = [],
-//     labels = []
-
-
-// // vi ska mata in data, enskilt, i våra tomma lådor(arrayer)
-
-// for (let i = 0; i < result.length; i++){
-
-//     const character = result[i]
-
-//     data.push(character.episode.length)
-//     labels.push(character.name)
-
-// }
-
-// const myChart = new Chart(ctx, {
-
-//     type: 'polarArea',
-//     data: {
-//         labels: labels,
-//         datasets: [{
-//             label: `${input}`,
-
-//             data: data,
-//             backgroundColor: [
-//                 'rgba(255, 99, 132, 0.2)',
-//                 'rgba(54, 162, 235, 0.2)',
-//                 'rgba(255, 206, 86, 0.2)',
-//                 'rgba(75, 192, 192, 0.2)',
-//                 'rgba(153, 102, 255, 0.2)',
-//                 'rgba(255, 159, 64, 0.2)'
-//             ],
-//             borderColor: [
-//                 'rgba(255, 99, 132, 1)',
-//                 'rgba(54, 162, 235, 1)',
-//                 'rgba(255, 206, 86, 1)',
-//                 'rgba(75, 192, 192, 1)',
-//                 'rgba(153, 102, 255, 1)',
-//                 'rgba(255, 159, 64, 1)'
-//             ],
-//             borderWidth: 1
-//         }]
-//     },
-//     options: {
-//         scales: {
-//             y: {
-//                 beginAtZero: true
-//             }
-//         }
-//     }
-// });
-
-// })
-
-// }
-
 
 let input = 'Someone'
 
