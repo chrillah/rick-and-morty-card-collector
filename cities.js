@@ -77,8 +77,6 @@ function cityElementObjectCreator(data){
     const displayMessage = document.createElement('div')
 
     const cityInformationContainer = document.createElement('div')
-    // const cityName = document.createElement('p')
-    // const cityPopulation = document.createElement('p')
     const editCityContainer = document.createElement('div')
     // EDITinput //
     const newNameInput = document.createElement('input')
@@ -147,7 +145,7 @@ function cityElementObjectCreator(data){
     deleteButton.value = 'Nuke em'
     
     exitButton.type = 'button'
-    exitButton.value = 'Exit'
+    exitButton.value = 'Close'
 
     yesRemove.type = 'button'
     yesRemove.value = 'Ok'
@@ -231,7 +229,7 @@ function cityElementObjectCreator(data){
         displayMessage.style.display = 'grid'
 
         displayMessage.innerHTML = 
-        `<h1>Nuke ${data.name}?</h1>`
+        `<h1 class="nuke-message">Nuke ${data.name}?</h1>`
 
         editCityContainer.style.display = 'none'
         editCityContainer.disabled = true;
@@ -373,11 +371,12 @@ function createCityListItem(){
         for (let i = 0; i < data.length;i++){
             const cityListItem = document.createElement('li')
 
-            cityListItem.innerHTML = `
-            <li class="list-btn">
-                ${data[i].name}
-            </li>`
-    
+            cityListItem.textContent = data[i].name
+            // cityListItem.innerHTML = `
+            // <li class="list-btn">
+            //     ${data[i].name}
+            // </li>`
+            cityListItem.classList.add('list-btn')
             displayCityList.appendChild(cityListItem)
     
             cityListItem.addEventListener('click',()=>{
