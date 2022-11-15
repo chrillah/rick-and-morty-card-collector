@@ -25,86 +25,6 @@ const addErrorMessage = document.querySelector('#add-error-message')
 const nameError = document.querySelector('#name-error')
 const populationError = document.querySelector('#population-error')
 
-
-///////// BORT
-// CITY LIST
-// const cities = []
-// listFromStorage = []
-
-
-// REMOVE WHEN FINISHED //////////////////////////////////////////
-//const getCities = document.querySelector('#get-cities')
-//const refreshButton = document.querySelector('#refresh-button')
-/* KOLLA UPP SECTIONS! */
-//let inputName = ''
-// let inputPopulation = 0
-
-// function inputPopulationValue(){
-//     inputPopulation = parseInt(populationInput.value)
-// }
-
-// TAR EMOT VÄRDE FRÅN ANVÄNDAREN
-// function inputNameValue(){
-//     if(nameInput){
-//         nameError.style.display = 'none'
-//     }
-//     //inputName = nameInput.value
-// }
-
-// FUNKAR EJ
-/* GUARDFUNCTION */
-// function isNameInputPass(){
-//     if(nameInput.value === ''){
-//         nameError.style.display = 'inline-block'
-//     }
-// }
-// function isPopulationInputPass(){
-//     if(!inputPopulation){
-//         populationError.style = 'inline-block'
-//     }
-//     if(inputPopulation){
-//         populationError.style.display = 'none'
-//     }
-// }
-
-/* GET-ANROP Hämtar alla cities*/
-// getCities.addEventListener('click', ()=>{
-//     fetch(url)
-//     .then(resp=>resp.json())
-//     .then(result=>{
-//         result.forEach(element => {
-//             cityElementObjectCreator(element)
-//         })
-//     })
-//     console.log('GET')
-// })
-
-/* SEARCH CITY */
-
-// TODO get fetch
-// display-city-list-item
-
-
-// ORIGINAL
-// function createCityListItem(data){
-//     for (let i = 0; i < data.length;i++){
-//         const cityListItem = document.createElement('li')
-//         cityListItem.innerHTML = `
-//         <li class="city-list-item list-btn">${data[i].name}</li>`
-
-//         displayCityList.appendChild(cityListItem)
-
-//         cityListItem.addEventListener('click',()=>{
-//             removeAllCityObjects()
-//             cityElementObjectCreator(data[i])
-//         })
-//     }
-// }
-// createCityListItem(listFromStorage)
-/////////////////////////////////////////////////////////////////////
-
-///////// BORT
-
 /* ------------------------------- */
 
 /* CLASSLIST */
@@ -123,14 +43,8 @@ backFromSearch.style.display = 'none'
 formPost.style.display = 'none'
 postCity.style.display = 'none'
 
-///////// BORT
-//postCity.style.opacity = 1
-//postCity.disabled = true
-///////// BORT
 
 formSearch.style.display = 'none'
-
-// TESTAR SEARCH
 searchButton.style.opacity = 0
 searchButton.disabled = true
 
@@ -140,18 +54,6 @@ addErrorMessage.style.display = 'none'
 
 /* API */
 const url = `https://avancera.app/cities/`
-
-///////// BORT
-// FILL LOCALSTORAGE WITH CITIES
-// fetch(url).then(response => response.json()).then(data => {
-//     for (let i = 0; i < data.length; i++){
-//         cities.push(data[i])
-//     }
-
-//     //localStorage.setItem('city-element', JSON.stringify(cities))
-// })
-//listFromStorage = JSON.parse(localStorage.getItem('city-element'))
-///////// BORT
 
 /* ------------------------------- */
 
@@ -201,18 +103,6 @@ function cityElementObjectCreator(data){
 
     cityInformationContainer.classList.add('city-information-container')
 
-    ///////// BORT
-    // SE ÖVER !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!cityName////////////////////////////////////////////////////////////////////////////////////////
-    ///////// BORT
-
-    // cityName.classList.add('city-header')
-
-    ///////// BORT
-    //cityName.classList.add('city-item')
-    ///////// BORT
-
-    // cityPopulation.classList.add('city-item')
-
     editCityContainer.classList.add('edit-city-container')
     newNameInput.classList.add('user-input')
     newPopulationInput.classList.add('user-input')
@@ -230,8 +120,6 @@ function cityElementObjectCreator(data){
 
     cityItemContainer.appendChild(cityInformationContainer)
     cityInformationContainer.appendChild(displayMessage)
-    // cityInformationContainer.appendChild(cityName)
-    // cityInformationContainer.appendChild(cityPopulation)
 
     cityItemContainer.appendChild(editCityContainer)
     editCityContainer.appendChild(newNameInput)
@@ -248,10 +136,6 @@ function cityElementObjectCreator(data){
     patchCity.style.display = 'none'
 
     displayMessage.style.display = 'none'
-    
-    ///////// BORT
-    // editCityContainer.style.display = 'none'
-    ///////// BORT
 
     editCityContainer.style.display = 'grid'
 
@@ -274,9 +158,6 @@ function cityElementObjectCreator(data){
     patchCity.type = 'button'
     patchCity.value = 'Update'
 
-    // cityName.textContent = data.name
-    // cityPopulation.textContent = 'Invånare: '+data.population
-
     newNameInput.placeholder = data.name
     newPopulationInput.placeholder = data.population
 
@@ -284,38 +165,12 @@ function cityElementObjectCreator(data){
     // EXIT EDIT MODE
     function exitEdit(){
         displayCityContainer.removeChild(cityItemContainer)
-        ///////// BORT
-        // Displays
-        // editButton.style.display = 'grid'
-        // cityInformationContainer.style.display = 'grid'
-        // deleteButton.style.display = 'block'
-
-        // // None-display
-        // editCityContainer.style.display = 'none'
-        // exitButton.style.display = 'none'
-        ///////// BORT
     }
     
-    ///////// BORT
-    // EVENTS //
-    // SE ÖVER DETTA!
-    // cityItemContainer.addEventListener('mouseover',()=>{
-    //     itemSelectContainer.style.opacity = 1;
-    // })
-
-    // cityItemContainer.addEventListener('mouseout',()=>{
-    //     itemSelectContainer.style.opacity = 0;
-    // })
-    ///////// BORT
-
-
     // ENTERING EDIT MODE
     editButton.addEventListener('click',()=>{
-        // Displays
         exitButton.style.display = 'grid'
         editCityContainer.style.display = 'grid'
-
-        // None-display
         editButton.style.display = 'none'
         deleteButton.style.display = 'none'
         cityInformationContainer.style.display = 'none'
@@ -350,9 +205,6 @@ function cityElementObjectCreator(data){
 
     // PUT
     patchCity.addEventListener('click', ()=>{
-
-        // let listName = childFromDisplayListName(data)
-        // listName.textContent = newName
         
         fetch(url+data.id,{
         body : JSON.stringify({
@@ -363,50 +215,9 @@ function cityElementObjectCreator(data){
         })
         .then(response=>{
             console.log(response)
-            console.log('PUT That in my mouth')
             createCityListItem()
         })
-
-
-        ///////// BORT
-        // OG
-        // function documentations(){
-        //     if(newPopulation && !newName){
-        //         cityPopulation.textContent = 'Invånare: '+newPopulation
-        //         return JSON.stringify({
-        //             population : newPopulation
-        //         })
-        //     }
-        //     if(newName && !newPopulation){
-        //         cityName.textContent = newName
-        //         listName.textContent = newName
-        //         return JSON.stringify({
-        //             name : newName ,
-        //         })
-        //     }
-        //     if(newName && newPopulation){
-        //         cityName.textContent = newName
-        //         cityPopulation.textContent = newPopulation
-        //         listName.textContent = newName
-        //         return JSON.stringify({
-        //             name : newName ,population : newPopulation
-        //         })
-        //     }
-        // }
-        // fetch(url+data.id,{
-        //     body : documentations(),
-        //     headers : {'Content-Type' : 'application/json'},
-        //     method : 'PATCH'
-        // })
-        // console.log('PATCH')
-        //exitEdit()
-        ///////// BORT
-
         patchCity.style.display = 'none'
-        ///////// BORT
-        //createCityListItem()
-        //refresh()
-        ///////// BORT
     })
 
     // ENTERING DELETE MODE
@@ -422,8 +233,6 @@ function cityElementObjectCreator(data){
         displayMessage.innerHTML = 
         `<h1>Nuke ${data.name}?</h1>`
 
-        // editCityContainer.style.opacity = .2
-
         editCityContainer.style.display = 'none'
         editCityContainer.disabled = true;
     })
@@ -432,22 +241,19 @@ function cityElementObjectCreator(data){
     yesRemove.addEventListener('click',()=>{
         displayCityContainer.removeChild(cityItemContainer)
 
-        ///////// BORT
-        // for(let i = 0; i < listFromStorage.length; i++){
-        //     if(listFromStorage[i].name === data.name){
-        //         listFromStorage.splice(i, data.name)
-        //     }
-        // }
-        ///////// BORT
-
         fetch(url+data.id,{
         method:'DELETE'
         }).then(response=>{
             console.log(response)
             createCityListItem()
-            ///////// BORT
-            //refresh()
-            ///////// BORT
+            const cityItemContainer = document.createElement('div')
+            const messageText = document.createElement('p')
+            cityItemContainer.appendChild(messageText)
+            displayCityContainer.appendChild(cityItemContainer)
+            cityItemContainer.classList.add('city-item-container')
+            messageText.innerHTML = `<p class="message-text" > Nice! <span>${data.name}</span> has been destroyed and <span>${data.population}</span> citizen have "moved"</p>`
+
+
         })
         console.log('DELETE')
     })
@@ -475,23 +281,12 @@ function addNewMode(){
 
     addNewElement.style.display = 'none'
     searchAfterCities.style.display = 'none'
-
-    ///////// BORT
-    //getCities.style.display = 'none'
-    //refreshButton.style.display = 'none'
-    ///////// BORT
 }
 
 // EXIT ADD NEW MODE
 function defaultFromAdd(){
-    ///////// BORT
-    //getCities.style.display = 'inline-block'
-    ///////// BORT
     addNewElement.style.display = 'inline-block'
     searchAfterCities.style.display = 'inline-block'
-    ///////// BORT
-    //refreshButton.style.display = 'inline-block'
-    ///////// BORT
 
     formPost.style.display = 'none'
     backFromAddNew.style.display = 'none'
@@ -501,37 +296,18 @@ function defaultFromAdd(){
 // ENTER SEARCH CITY MODE
 function searchMode(){
     removeAllCityObjects()
-    ///////// BORT
-    // while(displayCityContainer.firstChild){
-    //     displayCityContainer.firstChild.remove()
-    // }
-    ///////// BORT
 
     formSearch.style.display = 'grid'
     backFromSearch.style.display = 'block'
 
     addNewElement.style.display = 'none'
     searchAfterCities.style.display = 'none'
-
-    ///////// BORT
-    //getCities.style.display = 'none'
-    //refreshButton.style.display = 'none'
-    ///////// BORT
 }
 
 // EXIT SEARCH MODE
 function defaultFromSearch(){
-
-    ///////// BORT
-    //getCities.style.display = 'inline-block'
-    ///////// BORT
-
     addNewElement.style.display = 'inline-block'
     searchAfterCities.style.display = 'inline-block'
-
-    ///////// BORT
-    //refreshButton.style.display = 'inline-block'
-    ///////// BORT
 
     formSearch.style.display = 'none'
     backFromSearch.style.display = 'none'
@@ -569,7 +345,6 @@ function getCity(value){
         })
     })
 
-    // SYNS INTE
     .catch(()=>{
         console.log('ERROR')
         let errorMess = document.createElement('h5')
@@ -579,26 +354,6 @@ function getCity(value){
     })
     defaultFromSearch()
 }
-
-///////// BORT
-// find children from displayCityList -- funkar inte....
-// function childFromDisplayListPopulation(data){
-//     let child
-//     for (let i = 0; i <displayCityList.querySelectorAll('.list-population').length;i++){
-//         if(displayCityList.querySelectorAll('.list-population')[i].textContent === data.population){
-//             child = displayCityList.querySelectorAll('.list-population')[i]
-//             console.log(child.textContent)
-//         }
-//     }
-//     return child
-// }
-
-//Fixa Strong delen
-
-
-///////// BORT
-
-
 
 function childFromDisplayListName(data){
     let child
@@ -617,10 +372,6 @@ function createCityListItem(){
     .then(data=>{
         for (let i = 0; i < data.length;i++){
             const cityListItem = document.createElement('li')
-
-            ///////// BORT
-            // fixa detta för patchCity strong delen funkar inte
-            ///////// BORT
 
             cityListItem.innerHTML = `
             <li class="list-btn">
@@ -647,32 +398,6 @@ function removeChildFromList(child){
     displayCityList.removeChild(child)
 }
 
-/* ------------------------------- */
-
-/* EVENTS */
-// TAR EMOT ETT NAMN, VISAR EJ ERROR OM DET FINNS ETT VÄRDE
-nameInput.addEventListener('input', ()=>{
-    if(nameInput.value){
-        nameError.style.display = 'none'
-        displayPostCity()
-    }
-    if(!nameInput.value){
-        nameError.style.display = 'grid'
-        displayPostCity()
-    }
-})
-
-// TAR EMOT ETT NAMN, VISAR EJ ERROR OM DET FINNS ETT VÄRDE
-populationInput.addEventListener('input',()=>{
-    if(parseInt(populationInput.value)){
-        populationError.style.display = 'none'
-        displayPostCity()
-    } if(!parseInt(populationInput.value)){
-        populationError.style.display = 'grid'
-        displayPostCity()
-    }
-})
-
 function displayPostCity(){
     if(populationError.style.display === 'none' && nameError.style.display === 'none'){
         postCity.style.display = 'grid'
@@ -684,6 +409,30 @@ function displayPostCity(){
         postCity.style.display = 'none'
     }
 }
+
+/* ------------------------------- */
+
+/* EVENTS */
+nameInput.addEventListener('input', ()=>{
+    if(nameInput.value){
+        nameError.style.display = 'none'
+        displayPostCity()
+    }
+    if(!nameInput.value){
+        nameError.style.display = 'grid'
+        displayPostCity()
+    }
+})
+
+populationInput.addEventListener('input',()=>{
+    if(parseInt(populationInput.value)){
+        populationError.style.display = 'none'
+        displayPostCity()
+    } if(!parseInt(populationInput.value)){
+        populationError.style.display = 'grid'
+        displayPostCity()
+    }
+})
 
 searchAfterCities.addEventListener('click', searchMode)
 backFromSearch.addEventListener('click', defaultFromSearch)

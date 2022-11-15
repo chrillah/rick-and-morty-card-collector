@@ -540,6 +540,10 @@ html{
     padding: 2rem;
 }
 
+.message-text span{
+    font-style: italic;
+}
+
 #display-episode-list li{
     width: 100%;
     list-style: none;
