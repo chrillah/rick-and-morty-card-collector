@@ -163,6 +163,10 @@ function cityElementObjectCreator(data){
     // EXIT EDIT MODE
     function exitEdit(){
         displayCityContainer.removeChild(cityItemContainer)
+        const btnPressed = displayCityList.querySelectorAll('.list-btn-pressed')
+        btnPressed.forEach(btn=>{
+            btn.classList.remove('list-btn-pressed')
+        })
     }
     
     // ENTERING EDIT MODE
@@ -272,6 +276,10 @@ function cityElementObjectCreator(data){
 
 // ENTER ADD NEW CITY MODE
 function addNewMode(){
+    const btnPressed = displayCityList.querySelectorAll('.list-btn-pressed')
+    btnPressed.forEach(btn=>{
+        btn.classList.remove('list-btn-pressed')
+    })
     removeAllCityObjects()
     formPost.style.display = 'grid'
     backFromAddNew.style.display = 'block'
@@ -294,6 +302,10 @@ function defaultFromAdd(){
 // ENTER SEARCH CITY MODE
 function searchMode(){
     removeAllCityObjects()
+    const btnPressed = displayCityList.querySelectorAll('.list-btn-pressed')
+    btnPressed.forEach(btn=>{
+        btn.classList.remove('list-btn-pressed')
+    })
 
     formSearch.style.display = 'grid'
     backFromSearch.style.display = 'block'
@@ -358,7 +370,6 @@ function childFromDisplayListName(data){
     for (let i = 0; i <displayCityList.querySelectorAll('.list-name').length;i++){
         if(displayCityList.querySelectorAll('.list-name')[i].textContent === data.name){
             child = displayCityList.querySelectorAll('.list-name')[i]
-            console.log(child.textContent)
         }
     }
     return child

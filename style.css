@@ -16,13 +16,14 @@
 
 /* 1. Root settings */
 :root{
-    --shadow : rgb(38, 57, 77) 0px 20px 30px -10px; /*BEHÖVS*/
+    /* --shadow : 10px 10px 0px -2px rgba(0,0,0,.85); */
+    --shadow : rgb(38, 57, 77) 0px 20px 30px -10px; 
     --screen-graphic-color: #23B78C; /*BEHÖVS*/
 
     --active-btn : #06F3AF; /*BEHÖVS*/
     --screen-bg : #0C0D23; /*BEHÖVS*/
     --screen-text : #ffffff; /*BEHÖVS*/
-    --screen-border : solid 5px #23B78C; /*BEHÖVS*/
+    --screen-border : solid 1px #23B78C; /*BEHÖVS*/
     --light-purple : #BDB1C0; /*BEHÖVS*/
     --rm-green : #B2D235; /*BEHÖVS*/
     --rm-blue : #00B3CB; /*BEHÖVS*/
@@ -589,6 +590,7 @@ html{
 }
 
 #display-character-list{
+    border-radius: 10px;
     padding-left: auto;
     overflow: auto;
     height: 100%;
@@ -908,6 +910,7 @@ button{
     border: var(--screen-border);
     box-shadow: var(--shadow);
     margin-bottom: 7rem;
+
 }
 
 @media(max-width: 800px){
@@ -1127,7 +1130,7 @@ button{
 }
 
 .user-input{
-    color: var(--screen-text);
+    color: var(--screen-bg);
     margin-bottom: 1rem;
     margin: .5rem 0;
     padding: .2rem 0;
@@ -1135,11 +1138,18 @@ button{
     box-sizing: border-box;
     border: var(--screen-text) 1px solid;
     background: none;
+    background-color: var(--screen-graphic-color);
 }
 
 .user-input:focus{
+    color: var(--screen-bg);
     background-color: var(--screen-graphic-color);
-    color: var(--screen-text);
+}
+
+input::placeholder{
+    font-size: 1rem;
+    color: var(--screen-bg);
+    opacity: .8;
 }
 
 #search-button:disabled{
@@ -1313,11 +1323,6 @@ button{
     margin-bottom: 1rem;
 }
 
-input::placeholder{
-    font-size: 1rem;
-    color: var(--screen-text);
-    opacity: .8;
-}
 
 /* 6. Footer settings */
 
