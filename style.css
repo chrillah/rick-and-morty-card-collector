@@ -534,6 +534,12 @@ html{
     }
 }
 
+.message-text{
+    color: var(--screen-text);
+    text-align: center;
+    padding: 2rem;
+}
+
 #display-episode-list li{
     width: 100%;
     list-style: none;

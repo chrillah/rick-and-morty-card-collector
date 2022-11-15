@@ -49,6 +49,15 @@ const season5 = document.querySelector('#season-5')
 // START CONDITION
 let arrayFromLocalStorage = []
 arrayFromLocalStorage = JSON.parse(localStorage.getItem('favorite'))
+startMessadeDisplayer()
+emptyList()
+
+function emptyList(){
+    arrayFromLocalStorage = JSON.parse(localStorage.getItem('favorite'))
+    if(arrayFromLocalStorage.length === 0){
+        noCards()
+    }
+}
 
 if (arrayFromLocalStorage) {
     cardMessageDisplayer()
@@ -59,6 +68,18 @@ if (arrayFromLocalStorage) {
 }
 
 /* FUNCTIONS */
+function startMessadeDisplayer(){
+    const messageContainer = document.createElement('div')
+    displayEpisodeList.appendChild(messageContainer)
+    messageContainer.innerHTML = `<p class="message-text">Pick a season between season 1 - 5 and start scrolling through the episode!</p>`
+}
+function noCards(){
+    const messageContainer = document.createElement('div')
+    displayPlaycardsContainer.appendChild(messageContainer)
+    messageContainer.innerHTML = `<p class="message-text">No cards in here...</p>`
+    
+}
+
 function seasonOneList() {
     season1.classList.add('btn-pressed')
     season2.classList.remove('btn-pressed')
@@ -601,7 +622,7 @@ function removeAllCharacterInList() {
 
 // Displays numnber of cards
 function cardMessageDisplayer() {
-    
+
     let arrayFromLocalStorage = []
     arrayFromLocalStorage = JSON.parse(localStorage.getItem('favorite'))
 
