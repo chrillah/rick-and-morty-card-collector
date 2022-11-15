@@ -14,7 +14,9 @@ const episodeListSEFour = []
 const episodeListSEFive = []
 const episodeListSESix = []
 
-
+const humanCardsList = []
+const alienCardsList = []
+const mythicalCreatureCardsList = []
 
 ///////// BORT
 // SAVES FAVOURITE CHARACTERS / EPISODES
@@ -32,14 +34,18 @@ const displayOnePlaycardObject = document.querySelector('#display-one-playcard-o
 const displayPlaycardsContainer = document.querySelector('#display-playcards-container')
 const charactersStats = document.querySelector('#characters-stats')
 
+// const bottomBtnContainer = document.querySelector('.bottom-btn-container')
+
 const mainCharacterGalleryContainer = document.querySelector('#main-character-gallery-container')
 
 const favoriteHeader = document.querySelector('#favorite-header')
 const cardMessageContainer = document.querySelector('#card-message-container')
+const cardSortText = document.querySelector('#card-sort-text')
 
 let statsCharacterID = ''
 const cardMessage = document.createElement('h1')
 cardMessage.classList.add('main-header')
+cardSortText.classList.add('main-text')
 cardMessageContainer.appendChild(cardMessage)
 
 ///////// BORT
@@ -52,17 +58,58 @@ const season3 = document.querySelector('#season-3')
 const season4 = document.querySelector('#season-4')
 const season5 = document.querySelector('#season-5')
 
+// const allCardsBtn = document.querySelector('#all-cards-btn')
+// const humanCardsBtn = document.querySelector('#human-cards-btn')
+
+// Start condition
+// allCardsBtn.style.display = 'none'
+// allCardsBtn.classList.add('cards-list-pressed')
 let arrayFromLocalStorage = []
 arrayFromLocalStorage = JSON.parse(localStorage.getItem('favorite'))
 
 // OBS! FYLLER PÅ FAVORITCONTAINER
 if (arrayFromLocalStorage) {
+    // allCardsBtn.style.display = 'inline-block'
     cardMessageDisplayer()
     for (let i = 0; i < arrayFromLocalStorage.length; i++) {
         playcardMakerFromFavoriteList(arrayFromLocalStorage[i])
     }
     displayPlaycardsContainer.style.gridTemplateColumns = `repeat(${arrayFromLocalStorage.length}, 100px)`
 }
+
+// allCardsBtn.addEventListener('click',()=>{
+//     const btnPressed = bottomBtnContainer.querySelectorAll('.cards-list-btn-pressed')
+//     btnPressed.forEach(btn => {
+//         btn.classList.remove('cards-list-btn-pressed')
+//     })
+//     allCardsBtn.classList.add('cards-list-btn-pressed')
+//     cardMessageDisplayer()
+//     clearCardContainer()
+//     for (let i = 0; i < arrayFromLocalStorage.length; i++) {
+//         playcardMakerFromFavoriteList(arrayFromLocalStorage[i])
+//     }
+//     displayPlaycardsContainer.style.gridTemplateColumns = `repeat(${arrayFromLocalStorage.length}, 100px)`
+// })
+
+// if(humanCardsList){
+    
+// }
+
+// humanCardsBtn.addEventListener('click', ()=> {
+//     const btnPressed = bottomBtnContainer.querySelectorAll('.cards-list-btn-pressed')
+//     btnPressed.forEach(btn => {
+//         btn.classList.remove('cards-list-btn-pressed')
+//     })
+//     humanCardsBtn.classList.add('cards-list-btn-pressed')
+
+//     console.log(humanCardsList)
+//     cardMessageDisplayer()
+//     clearCardContainer()
+//     for (let i = 0; i < humanCardsList.length; i++) {
+//         playcardMakerFromFavoriteList(humanCardsList[i])
+//     }
+//     displayPlaycardsContainer.style.gridTemplateColumns = `repeat(${humanCardsList.length}, 100px)`
+// })
 
 ///////// BORT
 // Start condition
@@ -90,7 +137,6 @@ function seasonOneList() {
             episodeListMaker(data)
         })
 }
-
 function seasonTwoList() {
     season2.classList.add('btn-pressed')
     season1.classList.remove('btn-pressed')
@@ -127,7 +173,6 @@ function seasonFourList() {
             episodeListMaker(data)
         })
 }
-
 function seasonFiveList() {
     season5.classList.add('btn-pressed')
     season1.classList.remove('btn-pressed')
@@ -250,37 +295,13 @@ function charactersListFromEpisode(data) {
     }
 }
 
-
-
 function characterFinder(characterUrl) {
     fetch(characterUrl)
         .then(response => response.json())
         .then(data => {
-            ///////// BORT
-            //characterObjectMaker(data)
-            ///////// BORT
             characterListFromEpisode(data)
         })
 }
-
-///////// BORT
-// Characters from favorite list
-// function characterListFromFavorite(data){
-//     const listItem = document.createElement('li')
-//     listItem.classList.add('character-list-item')
-//     // TEST!/////////////////////
-//     listItem.classList.add('character-btn')
-//     //const itemInformation = document.createElement('p')
-//     listItem.textContent = data.name
-//     favoriteList.appendChild(listItem)
-//     listItem.addEventListener('click', ()=> {
-//         console.log(data)
-//         // characterObjectMaker(data)
-//         // PLAYCARDMAKER
-//         playcardMakerFromFavoriteList(data)
-//     })
-// }
-///////// BORT
 
 // SAVED CARDS
 function playcardMakerFromFavoriteList(data) {
@@ -388,6 +409,7 @@ function playcardMakerFromFavoriteList(data) {
 
 
     removeFromFavoriteButton.addEventListener('click', () => {
+        displayPlaycardsContainer.removeChild(characterContainer)
         let favorite = []
         favorite = JSON.parse(localStorage.getItem('favorite'))
         let newArray = []
@@ -397,10 +419,9 @@ function playcardMakerFromFavoriteList(data) {
             }
         }
         localStorage.setItem('favorite', JSON.stringify(newArray))
-        displayPlaycardsContainer.removeChild(characterContainer)
         removePlaycardObject()
-        getAllInFavoriteList() // OBS!
         cardMessageDisplayer()
+        getAllInFavoriteList() // OBS!
     })
 
     // characterContainer.addEventListener('click', ()=>{
@@ -429,7 +450,6 @@ function characterListFromEpisode(data) {
         playcardObjectMaker(data)
     })
 }
-
 
 // Presentation gallery
 function characterPresentationMaker(data) {
@@ -626,13 +646,6 @@ function playcardObjectMaker(data) {
     })
 }
 
-///////// BORT
-// showMeFavoritButton.addEventListener('click', ()=>{
-//     getAllInFavoriteList()
-//     showMeFavoritButton.value = 'Update' 
-// })
-///////// BORT
-
 // lägger till i favorit container OBS!
 function getAllInFavoriteList() {
 
@@ -648,7 +661,6 @@ function getAllInFavoriteList() {
         displayPlaycardsContainer.style.gridTemplateColumns = `repeat(${arrayFromLocalStorage.length}, 100px)`
     }
 }
-
 
 function removePlaycardObject() {
     while (displayOnePlaycardObject.firstChild) {
@@ -682,10 +694,30 @@ function removeAllCharacterInList() {
 }
 
 function cardMessageDisplayer() {
-    console.log('anropad')
-    cardMessage.textContent = ''
     let arrayFromLocalStorage = []
     arrayFromLocalStorage = JSON.parse(localStorage.getItem('favorite'))
+
+    // allCardsBtn.value = `All (${arrayFromLocalStorage.length})`
+
+    // for (let i = 0; i < arrayFromLocalStorage.length; i++){
+    //     if(arrayFromLocalStorage[i].species === 'Human' && arrayFromLocalStorage[i].id !== humanCardsBtn[i].id){
+    //         humanCardsList.push(arrayFromLocalStorage[i])
+    //         humanCardsBtn.style.display = 'in-line-block'
+    //     }
+    // }
+    // console.log(humanCardsList)
+    // if(arrayFromLocalStorage){
+    //     // for (let i = 0; i < arrayFromLocalStorage.length; i++){
+    //     //     if(arrayFromLocalStorage[i].species === 'Human'){
+    //     //         humanCardsList.push(arrayFromLocalStorage[i])
+    //     //         humanCardsBtn.style.display = 'in-line-block'
+    //     //     }
+    //     // }
+    // }
+
+    // if(humanCardsList){
+    //     humanCardsBtn.value = `Humans (${humanCardsList.length})`
+    // }
     if (arrayFromLocalStorage.length < 0) {
         cardMessage.innerHTML = `<h1 class="main-header"> You have no cards in your collection, hit that heart symbol and start collecting?</h1>`
         // cardMessage.textContent = `You have no cards in your collection, hit that heart symbol and start collecting?`
@@ -698,6 +730,16 @@ function cardMessageDisplayer() {
         cardMessage.innerHTML = `You have currently <span>${arrayFromLocalStorage.length}</span> cards in your collection</h1>`
         // cardMessage.textContent = `You have currently ${arrayFromLocalStorage.length} cards in your collection`
     }
+
+    // for (let i = 0; i < arrayFromLocalStorage.length; i++){
+    //     if(arrayFromLocalStorage[i].species === 'Human'){
+    //         humanCardsList.push(arrayFromLocalStorage[i])
+    //     }
+    // }
+
+    // cardSortText.innerHTML = `
+    // <p class="main-text" id="card-sort-text"> <span>Humans</span> (${humanCardsList.length})</p>`
+
 }
 
 
