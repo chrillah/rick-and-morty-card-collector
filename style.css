@@ -368,8 +368,9 @@ html{
 }
 
 .main-intro-header{
-    font-family: 'Creepster', cursive;
-    font-style: italic;
+    /* font-family: 'Creepster', cursive;
+    font-style: italic; */
+    font-family: 'Xanh Mono', monospace;
     font-size: 6rem;
     padding: 0;
     margin: 0;
@@ -442,6 +443,7 @@ html{
 
 /* Main-content */
 .display-content-wrapper-top{
+    padding: 0 2rem;
     margin: 0 2rem;
     width: 100%;
     display: flex;
@@ -667,7 +669,7 @@ html{
 
 @media (min-width:800px) {
     #display-character-list{
-        width: 200px;
+        width: 220px;
     }
 }
 
@@ -980,6 +982,10 @@ button{
     font-size: 4rem;
     padding: 0;
     margin: 0;
+}
+
+.main-header span{
+    color: var(--light-purple)
 }
 
 .display-content-wrapper-bottom{

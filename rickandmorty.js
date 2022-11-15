@@ -36,6 +36,7 @@ const mainCharacterGalleryContainer = document.querySelector('#main-character-ga
 
 const favoriteHeader = document.querySelector('#favorite-header')
 const cardMessageContainer = document.querySelector('#card-message-container')
+
 let statsCharacterID = ''
 const cardMessage = document.createElement('h1')
 cardMessage.classList.add('main-header')
@@ -54,6 +55,7 @@ const season5 = document.querySelector('#season-5')
 let arrayFromLocalStorage = []
 arrayFromLocalStorage = JSON.parse(localStorage.getItem('favorite'))
 
+// OBS! FYLLER PÅ FAVORITCONTAINER
 if (arrayFromLocalStorage) {
     cardMessageDisplayer()
     for (let i = 0; i < arrayFromLocalStorage.length; i++) {
@@ -129,7 +131,7 @@ function seasonFourList() {
 function seasonFiveList() {
     season5.classList.add('btn-pressed')
     season1.classList.remove('btn-pressed')
-    season2.classList.remove('btn-pressed') 
+    season2.classList.remove('btn-pressed')
     season3.classList.remove('btn-pressed')
     season4.classList.remove('btn-pressed')
     removeAllCharacterInList()
@@ -282,7 +284,7 @@ function characterFinder(characterUrl) {
 
 // SAVED CARDS
 function playcardMakerFromFavoriteList(data) {
-    
+
     const characterContainer = document.createElement('div')
     const characterTopContainer = document.createElement('div')
 
@@ -331,34 +333,34 @@ function playcardMakerFromFavoriteList(data) {
 
     heartSymbol.src = 'img/heart_symbol.png'
 
-    if(data.species === 'Alien'){
+    if (data.species === 'Alien') {
         characterContainer.style.backgroundColor = '#6050A1'
         infoContainer.style.backgroundColor = '#C07D2B'
         characterContainer.style.border = '5px solid #C07D2B'
         imgCharacterContainer.style.border = '5px solid #C07D2B'
     }
 
-    if(data.species === 'Mythological Creature'){
+    if (data.species === 'Mythological Creature') {
         characterContainer.style.backgroundColor = '#1C4589'
         infoContainer.style.backgroundColor = '#D49CC6'
         characterContainer.style.border = '5px solid #D49CC6'
         imgCharacterContainer.style.border = '5px solid #D49CC6'
     }
 
-    if(data.species === 'Robot'){
+    if (data.species === 'Robot') {
         characterContainer.style.backgroundColor = '#F59492'
         characterContainer.style.border = '5px solid #F3CC15'
         imgCharacterContainer.style.border = '5px solid #F3CC15'
         infoContainer.style.backgroundColor = '#F3CC15'
     }
 
-    if(data.species === 'Animal'){
+    if (data.species === 'Animal') {
         characterContainer.style.backgroundColor = '#BCB0BF'
         characterContainer.style.border = '5px solid #F3CC15'
         imgCharacterContainer.style.border = '5px solid #F3CC15'
         infoContainer.style.backgroundColor = '#F3CC15'
     }
-    if(data.species !== 'Animal' && data.species !== 'Human' && data.species !== 'Robot' && data.species !== 'Mythological Creature' &&  data.species !== 'Alien'){
+    if (data.species !== 'Animal' && data.species !== 'Human' && data.species !== 'Robot' && data.species !== 'Mythological Creature' && data.species !== 'Alien') {
         characterContainer.style.background = 'rgb(238,174,202)'
         characterContainer.style.background = 'linear-gradient(140deg, rgba(238,174,202,1) 0%, rgba(148,187,233,1) 100%)'
         characterContainer.style.border = '5px solid #D49CC6'
@@ -397,15 +399,15 @@ function playcardMakerFromFavoriteList(data) {
         localStorage.setItem('favorite', JSON.stringify(newArray))
         displayPlaycardsContainer.removeChild(characterContainer)
         removePlaycardObject()
-        getAllInFavoriteList()
+        getAllInFavoriteList() // OBS!
         cardMessageDisplayer()
-        })
+    })
 
-        characterContainer.addEventListener('click', ()=>{
-            console.log('click')
-            statsCharacterID = `,${data.id}`
-            console.log(statsCharacterID)
-        })
+    // characterContainer.addEventListener('click', ()=>{
+    //     console.log('click')
+    //     statsCharacterID = `,${data.id}`
+    //     console.log(statsCharacterID)
+    // })
 
 }
 
@@ -519,35 +521,35 @@ function playcardObjectMaker(data) {
     heartSymbol.src = 'img/heart_symbol.png'
     noHeartSymbol.src = 'img/no_heart_symbol.png'
 
-    if(data.species === 'Alien'){
+    if (data.species === 'Alien') {
         characterContainer.style.backgroundColor = '#6050A1'
         infoContainer.style.backgroundColor = '#C07D2B'
         characterContainer.style.border = '5px solid #C07D2B'
         imgCharacterContainer.style.border = '5px solid #C07D2B'
     }
 
-    if(data.species === 'Mythological Creature'){
+    if (data.species === 'Mythological Creature') {
         characterContainer.style.backgroundColor = '#1C4589'
         infoContainer.style.backgroundColor = '#D49CC6'
         characterContainer.style.border = '5px solid #D49CC6'
         imgCharacterContainer.style.border = '5px solid #D49CC6'
     }
 
-    if(data.species === 'Robot'){
+    if (data.species === 'Robot') {
         characterContainer.style.backgroundColor = '#F59492'
         characterContainer.style.border = '5px solid #F3CC15'
         imgCharacterContainer.style.border = '5px solid #F3CC15'
         infoContainer.style.backgroundColor = '#F3CC15'
     }
 
-    if(data.species === 'Animal'){
+    if (data.species === 'Animal') {
         characterContainer.style.backgroundColor = '#BCB0BF'
         characterContainer.style.border = '5px solid #F3CC15'
         imgCharacterContainer.style.border = '5px solid #F3CC15'
         infoContainer.style.backgroundColor = '#F3CC15'
     }
 
-    if(data.species !== 'Animal' && data.species !== 'Human' && data.species !== 'Robot' && data.species !== 'Mythological Creature' &&  data.species !== 'Alien'){
+    if (data.species !== 'Animal' && data.species !== 'Human' && data.species !== 'Robot' && data.species !== 'Mythological Creature' && data.species !== 'Alien') {
         characterContainer.style.background = 'rgb(238,174,202)'
         characterContainer.style.background = 'linear-gradient(140deg, rgba(238,174,202,1) 0%, rgba(148,187,233,1) 100%)'
         characterContainer.style.border = '5px solid #D49CC6'
@@ -578,15 +580,13 @@ function playcardObjectMaker(data) {
     removeFromFavoriteButton.style.display = 'none'
 
     favoriteButton.addEventListener('click', () => {
-        // Lägger till
-        console.log('Lägger till '+ data.name)
         let arrayFromLocalStorage = []
         arrayFromLocalStorage = JSON.parse(localStorage.getItem('favorite'))
-        
-        if(arrayFromLocalStorage){
+
+        if (arrayFromLocalStorage) {
             arrayFromLocalStorage.push(data)
             localStorage.setItem('favorite', JSON.stringify(arrayFromLocalStorage))
-        }if(!arrayFromLocalStorage){
+        } if (!arrayFromLocalStorage) {
             let favorite = []
             favorite.push(data)
             localStorage.setItem('favorite', JSON.stringify(favorite))
@@ -594,14 +594,14 @@ function playcardObjectMaker(data) {
 
         favoriteButton.style.display = 'none'
         removeFromFavoriteButton.style.display = 'grid'
-        getAllInFavoriteList()
+        getAllInFavoriteList() /// OBS!
         cardMessageDisplayer()
     })
 
     // If the card already is in the list, the favorite-button note visible
     let arrayFromLocalStorage = []
     arrayFromLocalStorage = JSON.parse(localStorage.getItem('favorite'))
-    if(arrayFromLocalStorage){
+    if (arrayFromLocalStorage) {
         for (let i = 0; i < arrayFromLocalStorage.length; i++) {
             if (arrayFromLocalStorage[i].id === data.id) {
                 favoriteButton.style.display = 'none'
@@ -621,7 +621,7 @@ function playcardObjectMaker(data) {
         favoriteButton.style.display = 'grid'
         removeFromFavoriteButton.style.display = 'none'
         localStorage.setItem('favorite', JSON.stringify(newArray))
-        getAllInFavoriteList()
+        getAllInFavoriteList()/// OBS!
         cardMessageDisplayer()
     })
 }
@@ -633,9 +633,9 @@ function playcardObjectMaker(data) {
 // })
 ///////// BORT
 
-
+// lägger till i favorit container OBS!
 function getAllInFavoriteList() {
-    
+
     clearCardContainer()
 
     let arrayFromLocalStorage = []
@@ -681,19 +681,22 @@ function removeAllCharacterInList() {
     }
 }
 
-function cardMessageDisplayer(){
+function cardMessageDisplayer() {
     console.log('anropad')
     cardMessage.textContent = ''
     let arrayFromLocalStorage = []
     arrayFromLocalStorage = JSON.parse(localStorage.getItem('favorite'))
-    if((arrayFromLocalStorage.length) === 0){
-        cardMessage.textContent = `You have no cards in your collection, hit that heart symbol and start collecting?`
+    if (arrayFromLocalStorage.length < 0) {
+        cardMessage.innerHTML = `<h1 class="main-header"> You have no cards in your collection, hit that heart symbol and start collecting?</h1>`
+        // cardMessage.textContent = `You have no cards in your collection, hit that heart symbol and start collecting?`
     }
-    if((arrayFromLocalStorage.length) <= 1){
-        cardMessage.textContent = `You have currently ${ arrayFromLocalStorage.length} card in your collection, why not collect more?`
+    if ((arrayFromLocalStorage.length) <= 1) {
+        cardMessage.innerHTML = `<h1 class="main-header"> You have currently <span>${arrayFromLocalStorage.length}</span> card in your collection, why not collect more?</h1>`
+        // cardMessage.textContent = `You have currently ${ arrayFromLocalStorage.length} card in your collection, why not collect more?`
     }
-    if((arrayFromLocalStorage.length) > 1){
-        cardMessage.textContent = `You have currently ${ arrayFromLocalStorage.length} cards in your collection`
+    if ((arrayFromLocalStorage.length) > 1) {
+        cardMessage.innerHTML = `You have currently <span>${arrayFromLocalStorage.length}</span> cards in your collection</h1>`
+        // cardMessage.textContent = `You have currently ${arrayFromLocalStorage.length} cards in your collection`
     }
 }
 
@@ -733,7 +736,7 @@ fetch(url + '/character/1,2,3,4,5,47, 154,' + statsCharacterID)
             labels.push(character.name)
             characterStats(result[i])
         }
-        
+
         const myChart = new Chart(ctx, {
 
             type: 'polarArea',
@@ -785,7 +788,7 @@ function characterStats(data) {
 
     // Classlist
     statsWrapper.classList.add
-    ('stats-wrapper')
+        ('stats-wrapper')
     statsImgContainer.classList.add('stats-img-container')
     statsImg.classList.add('stats-img')
 
