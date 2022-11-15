@@ -50,14 +50,14 @@ const season5 = document.querySelector('#season-5')
 let arrayFromLocalStorage = []
 arrayFromLocalStorage = JSON.parse(localStorage.getItem('favorite'))
 startMessadeDisplayer()
-emptyList()
+// emptyList()
 
-function emptyList(){
-    arrayFromLocalStorage = JSON.parse(localStorage.getItem('favorite'))
-    if(arrayFromLocalStorage.length === 0){
-        noCards()
-    }
-}
+// function emptyList(){
+//     arrayFromLocalStorage = JSON.parse(localStorage.getItem('favorite'))
+//     if(arrayFromLocalStorage.length === 0){
+//         noCards()
+//     }
+// }
 
 if (arrayFromLocalStorage) {
     cardMessageDisplayer()
@@ -71,12 +71,12 @@ if (arrayFromLocalStorage) {
 function startMessadeDisplayer(){
     const messageContainer = document.createElement('div')
     displayEpisodeList.appendChild(messageContainer)
-    messageContainer.innerHTML = `<p class="message-text">Pick a season between season 1 - 5 and start scrolling through the episode!</p>`
+    messageContainer.innerHTML = `<p class="message-text">Pick a season between 1 - 5 and start scrolling through <br>the episodes! <br><br>Don't forget to hit that heart!</p>`
 }
 function noCards(){
     const messageContainer = document.createElement('div')
     displayPlaycardsContainer.appendChild(messageContainer)
-    messageContainer.innerHTML = `<p class="message-text">No cards in here...</p>`
+    messageContainer.innerHTML = `<p class="message-text">Yeah, why not collect? Go to the "episode scroll finder thingy"...</p>`
     
 }
 
@@ -626,8 +626,13 @@ function cardMessageDisplayer() {
     let arrayFromLocalStorage = []
     arrayFromLocalStorage = JSON.parse(localStorage.getItem('favorite'))
 
-    if ((arrayFromLocalStorage.length) <= 1) {
+    if ((arrayFromLocalStorage.length) < 1) {
         cardMessage.innerHTML = `<h1 class="main-header">You have currently <span>${arrayFromLocalStorage.length}</span> card in your collection, why not collect?</h1>`
+        noCards()
+    }
+
+    if ((arrayFromLocalStorage.length) > 0) {
+        cardMessage.innerHTML = `<h1 class="main-header">You have currently only <span>${arrayFromLocalStorage.length}</span> card in your collection, why not collect more?</h1>`
     }
 
     if ((arrayFromLocalStorage.length) > 1) {
