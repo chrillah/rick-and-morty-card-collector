@@ -1,7 +1,7 @@
 /* GLOBAL VARIABLES */
 const url = 'https://rickandmortyapi.com/api'
 
-// 001 
+// 001 endpoints
 const seasonOne = '/episode/1,2,3,4,5,6,7,8,9,10,11'
 const seasonTwo = '/episode/12,13,14,15,16,17,18,19,20,21'
 const seasonThree = '/episode/22,23,24,25,26,27,28,29,30,31'
@@ -65,7 +65,7 @@ function startMessadeDisplayer(){
     const messageContainer = document.createElement('div')
     displayEpisodeList.appendChild(messageContainer)
     messageContainer.innerHTML = `
-    <p class="message-text">Pick a season between 1 - 5 and start scrolling through 
+    <p class="message-text" >Pick a season between 1 - 5 and start scrolling through 
         <br>
         the episodes! 
         <br>
@@ -77,13 +77,13 @@ function noCards(){
     const messageContainer = document.createElement('div')
     displayPlaycardsContainer.appendChild(messageContainer)
     messageContainer.innerHTML = `
-    <p class="message-text">
+    <p class="message-text" >
         Yeah, why not collect? Go to the "episode scroll finder thingy"...
     </p>`
 }
 
 
-// 002
+// 002 - fetchar en lista med episoder från en säsong
 function seasonOneList() {
     season1.classList.add('btn-pressed')
     season2.classList.remove('btn-pressed')
@@ -145,7 +145,7 @@ function seasonFiveList() {
         })
 }
 
-// 003
+// 003 - skapar lista med episoder
 // makes an episode-list-item
 function episodeListMaker(data) {
     removePlaycardObject()
@@ -163,9 +163,16 @@ function episodeListMaker(data) {
         listItem.style.padding = '0'
 
         listItem.innerHTML =
-            `<li><p style=" font-weight: bold" >${data[i].name}</p></li>`
+            `<li>
+                <p style=" font-weight: bold" >
+                    ${data[i].name}
+                </p>
+            
+            </li>`
         itemInformation.innerHTML =
-            `<p class="episode-information" >Episode: <span>${data[i].episode}</span></p>`
+            `<p class="episode-information">
+                Episode: <span>${data[i].episode}</span>
+            </p>`
 
         listItem.appendChild(itemInformation)
         displayEpisodeList.appendChild(listItem)
@@ -184,7 +191,7 @@ function episodeListMaker(data) {
 }
 
 
-// SKAPAR EPISODEOBJECT
+// 004 SKAPAR EPISODEOBJECT
 // Makes an episode object
 function episodeObjectMaker(data) {
 
@@ -226,13 +233,19 @@ function episodeObjectMaker(data) {
     episodeTitle.textContent = 'Title'
 
     episodeNameInformation.innerHTML =
-        `<h4 class='episode-name-information' > ${data.name}</h4>`
+        `<h4 class='episode-name-information' > 
+            ${data.name}
+        </h4>`
 
     episodeName.innerHTML =
-        `<p class="episode-name">Episode: <span>${data.episode}</span></p>`
+        `<p class="episode-name" >
+            Episode: <span>${data.episode}</span>
+        </p>`
 
     episodeAirDate.innerHTML =
-        `<p class="episode-airdate">Air date: <span>${data.air_date}</span></p>`
+        `<p class="episode-airdate" >
+            Air date: <span>${data.air_date}</span>
+        </p>`
 
     removeAllCharacterInList()
 
@@ -240,6 +253,7 @@ function episodeObjectMaker(data) {
     charactersListFromEpisode(data.characters)
 }
 
+// 005 - letar i datan efter karaktärer
 // LOOPS THROUGH CHARACTER LIST FROM EPISODE
 function charactersListFromEpisode(data) {
     for (let i = 0; i < data.length; i++) {
@@ -247,6 +261,7 @@ function charactersListFromEpisode(data) {
     }
 }
 
+// 006... det enda den gör är att fetcha data baserad på karaktärens id
 function characterFinder(characterUrl) {
     fetch(characterUrl)
         .then(response => response.json())
@@ -376,6 +391,7 @@ function playcardMakerFromFavoriteList(data) {
     })
 }
 
+// 007 - skapar en lista med karaktärer
 // Adds character from episodeObject to list-item
 function characterListFromEpisode(data) {
     const listItem = document.createElement('li')
@@ -384,6 +400,8 @@ function characterListFromEpisode(data) {
     listItem.classList.add('character-btn')
     listItem.textContent = data.name
     displayCharacterList.appendChild(listItem)
+
+    // eventlistener som skickar in data till att skapa kort
     listItem.addEventListener('click', () => {
         const btnPressed = displayCharacterList.querySelectorAll('.character-btn-pressed')
         btnPressed.forEach(btn => {
@@ -391,6 +409,7 @@ function characterListFromEpisode(data) {
         })
         listItem.classList.add('character-btn-pressed')
 
+        // skickar till skapa-kort-grejsen
         playcardObjectMaker(data)
     })
 }
@@ -422,6 +441,7 @@ function characterPresentationMaker(data) {
         `<h3 class="presentation-header">${data.name}</h3>`
 }
 
+// 008 - kortskaparen
 // MAKES ONE PLAYCARD IN EPISODE OBJECT
 function playcardObjectMaker(data) {
     removePlaycardObject()
@@ -528,13 +548,19 @@ function playcardObjectMaker(data) {
     characterName.textContent = data.name
     characterImg.src = data.image
     characterStatus.innerHTML =
-        `<p class="character-info">Status: <span>${data.status}</span></p>`
+        `<p class="character-info">
+            Status: <span>${data.status}</span>
+        </p>`
 
     characterSpecies.innerHTML =
-        `<p class="character-info">Species: <span>${data.species}</span></p>`
+        `<p class="character-info">
+            Species: <span>${data.species}</span>
+        </p>`
 
     characterGender.innerHTML =
-        `<p class="character-info">Gender: <span>${data.gender}</span></p>`
+        `<p class="character-info" >
+            Gender: <span>${data.gender}</span>
+        </p>`
 
     removeFromFavoriteButton.style.display = 'none'
 
@@ -557,7 +583,7 @@ function playcardObjectMaker(data) {
         cardMessageDisplayer()
     })
 
-    // If the card already is in the list, the favorite-button note visible
+    // Om kortet redan finns i 'favorite' så kan man inte läga till den igen och en annan symbol syns istället
     let arrayFromLocalStorage = []
     arrayFromLocalStorage = JSON.parse(localStorage.getItem('favorite'))
     if (arrayFromLocalStorage) {
@@ -569,6 +595,8 @@ function playcardObjectMaker(data) {
         }
     }
     removeFromFavoriteButton.addEventListener('click', () => {
+
+        // 009 - klicka på hjärtat läggs kortet in i localstorage och ett kort skapas i favorite container eller vard collector 
         let favorite = []
         favorite = JSON.parse(localStorage.getItem('favorite'))
         let newArray = []
@@ -585,17 +613,19 @@ function playcardObjectMaker(data) {
     })
 }
 
+
+// 010 - function som skapar kort i favorite
 // Adds cards to container
 function getAllInFavoriteList() {
-
     clearCardContainer()
-
     let arrayFromLocalStorage = []
     arrayFromLocalStorage = JSON.parse(localStorage.getItem('favorite'))
     if (arrayFromLocalStorage) {
         for (let i = 0; i < arrayFromLocalStorage.length; i++) {
             playcardMakerFromFavoriteList(arrayFromLocalStorage[i])
         }
+
+        // dynamisk växande grid-column för att få korten att ligga ovanpå varandra
         displayPlaycardsContainer.style.gridTemplateColumns = `repeat(${arrayFromLocalStorage.length}, 100px)`
     }
 }
