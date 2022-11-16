@@ -62,6 +62,7 @@ function startMessadeDisplayer(){
         Don't forget to hit that heart!
     </p>`
 }
+
 function noCards(){
     const messageContainer = document.createElement('div')
     displayPlaycardsContainer.appendChild(messageContainer)
@@ -70,7 +71,6 @@ function noCards(){
         Yeah, why not collect? Go to the "episode scroll finder thingy"...
     </p>`
 }
-
 
 // 002 - fetchar en lista med episoder från en säsong
 function seasonOneList() {
