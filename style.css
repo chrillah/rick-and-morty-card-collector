@@ -151,6 +151,14 @@ html{
     display: block;
 }
 
+@media(max-width: 600px){
+
+    .navbar-links li a{
+        padding: .7rem .3rem;
+    } 
+
+}
+
 .nav-btn{
     border-right: var(--border-style-1px);
     border-left: var(--border-style-1px);
@@ -782,6 +790,7 @@ html{
     transition: transform .2s;
 }
 
+/* 011 */
 .character-container:hover{
     transform: scale(1.1);
 }
