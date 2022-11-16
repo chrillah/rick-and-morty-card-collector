@@ -628,7 +628,7 @@ html{
     background-color: var(--screen-bg);
     width: 100%;
     grid-area: objects;
-    grid-template-rows: 390px;
+    grid-template-rows: 399px;
     display: grid;
     grid-template-areas: 
     "epAndCardobjects char-list";

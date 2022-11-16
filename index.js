@@ -1,6 +1,7 @@
 /* GLOBAL VARIABLES */
 const url = 'https://rickandmortyapi.com/api'
 
+// 001 
 const seasonOne = '/episode/1,2,3,4,5,6,7,8,9,10,11'
 const seasonTwo = '/episode/12,13,14,15,16,17,18,19,20,21'
 const seasonThree = '/episode/22,23,24,25,26,27,28,29,30,31'
@@ -50,14 +51,6 @@ const season5 = document.querySelector('#season-5')
 let arrayFromLocalStorage = []
 arrayFromLocalStorage = JSON.parse(localStorage.getItem('favorite'))
 startMessadeDisplayer()
-// emptyList()
-
-// function emptyList(){
-//     arrayFromLocalStorage = JSON.parse(localStorage.getItem('favorite'))
-//     if(arrayFromLocalStorage.length === 0){
-//         noCards()
-//     }
-// }
 
 if (arrayFromLocalStorage) {
     cardMessageDisplayer()
@@ -71,15 +64,26 @@ if (arrayFromLocalStorage) {
 function startMessadeDisplayer(){
     const messageContainer = document.createElement('div')
     displayEpisodeList.appendChild(messageContainer)
-    messageContainer.innerHTML = `<p class="message-text">Pick a season between 1 - 5 and start scrolling through <br>the episodes! <br><br>Don't forget to hit that heart!</p>`
+    messageContainer.innerHTML = `
+    <p class="message-text">Pick a season between 1 - 5 and start scrolling through 
+        <br>
+        the episodes! 
+        <br>
+        <br>
+        Don't forget to hit that heart!
+    </p>`
 }
 function noCards(){
     const messageContainer = document.createElement('div')
     displayPlaycardsContainer.appendChild(messageContainer)
-    messageContainer.innerHTML = `<p class="message-text">Yeah, why not collect? Go to the "episode scroll finder thingy"...</p>`
-    
+    messageContainer.innerHTML = `
+    <p class="message-text">
+        Yeah, why not collect? Go to the "episode scroll finder thingy"...
+    </p>`
 }
 
+
+// 002
 function seasonOneList() {
     season1.classList.add('btn-pressed')
     season2.classList.remove('btn-pressed')
@@ -141,6 +145,7 @@ function seasonFiveList() {
         })
 }
 
+// 003
 // makes an episode-list-item
 function episodeListMaker(data) {
     removePlaycardObject()
@@ -158,7 +163,7 @@ function episodeListMaker(data) {
         listItem.style.padding = '0'
 
         listItem.innerHTML =
-            `<li><p style=" font-weight: bold" >${data[i].name}</p>`
+            `<li><p style=" font-weight: bold" >${data[i].name}</p></li>`
         itemInformation.innerHTML =
             `<p class="episode-information" >Episode: <span>${data[i].episode}</span></p>`
 
@@ -178,6 +183,8 @@ function episodeListMaker(data) {
     }
 }
 
+
+// SKAPAR EPISODEOBJECT
 // Makes an episode object
 function episodeObjectMaker(data) {
 
@@ -228,6 +235,8 @@ function episodeObjectMaker(data) {
         `<p class="episode-airdate">Air date: <span>${data.air_date}</span></p>`
 
     removeAllCharacterInList()
+
+    // SKICKAR IN EN LISTA MED KARAKTÄRER
     charactersListFromEpisode(data.characters)
 }
 
@@ -246,6 +255,7 @@ function characterFinder(characterUrl) {
         })
 }
 
+// KORTDESIGN
 // MAKES PLAYCARDS TO FAVORITE-CONTAINER
 function playcardMakerFromFavoriteList(data) {
 
@@ -470,6 +480,7 @@ function playcardObjectMaker(data) {
     heartSymbol.src = 'img/heart_symbol.png'
     noHeartSymbol.src = 'img/no_heart_symbol.png'
 
+    // KORTDESIGN
     if (data.species === 'Alien') {
         characterContainer.style.backgroundColor = '#6050A1'
         infoContainer.style.backgroundColor = '#C07D2B'
