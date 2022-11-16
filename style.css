@@ -78,6 +78,14 @@ html{
     border: var(--border-style-1px);
 }
 
+/* @media (max-width: 600px) {
+
+    .nav-wrapper{
+        padding: 0 .4rem;
+    }
+
+} */
+
 .nav-container{
     max-width: 1000px;
     width: 100%;

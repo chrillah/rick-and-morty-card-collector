@@ -96,6 +96,7 @@ function seasonOneList() {
             episodeListMaker(data)
         })
 }
+
 function seasonTwoList() {
     season2.classList.add('btn-pressed')
     season1.classList.remove('btn-pressed')
@@ -108,6 +109,7 @@ function seasonTwoList() {
             episodeListMaker(data)
         })
 }
+
 function seasonThreeList() {
     season3.classList.add('btn-pressed')
     season1.classList.remove('btn-pressed')
@@ -120,6 +122,7 @@ function seasonThreeList() {
             episodeListMaker(data)
         })
 }
+
 function seasonFourList() {
     season4.classList.add('btn-pressed')
     season1.classList.remove('btn-pressed')
@@ -132,6 +135,7 @@ function seasonFourList() {
             episodeListMaker(data)
         })
 }
+
 function seasonFiveList() {
     season5.classList.add('btn-pressed')
     season1.classList.remove('btn-pressed')
@@ -366,13 +370,19 @@ function playcardMakerFromFavoriteList(data) {
     characterName.textContent = data.name
     characterImg.src = data.image
     characterStatus.innerHTML =
-        `<p class="character-info">Status: <span>${data.status}</span></p>`
+        `<p class="character-info">
+            Status: <span>${data.status}</span>
+        </p>`
 
     characterSpecies.innerHTML =
-        `<p class="character-info">Species: <span>${data.species}</span></p>`
+        `<p class="character-info">
+            Species: <span>${data.species}</span>
+        </p>`
 
     characterGender.innerHTML =
-        `<p class="character-info">Gender: <span>${data.gender}</span></p>`
+        `<p class="character-info">
+            Gender: <span>${data.gender}</span>
+        </p>`
 
     removeFromFavoriteButton.addEventListener('click', () => {
         displayPlaycardsContainer.removeChild(characterContainer)
@@ -594,6 +604,7 @@ function playcardObjectMaker(data) {
             }
         }
     }
+    
     removeFromFavoriteButton.addEventListener('click', () => {
 
         // 009 - klicka på hjärtat läggs kortet in i localstorage och ett kort skapas i favorite container eller vard collector 
