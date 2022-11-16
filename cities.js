@@ -253,7 +253,7 @@ function cityElementObjectCreator(data){
             cityItemContainer.appendChild(messageText)
             displayCityContainer.appendChild(cityItemContainer)
             cityItemContainer.classList.add('city-item-container')
-            messageText.innerHTML = `<p class="message-text" > Nice! <span>${data.name}</span> has been destroyed and <span>${data.population}</span> citizen have "moved"</p>`
+            messageText.innerHTML = `<p class="city-message-text" > Nice! <span>${data.name}</span> has been destroyed and <span>${data.population}</span> citizen have "moved"</p>`
 
 
         })

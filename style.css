@@ -336,7 +336,7 @@ html{
 
 @media (max-width: 500px) {
     .main-intro-header{
-        font-size: 3rem;
+        font-size: 4rem;
     }
 }
 
@@ -351,7 +351,7 @@ html{
     /* padding: 0 1rem; */
     /*ÄNDRING*/
     padding-top: 2rem;
-    padding-bottom: 5rem;
+    padding-bottom: 8rem;
 }
 
 .presentation-container{
@@ -401,7 +401,7 @@ html{
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding-bottom: 7rem;
+    padding-bottom: 5rem;
 }
 
 .top-content-wrapper{
@@ -428,12 +428,18 @@ html{
     margin: 0;
 }
 
+@media (max-width: 500px) {
+    .hiw-header{
+        font-size: 4rem;
+    }
+}
+
 .how-it-works{
     gap: 1rem;
     display: grid;
     grid-template-areas: 
     "hiw-text hiw-img";
-    padding-bottom: 9rem;
+    padding-bottom: 10rem;
 }
 
 .hiw-text{
@@ -476,10 +482,24 @@ html{
     margin: 0;
 }
 
-@media(max-width: 400px) {
+@media (max-width: 500px) {
     .season-header{
         font-size: 4rem;
     }
+}
+
+.season-text{
+    margin: 0 auto;
+    max-width: 800px;
+    padding: 2rem 0;
+}
+
+@media(max-width: 800px){
+
+    .season-text{
+        max-width: 400px;
+    }
+
 }
 
 .top-btn-container{
@@ -553,12 +573,12 @@ html{
         grid-template-areas:
         "ep-list" 
         "objects"; 
-        padding-bottom: 6rem;
+        padding-bottom: 1rem;
     }
 }
 
 #display-episode-list{
-    min-height: 300px;
+    min-height: 370px;
     border-radius: 10px;
     width: 100%;
     background-color: var(--screen-bg);
@@ -584,7 +604,7 @@ html{
 .message-text{
     color: var(--screen-text);
     text-align: center;
-    padding: 2rem;
+    padding: 7rem 1rem;
 }
 
 .message-text span{
@@ -941,6 +961,15 @@ button{
     color: var(--active-btn)
 }
 
+@media (max-width: 800px) {
+
+    .main-header{
+        margin: 0 auto;
+        max-width: 500px;
+    }
+
+}
+
 .display-content-wrapper-bottom{
     width: 100%;
     /*ÄNDRING*/
@@ -995,6 +1024,12 @@ button{
     margin: 0;
 }
 
+@media (max-width: 500px) {
+    .stats-intro-header{
+        font-size: 4rem;
+    }
+}
+
 .stats-intro-text{
     max-width: 800px;
 }
@@ -1038,6 +1073,7 @@ button{
 
 .stats-text{
     color: var(--screen-text);
+    padding: 0 1rem;
 }
 
 .characters-stats-container{
@@ -1345,6 +1381,16 @@ input::placeholder{
     background-color: var(--warning);
 }
 
+.city-message-text{
+    color: var(--screen-text);
+    text-align: center;
+    padding: 2rem;
+}
+
+.city-message-text span{
+    font-style: italic;
+}
+
 .city-information-container{
     display: grid;
     grid-template-columns: auto;
@@ -1394,9 +1440,16 @@ input::placeholder{
 .footer-header{
     font-family: 'Creepster', cursive;
     font-style: italic;
-    font-size: 4rem;
+    font-size: 6rem;
     padding: 0;
     margin: 0;
+}
+
+@media (max-width: 500px) {
+
+    .footer-header{
+        font-size: 4rem;
+    }
 }
 
 .logo-items{
@@ -1417,7 +1470,7 @@ input::placeholder{
     margin: 0 auto;
     text-decoration: none;
     color: white;
-    width: 3rem;
+    width: 5rem;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -1430,6 +1483,7 @@ input::placeholder{
 }
 
 .small-logo-text{
+    text-align: center;
     padding:0;
     margin: .6rem 0;
     font-size: .6rem;
