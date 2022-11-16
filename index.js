@@ -8,17 +8,6 @@ const seasonThree = '/episode/22,23,24,25,26,27,28,29,30,31'
 const seasonFour = '/episode/32,33,34,35,36,37,38,39,40,41'
 const seasonFive = '/episode/42,43,44,45,46,47,48,49,50,51'
 
-const episodeListSEOne = []
-const episodeListSETwo = []
-const episodeListSEThree = []
-const episodeListSEFour = []
-const episodeListSEFive = []
-const episodeListSESix = []
-
-const humanCardsList = []
-const alienCardsList = []
-const mythicalCreatureCardsList = []
-
 // List container
 const displayEpisodeList = document.querySelector('#display-episode-list')
 const displayCharacterList = document.querySelector('#display-character-list')
@@ -604,7 +593,7 @@ function playcardObjectMaker(data) {
             }
         }
     }
-    
+
     removeFromFavoriteButton.addEventListener('click', () => {
 
         // 009 - klicka på hjärtat läggs kortet in i localstorage och ett kort skapas i favorite container eller vard collector 
