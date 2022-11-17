@@ -2,10 +2,6 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Creepster&display=swap');
 
-@import url('https://fonts.googleapis.com/css2?family=Major+Mono+Display&display=swap');
-
-@import url('https://fonts.googleapis.com/css2?family=Xanh+Mono:ital@0;1&display=swap');
-
 /* Table of content */
 /* 1. Root settings */
 /* 2. HTML settings */
@@ -20,31 +16,21 @@
     --shadow : rgb(38, 57, 77) 0px 20px 30px -10px; 
     --screen-graphic-color: #23B78C; /*BEHÖVS*/
 
-    --active-btn : #06F3AF; /*BEHÖVS*/
-    --screen-bg : #0C0D23; /*BEHÖVS*/
-    --screen-text : #ffffff; /*BEHÖVS*/
-    --screen-border : solid 1px #23B78C; /*BEHÖVS*/
-    --light-purple : #BDB1C0; /*BEHÖVS*/
-    --rm-green : #B2D235; /*BEHÖVS*/
-    --rm-blue : #00B3CB; /*BEHÖVS*/
+    --active-btn : #06F3AF; 
+    --screen-bg : #0C0D23;
+    --screen-text : #ffffff;
+    --screen-border : solid 1px #23B78C;
+    --light-purple : #BDB1C0; 
+    --rm-green : #B2D235; 
+    --rm-blue : #00B3CB; 
     --light-green : #23B78C;
     --light-red : #EF5C5E;
-     --font-color-black : #000000; /*BEHÖVS*/
-    --button-bg-color : #EDDDDE; /*BEHÖVS*/
-    --border-style-1px: solid 1px black; /*BEHÖVS*/
+     --font-color-black : #000000;
+    --button-bg-color : #EDDDDE;
+    --border-style-1px: solid 1px black;
     --border-screen-style-1px: solid 1px black;
     --warning : red;
     --ok : green;
-
-    /* REMOVE IF NOT AFFECTED */
-    /* --greenish : #108E74;*/
-    /* --border-style-2px: solid 2px black; */
-    /* --button-shadow-color: #000000; */
-    /* --button-bg-color-focus : #ffffff; */
-    /*--bg-color-white : #FFFFFF; */
-    /* --light-yellow : #F3CC16; */
-    /* --whitish : #ffffff; */
-    /* --favorite-bg : #000000; */
 }
 
 /* 2. HTML settings */
@@ -77,14 +63,6 @@ html{
     flex-direction: column;
     border: var(--border-style-1px);
 }
-
-/* @media (max-width: 600px) {
-
-    .nav-wrapper{
-        padding: 0 .4rem;
-    }
-
-} */
 
 .nav-container{
     max-width: 1000px;
@@ -209,53 +187,6 @@ html{
     background-color: #000000;
 }
 
-@media (max-width: 600px) {
-    /* .toggle-btn{
-        display: flex;
-    }
-
-    .navbar-links{
-        display: none;
-        width: 100%;
-    }
-
-    .navbar{
-        flex-direction: column;
-        align-items: flex-start;
-    }
-    .navbar-links ul{
-        height: 100vh;
-        width: 100%;
-        flex-direction: column;
-    }
-
-    .navbar-links li{
-        text-align: center;
-    }
-
-    .navbar-links li a{
-        padding: .5rem 1rem;
-    }
-
-    .navbar-links.active{
-        display: flex;
-    } */
-}
-
-/* links 
-.links{
-    padding: .1rem;
-    font-weight: bold;
-}
-
-
-.links:hover{
-    background: var(--font-color-black);
-    color: var(--bg-color-white);
-    font-weight: 400;
-}
-*/
-
 /* Hero settings */
 .hero-wrapper{
     width: 100%;
@@ -325,9 +256,6 @@ html{
 /* RICK AND MORTY */
 
 .rm-main-wrapper{
-    /*ÄNDRING*/
-    /* width: 100%; */
-    /*ÄNDRING*/
     display: flex;
     justify-content: center;
     align-items: center;
@@ -363,9 +291,6 @@ html{
     justify-content: space-around;
     align-items: center;
     flex-wrap: wrap;
-    /*ÄNDRING*/
-    /* padding: 0 1rem; */
-    /*ÄNDRING*/
     padding-top: 2rem;
     padding-bottom: 8rem;
 }
@@ -406,12 +331,6 @@ html{
 
 /* Main-content */
 .display-content-wrapper-top{
-
-    /*ÄNDRING*/
-    /* padding: 0 2rem;
-    margin: 0 2rem; */
-    /*ÄNDRING*/
-
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -475,8 +394,6 @@ html{
     height: auto;
     width: 100%;
 }
-
-
 
 .season-option-container{
     text-align: center;
