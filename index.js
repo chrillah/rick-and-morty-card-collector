@@ -714,7 +714,7 @@ fetch(url + '/character/1,2,3,4,5,47,154,118, 242' + statsCharacterID)
 
         const myChart = new Chart(ctx, {
 
-            type: 'polarArea',
+            type: 'doughnut',
             data: {
                 labels: labels,
                 datasets: [{
