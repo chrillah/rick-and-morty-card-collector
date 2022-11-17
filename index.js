@@ -249,7 +249,6 @@ function charactersListFromEpisode(data) {
     }
 }
 
-// 006... det enda den gör är att fetcha data baserad på karaktärens id
 function characterFinder(characterUrl) {
     fetch(characterUrl)
         .then(response => response.json())
@@ -258,7 +257,6 @@ function characterFinder(characterUrl) {
         })
 }
 
-// KORTDESIGN
 // MAKES PLAYCARDS TO FAVORITE-CONTAINER
 function playcardMakerFromFavoriteList(data) {
 
@@ -385,7 +383,6 @@ function playcardMakerFromFavoriteList(data) {
     })
 }
 
-// 007 - skapar en lista med karaktärer
 // Adds character from episodeObject to list-item
 function characterListFromEpisode(data) {
     const listItem = document.createElement('li')
@@ -435,7 +432,6 @@ function characterPresentationMaker(data) {
         `<h3 class="presentation-header">${data.name}</h3>`
 }
 
-// 008 - kortskaparen
 // MAKES ONE PLAYCARD IN EPISODE OBJECT
 function playcardObjectMaker(data) {
     removePlaycardObject()
@@ -591,7 +587,6 @@ function playcardObjectMaker(data) {
 
     removeFromFavoriteButton.addEventListener('click', () => {
 
-        // 009 - klicka på hjärtat läggs kortet in i localstorage och ett kort skapas i favorite container eller vard collector 
         let favorite = []
         favorite = JSON.parse(localStorage.getItem('favorite'))
         let newArray = []
@@ -608,8 +603,6 @@ function playcardObjectMaker(data) {
     })
 }
 
-
-// 010 - function som skapar kort i favorite
 // Adds cards to container
 function getAllInFavoriteList() {
     clearCardContainer()
