@@ -142,7 +142,7 @@ function cityElementObjectCreator(data){
     editButton.value = 'Edit'
     
     deleteButton.type = 'button'
-    deleteButton.value = 'Nuke em'
+    deleteButton.value = 'Destroy'
     
     exitButton.type = 'button'
     exitButton.value = 'Close'
@@ -233,7 +233,7 @@ function cityElementObjectCreator(data){
         displayMessage.style.display = 'grid'
 
         displayMessage.innerHTML = 
-        `<h1 class="nuke-message">Nuke ${data.name}?</h1>`
+        `<h1 class="nuke-message">Destroy ${data.name}?</h1>`
 
         editCityContainer.style.display = 'none'
         editCityContainer.disabled = true;
