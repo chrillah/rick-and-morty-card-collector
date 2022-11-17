@@ -383,10 +383,7 @@ function createCityListItem(){
             const cityListItem = document.createElement('li')
 
             cityListItem.textContent = data[i].name
-            // cityListItem.innerHTML = `
-            // <li class="list-btn">
-            //     ${data[i].name}
-            // </li>`
+  
             cityListItem.classList.add('list-btn')
             displayCityList.appendChild(cityListItem)
     

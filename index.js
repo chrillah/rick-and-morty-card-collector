@@ -1,7 +1,7 @@
 /* GLOBAL VARIABLES */
 const url = 'https://rickandmortyapi.com/api'
 
-// 001 endpoints
+// Endpints seasons
 const seasonOne = '/episode/1,2,3,4,5,6,7,8,9,10,11'
 const seasonTwo = '/episode/12,13,14,15,16,17,18,19,20,21'
 const seasonThree = '/episode/22,23,24,25,26,27,28,29,30,31'
@@ -72,7 +72,6 @@ function noCards(){
     </p>`
 }
 
-// 002 - fetchar en lista med episoder från en säsong
 function seasonOneList() {
     season1.classList.add('btn-pressed')
     season2.classList.remove('btn-pressed')
@@ -138,7 +137,6 @@ function seasonFiveList() {
         })
 }
 
-// 003 - skapar lista med episoder
 // makes an episode-list-item
 function episodeListMaker(data) {
     removePlaycardObject()
@@ -183,8 +181,6 @@ function episodeListMaker(data) {
     }
 }
 
-
-// 004 SKAPAR EPISODEOBJECT
 // Makes an episode object
 function episodeObjectMaker(data) {
 
@@ -246,7 +242,6 @@ function episodeObjectMaker(data) {
     charactersListFromEpisode(data.characters)
 }
 
-// 005 - letar i datan efter karaktärer
 // LOOPS THROUGH CHARACTER LIST FROM EPISODE
 function charactersListFromEpisode(data) {
     for (let i = 0; i < data.length; i++) {
