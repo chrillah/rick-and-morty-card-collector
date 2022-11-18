@@ -904,10 +904,6 @@ button{
 
 .display-content-wrapper-bottom{
     width: 100%;
-    /*ÄNDRING*/
-    /* margin: 0 2rem; */
-    /*ÄNDRING*/
-
     display: flex;
     justify-content: center;
     align-items: center;
