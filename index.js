@@ -431,8 +431,7 @@ function characterPresentationMaker(data) {
     characterHeader.innerHTML =
         `<h3 class="presentation-header">${data.name}</h3>`
 
-    let arrayFromLocalStorage = []
-    arrayFromLocalStorage = JSON.parse(localStorage.getItem('favorite'))
+    const arrayFromLocalStorage = JSON.parse(localStorage.getItem('favorite'))
     for(let i = 0; i < arrayFromLocalStorage.length; i++){
         if(arrayFromLocalStorage[i].id === data.id){
             characterHeader.style.color = 'var(--active-btn)'
@@ -579,6 +578,7 @@ function playcardObjectMaker(data) {
         removeFromFavoriteButton.style.display = 'grid'
         getAllInFavoriteList()
         cardMessageDisplayer()
+
     })
 
     // Om kortet redan finns i 'favorite' så kan man inte läga till den igen och en annan symbol syns istället
@@ -594,9 +594,9 @@ function playcardObjectMaker(data) {
     }
 
     removeFromFavoriteButton.addEventListener('click', () => {
-
         let favorite = []
         favorite = JSON.parse(localStorage.getItem('favorite'))
+
         let newArray = []
         for (let i = 0; i < favorite.length; i++) {
             if (favorite[i].id !== data.id) {
