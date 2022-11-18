@@ -689,7 +689,7 @@ fetch(url + '/character/244, 47, 154, 598, 2,744, 752, 329').then(response => re
     })
 
 
-let input = 'Someone'
+let input = 'How often the character appears in the show'
 fetch(url + '/character/1,2,3,4,5,47,154,118, 242' + statsCharacterID)
     .then(response => response.json())
     .then(result => {
