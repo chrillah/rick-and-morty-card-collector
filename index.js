@@ -40,6 +40,7 @@ const season5 = document.querySelector('#season-5')
 let arrayFromLocalStorage = []
 arrayFromLocalStorage = JSON.parse(localStorage.getItem('favorite'))
 startMessadeDisplayer()
+createCharacterPresentation()
 
 if (arrayFromLocalStorage) {
     cardMessageDisplayer()
@@ -377,6 +378,9 @@ function playcardMakerFromFavoriteList(data) {
             }
         }
         localStorage.setItem('favorite', JSON.stringify(newArray))
+
+        removeAllPresentationCharacter()
+        createCharacterPresentation()
         removePlaycardObject()
         cardMessageDisplayer()
         getAllInFavoriteList()
@@ -430,13 +434,23 @@ function characterPresentationMaker(data) {
     cardImg.src = data.image
     characterHeader.innerHTML =
         `<h3 class="presentation-header">${data.name}</h3>`
-
+    
+    // let arrayOfElements = mainCharacterGalleryContainer.children
+    // for (let i = 0; i < arrayOfElements.length; i++){
+    //     arrayOfElements[i].children[1].style.color = 'var(--active-btn)'
+    // }
+    
     const arrayFromLocalStorage = JSON.parse(localStorage.getItem('favorite'))
     for(let i = 0; i < arrayFromLocalStorage.length; i++){
         if(arrayFromLocalStorage[i].id === data.id){
             characterHeader.style.color = 'var(--active-btn)'
         }
     }
+
+    // for (let i = 0; i < arrayOfElements.length; i++){
+    //     console.log(arrayOfElements[i].children[1].style.color = 'var(--active-btn)')
+    //     // console.log(mainCharacterGalleryContainer.children[i].children[i].textContent)
+    // }
 }
 
 // MAKES ONE PLAYCARD IN EPISODE OBJECT
@@ -578,7 +592,8 @@ function playcardObjectMaker(data) {
         removeFromFavoriteButton.style.display = 'grid'
         getAllInFavoriteList()
         cardMessageDisplayer()
-
+        removeAllPresentationCharacter() 
+        createCharacterPresentation()
     })
 
     // Om kortet redan finns i 'favorite' så kan man inte läga till den igen och en annan symbol syns istället
@@ -606,6 +621,8 @@ function playcardObjectMaker(data) {
         favoriteButton.style.display = 'grid'
         removeFromFavoriteButton.style.display = 'none'
         localStorage.setItem('favorite', JSON.stringify(newArray))
+        removeAllPresentationCharacter()
+        createCharacterPresentation()
         getAllInFavoriteList()
         cardMessageDisplayer()
     })
@@ -619,6 +636,7 @@ function getAllInFavoriteList() {
     if (arrayFromLocalStorage) {
         for (let i = 0; i < arrayFromLocalStorage.length; i++) {
             playcardMakerFromFavoriteList(arrayFromLocalStorage[i])
+            //console.log(arrayFromLocalStorage[i].species)
         }
 
         // dynamisk växande grid-column för att få korten att ligga ovanpå varandra
@@ -657,6 +675,12 @@ function removeAllCharacterInList() {
     }
 }
 
+function removeAllPresentationCharacter() {
+    while (mainCharacterGalleryContainer.firstChild) {
+        mainCharacterGalleryContainer.firstChild.remove()
+    }
+}
+
 // Displays numnber of cards
 function cardMessageDisplayer() {
 
@@ -678,16 +702,18 @@ function cardMessageDisplayer() {
 
 }
 
-/* FETCH */
-
 // Fetch and Displays characters in the main intro
-fetch(url + '/character/244, 47, 154, 598, 2,744, 752, 329').then(response => response.json())
+
+function createCharacterPresentation(){
+    fetch(url + '/character/244, 47, 154, 598, 2,744, 752, 329').then(response => response.json())
     .then(data => {
         data.forEach(character => {
             characterPresentationMaker(character)
         });
     })
+}
 
+/* FETCH */
 
 let input = 'How often the character appears in the show'
 fetch(url + '/character/1,2,3,4,5,47,154,118, 242' + statsCharacterID)
