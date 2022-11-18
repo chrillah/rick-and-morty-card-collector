@@ -430,6 +430,14 @@ function characterPresentationMaker(data) {
     cardImg.src = data.image
     characterHeader.innerHTML =
         `<h3 class="presentation-header">${data.name}</h3>`
+
+    let arrayFromLocalStorage = []
+    arrayFromLocalStorage = JSON.parse(localStorage.getItem('favorite'))
+    for(let i = 0; i < arrayFromLocalStorage.length; i++){
+        if(arrayFromLocalStorage[i].id === data.id){
+            characterHeader.style.color = 'var(--active-btn)'
+        }
+    }
 }
 
 // MAKES ONE PLAYCARD IN EPISODE OBJECT
