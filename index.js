@@ -702,7 +702,7 @@ function cardMessageDisplayer() {
     arrayFromLocalStorage = JSON.parse(localStorage.getItem('favorite'))
 
     if ((arrayFromLocalStorage.length) < 1) {
-        cardMessage.innerHTML = `<h1 class="main-header">You have currently <span>${arrayFromLocalStorage.length}</span> card in your collection, why not collect?</h1>`
+        cardMessage.innerHTML = `<h1 class="main-header">You have currently <span>${arrayFromLocalStorage.length}</span> cards in your collection, why not collect?</h1>`
         noCards()
     }
 
