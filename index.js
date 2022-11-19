@@ -40,6 +40,7 @@ const season4 = document.querySelector('#season-4')
 const season5 = document.querySelector('#season-5')
 
 // START CONDITION
+
 let arrayFromLocalStorage = []
 arrayFromLocalStorage = JSON.parse(localStorage.getItem('favorite'))
 heartBtn.style.display = 'none'
@@ -52,6 +53,10 @@ if (arrayFromLocalStorage) {
         playcardMakerFromFavoriteList(arrayFromLocalStorage[i])
     }
     displayPlaycardsContainer.style.gridTemplateColumns = `repeat(${arrayFromLocalStorage.length}, 100px)`
+}
+if(!arrayFromLocalStorage){
+    let favorite = []
+    localStorage.setItem('favorite', JSON.stringify(favorite))
 }
 
 // EVENTS
@@ -450,11 +455,6 @@ function characterPresentationMaker(data) {
     characterHeader.innerHTML =
         `<h3 class="presentation-header">${data.name}</h3>`
     
-    // let arrayOfElements = mainCharacterGalleryContainer.children
-    // for (let i = 0; i < arrayOfElements.length; i++){
-    //     arrayOfElements[i].children[1].style.color = 'var(--active-btn)'
-    // }
-    
     const arrayFromLocalStorage = JSON.parse(localStorage.getItem('favorite'))
     for(let i = 0; i < arrayFromLocalStorage.length; i++){
         if(arrayFromLocalStorage[i].id === data.id){
@@ -462,10 +462,7 @@ function characterPresentationMaker(data) {
         }
     }
 
-    // for (let i = 0; i < arrayOfElements.length; i++){
-    //     console.log(arrayOfElements[i].children[1].style.color = 'var(--active-btn)')
-    //     // console.log(mainCharacterGalleryContainer.children[i].children[i].textContent)
-    // }
+    // console.log(mainCharacterGalleryContainer.children[1].children[1].textContent)
 }
 
 // MAKES ONE PLAYCARD IN EPISODE OBJECT
@@ -728,6 +725,33 @@ function createCharacterPresentation(){
     })
 }
 
+// Stats characters
+function characterStats(data) {
+    const statsWrapper = document.createElement('div')
+    const statsImgContainer = document.createElement('div')
+    const statsImg = document.createElement('img')
+    const statsHeaderContainer = document.createElement('div')
+    const statsHeader = document.createElement('p')
+
+    statsWrapper.classList.add
+        ('stats-wrapper')
+    statsImgContainer.classList.add('stats-img-container')
+    statsImg.classList.add('stats-img')
+
+    statsHeaderContainer.classList.add('stats-header-container')
+    statsHeader.classList.add('stats-header')
+
+    charactersStats.appendChild(statsWrapper)
+    statsWrapper.appendChild(statsImgContainer)
+    statsImgContainer.appendChild(statsImg)
+    statsWrapper.appendChild(statsHeaderContainer)
+    statsHeaderContainer.appendChild(statsHeader)
+
+    statsImg.src = data.image
+    statsHeader.innerHTML =
+        `<p class="stats-header">${data.name}</p>`
+}
+
 /* FETCH */
 
 let input = 'How often the character appears in the show'
@@ -787,31 +811,4 @@ fetch(url + '/character/1,2,3,4,5,47,154,118, 242' + statsCharacterID)
         });
 
     })
-
-// Stats characters
-function characterStats(data) {
-    const statsWrapper = document.createElement('div')
-    const statsImgContainer = document.createElement('div')
-    const statsImg = document.createElement('img')
-    const statsHeaderContainer = document.createElement('div')
-    const statsHeader = document.createElement('p')
-
-    statsWrapper.classList.add
-        ('stats-wrapper')
-    statsImgContainer.classList.add('stats-img-container')
-    statsImg.classList.add('stats-img')
-
-    statsHeaderContainer.classList.add('stats-header-container')
-    statsHeader.classList.add('stats-header')
-
-    charactersStats.appendChild(statsWrapper)
-    statsWrapper.appendChild(statsImgContainer)
-    statsImgContainer.appendChild(statsImg)
-    statsWrapper.appendChild(statsHeaderContainer)
-    statsHeaderContainer.appendChild(statsHeader)
-
-    statsImg.src = data.image
-    statsHeader.innerHTML =
-        `<p class="stats-header">${data.name}</p>`
-}
 
