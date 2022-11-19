@@ -57,6 +57,7 @@ if (arrayFromLocalStorage) {
 if(!arrayFromLocalStorage){
     let favorite = []
     localStorage.setItem('favorite', JSON.stringify(favorite))
+    cardMessageDisplayer()
 }
 
 // EVENTS
@@ -85,6 +86,7 @@ function startMessadeDisplayer(){
 }
 
 function noCards(){
+    displayPlaycardsContainer.style.gridTemplateColumns = `auto`
     const messageContainer = document.createElement('div')
     displayPlaycardsContainer.appendChild(messageContainer)
     messageContainer.innerHTML = `
