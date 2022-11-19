@@ -24,6 +24,9 @@ const favoriteHeader = document.querySelector('#favorite-header')
 const cardMessageContainer = document.querySelector('#card-message-container')
 const cardSortText = document.querySelector('#card-sort-text')
 
+const heartBtn = document.querySelector('#heart-btn')
+const noHeartBtn = document.querySelector('#no-heart-btn')
+
 let statsCharacterID = ''
 const cardMessage = document.createElement('h1')
 cardMessage.classList.add('main-header')
@@ -39,6 +42,7 @@ const season5 = document.querySelector('#season-5')
 // START CONDITION
 let arrayFromLocalStorage = []
 arrayFromLocalStorage = JSON.parse(localStorage.getItem('favorite'))
+heartBtn.style.display = 'none'
 startMessadeDisplayer()
 createCharacterPresentation()
 
@@ -49,6 +53,17 @@ if (arrayFromLocalStorage) {
     }
     displayPlaycardsContainer.style.gridTemplateColumns = `repeat(${arrayFromLocalStorage.length}, 100px)`
 }
+
+// EVENTS
+noHeartBtn.addEventListener('click',()=>{
+    heartBtn.style.display = 'block'
+    noHeartBtn.style.display = 'none'
+})
+
+heartBtn.addEventListener('click',()=>{
+    noHeartBtn.style.display = 'block'
+    heartBtn.style.display = 'none'
+})
 
 /* FUNCTIONS */
 function startMessadeDisplayer(){
@@ -744,12 +759,12 @@ fetch(url + '/character/1,2,3,4,5,47,154,118, 242' + statsCharacterID)
 
                     data: data,
                     backgroundColor: [
-                        'rgba(212, 156, 198, 0.2)',
-                        'rgba(28, 69, 137, 0.2)',
-                        'rgba(10, 116, 106, 0.2)',
-                        'rgba(192, 125, 43, 0.2)',
-                        'rgba(153, 102, 255, 0.2)',
-                        'rgba(190, 37, 39, 0.2)'
+                        'rgba(212, 156, 198, 1)',
+                        'rgba(28, 69, 137, 1)',
+                        'rgba(10, 116, 106, 1)',
+                        'rgba(192, 125, 43, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(190, 37, 39, 1)'
                     ],
                     borderColor: [
                         'rgba(212, 156, 198, 1)',

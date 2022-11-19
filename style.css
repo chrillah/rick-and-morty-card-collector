@@ -381,6 +381,7 @@ html{
 }
 
 .hiw-img-container{
+    cursor: pointer;
     margin-top: auto;
     margin-bottom: auto;
     grid-area: hiw-img;
