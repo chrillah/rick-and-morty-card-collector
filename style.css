@@ -363,6 +363,16 @@ html{
     padding-bottom: 10rem;
 }
 
+@media(max-width: 500px){
+
+    .how-it-works{
+        grid-template-areas: 
+        "hiw-text"
+        "hiw-img";
+    }
+
+}
+
 .hiw-text{
     text-align: center;
     grid-area: hiw-text;
@@ -375,6 +385,14 @@ html{
     grid-area: hiw-img;
     width: 20px;
     animation: pump 3s infinite;
+}
+
+@media(max-width: 500px){
+
+    .hiw-img-container{
+        margin: 0 auto;
+    }
+
 }
 
 .hiw-img-container img{
