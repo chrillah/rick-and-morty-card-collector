@@ -980,6 +980,7 @@ button{
 
 @media (max-width:800px) {
     .stats-container{
+        gap: 2rem;
         grid-template-columns: 1fr;
         grid-template-rows: 1fr 1fr ;
     }
