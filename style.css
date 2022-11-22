@@ -232,9 +232,9 @@ html{
 }
 
 @media (max-width: 600px) {
-    .rotating-text{
+    /* .rotating-text{
         width: 200px;
-    }
+    } */
 }
 
 /* 4. Main settings */
