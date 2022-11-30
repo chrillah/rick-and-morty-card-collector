@@ -98,11 +98,13 @@ html{
     display: flex;
     align-items: center;
     justify-content: center;
+    max-width: 6rem;
 }
 
 .brand-title img{
     width: 100%;
-    max-height: 2rem;
+    height: auto;
+    /* height: 2rem; */
 }
 
 .navbar-header{
@@ -123,6 +125,11 @@ html{
 }
 
 @media(max-width:600px){
+
+    .brand-title{
+        max-width: 3rem;
+    }
+    
     .regular-logotype{
         display: none;
     }
