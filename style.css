@@ -31,6 +31,24 @@
     --ok : green;
 }
 
+::-webkit-scrollbar {
+    width: 3px;
+    height: 3px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--font-color-black);
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--screen-graphic-color);
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--active-btn);
+}
+
 /* 2. HTML settings */
 
 *{
@@ -517,7 +535,7 @@ html{
 
 #display-episode-list{
     min-height: 370px;
-    border-radius: 10px;
+    border-radius: 10px 0 0 10px;
     width: 100%;
     background-color: var(--screen-bg);
     padding: 0;
@@ -562,7 +580,7 @@ html{
 
 .middle-display{
     border: var(--screen-border);
-    border-radius: 10px;
+    border-radius: 10px 0 0 10px;
     background-color: var(--screen-bg);
     width: 100%;
     grid-area: objects;
@@ -927,6 +945,7 @@ button{
     border: var(--screen-border);
     box-shadow: var(--shadow);
     margin-bottom: 7rem;
+    padding-bottom: .2rem;
 }
 
 @media(max-width: 800px){
@@ -938,9 +957,10 @@ button{
 #display-playcards-container{
 
     margin: 0 2rem;
-    padding: 2rem;
+    padding: 2rem 2rem 1rem 2rem;
     margin: auto 0;
-    overflow-x: scroll;
+    /* overflow-x: scroll; */
+    overflow-x: auto;
     display: grid;
 } 
 
@@ -1003,6 +1023,7 @@ button{
 
 
 #myChart{
+    padding: 1rem;
     height: auto;
     width: 100%;
 }
