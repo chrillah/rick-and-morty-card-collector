@@ -49,6 +49,13 @@
     background: var(--active-btn);
 }
 
+input{
+    border-radius: 0;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+
 /* 2. HTML settings */
 
 *{
@@ -129,7 +136,7 @@ html{
     .brand-title{
         max-width: 3rem;
     }
-    
+
     .regular-logotype{
         display: none;
     }
