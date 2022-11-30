@@ -92,11 +92,17 @@ html{
 }
 
 .brand-title{
+    height: 2rem;
     text-decoration: none;
     color: var(--font-color-black);
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+.brand-title img{
+    width: 100%;
+    max-height: 2rem;
 }
 
 .navbar-header{
@@ -108,13 +114,8 @@ html{
     margin-left: 1rem;
 }
 
-.brand-title img{
-    width: 100%;
-    height: 2rem;
-}
-
 .regular-logotype{
-    display: block;
+    display: inline-block;
 }
 
 .small-logotype{
@@ -127,7 +128,7 @@ html{
     }
     
     .small-logotype{
-        display: block;
+        display: inline-block;
     }
 
     .navbar-header{
