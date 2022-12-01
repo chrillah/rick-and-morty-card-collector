@@ -1051,6 +1051,20 @@ button{
     padding: 0 1rem;
 }
 
+.vertical-screen{
+    display: none;
+}
+
+@media (max-width:800px) {
+    .horizontal-screen{
+        display: none;
+    }
+
+    .vertical-screen{
+        display: inline-block;
+    }
+}
+
 .characters-stats-container{
     padding: .5rem;
     max-width: 400px;
@@ -1288,7 +1302,7 @@ input::placeholder{
 
 .list-btn{
     padding: .3rem 0 .3rem .3rem;
-    max-width: 250px;
+    /* max-width: 250px; */
     font-size: 1rem;
     border: var(--screen-text) 1px solid;
     color: var(--screen-text);
@@ -1298,6 +1312,12 @@ input::placeholder{
     user-select: none;
     -webkit-user-select: none;
     touch-action: manipulation;
+}
+
+@media (min-width: 800px){
+    .list-btn{
+        max-width: 250px;
+    }
 }
 
 .list-btn-pressed,
