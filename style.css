@@ -550,7 +550,7 @@ html{
 
 #display-episode-list{
     min-height: 370px;
-    border-radius: 10px 0 0 10px;
+    border-radius: 10px;
     width: 100%;
     background-color: var(--screen-bg);
     padding: 0;
@@ -595,7 +595,7 @@ html{
 
 .middle-display{
     border: var(--screen-border);
-    border-radius: 10px 0 0 10px;
+    border-radius: 10px;
     background-color: var(--screen-bg);
     width: 100%;
     grid-area: objects;
