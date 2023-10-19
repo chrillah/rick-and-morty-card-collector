@@ -1,2 +1,2 @@
-# native_js_labb_2
-School project for Native Javascript course
+# Rick And Morty - Card Collector
+School project at ITHS for the JavaScript Native course
