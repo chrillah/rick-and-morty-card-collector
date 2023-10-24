@@ -1052,7 +1052,7 @@ button{
     width: 267px;
 }
 
-@media (min-width: 600px) {
+@media (min-width: 650px) {
     .chart-responsive-container{
         width: 450px;
     }
