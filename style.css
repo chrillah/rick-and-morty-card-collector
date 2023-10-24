@@ -477,14 +477,21 @@ html{
 }
 
 .top-btn-container{
-    max-width: 400px;
+    /* max-width: 400px; */
     display: grid;
     grid-template-columns:  repeat(5, auto);
     width: 100%;
     margin-bottom: 1rem;
 }
 
-@media(min-width: 800px){
+@media(max-width: 700px){
+    .top-btn-container{
+        max-width: 400px;
+    }
+}
+
+
+@media(min-width: 801px){
     .top-btn-container{
         max-width: 300px;
     }
@@ -537,7 +544,7 @@ html{
     "ep-list objects";
 }
 
-@media (max-width:800px) {
+@media (max-width:700px) {
 
     .display-result{
         gap: 2rem;
@@ -568,7 +575,7 @@ html{
     box-shadow: var(--shadow);
 }
 
-@media (max-width: 800px){
+@media (max-width: 700px){
     #display-episode-list{
         margin: 0 auto;
         max-width: 400px;
@@ -609,7 +616,7 @@ html{
     box-shadow: var(--shadow);
 }
 
-@media (max-width: 800px){
+@media (max-width: 700px){
     .middle-display{
         max-width: 400px;
         margin: 0 auto;
@@ -967,7 +974,7 @@ button{
     padding-bottom: .2rem;
 }
 
-@media(max-width: 800px){
+@media(max-width: 700px){
     .favorite-container{
         max-width: 400px;
     }
@@ -1017,7 +1024,7 @@ button{
     margin-bottom: 6rem;
 }
 
-@media (max-width:800px) {
+@media (max-width:700px) {
     .stats-container{
         gap: 2rem;
         grid-template-columns: 1fr;
