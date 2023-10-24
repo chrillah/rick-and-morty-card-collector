@@ -1091,7 +1091,7 @@ button{
     display: none;
 }
 
-@media (max-width:800px) {
+@media (max-width:720px) {
     .horizontal-screen{
         display: none;
     }
