@@ -610,11 +610,18 @@ html{
     background-color: var(--screen-bg);
     width: 100%;
     grid-area: objects;
+    grid-template-columns: auto auto;
     grid-template-rows: 398px;
     display: grid;
     grid-template-areas:
     "epAndCardobjects char-list";
     box-shadow: var(--shadow);
+}
+
+@media (min-width: 440px) {
+    .middle-display{
+        grid-template-columns: auto 200px;
+    }
 }
 
 @media (max-width: 700px){
@@ -677,6 +684,12 @@ html{
     justify-content: center;
     align-items: center;
 }
+
+/* @media (min-width:400px) {
+    #display-one-playcard-object{
+        margin: .6rem;
+    }
+} */
 
 .episode-information p{
     padding: 0;
