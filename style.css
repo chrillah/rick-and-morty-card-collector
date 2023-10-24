@@ -12,15 +12,15 @@
 
 /* 1. Root settings */
 :root{
-    --shadow : rgb(38, 57, 77) 0px 20px 30px -10px; 
+    --shadow : rgb(38, 57, 77) 0px 20px 30px -10px;
     --screen-graphic-color: #23B78C;
-    --active-btn : #06F3AF; 
+    --active-btn : #06F3AF;
     --screen-bg : #0C0D23;
     --screen-text : #ffffff;
     --screen-border : solid 1px #23B78C;
-    --light-purple : #BDB1C0; 
-    --rm-green : #B2D235; 
-    --rm-blue : #00B3CB; 
+    --light-purple : #BDB1C0;
+    --rm-green : #B2D235;
+    --rm-blue : #00B3CB;
     --light-green : #23B78C;
     --light-red : #EF5C5E;
      --font-color-black : #000000;
@@ -143,7 +143,7 @@ html{
     .regular-logotype{
         display: none;
     }
-    
+
     .small-logotype{
         display: block;
     }
@@ -160,7 +160,7 @@ html{
 }
 
 .navbar-links li{
-    
+
     list-style: none;
 }
 
@@ -175,7 +175,7 @@ html{
 
     .navbar-links li a{
         padding: .7rem .3rem;
-    } 
+    }
 
 }
 
@@ -221,7 +221,7 @@ html{
     background-repeat: no-repeat;
     height: 100vh;
     overflow: hidden;
-    background-color: var(--light-purple); 
+    background-color: var(--light-purple);
     animation: colorChange 5s infinite;
 }
 
@@ -394,7 +394,7 @@ html{
 .how-it-works{
     gap: 1rem;
     display: grid;
-    grid-template-areas: 
+    grid-template-areas:
     "hiw-text hiw-img";
     padding-bottom: 10rem;
 }
@@ -402,7 +402,7 @@ html{
 @media(max-width: 500px){
 
     .how-it-works{
-        grid-template-areas: 
+        grid-template-areas:
         "hiw-text"
         "hiw-img";
     }
@@ -500,7 +500,7 @@ html{
     cursor: pointer;
     display: inline-block;
     font-weight: bolder;
-    padding: 0 10px; 
+    padding: 0 10px;
     line-height: 2rem;
     text-align: center;
     text-decoration: none;
@@ -533,7 +533,7 @@ html{
     display: grid;
     grid-template-columns: 300px auto;
     grid-template-rows: 400px;
-    grid-template-areas: 
+    grid-template-areas:
     "ep-list objects";
 }
 
@@ -545,8 +545,8 @@ html{
         grid-template-columns:auto;
         grid-template-rows: auto auto;
         grid-template-areas:
-        "ep-list" 
-        "objects"; 
+        "ep-list"
+        "objects";
         padding-bottom: 1rem;
     }
 }
@@ -604,7 +604,7 @@ html{
     grid-area: objects;
     grid-template-rows: 398px;
     display: grid;
-    grid-template-areas: 
+    grid-template-areas:
     "epAndCardobjects char-list";
     box-shadow: var(--shadow);
 }
@@ -619,7 +619,7 @@ html{
 .display-object{
     grid-area: epAndCardobjects;
     display: grid;
-    grid-template-areas: 
+    grid-template-areas:
     "ep-object"
     "char-object";
     width: 100%;
@@ -708,7 +708,7 @@ html{
 
 .episode-btn:active {
     transform: translate(-2px, 0px);
-} 
+}
 
 .episode-container{
     margin-top: -5rem;
@@ -887,7 +887,7 @@ button{
     display: block;
     font-size: .8rem;
     font-weight: bold;
-    padding: .4rem .3rem; 
+    padding: .4rem .3rem;
     text-decoration: none;
     user-select: none;
     -webkit-user-select: none;
@@ -947,6 +947,7 @@ button{
 
 .display-content-wrapper-bottom{
     width: 100%;
+    flex-direction: column;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -980,7 +981,7 @@ button{
     /* overflow-x: scroll; */
     overflow-x: auto;
     display: grid;
-} 
+}
 
 /* Chart */
 .stats-intro-header-container{
@@ -1080,7 +1081,7 @@ button{
     display: flex;
     justify-content: space-around;
     align-items: center;
-    flex-wrap: wrap; 
+    flex-wrap: wrap;
 }
 
 .stats-wrapper{
@@ -1160,7 +1161,7 @@ button{
     cursor: pointer;
     display: inline-block;
     font-weight: bolder;
-    padding: 0 1rem; 
+    padding: 0 1rem;
     line-height: 2rem;
     text-align: center;
     text-decoration: none;
@@ -1168,7 +1169,7 @@ button{
     -webkit-user-select: none;
     touch-action: manipulation;
 }
-  
+
 .btn:hover,
 .btn:focus {
     color: var(--screen-bg);
@@ -1241,15 +1242,15 @@ input::placeholder{
     padding: 1rem 0;
     display: grid;
     gap: 1rem;
-    grid-template-areas: 
+    grid-template-areas:
     "city-list city-items";
     grid-template-columns: 1fr 2fr;
 }
 
 @media(max-width: 800px) {
-    
+
     #display-container{
-        grid-template-areas: 
+        grid-template-areas:
         "city-items"
         "city-list";
         grid-template-columns: 1fr;
@@ -1332,7 +1333,7 @@ input::placeholder{
 
 .list-btn:active {
     transform: translate(-2px, 0px);
-} 
+}
 
 /* City Object*/
 .city-item-container{
