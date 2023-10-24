@@ -1025,11 +1025,11 @@ button{
     margin-bottom: 6rem;
 }
 
-@media (max-width:800px) {
+@media (max-width:720px) {
     .stats-container{
         gap: 2rem;
         grid-template-columns: 1fr;
-        grid-template-rows: 1fr 1fr ;
+        grid-template-rows: auto auto ;
     }
 }
 
@@ -1039,15 +1039,36 @@ button{
     border: var(--screen-border);
     background-color: var(--screen-bg);
     margin: 0 auto;
-    max-width: 400px;
+    max-width: var(--small-screen);
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
     flex-direction: column;
     box-shadow: var(--shadow);
     padding: .5rem;
 }
 
+.chart-responsive-container{
+    width: 267px;
+}
+
+@media (min-width: 600px) {
+    .chart-responsive-container{
+        width: 450px;
+    }
+}
+
+@media (min-width: 700px) {
+    .chart-responsive-container{
+        width: 350px;
+    }
+}
+
+@media (min-width: 800px) {
+    .chart-responsive-container{
+        width: 400px;
+    }
+}
 
 #myChart{
     padding: 1rem;
@@ -1058,6 +1079,12 @@ button{
 .stats-text{
     color: var(--screen-text);
     padding: 0 1rem;
+}
+
+@media (max-width: 720px) {
+    .stats-text{
+        text-align: center;
+    }
 }
 
 .vertical-screen{
@@ -1076,7 +1103,7 @@ button{
 
 .characters-stats-container{
     padding: .5rem;
-    max-width: 400px;
+    max-width: var(--small-screen);
     border: var(--screen-border);
     background-color: var(--screen-bg);
     border-radius: 10px;
