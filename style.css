@@ -23,12 +23,13 @@
     --rm-blue : #00B3CB;
     --light-green : #23B78C;
     --light-red : #EF5C5E;
-     --font-color-black : #000000;
+    --font-color-black : #000000;
     --button-bg-color : #EDDDDE;
     --border-style-1px: solid 1px black;
     --border-screen-style-1px: solid 1px black;
     --warning : red;
     --ok : green;
+    --small-screen: 700px;
 }
 
 ::-webkit-scrollbar {
@@ -486,7 +487,7 @@ html{
 
 @media(max-width: 700px){
     .top-btn-container{
-        max-width: 400px;
+        max-width: var(--small-screen);
     }
 }
 
@@ -578,7 +579,7 @@ html{
 @media (max-width: 700px){
     #display-episode-list{
         margin: 0 auto;
-        max-width: 400px;
+        max-width: var(--small-screen);
     }
 }
 
@@ -618,7 +619,7 @@ html{
 
 @media (max-width: 700px){
     .middle-display{
-        max-width: 400px;
+        max-width: var(--small-screen);
         margin: 0 auto;
     }
 }
@@ -976,7 +977,7 @@ button{
 
 @media(max-width: 700px){
     .favorite-container{
-        max-width: 400px;
+        max-width: var(--small-screen);
     }
 }
 
@@ -1024,7 +1025,7 @@ button{
     margin-bottom: 6rem;
 }
 
-@media (max-width:700px) {
+@media (max-width:800px) {
     .stats-container{
         gap: 2rem;
         grid-template-columns: 1fr;
